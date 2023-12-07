@@ -1,0 +1,65 @@
+:root {
+    --bg-color: #ebdebe;
+    --main-color: rgb(59, 5, 5);
+  }
+
+body {
+    margin: 0;
+    font-family: "Montserrat", "sanf serif";
+}
+
+.atf-image {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+
+.main-container {
+    height: 500px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    background-color: #ebdebe60;
+    font-size: 2.5em;
+    width: 100%;
+    color: var(--main-color);
+}
+
+.main-title {
+    font-family: "Pacifico", "Montserrat", "cursive";
+    font-weight: lighter;
+}
+
+.content-container {
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+h2 {
+    font-family: "Pacifico", "Montserrat", "cursive";
+    font-weight: lighter; 
+    color: var(--main-color);
+    font-size: 1.7em;
+}
+
+.burger-price-row {
+    font-size: 1.1em;
+    font-weight: bolder;
+}
+
+.ingredients-row {
+    font-size: 0.8em;
+    margin-bottom: 20px;
+}
+
+.gmaps {
+    height: 350px;
+    width: 100%;
+}
+
+footer {
+    background-color: var(--bg-color);
+    padding: 30px;
+    padding-left: 80px;
+    margin-top: 20px;
+}
