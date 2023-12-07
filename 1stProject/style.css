@@ -25,6 +25,13 @@ body {
     color: var(--main-color);
 }
 
+@media only screen and (max-width: 740px){
+    .main-container {
+        font-size: 1.5em;
+    }
+    
+}
+
 .main-title {
     font-family: "Pacifico", "Montserrat", "cursive";
     font-weight: lighter;
