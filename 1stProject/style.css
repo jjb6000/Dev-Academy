@@ -16,13 +16,17 @@ body {
 
 .main-container {
     height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     position: absolute;
     top: 0;
     background-color: #ebdebe60;
     font-size: 2.5em;
     width: 100%;
-    color: var(--main-color);
+    color: whitesmoke;
 }
 
 @media only screen and (max-width: 740px){
@@ -35,11 +39,25 @@ body {
 .main-title {
     font-family: "Pacifico", "Montserrat", "cursive";
     font-weight: lighter;
+    filter: drop-shadow(5px 5px 3px var(--main-color))
+}
+
+.sub-title {
+    filter: drop-shadow(5px 5px 3px var(--main-color))
 }
 
 .content-container {
-    padding-left: 80px;
-    padding-right: 80px;
+    margin-top: 100px;
+    padding: 64px;
+    margin: 20px;
+    background-color: #ebdebe0e;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 24px;
+}
+
+.gmaps {
+    height: 350px;
+    width: 100%;
 }
 
 h2 {
@@ -49,24 +67,56 @@ h2 {
     font-size: 1.7em;
 }
 
+.time-table {
+    width: 400px;
+}
+
+.burger-table {
+    width: 560px;
+    margin-bottom: 40px;
+}
+
 .burger-price-row {
     font-size: 1.1em;
     font-weight: bolder;
 }
 
+
+@media only screen and (max-width: 740px){
+    .burger-table {
+        width: auto;
+    }
+
+    .time-table {
+        width: auto;
+    }
+    
+}
+
 .ingredients-row {
     font-size: 0.8em;
-    margin-bottom: 20px;
 }
 
-.gmaps {
-    height: 350px;
-    width: 100%;
+.ingredients-row td {
+    padding-bottom: 12px;
 }
+
 
 footer {
+    display: flex;
+    justify-content: space-between;
     background-color: var(--bg-color);
     padding: 30px;
-    padding-left: 80px;
     margin-top: 20px;
 }
+
+a {
+    text-decoration: none;
+    color: rgb(172, 96, 3);
+}
+
+a:hover {
+    color: lightskyblue;
+    text-decoration: underline;
+}
+
