@@ -15,13 +15,16 @@
     <header>
         <ul class="navbar">
             <li><a href="#contact">KONTAKT</a></li>
-            <li><a href="Bestellungen.html" target="_blank" rel="noopener noreferrer">BESTELLUNGEN</a></li>
+            <li>
+                <button class="btn" onclick="window.open('Bestellungen.html', '_blank');">BESTELL ONLINE</button>
+            </li>
             <li><a href="Reservierungen.html" target="_blank" rel="noopener noreferrer">RESERVIERUNGEN</a></li>
+            <li><a href="#location">ANFAHRT</a></li>
         </ul>
 
     </header>
 
-    <img class="atf-image" src="/1stProject/img/burger.jpg" alt="Burger+Pommes">
+    <img class="atf-image" src="img/burger.jpg" alt="Burger+Pommes">
 
 
     <div class="main-container">
@@ -51,7 +54,7 @@
     </div>
 
     <div class="content-container">
-        <h2>Anfahrt</h2>
+        <h2 id="location">Anfahrt</h2>
         Unsere Adresse lautet:
         Eldenaer Str. 8, 10247 Berlin
         <br>
