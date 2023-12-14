@@ -1,0 +1,29 @@
+.div1 {
+    height: 50vh;
+    background-color: blue;
+    border: solid 2px black;
+    margin-top: 0;
+}
+
+.div2 {
+    height: 50vh;
+    background-color: blue;
+    border: solid 2px black;
+    /* position: relative; */
+}
+
+
+.div2-1 {
+    background-color: green;
+    height: 10vh;
+}
+
+.div2-2 {
+    background-color: yellow;
+    height: 10vh;
+    position: absolute;
+    top: 5vh;
+    left: 0;
+    right: 0;
+    
+}

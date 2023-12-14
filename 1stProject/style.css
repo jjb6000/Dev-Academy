@@ -50,6 +50,7 @@ header {
     align-items: center;
     list-style-type: none;
     margin: 0;   
+    flex-wrap: wrap;
     
 }
 
