@@ -1,0 +1,7 @@
+User-agent: *
+
+disallow: /datenschutz.html
+disallow: /impressum.html
+disallow: /Bestellungen.html
+disallow: /Reservierungen.html
+
