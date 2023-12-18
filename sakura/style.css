@@ -9,7 +9,6 @@ body {
     font-family: "raleway", sans-serif;
     font-size: 24px;
     color: white;
-    background-color: #675E54;
 }
 
 h1 {
@@ -23,6 +22,7 @@ h2 {
     font-weight: bold;
     font-size: 80px;
     color: var(--h2-text);
+    margin-bottom: 64px;
 }
 
 a {
@@ -64,4 +64,63 @@ a {
     width: 600px;
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
+
+.tel-btn {
+    background-color: var(--h2-text);
+    border: solid 1px white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 200px;
+    padding: 8px;
+}
+
+.content {
+    margin-top: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.withBG {
+    background-image: url('img/3_section_our_menu/JPG/section_our_menu_bg.jpg');
+}
+
+.order {
+    display: flex;
+    justify-content: space-around;
+    width: 1120px;
+}
+
+.order-step {
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.order-step img { 
+    width: 128px;
+    margin-bottom: 16px;
+}
+
+.order-step span {
+    font-family: 'Economica', sans-serif;
+    font-weight: bold;
+    font-size: 56px;
+    color: #000000;
+    text-align: center;
+    
+}
+
+.menu {
+    width: 1120px;
+}
+
+.withBG h2 {
+    margin-top: 120px;
+}
+
