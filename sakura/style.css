@@ -1,0 +1,67 @@
+:root {
+    --default-text: #000000;
+    --h2-text: #9F0908;
+    --dish-price-text: #675E54;
+    --footer: #0A141E;
+}
+
+body {
+    font-family: "raleway", sans-serif;
+    font-size: 24px;
+    color: white;
+    background-color: #675E54;
+}
+
+h1 {
+    font-family: "raleway", sans-serif;
+    font-weight: bold;
+    font-size: 96px;
+}
+
+h2 {
+    font-family: "raleway", sans-serif;
+    font-weight: bold;
+    font-size: 80px;
+    color: var(--h2-text);
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+}
+
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('img/1_hero/JPG/hero_bg.jpg');
+    background-size: cover;
+    height: 100vh;
+    width: 1440px;
+}
+
+.header {
+    height: 112px;
+    width: 1120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 80px;
+}
+
+.logo {
+    height: 64px;
+    width: 64px;
+}
+
+.navbar {
+    width: 600px;
+    display: flex;
+    justify-content: space-around;
+}
