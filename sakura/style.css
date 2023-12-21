@@ -35,22 +35,10 @@ a {
     color: white;
 }
 
-.main-container {
-    position: absolute;
-    top: 0;
-    left: 160px;  
-    right: 160px;
-    margin: 0;
+a:hover {
+    border-bottom: solid white 2px;
 }
 
-
-@media only screen and (max-width: 1440px){
-    .main-container {
-        left: 0;
-        right: 0;
-    }
-    
-} 
 
 .hero-container {
     display: flex;
@@ -59,17 +47,16 @@ a {
     background-image: url('img/1_hero/JPG/hero_bg.jpg');
     background-size: cover;
     height: 100vh;
-    width: 100%;
     color: white;
 }
 
 .header {
-    height: 112px;
-    width: 80%;
+    margin-top: 24px;
+    width: 76%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 80px;
+    margin-bottom: 104px;
 }
 
 .logo {
@@ -95,6 +82,10 @@ a {
     padding: 8px;
 }
 
+.tel-btn:hover {
+    background-color: red;
+}
+
 .content {
     display: flex;
     flex-direction: column;
@@ -111,7 +102,7 @@ a {
 .order {
     display: flex;
     justify-content: space-around;
-    width: 80%;
+    width: 76%;
 }
 
 .order-step {
@@ -139,7 +130,7 @@ a {
 .menu {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 76%;
 }
 
 .menu-item {
@@ -178,5 +169,45 @@ a {
 
 /* ANCHOR location */
 
+
+#location {
+    margin-bottom: 8px;
+}
+
+.location-span {
+    display: flex;
+    align-items: center;
+    margin-bottom: 64px;
+}
+
+.location-span img {
+    margin-right: 8px;
+}
+
+/* ANCHOR Footer */
+
+footer {
+    background-color: var(--footer);
+    display: flex;
+    justify-content: center;
+}
+
+.footer-content {
+    width: 76%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.brand img {
+    height: 44px;
+}
+
+.social-media img {
+    height: 40px;
+    width: 40px;
+}
 
 
