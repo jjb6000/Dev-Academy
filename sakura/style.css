@@ -5,6 +5,11 @@
     --footer: #0A141E;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+
 body {
     font-family: "raleway", sans-serif;
     font-size: 24px;
@@ -46,6 +51,7 @@ a:hover {
     align-items: center;
     background-image: url('img/1_hero/JPG/hero_bg.jpg');
     background-size: cover;
+    background-position: center bottom;
     height: 100vh;
     color: white;
 }
@@ -135,7 +141,7 @@ a:hover {
 
 .menu-item {
     display: flex;
-    margin-bottom: 56px;
+    padding-bottom: 56px;
     align-items: center;
 }
 
@@ -149,7 +155,8 @@ a:hover {
 }
 
 .menu-item table {
-    margin: 80px;
+    margin-left: 80px;
+    margin-right: 80px;
 }
 
 .menu-item th {
@@ -182,6 +189,10 @@ a:hover {
 
 .location-span img {
     margin-right: 8px;
+}
+
+.nobottom-padding {
+    padding-bottom: 0px;
 }
 
 /* ANCHOR Footer */
