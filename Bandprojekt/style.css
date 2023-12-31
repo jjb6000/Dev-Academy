@@ -1,5 +1,7 @@
 :root {
-    --highlight: #df6814;
+    --highlight: #ae8548;
+    --bg-dark: #0e0e0e;
+    --bg-grey: #272727;
 }
 
 body {
@@ -25,9 +27,9 @@ h1 {
     align-items: center;
     flex-direction: column;
     background-image: url(img/header.png);
-    background-position: start center;
+    background-position: center;
     background-size: cover;
-    height: 120vh;
+    height: 100vh;
 }
 
 .atf span {
@@ -37,25 +39,35 @@ h1 {
 }
 
 .logo {
-    height: 80px;
+    width: 80px;
 }
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px;
-    width: 80vw;
+    /* background-color: rgba(255, 255, 255, 0.2); */
+    width: 80%;
+    padding: 24px;
 }
 
 .navbar a {
-    padding-right: 32px;
+    margin-left: 32px;
     font-size: 24px;
 }
 
-.navbar img{
+.navbar a:hover {
+    color: var(--highlight);
+}
+
+.navbar img {
     height: 20px;
-    padding-right: 32px;
+    margin-left: 32px;
+}
+
+.navbar img:hover {
+    filter: drop-shadow(0px 0px 8px var(--highlight));
+    cursor: pointer;
 }
 
 .button {
@@ -68,4 +80,30 @@ header {
     width: 160px;
     height: 40px;
     margin: 20px;
+}
+
+/* ANCHOR categories */
+
+.categories {
+    display: flex;
+    padding: 100px 0px 100px 0px;
+    justify-content: center;
+    background-color: var(--bg-dark);
+}
+
+.categories a {
+    color: var(--highlight);
+}
+
+.categories img {
+    width: 400px;
+}
+
+.category {
+    margin: 20px;
+    font-size: 32px;
+}
+
+.festival-container {
+    background-color: var(--bg-grey);
 }
