@@ -82,10 +82,10 @@ header {
 .button {
     background-color: var(--highlight);
     padding: 16px;
-    width: 220px;
+    width: 200px;
     display: flex;
     justify-content: center;
-    font-size: 24px;
+    font-size: 20px;
     border: none;
     cursor: pointer;
     color: white;
@@ -131,9 +131,9 @@ header {
 }
 
 .buy-ticket-container {
-    padding: 80px;
-    height: 80px;
-    border-left: solid white 3px;
+    padding: 48px;
+    height: 120px;
+    border-left: solid white 1px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -218,11 +218,7 @@ footer {
 .submit-share-container input::placeholder {
     color: grey;
     padding-left: 31px;
-    font-size: 16px;
-}
-
-.submit-share-container button {
-    font-size: 16px;
+    font-size: 20px;
 }
 
 
@@ -235,5 +231,5 @@ footer {
 }
 
 .disclaimer a {
-    color: grey;
+    color: lightgray;
 }
