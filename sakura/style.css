@@ -58,7 +58,7 @@ a:hover {
 
 .header {
     margin-top: 24px;
-    width: 76%;
+    width: 80vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -108,7 +108,7 @@ a:hover {
 .order {
     display: flex;
     justify-content: space-between;
-    width: 76%;
+    width: 80vw;
 }
 
 .order-step {
@@ -136,7 +136,7 @@ a:hover {
 .menu {
     display: flex;
     flex-direction: column;
-    width: 76%;
+    width: 80vw;
 }
 
 .menu-item {
@@ -185,6 +185,7 @@ a:hover {
     display: flex;
     align-items: center;
     margin-bottom: 64px;
+    text-align: center;
 }
 
 .location-span img {
@@ -204,7 +205,7 @@ footer {
 }
 
 .footer-content {
-    width: 76%;
+    width: 80vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -221,4 +222,63 @@ footer {
     width: 40px;
 }
 
+/* ANCHOR media querries */
+
+@media (max-width: 900px) {
+    .hide-on-mobile {
+        display: none;
+    }
+    .navbar {
+        justify-content: end;
+    }
+
+    h1 {
+        font-size: 80px;
+        margin-block-end: 0.4em
+    }
+
+    h2 {
+        font-size: 64px;
+    }
+
+    .order {
+        flex-direction: column;
+        align-items: center;
+        gap: 96px;
+    }
+
+    .menu-item {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .menu-item th {
+        font-size: 40px;
+        text-align: left;
+    }
+
+    .menu-item td {
+        font-size: 24px;
+        padding-right: 16px;
+    }
+
+    .withFlexEnd {
+       align-self: center;
+       flex-direction: column-reverse; 
+    }
+
+    .location-span {
+        flex-direction: column;
+    }
+    
+    .location-span img {
+        margin-right: 0px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+}
 
