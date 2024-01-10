@@ -286,6 +286,10 @@ footer {
         object-fit: cover;
     }
 
+    .festival-text {
+        text-align: center;
+    }
+
     .buy-ticket-container {
         border: none;
         padding: 0;
