@@ -92,6 +92,14 @@ a:hover {
     background-color: red;
 }
 
+#ger {
+    width: 20px;
+}
+
+#en {
+    width: 20px;
+}
+
 .content {
     display: flex;
     flex-direction: column;
@@ -231,6 +239,7 @@ footer {
 
     .navbar {
         justify-content: end;
+        gap: 12px;
     }
 
     h1 {
@@ -298,12 +307,27 @@ footer {
 }
 
 @media (max-width: 450px) {
+    .navbar {
+        flex-direction: column;
+        align-items: end;
+        justify-content: center;
+        gap: 24px;
+    }
+
+    #ger {
+        width: 40px;
+    }
+    
+    #en {
+        width: 40px;
+    }
+
     body {
         font-size: 16px;
     }
     
     .tel-btn {
-        width: 130px;
+        width: 160px;
     }
 
     .tel-btn img {
