@@ -19,7 +19,7 @@ let languageObject = {
     "location": ["FIND US AT", "KOMM VORBEI"]
 }
 
-// key = id | 0 = EN | 1 = GER
+// key = id | int = 0 = EN | int = 1 = GER
 function translator(int) {
 
     for (let key in languageObject) {
