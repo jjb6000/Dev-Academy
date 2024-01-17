@@ -9,5 +9,4 @@ function calculateAmount() {
         elements[i].innerHTML = `${newAmount}`
     }
     previousMultiplicator = multiplicator
-
 }
