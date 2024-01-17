@@ -21,15 +21,12 @@ body {
     background-color: var(--grey);
 }
 
-img {
-    border-radius: 16px;
-}
-
 .reciept-img {
     height: 240px;
     width: 100%;
     object-fit: cover;
     margin-bottom: 40px;
+    border-radius: 16px;
 }
 
 .tags {
@@ -54,9 +51,9 @@ img {
 form {
     display: flex;
     align-items: center;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    border-top: solid var(--grey) 2px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-top: solid var(--grey) 1px;
     margin-top: 48px;
 }
 
