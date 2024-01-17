@@ -80,6 +80,7 @@ form label {
     color: white;
     border: solid var(--green) 2px;
     border-radius: 0;
+    font-size: 18px;
 }
 
 table {
