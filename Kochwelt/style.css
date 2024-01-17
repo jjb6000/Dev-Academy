@@ -1,0 +1,111 @@
+:root {
+    --grey: #efefef;
+    --green: #008000
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "raleway", sans-serif;
+    font-size: 18px;
+}
+
+.content {
+    padding-left: 16vw;
+    padding-right: 16vw;
+}
+
+.bg-gray {
+    background-color: var(--grey);
+}
+
+img {
+    border-radius: 16px;
+}
+
+.reciept-img {
+    height: 240px;
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: 40px;
+}
+
+.tags {
+    display: flex;
+    gap: 24px;
+    padding-bottom: 24px;
+}
+
+.tag {
+    background-color: var(--grey);
+    padding: 6px 12px 6px 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.tag img {
+    height: 16px;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-top: solid var(--grey) 2px;
+    margin-top: 48px;
+}
+
+form label {
+    margin-right: 8px;
+}
+
+#input-text {
+    height: 44px;
+    padding: 0;
+    border: solid var(--grey) 2px;
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+
+}
+
+#button {
+    height: 48px;
+    width: 180px;
+    background-color: var(--green);
+    color: white;
+    border: solid var(--green) 2px;
+    border-radius: 0;
+}
+
+table {
+    width: 100%;
+}
+
+td {
+    border-radius: 8px;
+    padding: 16px 24px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    font-size: 24px;
+}
+
+.profile-pic {
+    width: 80px;
+    border-radius: 100%;
+}
+
+
+@media (max-width: 850px) {
+    .content {
+        padding: 0;
+    }
+}
