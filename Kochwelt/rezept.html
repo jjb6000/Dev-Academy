@@ -11,6 +11,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Economica:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+
+        <script defer src="app.js"></script>    
 </head>
 
 <body>
@@ -27,32 +29,32 @@
         </div>
 
 
-        <form action="">
+        <form onsubmit="calculateAmount(); return false">
             <label for="input-text">Zutaten für</label>
-            <input id="input-text" type="text" name="" id="">
-            <input id="button" type="button" value="Portionen">
+            <input id="input-text" type="number" min="1" required>
+            <input id="button" type="submit" value="Portionen">
         </form>
 
 
 
         <table>
             <tr class="bg-gray">
-                <td>50g Pancetta (oder Bacon)</td>
+                <td><span class="variable">50</span> g Pancetta (oder Bacon)</td>
             </tr>
             <tr>
-                <td>50g fein geriebener Parmesan</td>
+                <td><span class="variable">50</span> g fein geriebener Parmesan</td>
             </tr>
             <tr class="bg-gray">
-                <td>2 Eier</td>
+                <td><span class="variable">2</span> Eier</td>
             </tr>
             <tr>
                 <td>1 EL Olivenöl</td>
             </tr>
             <tr class="bg-gray">
-                <td>10g gemahlener Pfeffer</td>
+                <td><span class="variable">10</span> g gemahlener Pfeffer</td>
             </tr>
             <tr>
-                <td>150g Spaghetti</td>
+                <td><span class="variable">150</span> g Spaghetti</td>
             </tr>
             <tr class="bg-gray">
                 <td>1 EL Salz</td>
@@ -69,7 +71,7 @@
         <p>Reichlich Wasser für die Nudeln aufkochen und währenddessen den Pancetta in kleine Streifen schneiden. Das Eigbelb vom Eiweiß
             trennen und in eine Schüssel geben. In die Schüssel den Parmesankäse fein hineinreiben und alles vermischen. Wenn das Wasser kocht die Nudeln mit 
             etwas Salz für ca. 8 Minuten kochen. Während die Nudeln kochen, die Pancettastreifen anschwitzen, sie dürfen nicht zu kross werden. Wenn die Ei-Käse-Mischung zu
-            dick ist, kannst due sie mit etwas Nudelwasser verdünnen. Wenn die Nudeln fertig sind alles vermischen. Fertig :).
+            dick ist, kannst due sie mit etwas Nudelwasser verdünnen. Wenn die Nudeln fertig sind alles in der Pfanne auf ganz kleiner Flamme oder nur mit Resthitze vermischen bis die Soße die gewünschte Konsistenz hat. Fertig :).
         </p>
 
         <h3>Rezept erstellt von</h3>
