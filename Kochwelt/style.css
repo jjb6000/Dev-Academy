@@ -85,11 +85,16 @@ form label {
 
 table {
     width: 100%;
+    margin-bottom: 32px;
 }
 
 td {
     border-radius: 8px;
     padding: 16px 24px;
+}
+
+h3 {
+    padding-top: 24px;
 }
 
 .profile {
@@ -101,7 +106,9 @@ td {
 
 .profile-pic {
     width: 80px;
+    height: 80px;
     border-radius: 100%;
+    object-fit: cover;
 }
 
 
