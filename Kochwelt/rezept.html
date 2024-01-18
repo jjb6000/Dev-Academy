@@ -12,10 +12,13 @@
         href="https://fonts.googleapis.com/css2?family=Economica:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 
-        <script defer src="app.js"></script>    
+    <script defer src="app.js"></script>
+    <script defer src="include.js"></script>
 </head>
 
-<body>
+<body onload="includeHTML()">
+
+    <div w3-include-html="header.html"></div>
 
     <div class="content">
         <h1>Spaghetti Carbonara</h1>
@@ -68,10 +71,15 @@
             <div class="tag">Gesamtzeit ca. 15 Minuten</div>
         </div>
 
-        <p>Reichlich Wasser für die Nudeln aufkochen und währenddessen den Pancetta in kleine Streifen schneiden. Das Eigbelb vom Eiweiß
-            trennen und in eine Schüssel geben. In die Schüssel den Parmesankäse fein hineinreiben und alles vermischen. Wenn das Wasser kocht die Nudeln mit 
-            etwas Salz für ca. 8 Minuten kochen. Während die Nudeln kochen, die Pancettastreifen anschwitzen, sie dürfen nicht zu kross werden. Wenn die Ei-Käse-Mischung zu
-            dick ist, kannst due sie mit etwas Nudelwasser verdünnen. Wenn die Nudeln fertig sind alles in der Pfanne auf ganz kleiner Flamme oder nur mit Resthitze vermischen bis die Soße die gewünschte Konsistenz hat. Fertig :).
+        <p>Reichlich Wasser für die Nudeln aufkochen und währenddessen den Pancetta in kleine Streifen schneiden. Das
+            Eigbelb vom Eiweiß
+            trennen und in eine Schüssel geben. In die Schüssel den Parmesankäse fein hineinreiben und alles vermischen.
+            Wenn das Wasser kocht die Nudeln mit
+            etwas Salz für ca. 8 Minuten kochen. Während die Nudeln kochen, die Pancettastreifen anschwitzen, sie dürfen
+            nicht zu kross werden. Wenn die Ei-Käse-Mischung zu
+            dick ist, kannst due sie mit etwas Nudelwasser verdünnen. Wenn die Nudeln fertig sind alles in der Pfanne
+            auf ganz kleiner Flamme oder nur mit Resthitze vermischen bis die Soße die gewünschte Konsistenz hat. Fertig
+            :).
         </p>
 
         <h3>Rezept erstellt von</h3>
@@ -85,3 +93,4 @@
 </body>
 
 </html>
+

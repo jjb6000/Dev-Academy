@@ -7,6 +7,54 @@ html {
     scroll-behavior: smooth;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/* ANCHOR header */
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 130px;
+    border-bottom: solid 4px var(--grey);
+    text-align: center;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 16vw;
+    padding-right: 16vw;
+    height: 120px;
+
+}
+
+.logo {
+    height: 100px;
+    align-self: center;
+}
+
+.navbar {
+    align-self: flex-end;
+}
+
+.navlink {
+    padding: 6px 0px;
+    margin: 0px 8px;
+    font-weight: 600;
+}
+
+.navlink:hover {
+    color: var(--green);
+    border-bottom: solid 4px var(--green);
+}
+
+/* ANCHOR body */
+
 body {
     font-family: "raleway", sans-serif;
     font-size: 18px;
@@ -15,6 +63,7 @@ body {
 .content {
     padding-left: 16vw;
     padding-right: 16vw;
+    margin-top: 160px;
 }
 
 .bg-gray {
@@ -109,8 +158,14 @@ h3 {
 }
 
 
-@media (max-width: 850px) {
+@media (max-width: 1100px) {
     .content {
         padding: 0;
+    }
+
+    .header {
+        padding-left: 0;
+        padding-right: 0;
+    
     }
 }
