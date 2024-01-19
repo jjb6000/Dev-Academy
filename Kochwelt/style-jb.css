@@ -12,6 +12,20 @@ a {
     color: black;
 }
 
+.img-radius {
+    border-radius: 16px;
+}
+
+.medium-img {
+    width: 400px;
+}
+
+.small-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
 /* ANCHOR header */
 
 header {
@@ -60,6 +74,17 @@ body {
     font-size: 18px;
 }
 
+.hero-section {
+    margin-top: 130px;
+    
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 80px;
+}
+
 .content {
     padding-left: 16vw;
     padding-right: 16vw;
@@ -75,7 +100,6 @@ body {
     width: 100%;
     object-fit: cover;
     margin-bottom: 40px;
-    border-radius: 16px;
 }
 
 .tags {
