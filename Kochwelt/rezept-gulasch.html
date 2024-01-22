@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kochwelt - Rezept</title>
+    <link rel="icon" type="image/x-icon" href="img/logo_small.png">
+    <link rel="stylesheet" href="style-jb.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Economica:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <script defer src="app.js"></script>
+    <script defer src="include.js"></script>
+</head>
+
+<body onload="includeHTML()">
+
+    <div w3-include-html="header.html"></div>
+
+    <div class="content">
+        <h1>Klassissches Rindergulasch</h1>
+
+        <img class="reciept-img img-radius" src="img/goulash-2.jpg" alt="Spaghetti">
+
+        <div class="tags">
+            <div class="tag"><img src="img/icons/clock-regular.svg" alt="clock">3h</div>
+            <div class="tag"><img src="img/icons/brain-solid.svg" alt="brain">mittel</div>
+            <div class="tag"><img src="img/icons/calendar-alt-regular.svg" alt="calendar"> 20.01.2024</div>
+        </div>
+
+
+        <form onsubmit="calculateAmount(); return false">
+            <label for="input-text">Zutaten für</label>
+            <input id="input-text" type="number" min="1" required>
+            <input class="btn btn-portion" id="button" type="submit" value="Portionen">
+        </form>
+
+
+
+        <table id="ingredients">
+            <tr class="bg-gray">
+                <td><span class="variable">750</span>g Rindergulasch (in mundgerechte Stücke geschnitten)</td>
+            </tr>
+            <tr>
+                <td><span class="variable">2</span> Zwiebeln, fein gehackt</td>
+            </tr>
+            <tr class="bg-gray">
+                <td><span class="variable">2</span> Knoblauchzehen, gehackt</td>
+            </tr>
+            <tr>
+                <td><span class="variable">2</span> EL Tomatenmark</td>
+            </tr>
+            <tr class="bg-gray">
+                <td><span class="variable">2</span> EL Paprikapulver (edelsüß)</td>
+            </tr>
+            <tr>
+                <td><span class="variable">2</span> EL Öl</td>
+            </tr>
+            <tr class="bg-gray">
+                <td><span class="variable">2</span> Lorbeerblätter</td>
+            </tr>
+            <tr>
+                <td><span class="variable">1</span> TL Kümmel</td>
+            </tr>
+            </tr>
+            <tr class="bg-gray">
+                <td><span class="variable">400</span>ml Rinderbrühe</td>
+            </tr>
+            <tr>
+                <td>Salz und Pfeffer nach Geschmack</td>
+            </tr>
+        </table>
+
+        <h2>Zubereitung</h2>
+
+        <div class="tags">
+            <div class="tag"> Vorbereitung ca. 30 Minuten</div>
+            <div class="tag">Gesamtzeit ca. 3 Stunden</div>
+        </div>
+
+        <p>Das Rindergulasch mit Salz und Pfeffer würzen. Das Öl in einem großen Schmortopf erhitzen. Das Fleisch in kleinen Portionen anbraten, bis es rundherum braun ist. Das angebratene Fleisch beiseite stellen. In derselben Pfanne die gehackten Zwiebeln glasig anbraten. Den Knoblauch hinzufügen und kurz mitbraten. Das Tomatenmark unterrühren und kurz anschwitzen. Dann das Paprikapulver hinzufügen und alles gut vermengen. Das angebratene Fleisch wieder in den Topf geben. Kümmel dazugeben und alles gut vermengen. Mit Rinderbrühe ablöschen und die Lorbeerblätter hinzufügen. Den Topf abdecken und das Gulasch bei niedriger Hitze etwa 2 bis 2,5 Stunden schmoren lassen, bis das Fleisch zart ist. Gelegentlich umrühren und bei Bedarf mehr Brühe hinzufügen. Das Gulasch abschmecken und nach Bedarf mit Salz und Pfeffer würzen. Mit Beilagen wie Kartoffeln, Nudeln oder Brot servieren. Genieße dein selbstgemachtes Rindergulasch!
+        </p>
+
+        <h3>Rezept erstellt von</h3>
+
+        <div class="profile">
+            <img class="profile-pic" src="img/jonas.png" alt="profile-pic">
+            <span>Jonas</span>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kochwelt - Rezept</title>
+    <link rel="icon" type="image/x-icon" href="img/logo_small.png">
+    <link rel="stylesheet" href="style-jb.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Economica:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <script defer src="app.js"></script>
+    <script defer src="include.js"></script>
+</head>
+
+<body onload="includeHTML()">
+
+    <div w3-include-html="header.html"></div>
+
+    <div class="content">
+        <h1>Moussaka</h1>
+
+        <img class="reciept-img img-radius" src="img/moussaka.jpg" alt="Spaghetti">
+
+        <div class="tags">
+            <div class="tag"><img src="img/icons/clock-regular.svg" alt="clock">90 Min.</div>
+            <div class="tag"><img src="img/icons/brain-solid.svg" alt="brain">komplex</div>
+            <div class="tag"><img src="img/icons/calendar-alt-regular.svg" alt="calendar"> 20.01.2024</div>
+        </div>
+
+
+        <form onsubmit="calculateAmount(); return false">
+            <label for="input-text">Zutaten für</label>
+            <input id="input-text" type="number" min="1" required>
+            <input class="btn btn-portion" id="button" type="submit" value="Portionen">
+        </form>
+
+
+
+        <table id="ingredients">
+            <tr class="bg-gray">
+                <td><span class="variable">50</span>g Allzweckmehl</td>
+            </tr>
+            <tr>
+                <td><span class="variable">2</span> große Auberginen, in Scheiben geschnitten</td>
+            </tr>
+            <tr class="bg-gray">
+                <td><span class="variable">1</span> Prise Muskatnuss</td>
+            </tr>
+            <tr>
+                <td><span class="variable">500</span>ml Milch</td>
+            </tr>
+            <tr class="bg-gray">
+                <td><span class="variable">2</span> Eier, leicht geschlagen</td>
+            </tr>
+            <tr>
+                <td><span class="variable">500</span>g Hackfleisch (Rind oder Lamm)</td>
+            </tr>
+            <tr class="bg-gray">
+                <td><span class="variable">1</span> Zwiebel, fein gehackt</td>
+            </tr>
+            <tr>
+                <td><span class="variable">2</span> Knoblauchzehen, gehackt</td>
+            </tr>
+            </tr>
+            <tr class="bg-gray">
+                <td><span class="variable">400</span>g passierte Tomaten</td>
+            </tr>
+            <tr>
+                <td><span class="variable">1</span> TL getrockneter Oregano</td>
+            </tr>
+            <tr class="bg-gray">
+                <td><span class="variable">1</span> TL Zimt</td>
+            </tr>
+            <tr>
+                <td><span class="variable">50</span>g Butter</td>
+            </tr>
+            </tr>
+            <tr class="bg-gray">
+                <td><span class="variable">400</span>ml Rinderbrühe</td>
+            </tr>
+            <tr>
+                <td><span class="variable">1</span> TL getrockneter Oregano</td>
+            </tr>
+            <tr class="bg-gray">
+                <td><span class="variable">2</span> EL Olivenöl</td>
+            </tr>
+            <tr>
+                <td>Salz und Pfeffer nach Geschmack</td>
+            </tr>
+        </table>
+
+        <h2>Zubereitung</h2>
+
+        <div class="tags">
+            <div class="tag"> Vorbereitung ca. 30 Minuten</div>
+            <div class="tag">Gesamtzeit ca. 90 Minuten</div>
+        </div>
+
+        <p>Die Auberginenscheiben salzen und 30 Minuten stehen lassen. Danach mit Wasser abspülen und trocken tupfen. Die Auberginenscheiben in Olivenöl goldbraun anbraten und auf Küchenpapier abtropfen lassen. Für die Fleischsauce: Zwiebel und Knoblauch in etwas Olivenöl anbraten. Das Hackfleisch hinzufügen und krümelig braten. Passierte Tomaten, Oregano, Zimt, Salz und Pfeffer dazugeben. Alles köcheln lassen, bis die Sauce eingedickt ist. Für die Béchamelsauce: In einem Topf Butter schmelzen, Mehl hinzufügen und rühren, bis es goldbraun ist. Milch unter ständigem Rühren hinzufügen, bis die Sauce eindickt. Mit Muskatnuss, Salz und Pfeffer würzen. Vom Herd nehmen und die geschlagenen Eier einrühren. Den Ofen auf 180 Grad Celsius vorheizen. Eine Auflaufform einfetten. Eine Schicht Auberginen, gefolgt von der Fleischsauce, wiederholen. Die letzte Schicht sollte Auberginen sein. Die Béchamelsauce über die oberste Schicht gießen. Die Moussaka im vorgeheizten Ofen etwa 45-60 Minuten backen, bis die Oberfläche goldbraun ist. Vor dem Servieren 15 Minuten abkühlen lassen.
+        </p>
+
+        <h3>Rezept erstellt von</h3>
+
+        <div class="profile">
+            <img class="profile-pic" src="img/jonas.png" alt="profile-pic">
+            <span>Jonas</span>
+        </div>
+    </div>
+
+</body>
+
+</html>

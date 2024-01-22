@@ -17,13 +17,19 @@ a {
 }
 
 .medium-img {
-    width: 400px;
+    width: 500px;
+    height: 300px;
+    object-fit: cover;
 }
 
 .small-img {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
+}
+
+h2 {
+    margin-bottom: 32px;
 }
 
 /* ANCHOR header */
@@ -33,7 +39,7 @@ header {
     top: 0;
     left: 0;
     right: 0;
-    height: 130px;
+    height: 110px;
     border-bottom: solid 4px var(--grey);
     text-align: center;
 }
@@ -43,12 +49,12 @@ header {
     justify-content: space-between;
     padding-left: 16vw;
     padding-right: 16vw;
-    height: 120px;
+    height: 100px;
 
 }
 
 .logo {
-    height: 100px;
+    height: 80px;
     align-self: center;
 }
 
@@ -57,6 +63,7 @@ header {
 }
 
 .navlink {
+    color: black;
     padding: 6px 0px;
     margin: 0px 8px;
     font-weight: 600;
@@ -71,19 +78,83 @@ header {
 
 body {
     font-family: "raleway", sans-serif;
-    font-size: 18px;
+    font-size: 16px;
+}
+
+section {
+    padding: 32px 16vw 64px 16vw;
 }
 
 .hero-section {
-    margin-top: 130px;
-    
+    margin-top: 130px;   
+}
+
+.hero-section h2 {
+    margin-top: 0;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-content div{
+    flex-grow: 2;
 }
 
 .flex-container {
     display: flex;
-    justify-content: space-around;
-    padding: 80px;
+    justify-content: space-between;
+    gap: 32px;
 }
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 200px;
+    background-color: var(--green);
+    color: white;
+    border: solid var(--green) 2px;
+    border-radius: 0;
+    font-size: 16px;
+}
+
+.bg-gray {
+    background-color: var(--grey);
+}
+
+.receipts-section h2 {
+    text-align: center;
+}
+
+.receipts-section p {
+    margin: 0;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.news-section h2 {
+    text-align: center;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    font-size: 24px;
+}
+
+.profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+/* ANCHOR Reciept page */
 
 .content {
     padding-left: 16vw;
@@ -91,8 +162,27 @@ body {
     margin-top: 160px;
 }
 
-.bg-gray {
-    background-color: var(--grey);
+h3 {
+    padding-top: 24px;
+}
+
+.btn-portion {
+    height: 48px;
+    width: 180px;
+}
+
+.btn-portion:hover {
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    margin-bottom: 32px;
+}
+
+td {
+    border-radius: 8px;
+    padding: 16px 24px;
 }
 
 .reciept-img {
@@ -143,43 +233,6 @@ form label {
 
 }
 
-#button {
-    height: 48px;
-    width: 180px;
-    background-color: var(--green);
-    color: white;
-    border: solid var(--green) 2px;
-    border-radius: 0;
-    font-size: 18px;
-}
-
-table {
-    width: 100%;
-    margin-bottom: 32px;
-}
-
-td {
-    border-radius: 8px;
-    padding: 16px 24px;
-}
-
-h3 {
-    padding-top: 24px;
-}
-
-.profile {
-    display: flex;
-    align-items: center;
-    gap: 32px;
-    font-size: 24px;
-}
-
-.profile-pic {
-    width: 80px;
-    height: 80px;
-    border-radius: 100%;
-    object-fit: cover;
-}
 
 
 @media (max-width: 1100px) {
