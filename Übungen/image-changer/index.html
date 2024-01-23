@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMG</title>
+    <style>
+        img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        input {
+            width: 160px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="">
+        <input type="number" name="Intervall" id="intervall" placeholder="Wie viel Sekunden?" min="1" max="15" required>
+        <button onclick="startImg()" type="button">Starten</button>
+    </form>
+
+    <img id="img" src="img/pasta.jpg" alt="Essen">
+</body>
+
+</html>
+
+<script>
+
+    let img = document.getElementById('img');
+    let source = ['img/pasta.jpg', 'img/salad.jpg', 'img/moussaka.jpg', 'img/broth.png', 'img/egg.png'];
+    let currentImg = 0;
+
+    function startImg() {
+        let time = document.getElementById('intervall').value * 1000
+
+        if (time < 1) {
+            alert('Gib eine Zahl größer 0 Null ein');
+        } else {
+            newImg(currentImg);
+            currentImg++;
+
+            if (currentImg == 5) {
+                currentImg = 0
+            }
+
+            setTimeout(startImg, time);
+
+        }
+    }
+
+    function newImg(i) {
+        img.src = source[i];
+    }
+
+
+</script>
