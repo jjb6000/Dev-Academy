@@ -17,9 +17,8 @@ a {
 }
 
 .medium-img {
-    width: 500px;
-    height: 300px;
     object-fit: cover;
+    overflow: auto;
 }
 
 .small-img {
@@ -74,6 +73,47 @@ header {
     border-bottom: solid 4px var(--green);
 }
 
+/* ANCHOR mobile Navigation */
+
+.navbar-mobile {
+    display: none;
+    flex-direction: column;
+    align-items: start;
+    position: absolute;
+    top: 114px;
+    right: 0;
+    left: 0;
+    background-color: white;
+    font-size: 24px;
+    border-bottom: solid 4px var(--grey);
+    padding-bottom: 24px;
+}
+
+.navlink-mobile {
+    padding: 16px;
+    text-align: start;
+    color: black;
+    width: 280px;
+    font-weight: 600;
+}
+
+.navlink-mobile:hover {
+    color: var(--green);
+}
+
+.burger-menu {
+    width: 60px;
+    margin: 16px;
+    display: none;
+}
+
+.closeBurger {
+    align-self: flex-end;
+    width: 32px;
+    padding: 12px 24px;
+}
+
+
 /* ANCHOR body */
 
 body {
@@ -84,6 +124,8 @@ body {
 section {
     padding: 32px 16vw 64px 16vw;
 }
+
+/* ANCHOR hero section */
 
 .hero-section {
     margin-top: 130px;   
@@ -121,6 +163,8 @@ section {
     font-size: 16px;
 }
 
+/* ANCHOR 3 Rezepte */
+
 .bg-gray {
     background-color: var(--grey);
 }
@@ -135,6 +179,8 @@ section {
     font-weight: 600;
     font-size: 14px;
 }
+
+/* ANCHOR Info-content */
 
 .news-section h2 {
     text-align: center;
@@ -233,7 +279,7 @@ form label {
 
 }
 
-
+/* ANCHOR Media querries */
 
 @media (max-width: 1100px) {
     .content {
@@ -245,6 +291,10 @@ form label {
         padding-right: 0;
     
     }
+    
+    .logo {
+        padding-left: 16px;
+    }
 }
 
 
@@ -252,6 +302,14 @@ form label {
     .logo {
         height: 60px;
         align-self: center;
+    }
+
+    .navlink {
+        display: none;
+    }
+
+    .burger-menu {
+        display: block;
     }
 
     .flex-container {
@@ -275,10 +333,6 @@ form label {
         width: 200px;
         height: 200px;
         object-fit: cover;
-    }
-
-    .navlink {
-        display: none;
     }
 
     .hero-content {
