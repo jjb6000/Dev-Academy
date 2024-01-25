@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            display: flex;
+            gap: 64px;
+        }
+
+        .btn-divs {
+            display: flex;
+            flex-direction: column;
+            gap: 140px;
+            margin-top: 8px;
+        }
+
+        .rectangle {
+            width: 150px;
+            height: 150px;
+            background-color: rebeccapurple;
+            margin: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .d-none {
+            display: none;
+        }
+    </style>
+
+    <script>
+        function hide(index) {
+            document.getElementById(index).classList.add('d-none');
+        }
+
+        function show(index) {
+            document.getElementById(index).classList.remove('d-none');
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <div>
+        <div onclick="hide('1')" class="rectangle" id="1">1</div>
+        <div onclick="hide('2')" class="rectangle" id="2">2</div>
+        <div onclick="hide('3')" class="rectangle" id="3">3</div>
+        <div onclick="hide('4')" class="rectangle" id="4">4</div>
+    </div>
+    <div class="btn-divs">
+        <button type="button" onclick="show('1')" id="1">1</button>
+        <button type="button" onclick="show('2')" id="2">2</button>
+        <button type="button" onclick="show('3')" id="3">3</button>
+        <button type="button" onclick="show('4')" id="4">4</button>
+    </div>
+
+</body>
+</html>

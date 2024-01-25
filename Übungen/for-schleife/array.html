@@ -16,7 +16,7 @@
             document.getElementById('mylist').innerHTML = ''
             for (let i = 0; i < todos.length; i++) {
                 document.getElementById('mylist').innerHTML +=  /*html*/`
-                <li>${todos[i]}</li>
+                <li>${todos[i]}<button onclick="deleteTodo(${i})" type="button">x</button></li>
                 `   
             }    
             document.getElementById('input').value = ''
@@ -32,6 +32,11 @@
             showTodos();
         }
 
+        function deleteTodo(i) {
+            todos.splice(i, 1);
+            showTodos();
+        } 
+
     </script>
 </head>
 
@@ -45,7 +50,7 @@
         <button type="button" onclick="addTodo()">Hinzufügen</button>
     </form>
 
-    <button type="button"></button>
+    
 
 
 </body>
