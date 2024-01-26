@@ -289,6 +289,77 @@ form label {
 
 }
 
+.profile {
+    margin-bottom: 64px;
+}
+
+/* ANCHOR footer */
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 16vw 64px 16vw;
+    border-top: solid 3px var(--grey);
+
+}
+
+.footer-logo {
+    width: 80px;
+}
+
+.footer-link-section {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 40px;
+    padding: 40px 0px;
+    gap: 40px;
+    font-size: 14px;
+    border-top: dotted 4px white;
+    border-bottom: dotted 4px white;
+}
+
+footer p {
+    margin: 0;
+}
+
+.footer-block {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-between;
+    gap: 24px;
+    width: 200px;
+    height: 250px;
+}
+
+.footer-block h4 {
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.footer-link {
+    color: var(--green);
+}
+
+.copyright-div {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+#shadow-host-companion { /* Das ist irgendwas vom user agent/browser und hat einen Rand unterhalb des footers erzeugt */
+    display: none;
+}
+
+/* ANCHOR credits */
+
+.credits a {
+    color: var(--green);
+}
+
 /* ANCHOR Media querries */
 
 @media (max-width: 1100px) {
