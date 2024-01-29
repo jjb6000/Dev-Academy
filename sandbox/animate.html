@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anmimate</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        .rect {
+            height: 800px;
+            background-color: rebeccapurple;
+        }
+
+        .bigger {
+            animation: big 2s ease-in-out;
+        }
+
+        @keyframes big {
+            from {
+                height: 1px;
+            }
+            to {
+                height: 800px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="rect bigger"></div>
+</body>
+</html>
