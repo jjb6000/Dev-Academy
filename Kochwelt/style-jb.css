@@ -415,6 +415,10 @@ footer p {
     .logo {
         padding-left: 16px;
     }
+
+    .contact-input {
+        width: 300px;
+    }
 }
 
 
@@ -489,9 +493,6 @@ footer p {
         align-items: center;
     }
 
-    .contact-input {
-        width: 300px;
-    }
 }
 
 @media (max-width: 460px) {
