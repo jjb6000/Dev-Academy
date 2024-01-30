@@ -9,7 +9,7 @@ function openMenu() {
                 <a href="index.html" class="navlink-mobile">Start</a>
                 <a href="rezept-moussaka.html" class="navlink-mobile">Rezept des Tages</a>
                 <a href="contact.html" class="navlink-mobile">Kontakt</a>
-                <a href="#" class="navlink-mobile">Impressum</a>
+                <a href="impressum.html" class="navlink-mobile">Impressum</a>
     `
 }
 

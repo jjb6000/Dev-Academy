@@ -24,14 +24,15 @@
     <section class="hero-section">
         <form class="contact-form" id="contactForm" onsubmit="sendMail(event)">
 
+            <h2>Kontaktformular</h2>    
             <div class="hero-content">
                 <label>Deine email-Adresse:</label>
-                <input class="contact-input-email" type="email" name="email">
+                <input class="contact-input" type="email" name="email" required>
             </div>
 
             <div class="hero-content" >
                 <label>Deine Nachricht:</label>
-                <textarea class="contact-input-text" name="message"></textarea>
+                <textarea class="contact-input height-300" name="message" required></textarea>
             </div>
 
             <!-- your other form fields go here -->
