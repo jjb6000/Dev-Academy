@@ -8,7 +8,7 @@ function openMenu() {
                 <img onclick="closeMenu(mobileMenu)" class="closeBurger" src="img/icons/close.svg" alt="close menu">
                 <a href="index.html" class="navlink-mobile">Start</a>
                 <a href="rezept-moussaka.html" class="navlink-mobile">Rezept des Tages</a>
-                <a href="#" class="navlink-mobile">Kontakt</a>
+                <a href="contact.html" class="navlink-mobile">Kontakt</a>
                 <a href="#" class="navlink-mobile">Impressum</a>
     `
 }

@@ -171,6 +171,10 @@ section {
     font-size: 16px;
 }
 
+.btn:hover {
+    cursor: pointer;
+}
+
 /* ANCHOR 3 Rezepte */
 
 .bg-gray {
@@ -267,7 +271,7 @@ td {
     height: 16px;
 }
 
-form {
+.amount-form {
     display: flex;
     align-items: center;
     padding-top: 12px;
@@ -276,7 +280,7 @@ form {
     margin-top: 48px;
 }
 
-form label {
+.amount-form label {
     margin-right: 8px;
 }
 
@@ -291,6 +295,25 @@ form label {
 
 .profile {
     margin-bottom: 64px;
+}
+
+/* ANCHOR contact-page */
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+}
+
+.contact-input-email {
+    width: 300px;
+    height: 20px;
+}
+
+.contact-input-text {
+    width: 300px;
+    height: 300px;
 }
 
 /* ANCHOR footer */

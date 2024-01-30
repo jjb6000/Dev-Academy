@@ -22,17 +22,20 @@
     <div w3-include-html="header.html"></div>
 
     <section class="hero-section">
-        <form id="contactForm" onsubmit="sendMail(event)">
-            <label>
-                Deine email-Adresse:
-                <input type="email" name="email">
-            </label>
-            <label>
-                Deine Nachricht:
-                <textarea name="message"></textarea>
-            </label>
+        <form class="contact-form" id="contactForm" onsubmit="sendMail(event)">
+
+            <div class="hero-content">
+                <label>Deine email-Adresse:</label>
+                <input class="contact-input-email" type="email" name="email">
+            </div>
+
+            <div class="hero-content" >
+                <label>Deine Nachricht:</label>
+                <textarea class="contact-input-text" name="message"></textarea>
+            </div>
+
             <!-- your other form fields go here -->
-            <button type="submit">Send</button>
+            <button class="btn" type="submit">Senden</button>
         </form>
     </section>
 
