@@ -95,7 +95,7 @@ header {
     border-bottom: solid 4px var(--grey);
     padding-bottom: 24px;
     transform: translateY(-350px);
-    transition: all 125ms ease-in-out;
+    transition: all 160ms ease-in-out;
     z-index: 1;
 }
 
@@ -134,7 +134,6 @@ body {
     font-family: "raleway", sans-serif;
     font-size: 16px;
     margin: 0;
-    overflow: hidden;
 }
 
 section {
