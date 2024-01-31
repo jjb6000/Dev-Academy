@@ -41,6 +41,7 @@ header {
     height: 110px;
     border-bottom: solid 4px var(--grey);
     text-align: center;
+    background-color: white;
 }
 
 .header {
@@ -49,6 +50,7 @@ header {
     padding-left: 16vw;
     padding-right: 16vw;
     height: 100px;
+    z-index: 2;
 
 }
 
@@ -62,6 +64,7 @@ header {
 
 .navbar {
     align-self: flex-end;
+    z-index: 2;
 }
 
 .navlink {
@@ -91,6 +94,13 @@ header {
     font-size: 24px;
     border-bottom: solid 4px var(--grey);
     padding-bottom: 24px;
+    transform: translateY(-350px);
+    transition: all 125ms ease-in-out;
+    z-index: 1;
+}
+
+.show-mobile-nav {
+    transform: translateY(0px);
 }
 
 .navlink-mobile {
@@ -124,6 +134,7 @@ body {
     font-family: "raleway", sans-serif;
     font-size: 16px;
     margin: 0;
+    overflow: hidden;
 }
 
 section {
@@ -479,6 +490,10 @@ footer p {
 
     .column-reverse-on-mobile {
         flex-direction: column-reverse;
+    }
+
+    .navbar-mobile {
+        display: flex;
     }
 
     /* ANCHOR media qurries reciept */
