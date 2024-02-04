@@ -8,14 +8,14 @@ function isItOpen () {
     }
 } 
 
-function openMenu() {;
+function openMenu() {
     document.getElementById('navbar-mobile').classList.add('show-mobile-nav');
-    open = true
+    open = true;
 }
 
 function closeMenu() {
     document.getElementById('navbar-mobile').classList.remove('show-mobile-nav');
-    open = false
+    open = false;
 }
 
 
