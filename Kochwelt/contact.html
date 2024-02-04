@@ -12,9 +12,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Economica:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-    <script src="include.js"></script>
-    <script defer src="burger-menu.js"></script>
-    <script src="form.js"></script>
+    <script defer src="javascript/include.js"></script>
+    <script defer src="javascript/burger-menu.js"></script>
+    <script defer src="javascript/form.js"></script>
 </head>
 
 <body onload="includeHTML()">
@@ -24,13 +24,13 @@
     <section class="hero-section">
         <form class="contact-form" id="contactForm" onsubmit="sendMail(event)">
 
-            <h2>Kontaktformular</h2>    
+            <h2>Kontaktformular</h2>
             <div class="hero-content">
                 <label>Deine email-Adresse:</label>
                 <input class="contact-input" type="email" name="email" required>
             </div>
 
-            <div class="hero-content" >
+            <div class="hero-content">
                 <label>Deine Nachricht:</label>
                 <textarea class="contact-input height-300" name="message" required></textarea>
             </div>

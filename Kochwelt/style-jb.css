@@ -34,7 +34,7 @@ h2 {
 /* ANCHOR header */
 
 header {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -42,14 +42,17 @@ header {
     border-bottom: solid 4px var(--grey);
     text-align: center;
     background-color: white;
+    z-index: 2;
 }
 
 .header {
     display: flex;
+    position: fixed;
     justify-content: space-between;
     padding-left: 16vw;
     padding-right: 16vw;
     height: 100px;
+    width: 68vw;
     z-index: 2;
 
 }
@@ -86,7 +89,7 @@ header {
     display: none;
     flex-direction: column;
     align-items: start;
-    position: absolute;
+    position: fixed;
     top: 100px;
     right: 0;
     left: 0;
@@ -119,12 +122,14 @@ header {
     width: 60px;
     padding: 16px;
     display: none;
+    cursor: pointer;
 }
 
 .closeBurger {
     align-self: center;
     width: 32px;
     padding: 12px 64px;
+    cursor: pointer;
 }
 
 
@@ -419,6 +424,7 @@ footer p {
     .header {
         padding-left: 0;
         padding-right: 0;
+        width: 100%;
     
     }
 
@@ -440,7 +446,6 @@ footer p {
 
     .header {
         background-color: white;
-        position: fixed;
         width: 100%;
     }
 
