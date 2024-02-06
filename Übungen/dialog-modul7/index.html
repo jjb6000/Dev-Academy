@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .dialog-bg {
+            background-color: rgba(0, 0, 0, 0.2);
+            z-index: 99;
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dialog {
+            background-color: white;
+            height: 50vh;
+            width: 50vw;
+            border: 1px slid lightgray;
+            border-radius: 10px;
+            padding: 24px;
+        }
+
+        .d-none {
+            display: none;
+        }
+    </style>
+
+    <script>
+        function showDialog(text) {
+            document.getElementById('dialog').classList.remove('d-none');
+            document.getElementById('message').innerHTML = text;
+        }
+
+        function closeDialog() {
+            document.getElementById('dialog').classList.add('d-none');
+        }
+    </script>
+
+</head>
+<body>
+    <div id="dialog" class="dialog-bg d-none" onclick="closeDialog()">
+        <div class="dialog">
+            <h2>Dialog</h2>
+
+            <p id="message">Informationen</p>
+
+        </div>
+    </div>
+
+    <h1>Überschrift</h1>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam sequi, culpa minus laudantium ipsam enim voluptatibus impedit magni id suscipit exercitationem fugiat fuga error perferendis sunt porro quasi autem quia.</p>
+
+    <button onclick="showDialog('Computer sagt ja')">Dialog öffnen</button>
+    <button onclick="showDialog('Wer das liest, hat JavaScript verstanden.')">Dialog öffnen</button>
+
+</body>
+
+
+</html>

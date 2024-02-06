@@ -244,7 +244,7 @@ header {
     border-bottom: solid 4px var(--grey);
     padding-bottom: 24px;
     transform: translateY(-350px);
-    transition: all 125ms ease-in-out;
+    transition: all 160ms ease-in-out;
     z-index: 1;
 }
 
@@ -281,7 +281,7 @@ header {
 /* ANCHOR hero section */
 
 .hero-section {
-    margin-top: 110px;   
+    margin-top: 130px;   
 }
 
 .hero-section h2 {
@@ -355,32 +355,6 @@ header {
     height: 80px;
     border-radius: 100%;
     object-fit: cover;
-}
-
-ol li {
-    padding: 6px;
-}
-
-h4 {
-    font-weight: 500;
-}
-
-.text-content {
-    display: flex;
-    flex-direction: column; 
-    background-color: white; 
-    margin: 116px 16vw 64px 16vw;
-    padding: 16px 32px 64px 32px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-}
-
-.text-content h2 {
-    text-align: center;
-}
-
-.info-link {
-    color: var(--green);
-    text-decoration: underline;
 }
 
 /* ANCHOR Reciept page */
@@ -597,18 +571,6 @@ footer p {
     .contact-input {
         width: 300px;
     }
-
-    .text-content {
-        align-items: center;
-        width: 80vw;  
-        padding: 24px;
-        align-self: center;
-    }
-
-    .text-content p {
-        text-align: center;
-    }
-
 }
 
 
@@ -643,7 +605,7 @@ footer p {
 
     section {
         width: 100%;
-        padding: 32px 0px 64px 0px;
+        padding: 32px 0 64px 0;
     }
 
     .medium-img {
