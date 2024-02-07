@@ -7,11 +7,27 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 </head>
-<body>
+<body onload="render()">
 
-    Test!
+    <header></header>
 
-    <button onclick="testF()">Test Funkltion</button>
+    <section class="add-contacts-ection margin-top-100">
+        <form class="contact-form" onsubmit="addContact(); return false">
+            <input placeholder="Name" id="nameInput" type="text" required>
+            <input placeholder="Telefonnummer" id="numberInput" type="number" required>
+            <button>Kontakt hinzufügen</button>
+        </form>
+
+    </section>
+
+    <section class="contacts-section">
+        <h1>My Contacts</h1>
+        <div class="cards-container" id="content" >
+
+        </div>
+    </section>
+
+    <footer></footer>
     
 </body>
 </html>
