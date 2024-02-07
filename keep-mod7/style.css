@@ -1,6 +1,7 @@
 :root {
     --header-grey: #5f6368;
     --border-grey: #e0e0e0;
+    --highlight: #fbbc04; 
 }
 
 header {
@@ -37,6 +38,8 @@ body {
     margin: 0;
     font-family: 'Roboto';
 }
+
+
 
 /* ANCHOR fonts */
 
