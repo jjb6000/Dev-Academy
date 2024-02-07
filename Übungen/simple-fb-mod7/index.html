@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academy Book</title>
+    <style>
+        input {
+            margin-bottom: 8px;
+            margin-top: 16px;
+            width: 300px;
+        }
+
+        textarea {
+            margin-bottom: 8px;
+            width: 300px;
+            height: 200px;
+            padding: 8px;
+        }
+
+        .post-box {
+            height: 250px;
+            width: 50vw;
+            border: solid 3px rebeccapurple;
+            margin-top: 32px;
+            padding: 8px;
+            font-size: larger;
+        }
+
+        button {
+            width: 200px;
+            height: 32px;
+            color: white;
+            background-color: rebeccapurple;
+        }
+
+        section {
+            margin: 64px;
+        }
+    </style>
+
+    <script>
+        let names = [];
+        let posts = [];
+
+        function post() {
+            let name = document.getElementById('name').value;
+            let text = document.getElementById('text').value;
+
+            names.push(name);
+            posts.push(text);
+
+            document.getElementById('post-area').innerHTML = ''
+
+            for (let i = 0; i < names.length; i++) {
+                document.getElementById('post-area').innerHTML += /*html*/`
+                <div class="post-box" id="postBox">
+                    <b>${names[i]}</b>
+                    <p>${posts[i]}</p>
+                </div>
+                `
+            }
+
+            document.getElementById('name').value = '';
+            document.getElementById('text').value = '';
+        }
+    </script>
+</head>
+<body>
+
+    <section>
+        <form onsubmit="post(); return false">
+            <input placeholder="Name" id="name" type="text" required> <br>
+            <textarea placeholder="Dein Post" name="Dein Post" id="text" required></textarea><br>
+            <button>Posten</button>
+        </form>
+    
+        <div id="post-area"></div>
+
+
+    </section>
+
+    
+</body>
+</html>
