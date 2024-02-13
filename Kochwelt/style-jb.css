@@ -425,7 +425,7 @@ td {
     display: flex;
     gap: 24px;
     padding-bottom: 24px;
-    justify-content: center;
+    justify-content: left;
     flex-wrap: wrap;
 }
 
@@ -479,6 +479,7 @@ td {
     font-weight: 600;
     padding: 24px;
     margin: 16px;
+    border-radius: 6px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
 
@@ -711,13 +712,12 @@ footer p {
     form {
         flex-direction: column;
         justify-content: center;
-        gap: 8px;
         margin-top: 24px;
     }
 
     #input-text {
         border-radius: 0;
-        width: 178px;
+        width: 60px;  /* von 180px auf 60px gestellt  09.02.2024 */
     }
 
     .contact-form {
@@ -726,6 +726,38 @@ footer p {
 
     .contact-input {
         width: 280px;
+    }
+
+    /* Ab hier hinzugefügt  09.02.2024*/
+
+    .tags {
+        gap: 15px;
+        flex-wrap: nowrap;
+        transform: scale(0.8);
+    }
+
+    .tag {
+        gap: 8px;
+    }
+
+    .amount-form {
+        padding-top: 0px;
+        border-top: none;
+        display: flex;
+        flex-direction: row;
+        transform: scale(0.9);
+        width: 100%;
+    }
+
+    .amount-form label {
+        margin-right: 4px;
+        text-align: center;
+        transform: scale(0.9);
+    }
+
+    .btn-portion {
+        flex: 1;
+        margin-right: 0;
     }
 
 }
