@@ -18,7 +18,7 @@ newLine.addEventListener('keypress', function (e) {
 });
 
 
-// the array above the input field
+// renders the array above the input field
 function renderTemporaryCard() {
 
     temporaryCard.innerHTML = '';
