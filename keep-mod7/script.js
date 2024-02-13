@@ -2,8 +2,11 @@ let newNotesArray = [];
 const newLine = document.getElementById('newLine');
 const temporaryCard = document.getElementById('arrayContainer')
 
+// fills the temporary array when you press enter in the input field
 newLine.addEventListener('keypress', function (e) {
     if (e.key === 'Enter' ) {
+
+        // calls render function when text not empty
         if (newLine.value !== '') {
             newNotesArray.push(newLine.value);
             console.log(newNotesArray);
@@ -15,6 +18,7 @@ newLine.addEventListener('keypress', function (e) {
 });
 
 
+// the array above the input field
 function renderTemporaryCard() {
 
     temporaryCard.innerHTML = '';
@@ -28,6 +32,7 @@ function renderTemporaryCard() {
     newLine.value = '';
 }
 
+// updates the temp array when a value was edited (gets index and ID from html onchange function)
 function updateTempArray(i, id) {
     console.log(document.getElementById(id).value);
     newNotesArray[i] = document.getElementById(id).value;
