@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,27 +9,42 @@
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
 </head>
+
 <body>
 
     <header>
-       <div class="inner-header">
+        <div class="inner-header">
             <img class="burger padding-12" src="img/burger.svg" alt="Menü">
             <img class="logo-header padding-12" src="img/logo.svg" alt="">
             <h1>Notizen</h1>
-       </div> 
+        </div>
     </header>
 
-    <section>
-        <div>
-            <div class="menu-item">Notes</div>
-            <div class="menu-item">Trash</div>
-        </div>
-        <div class="cards-container">
-            <div class="card"></div>
-        </div>
-    </section>
+    <main>
+        <section>
+            <div class="side-menu">
+                <a class="menu-item menu-current-site" href="index.html">Notizen</a>
+                <a class="menu-item" href="bin.html">Papierkorb</a>
+                <a class="menu-item" href="impressum.html">Impressum</a>
+                <a class="menu-item" href="credits.html">Lizenzen</a>
+            </div>
+        </section>
+    
+    
+        <section class="cards-container">
+            <form class="card-form rounded" id="cardForm" onsubmit="saveArray(); return false">
+                <input class="empty-note note-title" placeholder="Titel" type="text" required>
+                <div id="arrayContainer"></div>
+                <input class="empty-note note-text" placeholder="Notiz schreiben..." type="text" name="Notizeingabe"
+                    id="newLine">
+            </form>
+        </section>
+
+    </main>
+
 
     <footer></footer>
-    
+
 </body>
+
 </html>
