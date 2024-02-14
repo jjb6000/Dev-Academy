@@ -12,6 +12,12 @@ h1 {
   margin: 0;
 }
 
+h3 {
+  margin: 0;
+  margin-bottom: 8px;
+  font-weight: 400;
+}
+
 .padding-12 {
   padding: 12px;
 }
@@ -92,8 +98,9 @@ section {
 .notes-section {
   flex-grow: 4;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   margin-top: 40px;
+  align-items: center;
 }
 
 /* ANCHOR note input */
@@ -115,9 +122,9 @@ section {
   font-family: 'Roboto';
   color: #202124;
   font-size: 16px;
-  width: 568px;
   padding: 8px;
   box-sizing: border-box;
+  word-wrap: break-word;
 }
 
 .textbox {
@@ -137,7 +144,6 @@ section {
 .note-text {
   resize: none;
   width: 568px;
-  word-wrap: break-word;
   padding-top: 32px;
 }
 
@@ -155,8 +161,6 @@ section {
   cursor: pointer;
 }
 
-
-
 .note-button:hover {
   color: var(--highlight);
 }
@@ -165,7 +169,27 @@ section {
   outline: none;
 }
 
+/* ANCHOR Card */
 
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: start;
+  margin-top: 40px;
+}
+
+.card {
+  width: 240px;
+  padding: 8px;
+  box-sizing: border-box;
+  margin: 16px;
+  border: solid 1px var(--border-grey);
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+  height: auto;
+}
 
 /* ANCHOR fonts */
 

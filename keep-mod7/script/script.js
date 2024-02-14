@@ -1,22 +1,24 @@
+
+// Input functionality 
+
+
 let newNotesArray = [];
 const newLine = document.getElementById('newLine');
 const temporaryCard = document.getElementById('arrayContainer')
 
-// fills the temporary array when you press enter in the input field
-
+// fills the temporary array onchange input field
 function pushToTempArray() {
     newNotesArray.push(newLine.value);
-    console.log(newNotesArray);
     renderTemporaryCard();
 }
 
+// fills the temporary array when you press enter in the input field
 newLine.addEventListener('keypress', function (e) {
     if (e.key === 'Enter' ) {
 
         // calls render function when text not empty
         if (newLine.value !== '') {
             newNotesArray.push(newLine.value);
-            console.log(newNotesArray);
             renderTemporaryCard();
         } else {
             alert('Schreibe eine zuerst eine Notiz!')
@@ -43,7 +45,6 @@ function renderTemporaryCard() {
 // updates the temp array when a value was edited (gets index and ID from html onchange function); splice when input is empty
 function updateTempArray(i, id) {
     let editedValue = document.getElementById(id).value
-    console.log(editedValue);
     if (editedValue === '') {
         newNotesArray.splice(i, 1)
         renderTemporaryCard();
