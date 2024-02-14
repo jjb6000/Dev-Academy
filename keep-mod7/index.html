@@ -7,7 +7,8 @@
     <link rel="icon" type="image/x-icon" href="img/logo.svg">
     <title>Jonas' keeps</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
+    <script defer src="script/script.js"></script>
+    <script defer src="script/store.js"></script>
 </head>
 
 <body>
@@ -31,13 +32,19 @@
         </section>
     
     
-        <section class="cards-container">
-            <form class="card-form rounded" id="cardForm" onsubmit="saveArray(); return false">
-                <input class="empty-note note-title" placeholder="Titel" type="text" required>
+        <section class="notes-section">
+            <div class="card-form rounded" id="cardForm">
+                <input class="note note-title" placeholder="Titel" type="text" id="titleInput">
                 <div id="arrayContainer"></div>
-                <input class="empty-note note-text" placeholder="Notiz schreiben..." type="text" name="Notizeingabe"
+                <input class="note note-text" onchange="pushToTempArray()" placeholder="Notiz schreiben..." type="text" name="Notizeingabe"
                     id="newLine">
-            </form>
+                <button onclick="addArrayToObject(); return false" class="note-button">Speichern & schließen</button>    
+            </div>
+
+            <div id="cardsContainer" class="cards-container">
+                <div></div>
+            </div>
+
         </section>
 
     </main>

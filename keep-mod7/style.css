@@ -89,7 +89,7 @@ section {
   background-color: var(--menu-highlight)
 }
 
-.cards-container {
+.notes-section {
   flex-grow: 4;
   display: flex;
   justify-content: center;
@@ -103,20 +103,21 @@ section {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding: 24px;
+  padding: 24px 24px 20px 24px;
   width: 600px;
   min-height: 136px;
   height: auto;
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
-.empty-note {
+.note {
   border: none;
-  height: 32px;
-  padding: 8px;
   font-family: 'Roboto';
   color: #202124;
   font-size: 16px;
+  width: 568px;
+  padding: 8px;
+  box-sizing: border-box;
 }
 
 .textbox {
@@ -126,19 +127,43 @@ section {
 
 .note-title {
   font-size: large;
+  height: 32px;
 }
 
-.empty-note:focus {
+.note:focus {
   outline: none;
 }
 
 .note-text {
   resize: none;
   width: 568px;
-  box-sizing: border-box;
   word-wrap: break-word;
+  padding-top: 32px;
 }
 
+.note-button {
+  align-self: flex-end;
+  text-align: end;
+  border: none;
+  background: none;
+  width: 200px;
+  padding: 8px 8px 0 8px;
+  margin-top: 24px;
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+
+
+.note-button:hover {
+  color: var(--highlight);
+}
+
+.note-button:focus {
+  outline: none;
+}
 
 
 
