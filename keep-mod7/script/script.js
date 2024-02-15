@@ -1,11 +1,14 @@
 
-// Input functionality 
 
+
+// Input functionality 
 
 let newNotesArray = [];
 const newLine = document.getElementById('newLine');
 const temporaryCard = document.getElementById('arrayContainer')
 
+
+// when you hover over Speichern & schließen -> pushToTempArray()
 document.getElementById('saveButton').addEventListener("mouseover", (event) => {
     if (newLine.value !== '') {
         pushToTempArray();
@@ -13,7 +16,7 @@ document.getElementById('saveButton').addEventListener("mouseover", (event) => {
 })
 
 
-// fills the temporary array when you press enter in the input field
+// when you press enter in the input field -> pushToTempArray()
 newLine.addEventListener('keypress', function (e) {
     if (e.key === 'Enter' ) {
 
@@ -26,6 +29,7 @@ newLine.addEventListener('keypress', function (e) {
     }
 });
 
+
 // fills the temporary array onchange input field or called by events above
 function pushToTempArray() {
     newNotesArray.push(newLine.value);
@@ -33,7 +37,7 @@ function pushToTempArray() {
 }
 
 
-// renders the array above the input field
+// renders the array above the input field as draft card
 function renderTemporaryCard() {
 
     temporaryCard.innerHTML = '';
