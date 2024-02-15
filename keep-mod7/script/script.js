@@ -6,11 +6,12 @@ let newNotesArray = [];
 const newLine = document.getElementById('newLine');
 const temporaryCard = document.getElementById('arrayContainer')
 
-// fills the temporary array onchange input field
-function pushToTempArray() {
-    newNotesArray.push(newLine.value);
-    renderTemporaryCard();
-}
+document.getElementById('saveButton').addEventListener("mouseover", (event) => {
+    if (newLine.value !== '') {
+        pushToTempArray();
+    }
+})
+
 
 // fills the temporary array when you press enter in the input field
 newLine.addEventListener('keypress', function (e) {
@@ -18,13 +19,18 @@ newLine.addEventListener('keypress', function (e) {
 
         // calls render function when text not empty
         if (newLine.value !== '') {
-            newNotesArray.push(newLine.value);
-            renderTemporaryCard();
+            pushToTempArray();
         } else {
             alert('Schreibe eine zuerst eine Notiz!')
         }
     }
 });
+
+// fills the temporary array onchange input field or called by events above
+function pushToTempArray() {
+    newNotesArray.push(newLine.value);
+    renderTemporaryCard();
+}
 
 
 // renders the array above the input field
