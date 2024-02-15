@@ -12,7 +12,8 @@ function addArrayToObject() {
         
         notesObject[getCardIndexForUniqueID(newTtile.value)] = {
             Title: newTtile.value,
-            Notes: newNotesArray
+            Notes: newNotesArray,
+            checkbox: checkboxClass
         };
         saveNoteObject();
     }
@@ -32,20 +33,22 @@ function getCardIndexForUniqueID(title) {
 
 function saveNoteObject() {
     localStorage.setItem('notesObject', JSON.stringify(notesObject));
-
     loadNotes();
-
     location.reload()
 }
 
 
-const testObject = {
-    Title_ID1: {
-        Title: 'Notiztitel',
-        Notes: ['xy', 'kochen', 'putzen', 'Bier trinken']
-    },
-    Title_ID2: {
-        Title: 'Notiztitel xyz',
-        Notes: ['xy', 'kochen', 'Bier trinken']
-    }
-  };
+
+
+// const testObject = {
+//     Title_ID1: {
+//         Title: 'Notiztitel',
+//         Notes: ['xy', 'kochen', 'putzen', 'Bier trinken'],
+//         checkbox: 'false'
+//     },
+//     Title_ID2: {
+//         Title: 'Notiztitel xyz',
+//         Notes: ['xy', 'kochen', 'Bier trinken'],
+//         checkbox: 'true'
+//     }
+//   };

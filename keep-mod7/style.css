@@ -110,6 +110,7 @@ header {
   margin-top: 140px;
   margin-left: 200px;
   align-items: center;
+  width: 100%;
 }
 
 /* ANCHOR note input */
@@ -139,7 +140,6 @@ header {
   height: auto;
 }
 
-
 .note-title {
   font-size: large;
   height: 32px;
@@ -155,6 +155,11 @@ header {
   padding-top: 32px;
 }
 
+.input-menu {
+  justify-content: center;
+  margin-top: 24px;
+}
+
 .note-button {
   align-self: flex-end;
   text-align: end;
@@ -162,11 +167,21 @@ header {
   background: none;
   width: 200px;
   padding: 8px 8px 0 8px;
-  margin-top: 24px;
   font-family: 'Roboto';
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
+}
+
+.check-switch {
+  align-self: flex-start;
+  text-align: start;
+  padding: 8px 8px 0 2px;
+}
+
+.checkbox-menu {
+  width: 16px;
+  align-self: end;
 }
 
 .note-button:hover {
@@ -209,7 +224,6 @@ header {
   align-self: flex-start;
 }
 
-
 .card:hover {
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   
@@ -220,6 +234,15 @@ header {
 
 .float {
   float: right;
+}
+
+.checkbox-true {
+  width: 20px;
+  padding-right: 8px;
+}
+
+.checkbox-false {
+  display: none;
 }
 
 /* ANCHOR fonts */

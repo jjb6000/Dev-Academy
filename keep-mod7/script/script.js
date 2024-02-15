@@ -1,12 +1,13 @@
 
-
-
 // Input functionality 
+
+
 
 let newNotesArray = [];
 const newLine = document.getElementById('newLine');
-const temporaryCard = document.getElementById('arrayContainer')
-
+const temporaryCard = document.getElementById('arrayContainer');
+let checkboxSwitch = false //default checkbox setting
+let checkboxClass = 'checkbox-false' //default checkbox setting
 
 // when you hover over Speichern & schließen -> pushToTempArray()
 document.getElementById('saveButton').addEventListener("mouseover", (event) => {
@@ -45,7 +46,11 @@ function renderTemporaryCard() {
     for (let i = 0; i < newNotesArray.length; i++) {
         
         temporaryCard.innerHTML += /*html*/`
+        <div class="d-flex">
+        <img class="${checkboxClass}" src="img/check_box_blank.svg" alt="">
         <input onchange="updateTempArray(${i}, 'newLine_${i}')" class="note" value="${newNotesArray[i]}" type="text" name="Notizeingabe" id="newLine_${i}" required>
+        </div>
+        
     `;   
     }
     newLine.value = '';
@@ -63,4 +68,19 @@ function updateTempArray(i, id) {
     }
 }
 
+function switchBox() { 
 
+    const switchImg = document.getElementById('switchImg') 
+
+    if (checkboxSwitch === false) {
+        checkboxSwitch = true;
+        switchImg.src = 'img/check_box.svg';
+        checkboxClass = 'checkbox-true';
+        renderTemporaryCard();
+    } else {
+        checkboxSwitch = false;
+        switchImg.src = 'img/check_box_blank.svg'
+        checkboxClass = 'checkbox-false';
+        renderTemporaryCard();
+    }
+}

@@ -27,7 +27,7 @@ function loadNotes() {
 
         for (let i = 0; i < notes.length; i++) {
             noteLine.innerHTML += /*html*/`
-                <div class="note">${notes[i]}</div>
+                <div class="note"><img class="${notesObject[key].checkbox}" src="img/check_box_blank.svg" alt=""> ${notes[i]}</div>
             `;
 
         }
