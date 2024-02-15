@@ -9,7 +9,12 @@ function addArrayToObject() {
     if (newTtile.value === '' || newNotesArray.length === 0) {
         alert('Deine Notiz braucht mindestestens einen Titel und einen Eintrag!')
     } else {
-        saveObject(getCardIndexForUniqueID(newTtile.value), newTtile.value, newNotesArray);
+        
+        notesObject[getCardIndexForUniqueID(newTtile.value)] = {
+            Title: newTtile.value,
+            Notes: newNotesArray
+        };
+        saveNoteObject();
     }
     
 } 
@@ -17,19 +22,15 @@ function addArrayToObject() {
 
 function getCardIndexForUniqueID(title) {
     let cardsContainer = document.getElementById('cardsContainer');
+    
     newCardIndex = +cardsContainer.children.length + 1;
     cardID = title + newCardIndex;
+    
     return cardID.replace(/\s+/g, '');
 }
 
 
-function saveObject(id, title, notes) {
-
-    notesObject[id] = {
-        Title: title,
-        Notes: notes
-    };
-
+function saveNoteObject() {
     localStorage.setItem('notesObject', JSON.stringify(notesObject));
 
     loadNotes();

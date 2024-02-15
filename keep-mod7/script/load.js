@@ -14,8 +14,11 @@ function loadNotes() {
 
     for (let key in notesObject) {
         cardsContainer.innerHTML +=/*html*/`
-                <div id=${key} class="card rounded">
-                                <h3>${notesObject[key].Title}</h3>
+                <div id=${key} class="card rounded float">
+                    <div class="card-header">
+                        <h3>${notesObject[key].Title}</h3>
+                        <img class="click-icon" onclick="moveCardToBin('${key}')" src="img/bin.svg" alt="delete">
+                    </div>
                 </div>
         `;
 

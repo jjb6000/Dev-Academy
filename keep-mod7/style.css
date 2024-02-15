@@ -62,16 +62,18 @@ main {
   display: flex;
 }
 
-
-
-/* ANCHOR Notes section */
-
 section {
   margin-top: 24px;
 }
 
+
+/* ANCHOR menu */
+
+.menu-section {
+  width: 200px;
+}
+
 .side-menu {
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
   font-weight: 500;
@@ -95,12 +97,14 @@ section {
   background-color: var(--menu-highlight)
 }
 
+/* ANCHOR Notes section */
+
 .notes-section {
-  flex-grow: 4;
   display: flex;
   flex-direction: column;
   margin-top: 40px;
   align-items: center;
+  width: 100%;
 }
 
 /* ANCHOR note input */
@@ -118,6 +122,7 @@ section {
 }
 
 .note {
+  display: flex;
   border: none;
   font-family: 'Roboto';
   color: #202124;
@@ -172,16 +177,14 @@ section {
 /* ANCHOR Card */
 
 .cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: start;
+  display: block;
   margin-top: 40px;
+  width: 100%;
 }
 
 .card {
   width: 240px;
-  padding: 8px;
+  padding: 16px;
   box-sizing: border-box;
   margin: 16px;
   border: solid 1px var(--border-grey);
@@ -189,6 +192,31 @@ section {
   flex-direction: column;
   word-wrap: break-word;
   height: auto;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.click-icon {
+  width: 24px;
+  display: none;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+
+.card:hover {
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  
+  .click-icon {
+    display: block;
+  }
+}
+
+.float {
+  float: left;
 }
 
 /* ANCHOR fonts */
