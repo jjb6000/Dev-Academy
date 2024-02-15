@@ -16,16 +16,16 @@
 <body>
 
     <header>
-        <div class="inner-header">
+        <div class="inner-header d-flex">
             <img class="burger padding-12" src="img/burger.svg" alt="Menü">
             <img class="logo-header padding-12" src="img/logo.svg" alt="">
             <h1>Notizen</h1>
         </div>
     </header>
 
-    <main>
+    <main class="d-flex">
         <section class="menu-section">
-            <div class="side-menu">
+            <div class="side-menu d-flex-col">
                 <a class="menu-item menu-current-site" href="index.html">Notizen</a>
                 <a class="menu-item" href="bin.html">Papierkorb</a>
                 <a class="menu-item" href="impressum.html">Impressum</a>
@@ -33,8 +33,8 @@
         </section>
     
     
-        <section class="notes-section">
-            <div class="card-form rounded" id="cardForm">
+        <section class="notes-section d-flex-col">
+            <div class="card-form rounded d-flex-col" id="cardForm">
                 <input class="note note-title" placeholder="Titel" type="text" id="titleInput">
                 <div id="arrayContainer"></div>
                 <input class="note note-text" onchange="pushToTempArray()" placeholder="Notiz schreiben und bestätigen..." type="text" name="Notizeingabe"

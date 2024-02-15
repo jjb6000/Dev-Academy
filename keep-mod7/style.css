@@ -7,6 +7,15 @@
 
 /* ANCHOR standard classes*/
 
+.d-flex {
+  display: flex;
+}
+
+.d-flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
 h1 {
   font-size: 22px;
   margin: 0;
@@ -38,11 +47,15 @@ body {
 header {
   border-bottom: solid 1px var(--border-grey);
   color: var(--header-grey);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
 }
 
 .inner-header {
   padding: 8px;
-  display: flex;
   align-items: center;
 }
 
@@ -58,24 +71,17 @@ header {
 
 /* ANCHOR main */
 
-main {
-  display: flex;
-}
-
-section {
-  margin-top: 24px;
-}
-
-
 /* ANCHOR menu */
 
 .menu-section {
   width: 200px;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 100px;
 }
 
 .side-menu {
-  display: flex;
-  flex-direction: column;
   font-weight: 500;
 }
 
@@ -100,19 +106,16 @@ section {
 /* ANCHOR Notes section */
 
 .notes-section {
-  display: flex;
-  flex-direction: column;
-  margin-top: 40px;
+  flex-wrap: wrap-reverse;
+  margin-top: 140px;
+  margin-left: 200px;
   align-items: center;
-  width: 100%;
 }
 
 /* ANCHOR note input */
 
 .card-form {
   border: 1px transparent;
-  display: flex;
-  flex-direction: column;
   box-sizing: border-box;
   padding: 24px 24px 20px 24px;
   width: 600px;
@@ -216,7 +219,7 @@ section {
 }
 
 .float {
-  float: left;
+  float: right;
 }
 
 /* ANCHOR fonts */

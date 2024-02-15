@@ -2,6 +2,7 @@
 
 //  loads deleted notes from binObject in local storage and renders into card-container + full delete function
 
+let notesObject = JSON.parse(localStorage.getItem('notesObject')) || {};
 
 if (localStorage.getItem('binObject') !== null) {
     binObject = JSON.parse(localStorage.getItem('binObject'));
@@ -18,7 +19,10 @@ function loadBinNotes() {
                 <div id=${key} class="card rounded float">
                     <div class="card-header">
                         <h3>${binObject[key].Title}</h3>
-                        <img class="click-icon" onclick="cardDelete('${key}')" src="img/delete.svg" alt="delete">
+                        <div class="d-flex">
+                        <img class="click-icon" onclick="cardDelete('${key}')" src="img/delete.svg" alt="löschen">
+                        <img class="click-icon" onclick="cardRestore('${key}')" src="img/restore.svg" alt="wiederherstellen">
+                        </div>
                     </div>
                 </div>
         `;
@@ -42,4 +46,10 @@ function cardDelete(id) {
     localStorage.setItem('binObject', JSON.stringify(binObject));
 
     location.reload();
+}
+
+function cardRestore(id) {
+    notesObject[id] = binObject[id];
+    localStorage.setItem('notesObject', JSON.stringify(notesObject));
+    cardDelete(id);
 }

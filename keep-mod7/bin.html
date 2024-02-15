@@ -7,27 +7,28 @@
     <title>Jonas' keeps</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="script/load-bin.js"></script>
+    <script defer src="script/store.js"></script>
 </head>
 <body>
 
     <header>
-       <div class="inner-header">
+       <div class="inner-header d-flex">
             <img class="burger padding-12" src="img/burger.svg" alt="Menü">
             <img class="logo-header padding-12" src="img/logo.svg" alt="">
             <h1>Papierkorb</h1>
        </div> 
     </header>
 
-    <main>
+    <main class="d-flex">
         <section class="menu-section">
-            <div class="side-menu">
+            <div class="side-menu d-flex-col">
                 <a class="menu-item" href="index.html">Notizen</a>
                 <a class="menu-item menu-current-site" href="bin.html">Papierkorb</a>
                 <a class="menu-item" href="impressum.html">Impressum</a>
             </div>            
         </section>
 
-        <section class="notes-section">
+        <section class="notes-section d-flex-col">
             <div id="cardsContainer" class="cards-container">
             </div>
         </section>
