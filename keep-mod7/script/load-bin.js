@@ -29,10 +29,18 @@ function loadBinNotes() {
 
         let notes = binObject[key].Notes;
         let noteLine = document.getElementById(key);
+        let dones = binObject[key].toDoDone;
 
         for (let i = 0; i < notes.length; i++) {
             noteLine.innerHTML += /*html*/`
                 <div class="note">${notes[i]}</div>
+            `;
+
+        }
+
+        for (let i = 0; i < dones.length; i++) {
+            noteLine.innerHTML += /*html*/`
+                <div class="note line-through">${dones[i]}</div>
             `;
 
         }
