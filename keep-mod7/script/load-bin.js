@@ -53,7 +53,7 @@ function cardDelete(id) {
 
     localStorage.setItem('binObject', JSON.stringify(binObject));
 
-    location.reload();
+    loadBinNotes();
 }
 
 function cardRestore(id) {
