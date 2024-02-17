@@ -245,6 +245,10 @@ header {
   display: none;
 }
 
+.line-through {
+  text-decoration: line-through;
+}
+
 /* ANCHOR fonts */
 
 /* roboto-100 - latin */

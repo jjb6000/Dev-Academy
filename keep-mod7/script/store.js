@@ -35,7 +35,7 @@ function getCardIndexForUniqueID(title) {
 function saveNoteObject() {
     localStorage.setItem('notesObject', JSON.stringify(notesObject));
     loadNotes();
-    location.reload()
+    location.reload();
 }
 
 

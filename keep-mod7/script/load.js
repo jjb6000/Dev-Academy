@@ -23,11 +23,19 @@ function loadNotes() {
         `;
 
         let notes = notesObject[key].Notes;
+        let dones = notesObject[key].toDoDone;
         let noteLine = document.getElementById(key);
 
         for (let i = 0; i < notes.length; i++) {
             noteLine.innerHTML += /*html*/`
-                <div class="note"><img onclick="done(${key}, ${i})" class="${notesObject[key].checkbox}" src="img/check_box_blank.svg" alt=""> ${notes[i]}</div>
+                <div class="note"><img onclick="done('${key}', '${notes[i]}')" class="${notesObject[key].checkbox}" src="img/check_box_blank.svg" alt="">${notes[i]}</div>
+            `;
+
+        }
+
+        for (let i = 0; i < dones.length; i++) {
+            noteLine.innerHTML += /*html*/`
+                <div class="note line-through"><img onclick="returnToToDo('${key}', '${dones[i]}')" class="${notesObject[key].checkbox}" src="img/check_box.svg" alt="">${dones[i]}</div>
             `;
 
         }

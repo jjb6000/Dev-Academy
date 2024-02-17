@@ -42,7 +42,7 @@
                     placeholder="Notiz schreiben und bestätigen..." type="text" name="Notizeingabe" id="newLine">
 
                 <div class="d-flex input-menu">
-                    <img id="switchImg" class="checkbox-menu" src="img/check_box_blank.svg" alt="checkbox-schalter">
+                    <img onclick="switchBox()" id="switchImg" class="checkbox-menu" src="img/check_box_blank.svg" alt="checkbox-schalter">
                     <button id="checkSwitch" onclick="switchBox(); return false" class="note-button check-switch">checkbox</button>
                     <button id="saveButton" onclick="addArrayToObject(); return false" class="note-button">Speichern &
                         schließen</button>
