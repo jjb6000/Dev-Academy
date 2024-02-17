@@ -25,7 +25,7 @@ function done(key, element) {
     notesObject[key].toDoDone = doneArray;
     notesObject[key].Notes = todoArray;
 
-    saveNoteObject();
+    saveNoteObject(false);
     
 }
 
@@ -41,5 +41,5 @@ function returnToToDo(key, element) {
     notesObject[key].toDoDone = doneArray;
     notesObject[key].Notes = todoArray;
 
-    saveNoteObject();
+    saveNoteObject(false);
 }

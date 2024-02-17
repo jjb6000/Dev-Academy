@@ -16,7 +16,7 @@ function addArrayToObject() {
             checkbox: checkboxClass,
             toDoDone: []
         };
-        saveNoteObject();
+        saveNoteObject(true); // with true -> location reload = empty input card
     }
     
 } 
@@ -32,10 +32,14 @@ function getCardIndexForUniqueID(title) {
 }
 
 
-function saveNoteObject() {
+function saveNoteObject(reload) {
     localStorage.setItem('notesObject', JSON.stringify(notesObject));
     loadNotes();
-    location.reload();
+
+    if (reload === true) {
+        location.reload();
+    }
+    
 }
 
 
