@@ -13,7 +13,8 @@ function addArrayToObject() {
         notesObject[getCardIndexForUniqueID(newTtile.value)] = {
             Title: newTtile.value,
             Notes: newNotesArray,
-            checkbox: checkboxClass
+            checkbox: checkboxClass,
+            toDoDone: []
         };
         saveNoteObject();
     }

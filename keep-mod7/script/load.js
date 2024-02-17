@@ -1,16 +1,16 @@
 let notesObject = JSON.parse(localStorage.getItem('notesObject')) || {}
 
-//  loads notes from local storage and renders into card-container
-
 
 if (localStorage.getItem('notesObject') !== null) {
     loadNotes();
 }
 
+
+//  loads notes from local storage and renders into card-container
 function loadNotes() {
 
     const cardsContainer = document.getElementById('cardsContainer');
-    cardsContainer.innerHTML = ''
+    cardsContainer.innerHTML = '';
 
     for (let key in notesObject) {
         cardsContainer.innerHTML +=/*html*/`
@@ -27,7 +27,7 @@ function loadNotes() {
 
         for (let i = 0; i < notes.length; i++) {
             noteLine.innerHTML += /*html*/`
-                <div class="note"><img class="${notesObject[key].checkbox}" src="img/check_box_blank.svg" alt=""> ${notes[i]}</div>
+                <div class="note"><img onclick="done(${key}, ${i})" class="${notesObject[key].checkbox}" src="img/check_box_blank.svg" alt=""> ${notes[i]}</div>
             `;
 
         }
