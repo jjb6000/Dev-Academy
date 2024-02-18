@@ -17,7 +17,7 @@
 
     <header>
         <div class="inner-header d-flex">
-            <img class="burger padding-12" src="img/burger.svg" alt="Menü">
+            <img class="burger padding-12 hide-on-mobile" src="img/burger.svg" alt="Menü">
             <img class="logo-header padding-12" src="img/logo.svg" alt="">
             <h1>Notizen</h1>
         </div>
@@ -26,15 +26,15 @@
     <main class="d-flex">
         <section class="menu-section">
             <div class="side-menu d-flex-col">
-                <a class="menu-item menu-current-site" href="index.html">Notizen</a>
-                <a class="menu-item" href="bin.html">Papierkorb</a>
-                <a class="menu-item" href="impressum.html">Impressum</a>
+                <a class="menu-item menu-current-site" href="index.html"><img class="menu-icon" src="img/lightbulb.svg" alt="Notizen"><span class="hide-on-mobile">Notizen</span></a>
+                <a class="menu-item" href="bin.html"><img class="menu-icon" src="img/bin.svg" alt="Papierkorb"><span class="hide-on-mobile">Papierkorb</span></a>
+                <a class="menu-item" href="impressum.html"><img class="menu-icon" src="img/info.svg" alt="Impressum"><span class="hide-on-mobile">Impressum</span></a>
             </div>
         </section>
 
 
         <section class="notes-section d-flex-col">
-            <div class="card-form rounded d-flex-col" id="cardForm">
+            <div class="card-form rounded d-flex-col hide-on-mobile" id="cardForm">
                 <input class="note note-title" placeholder="Titel" type="text" id="titleInput">
                 <div id="arrayContainer"></div>
 
@@ -52,6 +52,8 @@
 
             <div id="cardsContainer" class="cards-container">
             </div>
+
+            <div class="mobile-add-btn show-on-mobile"><img src="img/add_mobile.svg" alt=""></div>
 
         </section>
 

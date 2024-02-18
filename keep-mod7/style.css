@@ -42,6 +42,10 @@ body {
   border-radius: 12px;
 }
 
+.show-on-mobile {
+  display: none;
+}
+
 /* ANCHOR header */
 
 header {
@@ -74,7 +78,6 @@ header {
 /* ANCHOR menu */
 
 .menu-section {
-  width: 200px;
   height: 100%;
   position: fixed;
   left: 0;
@@ -91,8 +94,15 @@ header {
 }
 
 .menu-item {
-  padding: 16px 40px;
+  padding: 12px 48px 12px 16px;
   border-radius: 0 25px 25px 0;
+  display: flex;
+  align-items: center;
+}
+
+.menu-icon {
+  width: 24px;
+  padding-right: 32px;
 }
 
 .menu-item:hover {
@@ -226,7 +236,7 @@ header {
 
 .card:hover {
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-  
+
   .click-icon {
     display: block;
   }
@@ -248,6 +258,51 @@ header {
 .line-through {
   text-decoration: line-through;
 }
+
+/* ANCHOR mobile menu */
+
+.mobile-add-btn img {
+  width: 80px;
+}
+
+.mobile-add-btn {
+  align-items: center;
+  justify-content: center;
+  background-color: var(--highlight);
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  position: fixed;
+  bottom: 60px;
+  right: 60px;
+}
+
+
+
+/* ANCHOR Media querries  */
+
+@media (max-width: 980px) {
+  .show-on-mobile {
+    display: flex;
+  }
+  
+  .hide-on-mobile {
+    display: none;
+  }
+
+  .menu-icon {
+    padding: 0;
+  }
+
+  .menu-item {
+    padding: 12px;
+    border-radius: 25px;
+    margin: 16px;
+  }
+
+}
+
+
 
 /* ANCHOR fonts */
 
