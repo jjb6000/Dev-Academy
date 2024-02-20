@@ -58,28 +58,12 @@
             </div>
 
             <div class="card-form-mobile d-flex-col d-none" id="mobileForm">
-                <div class="d-flex input-menu-mobile">
-                    <button id="saveButton" onclick="addArrayToObject(); return false"
-                        class="note-button mobile-btn">Speichern</button>
-                    <div class="d-flex check-menu-mobile">
-                        <img onclick="switchBox()" id="switchImg" class="checkbox-menu" src="img/check_box_blank.svg"
-                            alt="checkbox-schalter">
-                        <button id="checkSwitch" onclick="switchBox(); return false"
-                            class="note-button check-switch mobile-btn">checkbox</button>
-                    </div>
-                    <button id="close" onclick="mobileInput('close'); return false"
-                        class="note-button mobile-btn">Abbrechen</button>
-                </div>
 
-                <input class="note note-title" placeholder="Titel" type="text" id="titleInput">
-                <div id="arrayContainer"></div>
-                <input class="note note-text" onchange="pushToTempArray()"
-                    placeholder="Notiz schreiben und bestätigen..." type="text" name="Notizeingabe" id="newLine">
             </div>
 
             <div id="cardsContainer" class="cards-container"></div>
 
-            <div onclick="mobileInput('open')" class="mobile-add-btn show-on-mobile" id="addButton"><img src="img/add_mobile.svg" alt="Neue notiz"></div>
+            <div onclick="mobileInput('open')" class="mobile-add-btn show-on-mobile" id="addButton"><img id="addBtnImg" src="img/add_mobile.svg" alt="Neue notiz"></div>
 
         </section>
 

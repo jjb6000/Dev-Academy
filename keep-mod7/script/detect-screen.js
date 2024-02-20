@@ -16,8 +16,6 @@ function loadMenuForMobile() {
     document.getElementById('cardForm').innerHTML = '';
     document.getElementById('mobileForm').innerHTML = /*html*/`
         <div class="d-flex input-menu-mobile">
-                    <button id="saveButton" onclick="addArrayToObject(); return false"
-                        class="note-button mobile-btn">Speichern</button>
                     <div class="d-flex check-menu-mobile">
                         <img onclick="switchBox()" id="switchImg" class="checkbox-menu" src="img/check_box_blank.svg"
                             alt="checkbox-schalter">

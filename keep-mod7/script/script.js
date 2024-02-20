@@ -122,15 +122,18 @@ function changeMenu() {
 function mobileInput(button) {
     let menu = document.getElementById('mobileForm');
     let addButton = document.getElementById('addButton');
+    let addBtnImg = document.getElementById('addBtnImg')
 
     if (button === 'open') {
         menu.classList.remove('d-none');
         addButton.setAttribute('onclick','addArrayToObject()');
+        addBtnImg.src = 'img/save.svg';
     } 
     
     if (button === 'close') {
         menu.classList.add('d-none');
-        addButton.setAttribute("onclick","mobileInput('open')")
+        addButton.setAttribute("onclick","mobileInput('open')");
+        addBtnImg.src = 'img/add_mobile.svg';
     }
 
 }
