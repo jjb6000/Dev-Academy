@@ -1,5 +1,5 @@
 
-// detection of screensize because different input card used for mobile -> reload of input variables needed
+// detection of screensize because different input card used for mobile -> reload of variables needed
 
 
 function checkScreen() {
