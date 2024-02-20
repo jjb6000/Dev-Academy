@@ -26,9 +26,12 @@
     <main class="d-flex">
         <section class="menu-section">
             <div class="side-menu d-flex-col">
-                <a class="menu-item menu-current-site" href="index.html"><img class="menu-icon" src="img/lightbulb.svg" alt="Notizen"><span class="hide-on-mobile hide-with-burger-btn">Notizen</span></a>
-                <a class="menu-item" href="bin.html"><img class="menu-icon" src="img/bin.svg" alt="Papierkorb"><span class="hide-on-mobile hide-with-burger-btn">Papierkorb</span></a>
-                <a class="menu-item" href="impressum.html"><img class="menu-icon" src="img/info.svg" alt="Impressum"><span class="hide-on-mobile hide-with-burger-btn">Impressum</span></a>
+                <a class="menu-item menu-current-site" href="index.html"><img class="menu-icon" src="img/lightbulb.svg"
+                        alt="Notizen"><span class="hide-on-mobile hide-with-burger-btn">Notizen</span></a>
+                <a class="menu-item" href="bin.html"><img class="menu-icon" src="img/bin.svg" alt="Papierkorb"><span
+                        class="hide-on-mobile hide-with-burger-btn">Papierkorb</span></a>
+                <a class="menu-item" href="impressum.html"><img class="menu-icon" src="img/info.svg"
+                        alt="Impressum"><span class="hide-on-mobile hide-with-burger-btn">Impressum</span></a>
             </div>
         </section>
 
@@ -42,18 +45,39 @@
                     placeholder="Notiz schreiben und bestätigen..." type="text" name="Notizeingabe" id="newLine">
 
                 <div class="d-flex input-menu">
-                    <img onclick="switchBox()" id="switchImg" class="checkbox-menu" src="img/check_box_blank.svg" alt="checkbox-schalter">
-                    <button id="checkSwitch" onclick="switchBox(); return false" class="note-button check-switch">checkbox</button>
+                    <img onclick="switchBox()" id="switchImg" class="checkbox-menu" src="img/check_box_blank.svg"
+                        alt="checkbox-schalter">
+                    <button id="checkSwitch" onclick="switchBox(); return false"
+                        class="note-button check-switch">checkbox</button>
                     <button id="saveButton" onclick="addArrayToObject(); return false" class="note-button">Speichern &
                         schließen</button>
                 </div>
 
             </div>
 
-            <div id="cardsContainer" class="cards-container">
+            <div id="mobileInput" class="card-form-mobile d-flex-col d-none">
+                <div class="d-flex input-menu-mobile">
+                    <button id="saveButton" onclick="addArrayToObject(); return false"
+                        class="note-button mobile-btn">Speichern</button>
+                    <div class="d-flex check-menu-mobile">
+                        <img onclick="switchBox()" id="switchImg" class="checkbox-menu" src="img/check_box_blank.svg"
+                            alt="checkbox-schalter">
+                        <button id="checkSwitch" onclick="switchBox(); return false"
+                            class="note-button check-switch mobile-btn">checkbox</button>
+                    </div>
+                    <button id="close" onclick="mobileInput('close'); return false"
+                        class="note-button mobile-btn">Abbrechen</button>
+                </div>
+
+                <input class="note note-title" placeholder="Titel" type="text" id="titleInput">
+                <div id="arrayContainer"></div>
+                <input class="note note-text" onchange="pushToTempArray()"
+                    placeholder="Notiz schreiben und bestätigen..." type="text" name="Notizeingabe" id="newLine">
             </div>
 
-            <div class="mobile-add-btn show-on-mobile"><img src="img/add_mobile.svg" alt=""></div>
+            <div id="cardsContainer" class="cards-container"></div>
+
+            <div onclick="mobileInput('open')" class="mobile-add-btn show-on-mobile"><img src="img/add_mobile.svg" alt="Neue notiz"></div>
 
         </section>
 

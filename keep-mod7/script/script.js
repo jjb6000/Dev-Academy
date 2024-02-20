@@ -118,3 +118,17 @@ function changeMenu() {
     }
 
 }
+
+function mobileInput(button) {
+    let menu = document.getElementById('mobileInput');
+
+    if (button === 'open') {
+        menu.classList.remove('d-none');
+    } 
+    
+    if (button === 'close') {
+        menu.classList.add('d-none');
+    }
+
+
+}
