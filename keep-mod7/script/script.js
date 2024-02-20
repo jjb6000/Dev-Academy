@@ -130,6 +130,7 @@ function mobileInput(button) {
     
     if (button === 'close') {
         menu.classList.add('d-none');
+        addButton.setAttribute("onclick","mobileInput('open')")
     }
 
 }
