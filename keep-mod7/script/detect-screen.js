@@ -37,7 +37,6 @@ function loadMenuForMobile() {
 }
 
 function loadMenuForDesktop() {
-    console.log('Desktop', window.screen.availWidth);
     document.getElementById('mobileForm').innerHTML = '';
     document.getElementById('cardForm').innerHTML = /*html*/`
                         <input class="note note-title" placeholder="Titel" type="text" id="titleInput">
