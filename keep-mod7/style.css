@@ -366,7 +366,7 @@ header {
 
   .card-header div{
     gap: 40px;
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
 
   .cards-container {

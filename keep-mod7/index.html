@@ -11,9 +11,10 @@
     <script defer src="script/script.js"></script>
     <script defer src="script/store.js"></script>
     <script defer src="script/edit-note.js"></script>
+    <script defer src="script/detect-screen.js"></script>
 </head>
 
-<body>
+<body onload="checkScreen()" onresize="checkScreen()">
 
     <header>
         <div class="inner-header d-flex">
@@ -37,6 +38,7 @@
 
 
         <section class="notes-section d-flex-col">
+
             <div class="card-form rounded d-flex-col hide-on-mobile" id="cardForm">
                 <input class="note note-title" placeholder="Titel" type="text" id="titleInput">
                 <div id="arrayContainer"></div>
@@ -55,7 +57,7 @@
 
             </div>
 
-            <div id="mobileInput" class="card-form-mobile d-flex-col d-none">
+            <div class="card-form-mobile d-flex-col d-none" id="mobileForm">
                 <div class="d-flex input-menu-mobile">
                     <button id="saveButton" onclick="addArrayToObject(); return false"
                         class="note-button mobile-btn">Speichern</button>

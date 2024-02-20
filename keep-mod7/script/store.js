@@ -3,7 +3,7 @@
 // stores an Object with notes in localstorage
 
 
-const newTtile = document.getElementById('titleInput');
+let newTtile = document.getElementById('titleInput');
 
 function addArrayToObject() {
     if (newTtile.value === '' || newNotesArray.length === 0) {

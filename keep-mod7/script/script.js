@@ -4,8 +4,8 @@
 
 
 let newNotesArray = [];
-const newLine = document.getElementById('newLine');
-const temporaryCard = document.getElementById('arrayContainer');
+let newLine = document.getElementById('newLine');
+let temporaryCard = document.getElementById('arrayContainer');
 let checkboxSwitch = false //default checkbox setting
 let checkboxClass = 'checkbox-false' //default checkbox setting
 let deafultMenu = true // default for side menu
@@ -120,7 +120,7 @@ function changeMenu() {
 }
 
 function mobileInput(button) {
-    let menu = document.getElementById('mobileInput');
+    let menu = document.getElementById('mobileForm');
 
     if (button === 'open') {
         menu.classList.remove('d-none');
@@ -129,6 +129,5 @@ function mobileInput(button) {
     if (button === 'close') {
         menu.classList.add('d-none');
     }
-
 
 }
