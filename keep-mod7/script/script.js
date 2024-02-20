@@ -121,9 +121,11 @@ function changeMenu() {
 
 function mobileInput(button) {
     let menu = document.getElementById('mobileForm');
+    let addButton = document.getElementById('addButton');
 
     if (button === 'open') {
         menu.classList.remove('d-none');
+        addButton.setAttribute('onclick','addArrayToObject()');
     } 
     
     if (button === 'close') {

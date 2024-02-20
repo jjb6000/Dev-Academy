@@ -280,15 +280,15 @@ header {
 /* ANCHOR mobile menu */
 
 .mobile-add-btn img {
-  width: 80px;
+  width: 60px;
 }
 
 .mobile-add-btn {
   align-items: center;
   justify-content: center;
   background-color: var(--highlight);
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 50px;
   position: fixed;
   bottom: 60px;
