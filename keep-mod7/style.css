@@ -21,6 +21,10 @@ h1 {
   margin: 0;
 }
 
+h2 {
+  font-size: 20px;
+}
+
 h3 {
   margin: 0;
   margin-bottom: 8px;
@@ -46,6 +50,10 @@ body {
   display: none;
 }
 
+.d-none {
+  display: none;
+}
+
 /* ANCHOR header */
 
 header {
@@ -68,6 +76,11 @@ header {
   width: 32px;
 }
 
+.burger:hover {
+  background-color: var(--menu-highlight);
+  border-radius: 32px;
+}
+
 .logo-header {
   height: 44px;
   width: 44px;
@@ -78,14 +91,13 @@ header {
 /* ANCHOR menu */
 
 .menu-section {
-  height: 100%;
-  position: fixed;
-  left: 0;
-  top: 100px;
+  margin-top: 100px;
 }
 
 .side-menu {
   font-weight: 500;
+  position: sticky;
+  top: 100px;
 }
 
 .side-menu a {
@@ -98,6 +110,9 @@ header {
   border-radius: 0 25px 25px 0;
   display: flex;
   align-items: center;
+  width: 200px;
+  box-sizing: border-box;
+  transition: width 125ms;
 }
 
 .menu-icon {
@@ -118,9 +133,7 @@ header {
 .notes-section {
   flex-wrap: wrap-reverse;
   margin-top: 140px;
-  margin-left: 200px;
   align-items: center;
-  width: 100%;
 }
 
 /* ANCHOR note input */
@@ -259,6 +272,15 @@ header {
   text-decoration: line-through;
 }
 
+/* ANCHOR Impressum */
+
+.imp-container {
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+
+
 /* ANCHOR mobile menu */
 
 .mobile-add-btn img {
@@ -275,6 +297,11 @@ header {
   position: fixed;
   bottom: 60px;
   right: 60px;
+}
+
+
+.alternative-menu-item {
+  width: 40px;
 }
 
 
@@ -298,6 +325,8 @@ header {
     padding: 12px;
     border-radius: 25px;
     margin: 16px;
+    width: auto;
+
   }
 
 }

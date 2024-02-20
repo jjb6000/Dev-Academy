@@ -39,6 +39,8 @@ function saveNoteObject(reload) {
     if (reload === true) {
         location.reload();
     }
+
+    document.getElementById('titleInput').value = ''
     
 }
 

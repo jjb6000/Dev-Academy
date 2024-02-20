@@ -8,6 +8,7 @@ const newLine = document.getElementById('newLine');
 const temporaryCard = document.getElementById('arrayContainer');
 let checkboxSwitch = false //default checkbox setting
 let checkboxClass = 'checkbox-false' //default checkbox setting
+let deafultMenu = true // default for side menu
 
 // when you hover over Speichern & schließen -> pushToTempArray()
 document.getElementById('saveButton').addEventListener("mouseover", (event) => {
@@ -19,7 +20,7 @@ document.getElementById('saveButton').addEventListener("mouseover", (event) => {
 
 // when you press enter in the input field -> pushToTempArray()
 newLine.addEventListener('keypress', function (e) {
-    if (e.key === 'Enter' ) {
+    if (e.key === 'Enter') {
 
         // calls render function when text not empty
         if (newLine.value !== '') {
@@ -42,16 +43,16 @@ function pushToTempArray() {
 function renderTemporaryCard() {
 
     temporaryCard.innerHTML = '';
-    
+
     for (let i = 0; i < newNotesArray.length; i++) {
-        
+
         temporaryCard.innerHTML += /*html*/`
         <div class="d-flex">
         <img class="${checkboxClass}" src="img/check_box_blank.svg" alt="">
         <input onchange="updateTempArray(${i}, 'newLine_${i}')" class="note" value="${newNotesArray[i]}" type="text" name="Notizeingabe" id="newLine_${i}" required>
         </div>
         
-    `;   
+    `;
     }
     newLine.value = '';
 }
@@ -68,9 +69,9 @@ function updateTempArray(i, id) {
     }
 }
 
-function switchBox() { 
+function switchBox() {
 
-    const switchImg = document.getElementById('switchImg') 
+    const switchImg = document.getElementById('switchImg')
 
     if (checkboxSwitch === false) {
         checkboxSwitch = true;
@@ -83,4 +84,37 @@ function switchBox() {
         checkboxClass = 'checkbox-false';
         renderTemporaryCard();
     }
+}
+
+
+function changeMenu() {
+    let spanElements = document.getElementsByClassName('hide-with-burger-btn');
+    let menuItems = document.getElementsByClassName('menu-item');
+
+    if (deafultMenu === true) {
+
+        for (let i = 0; i < spanElements.length; i++) {
+            spanElements[i].classList.add('d-none');
+        }
+    
+        for (let i = 0; i < menuItems.length; i++) {
+            menuItems[i].classList.add('alternative-menu-item');
+        }
+
+        deafultMenu = false;
+
+    } else {
+
+        for (let i = 0; i < spanElements.length; i++) {
+            spanElements[i].classList.remove('d-none');
+        }
+    
+        for (let i = 0; i < menuItems.length; i++) {
+            menuItems[i].classList.remove('alternative-menu-item');
+        }
+
+        deafultMenu = true;
+        
+    }
+
 }

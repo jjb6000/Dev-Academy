@@ -9,7 +9,7 @@ function moveCardToBin(id) {
 
     localStorage.setItem('binObject', JSON.stringify(binObject));
 
-    saveNoteObject();
+    saveNoteObject(false);
 }
 
 
