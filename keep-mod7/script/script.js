@@ -8,7 +8,6 @@ let newLine = document.getElementById('newLine');
 let temporaryCard = document.getElementById('arrayContainer');
 let checkboxSwitch = false //default checkbox setting
 let checkboxClass = 'checkbox-false' //default checkbox setting
-let deafultMenu = true // default for side menu
 
 // when you hover over Speichern & schließen -> pushToTempArray()
 document.getElementById('saveButton').addEventListener("mouseover", (event) => {
@@ -86,38 +85,6 @@ function switchBox() {
     }
 }
 
-
-function changeMenu() {
-    let spanElements = document.getElementsByClassName('hide-with-burger-btn');
-    let menuItems = document.getElementsByClassName('menu-item');
-
-    if (deafultMenu === true) {
-
-        for (let i = 0; i < spanElements.length; i++) {
-            spanElements[i].classList.add('d-none');
-        }
-    
-        for (let i = 0; i < menuItems.length; i++) {
-            menuItems[i].classList.add('alternative-menu-item');
-        }
-
-        deafultMenu = false;
-
-    } else {
-
-        for (let i = 0; i < spanElements.length; i++) {
-            spanElements[i].classList.remove('d-none');
-        }
-    
-        for (let i = 0; i < menuItems.length; i++) {
-            menuItems[i].classList.remove('alternative-menu-item');
-        }
-
-        deafultMenu = true;
-        
-    }
-
-}
 
 function mobileInput(button) {
     let menu = document.getElementById('mobileForm');

@@ -8,12 +8,13 @@
     <link rel="stylesheet" href="style.css">
     <script defer src="script/load-bin.js"></script>
     <script defer src="script/store.js"></script>
+    <script defer src="script/burger-menu.js"></script>
 </head>
 <body>
 
     <header>
        <div class="inner-header d-flex">
-            <img class="burger padding-12" src="img/burger.svg" alt="Menü">
+            <img class="burger padding-12 hide-on-mobile" onclick="changeMenu()" src="img/burger.svg" alt="Menü">
             <img class="logo-header padding-12" src="img/logo.svg" alt="">
             <h1>Papierkorb</h1>
        </div> 
@@ -22,9 +23,9 @@
     <main class="d-flex">
         <section class="menu-section">
             <div class="side-menu d-flex-col">
-                <a class="menu-item" href="index.html"><img class="menu-icon" src="img/lightbulb.svg" alt="Notizen"><span class="hide-on-mobile">Notizen</span></a>
-                <a class="menu-item menu-current-site" href="bin.html"><img class="menu-icon" src="img/bin.svg" alt="Papierkorb"><span class="hide-on-mobile">Papierkorb</span></a>
-                <a class="menu-item" href="impressum.html"><img class="menu-icon" src="img/info.svg" alt="Impressum"><span class="hide-on-mobile">Impressum</span></a>
+                <a class="menu-item" href="index.html"><img class="menu-icon" src="img/lightbulb.svg" alt="Notizen"><span class="hide-on-mobile hide-with-burger-btn">Notizen</span></a>
+                <a class="menu-item menu-current-site" href="bin.html"><img class="menu-icon" src="img/bin.svg" alt="Papierkorb"><span class="hide-on-mobile hide-with-burger-btn">Papierkorb</span></a>
+                <a class="menu-item" href="impressum.html"><img class="menu-icon" src="img/info.svg" alt="Impressum"><span class="hide-on-mobile hide-with-burger-btn">Impressum</span></a>
             </div>            
         </section>
 

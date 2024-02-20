@@ -1,6 +1,8 @@
 
 // detection of screensize because different input card used for mobile -> reload of variables needed
 
+document.getElementById('body').addEventListener('resize', checkScreen())
+
 
 function checkScreen() {
     if (window.screen.availWidth <= 980) {
