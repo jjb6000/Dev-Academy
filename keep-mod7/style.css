@@ -136,7 +136,6 @@ header {
 /* ANCHOR Notes section */
 
 .notes-section {
-  flex-wrap: wrap-reverse;
   margin-top: 140px;
   align-items: center;
   width: 100%;
@@ -224,22 +223,24 @@ header {
 /* ANCHOR Card */
 
 .cards-container {
-  display: block;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: start;
+  gap: 24px;
+  width: 90%;
+  margin: 16px;
   margin-top: 40px;
-  width: 100%;
 }
 
 .card {
-  width: 240px;
+  min-width: 240px;
+  max-width: 500px;
   padding: 16px;
   box-sizing: border-box;
-  margin: 16px;
   border: solid 1px var(--border-grey);
   display: flex;
   flex-direction: column;
   word-wrap: break-word;
-  height: auto;
-  float: right;
 }
 
 .card-header {
@@ -342,7 +343,7 @@ header {
 
   .notes-section {
     width: 100%;
-    margin-right: 24px;
+    margin: 24px;
     margin-top: 80px;
   }
 
@@ -358,11 +359,9 @@ header {
     border-bottom: solid 2px var(--border-grey);
     padding: 24px 24px 20px 24px;
     border-radius: 0px;
-    width: 100%;
     box-shadow: none;
+    width: 100%;
   }
-
-  .card-form
 
   .input-menu {
     order: 1;
@@ -382,6 +381,10 @@ header {
     order: 4;
   }
 
+  .textbox {
+    width: 300px;
+  }
+
 
   .card-header div{
     gap: 40px;
@@ -399,7 +402,6 @@ header {
     width: 100%;
     padding: 16px;
     box-sizing: border-box;
-    margin: 16px;
     border: solid 1px var(--border-grey);
     display: flex;
     flex-direction: column;

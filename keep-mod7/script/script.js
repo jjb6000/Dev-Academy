@@ -11,6 +11,7 @@ let checkboxSwitch = false; //default checkbox setting
 let checkboxClass = 'checkbox-false'; //default checkbox setting
 let noteText = document.getElementById('noteTextbox');
 let list = true // default input setting
+let addOverlay
 const listBtn = document.getElementById('listBtn');
 const textBtn = document.getElementById('textBtn');
 const switchImg = document.getElementById('switchImg');
@@ -149,18 +150,19 @@ function switchBox() {
 
 
 // ANCHOR mobile save button
-function mobileInput(button) {
+function mobileInput(status) {
+    addOverlay = status
     let menu = document.getElementById('cardForm');
     let addButton = document.getElementById('addButton');
     let addBtnImg = document.getElementById('addBtnImg')
 
-    if (button === 'open') {
+    if (addOverlay === 'open') {
         menu.classList.remove('hide-on-mobile');
         addButton.setAttribute('onclick', 'addArrayToObject()');
         addBtnImg.src = 'img/save.svg';
     }
 
-    if (button === 'close') {
+    if (addOverlay === 'close') {
         menu.classList.add('hide-on-mobile');
         addButton.setAttribute("onclick", "mobileInput('open')");
         addBtnImg.src = 'img/add_mobile.svg';

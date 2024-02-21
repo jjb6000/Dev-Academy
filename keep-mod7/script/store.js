@@ -32,7 +32,7 @@ function getCardIndexForUniqueID(title) {
 }
 
 
-function saveNoteObject(reload) {
+function saveNoteObject() {
     localStorage.setItem('notesObject', JSON.stringify(notesObject));
     loadNotes();
 
@@ -44,7 +44,12 @@ function saveNoteObject(reload) {
         noteText.value = ''
     }
 
-    document.getElementById('titleInput').value = ''
+    document.getElementById('titleInput').value = '';
+    newNotesArray = []
+
+    if (addOverlay === 'open') {
+        mobileInput('close');
+    }
     
 }
 
