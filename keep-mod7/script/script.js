@@ -48,7 +48,7 @@ function renderTemporaryCard() {
         temporaryCard.innerHTML += /*html*/`
         <div class="d-flex">
         <img class="${checkboxClass}" src="img/check_box_blank.svg" alt="">
-        <input onchange="updateTempArray(${i}, 'newLine_${i}')" class="note" value="${newNotesArray[i]}" type="text" name="Notizeingabe" id="newLine_${i}" required>
+        <input onchange="updateTempArray(${i}, 'newLine_${i}')" class="note width-500" value="${newNotesArray[i]}" type="text" name="Notizeingabe" id="newLine_${i}" required>
         </div>
         
     `;
