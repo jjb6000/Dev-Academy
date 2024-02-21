@@ -16,7 +16,7 @@ function addArrayToObject() {
             checkbox: checkboxClass,
             toDoDone: []
         };
-        saveNoteObject(true); // with true -> location reload = empty input card
+        saveNoteObject(); // with true -> location reload = empty input card
     }
     
 } 
@@ -36,8 +36,12 @@ function saveNoteObject(reload) {
     localStorage.setItem('notesObject', JSON.stringify(notesObject));
     loadNotes();
 
-    if (reload === true) {
-        location.reload();
+    if (list === true) {
+        temporaryCard.innerHTML = /*html*/`
+            <textarea placeholder="Notiz schreiben..." class="note textbox d-none" onchange="descriptionInTempArray()" name="Text" id="noteTextbox" ></textarea>
+        `
+    } else {
+        noteText.value = ''
     }
 
     document.getElementById('titleInput').value = ''

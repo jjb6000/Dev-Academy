@@ -3,13 +3,23 @@
 
 
 
+//  ANCHOR var
 let newNotesArray = [];
 let newLine = document.getElementById('newLine');
 let temporaryCard = document.getElementById('arrayContainer');
-let checkboxSwitch = false //default checkbox setting
-let checkboxClass = 'checkbox-false' //default checkbox setting
+let checkboxSwitch = false; //default checkbox setting
+let checkboxClass = 'checkbox-false'; //default checkbox setting
+let noteText = document.getElementById('noteTextbox');
+let list = true // default input setting
+const listBtn = document.getElementById('listBtn');
+const textBtn = document.getElementById('textBtn');
+const switchImg = document.getElementById('switchImg');
+const boxMenu = document.getElementById('boxMenu');
 
-// when you hover over Speichern & schließen -> pushToTempArray()
+
+
+// ANCHOR trigger to fill temporary array
+// when you hover over Speichern -> pushToTempArray()
 document.getElementById('saveButton').addEventListener("mouseover", (event) => {
     if (newLine.value !== '') {
         pushToTempArray();
@@ -31,13 +41,26 @@ newLine.addEventListener('keypress', function (e) {
 });
 
 
+// ANCHOR fill temparray from list or from description
+
 // fills the temporary array onchange input field or called by events above
 function pushToTempArray() {
     newNotesArray.push(newLine.value);
     renderTemporaryCard();
 }
 
+// text to array
+function descriptionInTempArray() {
 
+    if (noteText.value === '') {
+        alert('Gib eine Notiz ein!');
+    } else {
+        newNotesArray = [noteText.value];
+    }
+}
+
+
+// ANCHOR render temporary card
 // renders the array above the input field as draft card
 function renderTemporaryCard() {
 
@@ -68,9 +91,47 @@ function updateTempArray(i, id) {
     }
 }
 
-function switchBox() {
 
-    const switchImg = document.getElementById('switchImg')
+// ANCHOR switches for input menu: text, list, checkboxen on off
+
+// switch to entering a text instead of a list
+function switchToText() {
+    temporaryCard.innerHTML = /*html*/`
+            <textarea placeholder="Notiz schreiben..." class="note textbox" onchange="descriptionInTempArray()" name="Text" id="noteTextbox" ></textarea>
+        `; 
+    noteText = document.getElementById('noteTextbox');
+    newNotesArray = [];
+    checkboxSwitch = false;
+    switchImg.src = 'img/check_box_blank.svg'
+    checkboxClass = 'checkbox-false';
+    newLine.classList.add('d-none');
+    boxMenu.classList.add('d-none');
+    listBtn.classList.remove('underline');
+    textBtn.classList.add('underline');
+    if (noteText !== null) {
+        noteText.value = '';
+    }  
+    list = false;
+}
+
+
+// switch back to list
+function switchToList() {
+    temporaryCard.innerHTML = /*html*/`
+    <textarea placeholder="Notiz schreiben..." class="note textbox d-none" onchange="descriptionInTempArray()" name="Text" id="noteTextbox" ></textarea>
+    `;
+    newNotesArray = [];
+    newLine.classList.remove('d-none');
+    boxMenu.classList.remove('d-none');
+    listBtn.classList.add('underline');
+    textBtn.classList.remove('underline');
+    list = true;
+}
+
+
+
+// to switch on/off the checkbox 
+function switchBox() {
 
     if (checkboxSwitch === false) {
         checkboxSwitch = true;
@@ -86,6 +147,8 @@ function switchBox() {
 }
 
 
+
+// ANCHOR mobile save button
 function mobileInput(button) {
     let menu = document.getElementById('cardForm');
     let addButton = document.getElementById('addButton');
@@ -93,13 +156,13 @@ function mobileInput(button) {
 
     if (button === 'open') {
         menu.classList.remove('hide-on-mobile');
-        addButton.setAttribute('onclick','addArrayToObject()');
+        addButton.setAttribute('onclick', 'addArrayToObject()');
         addBtnImg.src = 'img/save.svg';
-    } 
-    
+    }
+
     if (button === 'close') {
         menu.classList.add('hide-on-mobile');
-        addButton.setAttribute("onclick","mobileInput('open')");
+        addButton.setAttribute("onclick", "mobileInput('open')");
         addBtnImg.src = 'img/add_mobile.svg';
     }
 
