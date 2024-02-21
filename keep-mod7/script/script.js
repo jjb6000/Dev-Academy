@@ -87,18 +87,18 @@ function switchBox() {
 
 
 function mobileInput(button) {
-    let menu = document.getElementById('mobileForm');
+    let menu = document.getElementById('cardForm');
     let addButton = document.getElementById('addButton');
     let addBtnImg = document.getElementById('addBtnImg')
 
     if (button === 'open') {
-        menu.classList.remove('d-none');
+        menu.classList.remove('hide-on-mobile');
         addButton.setAttribute('onclick','addArrayToObject()');
         addBtnImg.src = 'img/save.svg';
     } 
     
     if (button === 'close') {
-        menu.classList.add('d-none');
+        menu.classList.add('hide-on-mobile');
         addButton.setAttribute("onclick","mobileInput('open')");
         addBtnImg.src = 'img/add_mobile.svg';
     }

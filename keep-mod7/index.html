@@ -11,11 +11,10 @@
     <script defer src="script/script.js"></script>
     <script defer src="script/store.js"></script>
     <script defer src="script/edit-note.js"></script>
-    <script defer src="script/detect-screen.js"></script>
     <script defer src="script/burger-menu.js"></script>
 </head>
 
-<body id="body" onload="checkScreen()">
+<body id="body">  
 
     <header>
         <div class="inner-header d-flex">
@@ -42,20 +41,21 @@
 
             <div class="card-form rounded d-flex-col hide-on-mobile" id="cardForm">
                 <input class="note note-title" placeholder="Titel" type="text" id="titleInput">
-                <div id="arrayContainer"></div>
+                <div class="array-container" id="arrayContainer"></div>
 
                 <input class="note note-text" onchange="pushToTempArray()"
                     placeholder="Notiz schreiben und bestätigen..." type="text" name="Notizeingabe" id="newLine">
 
                 <div class="d-flex input-menu">
-                    <img onclick="switchBox()" id="switchImg" class="checkbox-menu" src="img/check_box_blank.svg"
-                        alt="checkbox-schalter">
-                    <button id="checkSwitch" onclick="switchBox(); return false"
-                        class="note-button check-switch">checkbox</button>
-                    <button id="saveButton" onclick="addArrayToObject(); return false" class="note-button">Speichern &
-                        schließen</button>
+                    <div class="d-flex check-menu">
+                        <img onclick="switchBox()" id="switchImg" class="checkbox-menu" src="img/check_box_blank.svg" alt="checkbox-schalter">
+                        <button id="checkSwitch" onclick="switchBox(); return false" class="note-button check-switch">checkbox</button>
+                    </div>
+                    <button class="note-button" onclick="switchToList()" id="listBtn">Liste</button>
+                    <button class="note-button" onclick="switchToText()" id="textBtn">Bechreibung</button>
+                    <button id="close" onclick="mobileInput('close'); return false" class="note-button d-none show-on-mobile">Abbrechen</button>
+                    <button id="saveButton" onclick="addArrayToObject(); return false" class="note-button hide-on-mobile">Speichern</button>
                 </div>
-
             </div>
 
             <div class="card-form-mobile d-flex-col d-none" id="mobileForm">
@@ -64,7 +64,8 @@
 
             <div id="cardsContainer" class="cards-container"></div>
 
-            <div onclick="mobileInput('open')" class="mobile-add-btn show-on-mobile" id="addButton"><img id="addBtnImg" src="img/add_mobile.svg" alt="Neue notiz"></div>
+            <div onclick="mobileInput('open')" class="mobile-add-btn show-on-mobile" id="addButton"><img id="addBtnImg"
+                    src="img/add_mobile.svg" alt="Neue notiz"></div>
 
         </section>
 
