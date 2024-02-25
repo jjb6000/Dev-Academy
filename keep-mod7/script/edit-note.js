@@ -9,7 +9,7 @@ function moveCardToBin(id) {
 
     localStorage.setItem('binObject', JSON.stringify(binObject));
 
-    saveNoteObject(false);
+    saveNoteObject();
 }
 
 
@@ -25,7 +25,7 @@ function done(key, element) {
     notesObject[key].toDoDone = doneArray;
     notesObject[key].Notes = todoArray;
 
-    saveNoteObject(false);
+    saveNoteObject();
     
 }
 
@@ -41,5 +41,5 @@ function returnToToDo(key, element) {
     notesObject[key].toDoDone = doneArray;
     notesObject[key].Notes = todoArray;
 
-    saveNoteObject(false);
+    saveNoteObject();
 }

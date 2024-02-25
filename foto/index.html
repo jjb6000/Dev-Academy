@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foto Gallerie</title>
+    <link rel="icon" type="image/x-icon" href="icons/image.svg">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+
+<body onload="loadPics()">
+
+    <header>
+        <img src="icons/image.svg" alt="">
+        <h1>Fotogalerie</h1>
+    </header>
+
+    <div class="image-selected-container" id="imgSelect">
+        <div class="img-menu">
+            <img class="img-menu-btn align-self-end" src="icons/close.svg" alt="schließen" onclick="closeFoto()">
+            <div class="chevron-container">
+                <img class="img-menu-btn" src="icons/chev-left.svg" alt="letztes Bild" onclick="previousImg()">
+                <img  class="img-menu-btn"src="icons/chev-right.svg" alt="nächstes Bild" onclick="nextImg()">
+            </div>
+        </div>
+
+        <div class="img-container" id="imgContainer">
+
+        </div>
+    </div>
+
+    <section>
+        <div class="foto-container" id="fotoContainer">
+
+        </div>
+    </section>
+
+    <footer>
+
+    </footer>
+
+</body>
+
+</html>
