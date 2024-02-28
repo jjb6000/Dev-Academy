@@ -25,8 +25,14 @@ function showFoto(id) {
 
 
 function closeFoto() {
-    imgContainer.innerHTML =''
+    imgContainer.innerHTML = '';
     overlay.style.display = 'none';
+}
+
+
+function nextImg() {
+    index = fotoArray.indexOf(fotoID) + 1;
+    showFoto(checkEndOrStart(index));
 }
 
 
@@ -35,6 +41,8 @@ function previousImg() {
     let newId = checkEndOrStart(index);
     showFoto(newId);
 }
+
+
 
 function checkEndOrStart(index) {
     let endIndex = fotoArray.length -1
@@ -52,7 +60,3 @@ function checkEndOrStart(index) {
 }
 
 
-function nextImg() {
-    index = fotoArray.indexOf(fotoID) + 1;
-    showFoto(checkEndOrStart(index));
-}
