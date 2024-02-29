@@ -30,6 +30,10 @@ a {
     border-bottom-left-radius: 0;
 }
 
+.margin-0 {
+    margin: 0;
+}
+
 /* ANCHOR header*/
 
 header {
@@ -137,10 +141,15 @@ header {
     padding-left: 16px;
 }
 
-.comment-area {
-    padding: 16px;
+.card-text-area {
+    padding: 0px 16px;
 }
 
+.likes {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+}
 
 
 /* ANCHOR media querries */
