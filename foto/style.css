@@ -102,15 +102,17 @@ section {
 .img-container {
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 90vh;
 }
 
 .img-container img {
-    height: 90vh;
     margin-top: 16px;
     min-width: 10vw;
     max-width: 100vw;
-    object-fit: cover;
 }
+
+
 
 /* ANCHOR fonts */
 
