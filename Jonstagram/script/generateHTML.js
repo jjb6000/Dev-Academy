@@ -46,6 +46,11 @@ function generateCardHtml(logo, author, location, img, like, headline, comment0,
     `
 }
 
+function changeHeart(id, source) {
+    const heart = document.getElementById(id);
+    heart.src = source;
+}
+
 
 function generateCommentsHtml(comment) {
     return /*html*/`

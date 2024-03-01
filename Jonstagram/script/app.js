@@ -24,12 +24,13 @@ function likeFunction(id, index) {
     if (likeBoolean === false) {
         posts[index]['like'] = true;
         savePostsToLS();
-        loadPosts();
+        changeHeart(id,'icons/like_FILL1.svg');
     } else {
         posts[index]['like'] = false;
         savePostsToLS();
-        loadPosts();
+        changeHeart(id,'icons/like_FILL0.svg');
     }
+    
 }
 
 
