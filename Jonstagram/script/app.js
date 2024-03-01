@@ -18,10 +18,7 @@ function loadPosts() {
 }
 
 
-
-
 function likeFunction(id, index) {
-    let heart = document.getElementById(id); 
     let likeBoolean = posts[index]['like'];
     
     if (likeBoolean === false) {
@@ -33,6 +30,18 @@ function likeFunction(id, index) {
         savePostsToLS();
         loadPosts();
     }
+}
+
+
+function loadAllComments(id, index, btnID, commentsIconID) {
+    const commentContainer = document.getElementById(id);
+    const commentsArray = posts[index]['comments'];
+    commentContainer.innerHTML = '';
+
+    for (let i = 0; i < commentsArray.length; i++) {
+        commentContainer.innerHTML += generateCommentsHtml(commentsArray[i]);  
+    }
+    changeCommentsButtonToLess(btnID, commentsIconID);
 }
 
 

@@ -24,7 +24,7 @@ function generateCardHtml(logo, author, location, img, like, headline, comment0,
 
                     <div class="card-menu">
                         <img id="like${index}" onclick="likeFunction('like${index}', '${index}')" src="${likeSrc}" alt="Gefällt mir">
-                        <img src="icons/comment.svg" alt="Kommentare ansehen">
+                        <img id="commentsIcon${index}" onclick="loadAllComments('comments${index}', '${index}', 'commentsBtn${index}', 'commentsIcon${index}')" src="icons/comment.svg" alt="Kommentare ansehen">
                         <img src="icons/add_comment.svg" alt="Kommentar hinzufügen">
                     </div>
 
@@ -36,7 +36,7 @@ function generateCardHtml(logo, author, location, img, like, headline, comment0,
                             <div class="comments" id="comments${index}">
                                 <p>${comment0}</p>
                             </div>
-                            <p class="grey-text click-text">Alle Komentare anzeigen</p>
+                            <p id="commentsBtn${index}" onclick="loadAllComments('comments${index}', '${index}', 'commentsBtn${index}', 'commentsIcon${index}')" class="grey-text click-text">Alle Komentare anzeigen</p>
                             <p class="highlighted-text click-text">Komentar schreiben</p>
                             <div class="comment-input"></div>
                         </div>
@@ -46,3 +46,20 @@ function generateCardHtml(logo, author, location, img, like, headline, comment0,
     `
 }
 
+
+function generateCommentsHtml(comment) {
+    return /*html*/`
+        <p>${comment}</p>
+    `
+}
+
+
+function changeCommentsButtonToLess(btnID, commentsIconID) {
+    const commentBtn = document.getElementById(btnID);
+    const commentIcon = document.getElementById(commentsIconID);
+
+    commentBtn.innerHTML = 'weniger Kommentare anzeigen';
+    commentBtn.setAttribute('onclick', 'loadPosts()');
+    commentIcon.setAttribute('onclick', 'loadPosts()');
+    commentIcon.src = 'icons/comment_FILL1.svg';
+}
