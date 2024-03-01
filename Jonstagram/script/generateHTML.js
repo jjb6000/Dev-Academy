@@ -1,5 +1,13 @@
 
-function generateCardHtml(logo, author, location, img, likes, headline, comment0, index) {
+function generateCardHtml(logo, author, location, img, like, headline, comment0, index) {
+    let likeSrc
+
+    if (like === true) {
+        likeSrc = 'icons/like_FILL1.svg'
+    } else {
+        likeSrc = 'icons/like_FILL0.svg'
+    }
+
     return /*html*/`
                 <div class="card standard-border-style">
 
@@ -15,15 +23,12 @@ function generateCardHtml(logo, author, location, img, likes, headline, comment0
                     <img class="post-img" src="${img}" alt="">
 
                     <div class="card-menu">
-                        <img src="icons/like_FILL0.svg" alt="Gefällt mir">
+                        <img id="like${index}" onclick="likeFunction('like${index}', '${index}')" src="${likeSrc}" alt="Gefällt mir">
                         <img src="icons/comment.svg" alt="Kommentare ansehen">
                         <img src="icons/add_comment.svg" alt="Kommentar hinzufügen">
                     </div>
 
                     <div class="card-text-area">
-                        <div class="likes">
-                            <img src="icons/like_FILL1.svg" alt="likes"><span>${likes}</span>
-                        </div>
                         
                         <p class="highlighted-text fs-20">${headline}</p>
 
@@ -31,8 +36,8 @@ function generateCardHtml(logo, author, location, img, likes, headline, comment0
                             <div class="comments" id="comments${index}">
                                 <p>${comment0}</p>
                             </div>
-                            <p class="highlighted-text">Mehr Komentare anzeigen</p>
-                            <p class="highlighted-text">Komentar schreiben</p>
+                            <p class="grey-text click-text">Alle Komentare anzeigen</p>
+                            <p class="highlighted-text click-text">Komentar schreiben</p>
                             <div class="comment-input"></div>
                         </div>
                     </div>
@@ -40,3 +45,4 @@ function generateCardHtml(logo, author, location, img, likes, headline, comment0
                     </div>
     `
 }
+

@@ -55,16 +55,3 @@ function saveNoteObject() {
 
 
 
-
-// const testObject = {
-//     Title_ID1: {
-//         Title: 'Notiztitel',
-//         Notes: ['xy', 'kochen', 'putzen', 'Bier trinken'],
-//         checkbox: 'false'
-//     },
-//     Title_ID2: {
-//         Title: 'Notiztitel xyz',
-//         Notes: ['xy', 'kochen', 'Bier trinken'],
-//         checkbox: 'true'
-//     }
-//   };

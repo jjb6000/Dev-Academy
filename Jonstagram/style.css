@@ -2,6 +2,9 @@
 
 :root {
     --border-grey: #DBDBDB;
+    --text-grey: #A4A4A4;
+    --link-blue: #007ABC;
+    --button-blue: #0095F6;
 }
 
 body {
@@ -32,6 +35,18 @@ a {
 
 .margin-0 {
     margin: 0;
+}
+
+.grey-text {
+    color: var(--text-grey);
+}
+
+.click-text {
+    cursor: pointer;
+}
+
+.link-text {
+    color: var(--link-blue);
 }
 
 /* ANCHOR header*/
@@ -139,6 +154,7 @@ header {
 .card-menu img {
     width: 40px;
     padding-left: 16px;
+    cursor: pointer;
 }
 
 .card-text-area {
