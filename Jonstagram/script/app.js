@@ -56,7 +56,7 @@ function likeFunction(index) {
     getIdsFromIndex(index);
     let likeBoolean = posts[index]['like'];
     
-    if (likeBoolean === false) {
+    if (likeBoolean == false) {
         posts[index]['like'] = true;
         savePostsToLS();
         changeHeart(likeBtn,'icons/like_FILL1.svg');
