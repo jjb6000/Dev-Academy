@@ -29,9 +29,22 @@ a {
 .standard-border-style {
     border: solid 2px var(--border-grey);
     border-top-right-radius: 0;
-    border-bottom-right-radius: 16px;
-    border-top-left-radius: 16px;
+    border-bottom-right-radius: 32px;
+    border-top-left-radius: 32px;
     border-bottom-left-radius: 0;
+}
+
+.btn {
+    color: white;
+    background-color: var(--button-blue);
+    font-size: 20px;
+    border-color: var(--button-blue);
+    cursor: pointer;
+    height: 48px;
+}
+
+.btn:hover {
+    background-color: rebeccapurple;
 }
 
 .margin-0 {
@@ -48,6 +61,10 @@ a {
 
 .link-text {
     color: var(--link-blue);
+}
+
+.underlined {
+    text-decoration: underline;
 }
 
 /* ANCHOR header*/
@@ -135,10 +152,25 @@ header {
 .post-form {
     display: flex;
     flex-direction: column;
+    padding: 32px;
+    border-color: var(--border-grey);
 }
 
 .post-form input {
     margin-bottom: 24px;
+    height: 32px;
+    border: none;
+    font-size: 18px;
+    border-bottom: 2px solid var(--border-grey);
+}
+
+.post-form .btn {
+    width: 50%;
+    align-self: center;
+}
+
+.post-form input:focus {
+    outline: none;
 }
 
 /* ANCHOR cards section */
@@ -190,6 +222,11 @@ header {
     padding: 0px 16px;
 }
 
+.comment {
+    margin: 0;
+    margin-bottom: 4px;
+}
+
 .likes {
     display: flex;
     align-items: center;
@@ -216,6 +253,11 @@ footer {
   .card {
     width: 90%;
   }
+
+  .post-form .btn {
+    width: 100%;
+    align-self: center;
+    }
 }
 
 

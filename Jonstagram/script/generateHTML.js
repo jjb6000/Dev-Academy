@@ -33,11 +33,12 @@ function generateCardHtml(logo, author, location, img, like, headline, comment0,
                         <p class="highlighted-text fs-20">${headline}</p>
 
                         <div class="comment-area">
+                            <p class="highlighted-text underlined">Kommentare</p>
                             <div class="comments" id="comments${index}">
-                                <p>${comment0}</p>
+                                <p class="comment">${comment0}</p>
                             </div>
                             <p id="commentsBtn${index}" onclick="loadAllComments('${index}')" class="grey-text click-text">Alle Komentare anzeigen</p>
-                            <p onclick="addCommentInput('${index}')" class="highlighted-text click-text">Komentar schreiben</p>
+                            <p onclick="addCommentInput('${index}')" class="highlighted-text click-text link-text">Komentar schreiben</p>
                             <div class="comment-input"></div>
                         </div>
                     </div>
@@ -82,7 +83,7 @@ function changeHeart(id, source) {
 
 function generateCommentsHtml(comment) {
     return /*html*/`
-        <p>${comment}</p>
+        <p class="comment">${comment}</p>
     `
 }
 
@@ -97,7 +98,6 @@ function generatePostHeadline(headline, link, linkText) {
 function changeCommentsButtonToLess(btnID, commentsIconID) {
     const commentBtn = document.getElementById(btnID);
     const commentIcon = document.getElementById(commentsIconID);
-
     commentBtn.innerHTML = 'weniger Kommentare anzeigen';
     commentBtn.setAttribute('onclick', 'loadPosts()');
     commentIcon.setAttribute('onclick', 'loadPosts()');
