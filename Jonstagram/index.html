@@ -16,9 +16,35 @@
 <body onload="includeHTML(), loadPosts()">
     <header w3-include-html="header.html"></header>
 
+    <div class="post-overlay standard-border-style" id="postOverlay">
+        <H2>Neuen Beitrag Erstellen</H2>
+        <form onsubmit="newPost(); return false" class="post-form">
+            <label for="authorInput">Autor</label>
+            <input id="authorInput" type="text" required>
+            <label for="locationInput">Standort</label>
+            <input id="locationInput" type="text" required>
+            <label for="imgInput">Bildlink</label>
+            <input id="imgInput" type="url" required>
+            <label for="headlineInput">Titel</label>
+            <input id="headlineInput" type="text" required>
+            <label for="linkInput">Link</label>
+            <input id="linkInput" type="text" required>
+            <label for="linkTextInput">Link-Text</label>
+            <input id="linkTextInput" type="text" required>
+            <button type="submit">Posten</button>
+        </form>
+    </div>
+
     <section class="card-section" id="cardSection">
 
     </section>
+
+    <footer>
+        <img class="logo" src="icons/logo.png" alt="">
+        <div>
+            <a href="impressum.html">Impressum</a>
+        </div>
+    </footer>
 
 
 </body>

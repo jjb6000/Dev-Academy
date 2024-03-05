@@ -1,5 +1,14 @@
-let posts
 
+// load global variables
+let posts
+let likeBtn 
+let commentsID 
+let commentsBtnID 
+let commentsIconID
+let InputID 
+
+
+// check localstorage
 if (localStorage.getItem('Jonstagram') === null) {
     defineInitialJsonArray();
     savePostsToLS();
