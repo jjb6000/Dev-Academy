@@ -66,10 +66,10 @@ function addCommentInput(index) {
     getIdsFromIndex(index);
     document.getElementById(commentsID).style.display = 'block';
     document.getElementById(commentsID).innerHTML = /*html*/`
-        <form onsubmit="addComment(${index}, 'newCommentInput${index}', ${commentsID}, ${commentsBtnID}, ${commentsIconID})">
+        <form onsubmit="addComment('${index}'); return false">
             <label for="newCommentInput${index}">Dein Kommentar</label>
             <input id="newCommentInput${index}" type="text" required>
-            <button type="submit">Kommentieren</button>
+            <button class="link-text" type="submit">Kommentieren</button>
         </form> 
     `;
 }

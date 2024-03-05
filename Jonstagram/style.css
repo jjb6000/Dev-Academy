@@ -37,10 +37,8 @@ a {
 .btn {
     color: white;
     background-color: var(--button-blue);
-    font-size: 20px;
     border-color: var(--button-blue);
     cursor: pointer;
-    height: 48px;
 }
 
 .btn:hover {
@@ -166,6 +164,8 @@ header {
 
 .post-form .btn {
     width: 50%;
+    height: 48px;
+    font-size: 20px;
     align-self: center;
 }
 
