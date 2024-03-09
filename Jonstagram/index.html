@@ -7,13 +7,13 @@
     <link rel="icon" type="image/x-icon" href="icons/logo.png">
     <title>Jonstagram</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="script/include.js"></script>
-    <script src="script/data.js"></script>
-    <script src="script/generateHTML.js"></script>
-    <script src="script/app.js"></script>
+    <script src="script/include.js"></script>
+    <script defer src="script/data.js"></script>
+    <script defer src="script/generateHTML.js"></script>
+    <script defer src="script/app.js"></script>
 </head>
 
-<body onload="includeHTML(), loadPosts()">
+<body onload="includeHTML(), loadPosts(), loadSearchJS()">
     <header w3-include-html="header.html"></header>
 
     <div class="post-overlay standard-border-style" id="postOverlay">

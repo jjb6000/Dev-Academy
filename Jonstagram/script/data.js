@@ -27,6 +27,13 @@ function loadPostsFromLS() {
 }
 
 
+function loadSearchJS() {
+    let script = document.createElement("script");
+    script.src = 'script/search.js';
+    document.body.appendChild(script);
+}
+
+
 
 
 function defineInitialJsonArray() {
