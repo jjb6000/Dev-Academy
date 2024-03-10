@@ -37,7 +37,6 @@ function newPost() {
 
 
 function createNewObject(author, location, img, headline, link, linkText) {  
-   
     return {
         author: author,
         logo: 'img/jonas.png',

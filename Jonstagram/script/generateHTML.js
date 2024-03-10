@@ -1,4 +1,5 @@
 
+// ANCHOR generate card html
 function generateCardHtml(logo, author, location, img, like, headline, comment0, index) {
     let likeSrc
 
@@ -9,7 +10,7 @@ function generateCardHtml(logo, author, location, img, like, headline, comment0,
     }
 
     return /*html*/`
-                <div class="card standard-border-style">
+                <div id="card${index}" class="card standard-border-style">
 
                     <div class="card-header">
                         <img class="profile-pic" src="${logo}" alt="Profilbild">
@@ -43,12 +44,28 @@ function generateCardHtml(logo, author, location, img, like, headline, comment0,
                         </div>
                     </div>
 
-                    </div>
+                </div>
     `
 }
 
 
+function generatePostHeadline(headline, link, linkText) {
+    return /*html*/`
+        ${headline} <a class="link-text" target="_blank" href="${link}">${linkText}</a>
+    `
+}
+
+
+function changeHeart(id, source) {
+    const heart = document.getElementById(id);
+    heart.src = source;
+}
+
+
+
+// ANCHOR ID generator
 function getIdsFromIndex(index) {
+    cardID = addIndex('card')
     likeBtn = addIndex('like');
     commentsID = addIndex('comments');
     commentsBtnID = addIndex('commentsBtn');
@@ -60,6 +77,14 @@ function getIdsFromIndex(index) {
     }
 }
 
+
+
+// ANCHOR comment related functions
+function generateCommentsHtml(comment) {
+    return /*html*/`
+        <p class="comment">${comment}</p>
+    `
+}
 
 
 function addCommentInput(index) {
@@ -74,25 +99,6 @@ function addCommentInput(index) {
     `;
 }
 
-
-function changeHeart(id, source) {
-    const heart = document.getElementById(id);
-    heart.src = source;
-}
-
-
-function generateCommentsHtml(comment) {
-    return /*html*/`
-        <p class="comment">${comment}</p>
-    `
-}
-
-
-function generatePostHeadline(headline, link, linkText) {
-    return /*html*/`
-        ${headline} <a class="link-text" target="_blank" href="${link}">${linkText}</a>
-    `
-}
 
 
 function changeCommentsButtonToLess(btnID, commentsIconID) {
@@ -114,7 +120,7 @@ function checkForComments(comment, index) {
 }
 
 
-
+// ANCHOR add post html
 function openPostOverlay() {
     document.getElementById('postOverlay').style.display = 'block';
     let imgs = document.getElementsByTagName('img');
@@ -131,7 +137,22 @@ function openPostOverlay() {
 }
 
 
+
 function closePostOverlay() {
     document.getElementById('postOverlay').style.display = 'none';
     document.getElementById('cardSection').classList.remove('dark-card-section')
+}
+
+
+//ANCHOR searchbar html
+function generateSearchListitem(cardID, headline) {
+    return /*html*/`
+       <li><a onclick="emptySearchBar()" href="#${cardID}">'${headline}'</a></li> 
+    `
+}
+
+
+function emptySearchBar() {
+    searchList.innerHTML = '';
+    document.getElementById('searchInput').value = '';
 }

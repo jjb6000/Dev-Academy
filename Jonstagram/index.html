@@ -7,14 +7,31 @@
     <link rel="icon" type="image/x-icon" href="icons/logo.png">
     <title>Jonstagram</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script/include.js"></script>
     <script defer src="script/data.js"></script>
     <script defer src="script/generateHTML.js"></script>
     <script defer src="script/app.js"></script>
+    <script defer src="script/search.js"></script>
+
 </head>
 
-<body onload="includeHTML(), loadPosts(), loadSearchJS()">
-    <header w3-include-html="header.html"></header>
+<body onload="loadPosts()">
+    <header w3-include-html="header.html">
+        <div class="inner-header">
+            <a href="index.html"><img class="logo" src="icons/logo.png" alt=""></a>
+        
+            <div class="searchbar">
+                <input class="standard-border-style" id="searchInput" type="text" placeholder="Suche"></input>
+            </div>
+            
+            <div class="header-menu">
+                <a href=""><img src="icons/home.svg" alt="Startseite"><span class="fs-20 hide-on-mobile">Startseite</span></a>
+                <div onclick="openPostOverlay()"><img src="icons/post.svg" alt="Erstellen"><span class="fs-20 hide-on-mobile">Erstellen</span></div> 
+            </div>
+         
+        </div>
+    </header>
+
+    <ul id="searchList"></ul>
 
     <div class="post-overlay standard-border-style" id="postOverlay">
         <H2>Neuen Beitrag Erstellen</H2>
