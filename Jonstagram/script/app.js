@@ -9,10 +9,11 @@ function loadPosts() {
         const location = posts[i]['location'];
         const img = posts[i]['img'];
         const like = posts[i]['like'];
+        const likes = posts[i]['likes'];
         const headline = posts[i]['headline'];
         const comment0 = posts[i]['comments'][0];
 
-        cardSection.innerHTML += generateCardHtml(logo, author, location, img, like, headline, comment0, i);
+        cardSection.innerHTML += generateCardHtml(logo, author, location, img, like, likes, headline, comment0, i);
         checkForComments(comment0, i);
     }
 }
@@ -26,8 +27,8 @@ function newPost() {
     const headline = document.getElementById('headlineInput');
     const link = document.getElementById('linkInput');
     const linkText = document.getElementById('linkTextInput');
-
     let newPostObject = createNewObject(author.value, location.value, img.value, headline.value, link.value, linkText.value);
+
     console.log(newPostObject);
     posts.push(newPostObject);
     savePostsToLS();
@@ -42,7 +43,8 @@ function createNewObject(author, location, img, headline, link, linkText) {
         logo: 'img/jonas.png',
         location: location,
         img: img,
-        like: 'false',
+        like: false,
+        likes: '0',
         headline: generatePostHeadline(headline, link, linkText),
         comments: []
     }
@@ -52,19 +54,22 @@ function createNewObject(author, location, img, headline, link, linkText) {
 
 // ANCHOR like
 function likeFunction(index) {
-    getIdsFromIndex(index);
     let likeBoolean = posts[index]['like'];
+    let likes = posts[index]['likes'];
     
     if (likeBoolean == false) {
         posts[index]['like'] = true;
+        let newLikes = +likes + 1
+        posts[index]['likes'] = newLikes;
         savePostsToLS();
-        changeHeart(likeBtn,'icons/like_FILL1.svg');
+        changeHeartAndLikes(index, 'icons/like_FILL1.svg');
     } else {
         posts[index]['like'] = false;
+        let newLikes = +likes - 1;
+        posts[index]['likes'] = newLikes;
         savePostsToLS();
-        changeHeart(likeBtn,'icons/like_FILL0.svg');
-    }
-    
+        changeHeartAndLikes(index, 'icons/like_FILL0.svg');
+    } 
 }
 
 

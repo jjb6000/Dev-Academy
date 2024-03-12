@@ -1,6 +1,6 @@
 
 // ANCHOR generate card html
-function generateCardHtml(logo, author, location, img, like, headline, comment0, index) {
+function generateCardHtml(logo, author, location, img, like, likes, headline, comment0, index) {
     let likeSrc
 
     if (like === true) {
@@ -30,6 +30,7 @@ function generateCardHtml(logo, author, location, img, like, headline, comment0,
                     </div>
 
                     <div class="card-text-area">
+                        <p id="likes${index}" class="highlighted-text">Gefällt ${likes} Mal</p>
                         
                         <p class="highlighted-text fs-20">${headline}</p>
 
@@ -56,17 +57,22 @@ function generatePostHeadline(headline, link, linkText) {
 }
 
 
-function changeHeart(id, source) {
-    const heart = document.getElementById(id);
+function changeHeartAndLikes(index, source) {
+    getIdsFromIndex(index);
+    const heart = document.getElementById(likeBtn);
     heart.src = source;
+    document.getElementById(likesID).innerHTML = /*html*/`
+        Gefällt ${posts[index]['likes']} Mal
+    `;
 }
 
 
 
 // ANCHOR ID generator
 function getIdsFromIndex(index) {
-    cardID = addIndex('card')
+    cardID = addIndex('card');
     likeBtn = addIndex('like');
+    likesID = addIndex('likes');
     commentsID = addIndex('comments');
     commentsBtnID = addIndex('commentsBtn');
     commentsIconID = addIndex('commentsIcon');
@@ -91,10 +97,10 @@ function addCommentInput(index) {
     getIdsFromIndex(index);
     document.getElementById(commentsID).style.display = 'block';
     document.getElementById(commentsID).innerHTML = /*html*/`
-        <form onsubmit="addComment('${index}'); return false">
+        <form class="comment-form" onsubmit="addComment('${index}'); return false">
             <label for="newCommentInput${index}">Dein Kommentar</label>
-            <input id="newCommentInput${index}" type="text" required>
-            <button class="link-text" type="submit">Kommentieren</button>
+            <textarea class="standard-border-style" id="newCommentInput${index}" type="text" maxlength="80" required></textarea>
+            <button class="no-btn-style highlighted-text click-text link-text" type="submit">Kommentieren</button>
         </form> 
     `;
 }
@@ -122,25 +128,14 @@ function checkForComments(comment, index) {
 
 // ANCHOR add post html
 function openPostOverlay() {
-    document.getElementById('postOverlay').style.display = 'block';
-    let imgs = document.getElementsByTagName('img');
-    let cards = document.getElementsByClassName('card');
-    document.getElementById('cardSection').classList.add('dark-card-section')
-
-    for (let i = 0; i < imgs.length; i++) {
-        imgs[i].style.filter = 'brightness(30%)';  
-    }
-
-    for (let i = 0; i < cards.length; i++) {
-        cards[i].style.border = '2px solid black';  
-    }
+    document.getElementById('postOverlay').style.visibility = 'visible';
+    document.getElementById('popUp').classList.add("open-popUp"); 
 }
 
 
-
 function closePostOverlay() {
-    document.getElementById('postOverlay').style.display = 'none';
-    document.getElementById('cardSection').classList.remove('dark-card-section')
+    document.getElementById('popUp').classList.remove("open-popUp");
+    document.getElementById('postOverlay').style.visibility = 'hidden';
 }
 
 

@@ -6,6 +6,7 @@ const searchList = document.getElementById('searchList');
 searchInput.addEventListener("input", e => {
     let searchValue = e.target.value;
     searchList.innerHTML = ''
+    window.scrollTo(0,0);
     const serarchArray = generateSearchArray();
     
     for (let i = 0; i < serarchArray.length; i++) {

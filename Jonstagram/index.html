@@ -15,15 +15,15 @@
 </head>
 
 <body onload="loadPosts()">
-    <header w3-include-html="header.html">
+    <header>
         <div class="inner-header">
-            <a href="index.html"><img class="logo" src="icons/logo.png" alt=""></a>
+            <a class="hide-648" href="index.html"><img class="logo" src="icons/logo.png" alt=""></a>
         
             <div class="searchbar">
                 <input class="standard-border-style" id="searchInput" type="text" placeholder="Suche"></input>
             </div>
             
-            <div class="header-menu">
+            <div class="header-menu hide-648">
                 <a href=""><img src="icons/home.svg" alt="Startseite"><span class="fs-20 hide-on-mobile">Startseite</span></a>
                 <div onclick="openPostOverlay()"><img src="icons/post.svg" alt="Erstellen"><span class="fs-20 hide-on-mobile">Erstellen</span></div> 
             </div>
@@ -31,25 +31,30 @@
         </div>
     </header>
 
-    <ul id="searchList"></ul>
+    <ul class="search-list margin-0" id="searchList"></ul>
 
-    <div class="post-overlay standard-border-style" id="postOverlay">
-        <H2>Neuen Beitrag Erstellen</H2>
-        <form onsubmit="newPost(); return false" class="post-form standard-border-style">
-            <label for="authorInput">Autor</label>
-            <input id="authorInput" type="text" required>
-            <label for="locationInput">Standort</label>
-            <input id="locationInput" type="text" required>
-            <label for="imgInput">Bildlink</label>
-            <input id="imgInput" type="url" required>
-            <label for="headlineInput">Titel</label>
-            <input id="headlineInput" type="text" required>
-            <label for="linkInput">Link</label>
-            <input id="linkInput" type="text" required>
-            <label for="linkTextInput">Link-Text</label>
-            <input id="linkTextInput" type="text" required>
-            <button class="btn standard-border-style" type="submit">Posten</button>
-        </form>
+    <div class="v-hidden post-overlay-background" id="postOverlay">
+        <div class="post-overlay standard-border-style" id="popUp">
+            <div class="post-form-header">
+                <H2>Neuen Beitrag Erstellen</H2>
+                <img onclick="closePostOverlay()" src="icons/close.svg" alt="schliessen">
+            </div>
+            <form onsubmit="newPost(); return false" class="post-form">
+                <label for="authorInput">Autor</label>
+                <input id="authorInput" type="text" required>
+                <label for="locationInput">Standort</label>
+                <input id="locationInput" type="text" required>
+                <label for="imgInput">Bildlink</label>
+                <input id="imgInput" type="url" required>
+                <label for="headlineInput">Titel</label>
+                <input id="headlineInput" type="text" required>
+                <label for="linkInput">Link</label>
+                <input id="linkInput" type="text" required>
+                <label for="linkTextInput">Link-Text</label>
+                <input id="linkTextInput" type="text" required>
+                <button class="btn standard-border-style" type="submit">Posten</button>
+            </form>
+        </div>
     </div>
 
     <section class="card-section" id="cardSection">
@@ -58,9 +63,15 @@
 
     <footer>
         <img class="logo" src="icons/logo.png" alt="">
-        <div>
+        <div class="hide-648">
             <a href="impressum.html">Impressum</a>
         </div>
+
+        <div class="header-menu d-none show-flex-648">
+            <a href=""><img src="icons/home.svg" alt="Startseite"></a>
+            <div onclick="openPostOverlay()"><img src="icons/post.svg" alt="Erstellen"></div> 
+        </div>
+
     </footer>
 
 
