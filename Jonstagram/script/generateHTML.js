@@ -1,6 +1,7 @@
 
 // ANCHOR generate card html
 function generateCardHtml(logo, author, location, img, like, likes, headline, comment0, index) {
+    const timeSincePost = dateFunction(index);
     let likeSrc
 
     if (like === true) {
@@ -15,10 +16,10 @@ function generateCardHtml(logo, author, location, img, like, likes, headline, co
                     <div class="card-header">
                         <img class="profile-pic" src="${logo}" alt="Profilbild">
                         <div class="card-author-data">
-                            <p class="highlighted-text fs-20 margin-0">${author}</p>
+                            <p class="highlighted-text fs-20 margin-0">${author}<span class="post-time"> • ${timeSincePost}</span></p>  
                             <p class="margin-0">${location}</p>
                         </div>
-                        
+                                              
                     </div>
 
                     <img class="post-img" src="${img}" alt="">
@@ -35,7 +36,6 @@ function generateCardHtml(logo, author, location, img, like, likes, headline, co
                         <p class="highlighted-text fs-20">${headline}</p>
 
                         <div class="comment-area">
-                            <p class="highlighted-text underlined">Kommentare</p>
                             <div class="comments" id="comments${index}">
                                 <p class="comment">${comment0}</p>
                             </div>

@@ -38,8 +38,10 @@ function newPost() {
 
 
 function createNewObject(author, location, img, headline, link, linkText) {  
+    const today = new Date(Date.now());
     return {
         author: author,
+        date: today,
         logo: 'img/jonas.png',
         location: location,
         img: img,

@@ -1,11 +1,11 @@
 
 // load global variables
 let posts
-let likeBtn 
-let commentsID 
-let commentsBtnID 
+let likeBtn
+let commentsID
+let commentsBtnID
 let commentsIconID
-let InputID 
+let InputID
 
 
 // check localstorage
@@ -28,12 +28,11 @@ function loadPostsFromLS() {
 
 
 
-
-
 function defineInitialJsonArray() {
     posts = [
         {
             author: 'Jonas Benkwitz',
+            date: 'March 1, 2024 14:15:30',
             logo: 'img/jonas.png',
             location: 'Berlin, Deutschland',
             img: 'img/pexels-kyle-miller-20272801.jpg',
@@ -44,6 +43,7 @@ function defineInitialJsonArray() {
         },
         {
             author: 'Kochwelt',
+            date: 'March 2, 2024 16:30:30',
             logo: 'img/logo_kochwelt.png',
             location: 'München, Deutschland',
             img: 'img/pasta.jpg',
@@ -54,6 +54,7 @@ function defineInitialJsonArray() {
         },
         {
             author: 'Jonas keeps',
+            date: 'March 8, 2024 11:15:30',
             logo: 'img/logo-note.png',
             location: 'Silicon Valley, USA',
             img: 'img/Screenshot-note.png',
@@ -63,4 +64,40 @@ function defineInitialJsonArray() {
             comments: ['funktioniert super', 'komisch, sieht fast so aus wie google keep!?', 'Ich mag lieber Spaghetti mit Ketchup']
         }
     ]
+}
+
+
+
+// ANCHOR time functions
+function dateFunction(index) {
+    const postDate = new Date(posts[index].date);
+    const today = new Date(Date.now());
+    let timeBetween = daysDiff(postDate, today);
+    let timeUnit = 'Tage'
+    
+    if (timeBetween == 0) {
+        timeBetween = hoursDiff(postDate, today);
+        timeUnit = 'Stunden'
+    }
+
+    if (timeBetween == 0) {
+        timeBetween = minDiff(postDate, today);
+        timeUnit = 'Minuten'
+    }
+
+    let timeSincePost = timeBetween + ' ' + timeUnit;
+    return timeSincePost;
+}
+
+
+function daysDiff(first, second) {
+    return Math.round((second - first) / (1000 * 60 * 60 * 24));
+}
+
+function hoursDiff(first, second) {
+    return Math.round((second - first) / (1000 * 60 * 60));
+}
+
+function minDiff(first, second) {
+    return Math.round((second - first) / (1000 * 60 ));
 }

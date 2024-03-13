@@ -86,6 +86,7 @@ ul {
     text-decoration: underline;
 }
 
+
 /* ANCHOR header*/
 
 header {
@@ -220,7 +221,7 @@ header {
 }
 
 .card {
-    width: 60%;
+    width: 640px;
 }
 
 .card-header {
@@ -228,6 +229,12 @@ header {
     display: flex;
     align-items: center;
     gap: 16px;
+}
+
+.post-time {
+    color: var(--text-grey);
+    font-size: 16px;
+    font-weight: 400;
 }
 
 .profile-pic {
@@ -282,6 +289,21 @@ footer {
     align-items: center;
     border-top: 2px solid var(--border-grey);
     padding: 16px 32px;
+}
+
+/* ANCHOR impressum */
+
+.imp-section {
+    padding: 40px;
+}
+
+.imp-body {
+    display: grid;
+    grid-template-rows: 1fr 7.5fr 1fr;
+}
+
+.inner-header h1 {
+    justify-self: center;
 }
 
 /* ANCHOR hide */
@@ -361,6 +383,10 @@ footer {
         background-color: white;
         z-index: 50;
         padding: 8px;
+    }
+
+    .imp-section {
+        padding-top: 160px;
     }
 }
 
