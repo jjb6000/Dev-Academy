@@ -42,7 +42,7 @@ function createNewObject(author, location, img, headline, link, linkText) {
     return {
         author: author,
         date: today,
-        logo: 'img/jonas.png',
+        logo: 'img/account.png',
         location: location,
         img: img,
         like: false,
