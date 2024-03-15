@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lieferando</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script/data.js"></script>
+    <script defer src="script/generateHTML.js"></script>
+    <script defer src="script/app.js"></script>
+</head>
+<body onload="loadMenu(menuBurger)">
+
+    <header></header>
+
+    <main>
+        <section class="restaurant-section">
+            <div class="restaurant-header">
+                <img class="atf-image" src="img/burger.jpg" alt="">
+                <div class="title-bar">
+                    <h2>Jonas Burgers</h2>
+                    <p>Five Stars</p>
+                </div>
+            </div>
+
+            <div class="menu-bar">
+                <span onclick="loadMenu(menuBurger)" >Burger</span>
+                <span onclick="loadMenu(menuHotDog)" >Hot Dogs</span>
+                <span onclick="loadMenu(menuPommes)" >Pommes</span>
+                <span onclick="loadMenu(menuSalads)" >Salate</span>
+            </div>
+
+            <div class="menu-list">
+                <h3>Beliebte Gerichte</h3>
+
+                <div class="menu-items" id="menuItems">
+                    <!-- injected from loadMenu() -->
+                </div>
+            </div>
+
+        </section>
+
+        <section class="basket-section">
+            <h4>Warenkorb</h4>
+            <div class="basket-items" id="basketItems"></div>
+            <div class="sum-container"></div>
+        </section>
+    </main>
+
+    <footer></footer>
+    
+</body>
+</html>
