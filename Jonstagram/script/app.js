@@ -1,25 +1,32 @@
 // ANCHOR load posts
 function loadPosts() {
-    let cardSection = document.getElementById('cardSection');
     cardSection.innerHTML = '';
-
     for (let i = 0; i < posts.length; i++) {
-        const logo = posts[i]['logo'];
-        const author = posts[i]['author'];
-        const location = posts[i]['location'];
-        const img = posts[i]['img'];
-        const like = posts[i]['like'];
-        const likes = posts[i]['likes'];
-        const headline = posts[i]['headline'];
-        const comment0 = posts[i]['comments'][0];
 
-        cardSection.innerHTML += generateCardHtml(logo, author, location, img, like, likes, headline, comment0, i);
-        checkForComments(comment0, i);
+        if (posts[i]['like'] === true) {
+            likeSrc = 'icons/like_FILL1.svg'
+        } else {
+            likeSrc = 'icons/like_FILL0.svg'
+        }
+        cardSection.innerHTML += generateCardHtml(posts[i]['logo'], posts[i]['author'], posts[i]['location'], posts[i]['img'], posts[i]['likes'], posts[i]['headline'], posts[i]['comments'][0], i);
+        checkForComments(posts[i]['comments'][0], i);
     }
 }
 
 
 // ANCHOR create posts
+function openPostOverlay() {
+    document.getElementById('postOverlay').style.visibility = 'visible';
+    document.getElementById('popUp').classList.add("open-popUp"); 
+}
+
+
+function closePostOverlay() {
+    document.getElementById('popUp').classList.remove("open-popUp");
+    document.getElementById('postOverlay').style.visibility = 'hidden';
+}
+
+
 function newPost() {
     const author = document.getElementById('authorInput');
     const location = document.getElementById('locationInput');
@@ -57,26 +64,45 @@ function createNewObject(author, location, img, headline, link, linkText) {
 // ANCHOR like
 function likeFunction(index) {
     let likeBoolean = posts[index]['like'];
-    let likes = posts[index]['likes'];
     
     if (likeBoolean == false) {
-        posts[index]['like'] = true;
-        let newLikes = +likes + 1
-        posts[index]['likes'] = newLikes;
+        updateLikesInPostObject(index, true, 1);
         savePostsToLS();
         changeHeartAndLikes(index, 'icons/like_FILL1.svg');
     } else {
-        posts[index]['like'] = false;
-        let newLikes = +likes - 1;
-        posts[index]['likes'] = newLikes;
+        updateLikesInPostObject(index, false, -1);
         savePostsToLS();
         changeHeartAndLikes(index, 'icons/like_FILL0.svg');
     } 
 }
 
 
+function updateLikesInPostObject(index, boolean, increment) {
+    let likes = posts[index]['likes'];
+    posts[index]['like'] = boolean;
+    posts[index]['likes'] = +likes + increment;
+}
+
+
+function changeHeartAndLikes(index, source) {
+    getIdsFromIndex(index);
+    const heart = document.getElementById(likeBtn);
+    heart.src = source;
+    document.getElementById(likesID).innerHTML = generateHeartHtml(index);
+}
+
+
 
 // ANCHOR comments
+function checkForComments(comment, index) {
+    if (comment == undefined) {
+        getIdsFromIndex(index);
+        document.getElementById(commentsBtnID).style.display = 'none';
+        document.getElementById(commentsID).style.display = 'none'
+    }
+}
+
+
 function loadAllComments(index) {
     getIdsFromIndex(index);
     const commentContainer = document.getElementById(commentsID);
@@ -96,6 +122,23 @@ function addComment(index) {
     savePostsToLS();
     loadPosts();
     loadAllComments(index)    
+}
+
+function changeCommentsButtonToLess(btnID, commentsIconID) {
+    const commentBtn = document.getElementById(btnID);
+    const commentIcon = document.getElementById(commentsIconID);
+    commentBtn.innerHTML = 'weniger Kommentare anzeigen';
+    commentBtn.setAttribute('onclick', 'loadPosts()');
+    commentIcon.setAttribute('onclick', 'loadPosts()');
+    commentIcon.src = 'icons/comment_FILL1.svg';
+}
+
+
+
+function addCommentInput(index) {
+    getIdsFromIndex(index);
+    document.getElementById(commentsID).style.display = 'block';
+    document.getElementById(commentsID).innerHTML = generateCommentInputHtml(index); 
 }
 
 

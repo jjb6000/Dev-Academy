@@ -8,15 +8,12 @@ searchInput.addEventListener("input", e => {
     searchList.innerHTML = ''
     window.scrollTo(0,0);
     const serarchArray = generateSearchArray();
-    
     for (let i = 0; i < serarchArray.length; i++) {
-        // txtValue = serarchArray[i].textContent || serarchArray[i].innerText;
         if (serarchArray[i].indexOf(searchValue.toLowerCase()) > -1) {
-            getIdsFromIndex(i)
+            getIdsFromIndex(i);
             searchList.innerHTML += generateSearchListitem(cardID, posts[i]['headline']);
         } 
     }
-
     if (searchValue == '') {
         searchList.innerHTML = ''
     }
@@ -29,4 +26,11 @@ function generateSearchArray() {
         serarchArray.push(posts[i]['headline'].toLowerCase());
     }
     return serarchArray;
+}
+
+
+
+function emptySearchBar() {
+    searchList.innerHTML = '';
+    document.getElementById('searchInput').value = '';
 }
