@@ -1,36 +1,53 @@
-
+:root {
+    --theme-orange: #ff8000;
+    --background-light: #efedea;
+}
 
 /*ANCHOR standard classes */
 html {
     scroll-behavior: smooth;
 }
 
+h3 {
+    margin: 0;
+    margin-bottom: 16px;
+}
+
+
 body {
     margin: 0;
     font-family: 'Roboto';
     font-size: 16px;
+    display: grid;
+    grid-template-rows: 80px auto 80px;
+    grid-template-columns:  3fr 1fr ;
+    grid-template-areas: 
+        "header header"
+        "restaurant basket"
+        "footer footer";
 }
 
 
+/* ANCHOR header & footer */
+header {
+    grid-area: header;
+}
 
-main {
+footer {
+    grid-area: footer;
+}
+
+.header-and-footer-style {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--theme-orange);
+    color: white;
 }
 
-.menu-bar > * {
-    cursor: pointer;
-}
-
-.menu-list {
-    padding:40px;
-}
-
-.menu-item {
-    display: flex;
-}
-
-.menu-item img {
-    cursor: pointer;
+/* ANCHOR restaurant and menu */
+.restaurant-section {
+    grid-area: restaurant;
 }
 
 .atf-image {
@@ -38,6 +55,56 @@ main {
     height: 300px;
     object-fit: cover;
 }
+
+.menu-bar {
+    background-color: var(--background-light);
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.menu-bar > * {
+    cursor: pointer;
+}
+
+.menu-list {
+    padding: 40px;
+}
+
+.menu-item {
+    display: flex;
+    border: solid 1px lightgrey;
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.menu-item-content {
+    width: 100%;
+}
+
+.menu-item img {
+    cursor: pointer;
+}
+
+.menu-item p {
+    margin-bottom: 8px;
+}
+
+
+
+/* ANCHOR basket */
+.basket-section {
+    grid-area: basket;
+    position: sticky;
+}
+
+
+
+
+
 
 
 /* ANCHOR fonts */
