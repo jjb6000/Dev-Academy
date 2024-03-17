@@ -1,6 +1,12 @@
 const menuItems = document.getElementById('menuItems');
 const basketItems = document.getElementById('basketItems')
 let currentMenu;
+let basketObject = {
+    meals: [
+        {}
+    ],
+    amounts: []
+}
 
 
 let menuBurger = [

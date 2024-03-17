@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lieferanjo</title>
+    <link rel="icon" type="image/x-icon" href="icons/logo.svg">
     <link rel="stylesheet" href="style.css">
     <script defer src="script/data.js"></script>
     <script defer src="script/generateHTML.js"></script>
@@ -13,7 +14,8 @@
 
 <body onload="loadMenu(menuBurger)">
 
-    <header class="header-and-footer-style">
+    <header>
+        <img class="logo" src="icons/logo.svg" alt="">
         <h1>Lieferanjo</h1>
     </header>
 
@@ -45,8 +47,27 @@
 
     <section class="basket-section">
         <h4>Warenkorb</h4>
-        <div class="basket-items" id="basketItems"></div>
-        <div class="sum-container"></div>
+        <div class="basket-items" id="basketItems">
+            <div class="basket-placeholder">
+                <img src="icons/basket.svg" alt="">
+                <h2>Fülle deinen Warenkorb</h2>
+                <div>Füge einige leckere Gerichte aus der Speiekate hinzu und bestelle dein Essen</div>
+            </div>
+        </div>
+        <div class="border margin-top-16"></div>
+        <div class="sum-container">
+            <div>
+                <p>Zwischensumme</p>
+                <p>Liefergebühr</p>
+                <p><b>Gesamt</b></p>
+            </div>
+            <div>
+                <p id="subtotal">0,00</p>
+                <p id="deliverFee">0,00</p>
+                <p><b id="total">0,00</b></p>
+            </div>
+        </div>
+        <div class="border"></div>
     </section>
 
 
