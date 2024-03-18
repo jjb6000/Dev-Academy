@@ -8,6 +8,29 @@ function loadMenu(jsonArray) {
 
 
 function addToBasket(index) {
-    basketItems.innerHTML += generateBasketHtml(currentMenu[index]['name'], currentMenu[index]['price']);
+    let basketIndex = getBasketItemIndex(currentMenu[index]['name']);
+    if (basketIndex == -1) {
+        basketObject.names.push(currentMenu[index]['name']);
+        basketObject.prices.push(currentMenu[index]['price']);
+        basketObject.amounts.push(1);
+    } else {
+        basketObject.amounts[basketIndex] = +basketObject.amounts[basketIndex] + 1;
+    }
+    loadBasket();
 }
 
+
+function getBasketItemIndex(name) {
+    return basketObject.names.indexOf(name);
+}
+
+
+function loadBasket() {
+    basketItems.innerHTML = ''
+    for (let i = 0; i < basketObject.names.length; i++) {
+        const amount = basketObject.amounts[i];
+        const name = basketObject.names[i];
+        const price = basketObject.prices[i];
+        basketItems.innerHTML += generateBasketHtml(amount, name, price);
+    }
+}

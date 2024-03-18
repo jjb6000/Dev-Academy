@@ -16,9 +16,18 @@ function generateMenuHtml(name, ingredients, price, index) {
 }
 
 
-function generateBasketHtml(name, price) {
+function generateBasketHtml(amount, name, price) {
     return /*html*/`
-        <p>${name}</p>
-        <p>${price}</p>
+        <div class="basket-item">
+            <p>${amount}x</p>
+            <p>${name}</p>
+            <div class="btn-container">
+                <button class="amount-btn"><img src="icons/minus.svg" alt="less"></button>
+                <button class="amount-btn"><img src="icons/plus-gr.svg" alt="more"></button>
+                <img src="icons/pen.svg" alt="edit">
+            </div>
+            <p>${price}</p>
+            <img src="icons/delete.svg" alt="">
+        </div>
     `
 }
