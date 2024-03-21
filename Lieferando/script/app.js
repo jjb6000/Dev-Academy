@@ -10,11 +10,13 @@ function loadMenu(jsonArray) {
 function loadBasket() {
     basketItems.innerHTML = ''
     for (let i = 0; i < basketObject.names.length; i++) {
-        const amount = basketObject.amounts[i];
-        const name = basketObject.names[i];
-        const price = basketObject.prices[i];
-        basketItems.innerHTML += generateBasketHtml(amount, name, price, i);
+        basketItems.innerHTML += generateBasketHtml(
+            basketObject.amounts[i], 
+            basketObject.names[i], 
+            convertToGermanTypeFloat(basketObject.prices[i] * basketObject.amounts[i]),
+             i);
     }
+    showPrices();
 }
 
 
@@ -39,16 +41,13 @@ function deleteFromBasketObject(basketIndex) {
 }
 
 
-//ANCHOR Basket validation functions
-
-function checkIfBasketIsEmpty() {
-    if (basketObject.names[0] == undefined) {
-        basketItems.innerHTML = generateBasketPlaceholderHtml();
-    } else {
-        loadBasket();
-    }
+function convertToGermanTypeFloat(number) {
+    let price = number.toFixed(2);
+    return price.toString().replace('.', ',');
 }
 
+
+//ANCHOR Basket validation functions
 
 function checkBasketObject(menuIndex) {
     let basketIndex = getBasketIndex(menuIndex)
@@ -73,6 +72,38 @@ function checkAmountsFor0(basketIndex, number) {
         loadBasket();
     }
 }
+
+
+function checkIfBasketIsEmpty() {
+    if (basketObject.names[0] == undefined) {
+        basketItems.innerHTML = generateBasketPlaceholderHtml();
+        sumContainer.innerHTML = generateSumContainerHtml(convertToGermanTypeFloat(0), convertToGermanTypeFloat(0));
+    } else {
+        loadBasket();
+    }
+}
+
+
+
+// ANCHOR sum
+
+function showPrices() {
+    let subtotal = calculatePrices();
+    let total = +subtotal + 1;
+    sumContainer.innerHTML = generateSumContainerHtml(convertToGermanTypeFloat(+subtotal), convertToGermanTypeFloat(+total));
+}
+
+
+function calculatePrices() {
+    let sum = 0;
+    for (let i = 0; i < basketObject.prices.length; i++) {
+        const itemXAmount = +basketObject.prices[i] * basketObject.amounts[i];
+        sum = sum + itemXAmount;
+    }
+    return sum
+}
+
+
 
 
 

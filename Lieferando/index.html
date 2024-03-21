@@ -8,7 +8,7 @@
     <link rel="icon" type="image/x-icon" href="icons/logo.svg">
     <link rel="stylesheet" href="style.css">
     <script defer src="script/data.js"></script>
-    <script defer src="script/generateHTML.js"></script>
+    <script defer src="script/HtmlTemplates.js"></script>
     <script defer src="script/app.js"></script>
 </head>
 
@@ -24,8 +24,20 @@
         <div class="restaurant-header">
             <img class="atf-image" src="img/burger.jpg" alt="">
             <div class="title-bar">
-                <h2>Jonas Burgers</h2>
-                <p>Five Stars</p>
+                <div>
+                    <h2>Jonas Burgers</h2>
+                    <span><img src="icons/star.svg" alt=""></span>
+                    <span><img src="icons/star.svg" alt=""></span>
+                    <span><img src="icons/star.svg" alt=""></span>
+                    <span><img src="icons/star.svg" alt=""></span>
+                    <span><img src="icons/star_half.svg" alt=""></span>
+                    <span class="rate-text">(508 Berwertungen)</span>
+                </div>
+
+                <div class="logo-circle">
+                    <img class="restaurant-logo" src="icons/logo-burger.svg" alt="">
+                    <h3>Jonas' Burgers</h3>
+                </div>
             </div>
 
             <div class="menu-bar">
@@ -37,7 +49,10 @@
         </div>
 
         <div class="menu-list">
-            <h3>Beliebte Gerichte</h3>
+            <div class="menu-header">
+                <h3>Beliebte Gerichte</h3>
+            </div>
+            
 
             <div class="menu-items" id="menuItems">
                 <!-- injected from loadMenu() -->
@@ -52,7 +67,7 @@
                 <div class="basket-placeholder" id="emptyBasket">
                     <img src="icons/basket.svg" alt="">
                     <h2>Fülle deinen Warenkorb</h2>
-                    <div>Füge einige leckere Gerichte aus der Speiekate hinzu und bestelle dein Essen</div>
+                    <div>Füge einige leckere Gerichte aus der Speisekarte hinzu und bestelle dein Essen</div>
                 </div>
             </div>
             <div class="sum-container">
@@ -61,17 +76,17 @@
                     <p>Liefergebühr</p>
                     <p><b>Gesamt</b></p>
                 </div>
-                <div>
-                    <p id="subtotal">0,00</p>
-                    <p id="deliverFee">0,00</p>
-                    <p><b id="total">0,00</b></p>
+                <div id="sumContainer">
+                    <p id="subtotal">0,00 €</p>
+                    <p id="deliverFee">1,00 €</p>
+                    <p><b id="total">0,00 €</b></p>
                 </div>
             </div>
         </div>
     </section>
 
     <footer class="header-and-footer-style">
-        <div>tbd</div>
+        <div>(c) Jonas Benkwitz 2024</div>
     </footer>
 
 </body>

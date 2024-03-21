@@ -1,7 +1,21 @@
 :root {
     --theme-orange: #ff8000;
-    --background-light: #efedea;
+    --background-light: #ff800023;
     --border-grey: #e0e0e0;
+    --btn-blue: #4779FB;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto';
+    font-size: 16px;
+    display: grid;
+    grid-template-rows: 80px auto 80px;
+    grid-template-columns:  3fr 1fr ;
+    grid-template-areas: 
+        "header header"
+        "restaurant basket"
+        "footer footer";
 }
 
 /*ANCHOR standard classes */
@@ -14,22 +28,22 @@ h3 {
     margin-bottom: 16px;
 }
 
-body {
-    margin: 0;
-    font-family: 'Roboto';
-    font-size: 16px;
-    display: grid;
-    column-gap: 16px;
-    grid-template-rows: 80px auto 80px;
-    grid-template-columns:  3fr 1fr ;
-    grid-template-areas: 
-        "header header"
-        "restaurant basket"
-        "footer footer";
+
+.pointer {
+    cursor: pointer;
 }
 
+.jstfy-self-start {
+    justify-self: start;
+}
 
+.jstfy-self-end {
+    justify-self: end;
+}
 
+.jstfy-self-center {
+    justify-self: center;
+}
 
 /* ANCHOR header*/
 header {
@@ -39,7 +53,7 @@ header {
     justify-content: center;
     background-color: white;
     color: var(--theme-orange);
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-bottom: 4px solid rgba(0, 0, 0, 0.091)
 }
 
 .logo {
@@ -51,6 +65,7 @@ header {
 /* ANCHOR restaurant and menu */
 .restaurant-section {
     grid-area: restaurant;
+    min-height: calc(100vh - 160px);
 }
 
 .atf-image {
@@ -59,17 +74,70 @@ header {
     object-fit: cover;
 }
 
+.title-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 0 16px;
+    height: 100px;
+}
+
+.title-bar h2 {
+    margin-bottom: 16px;
+}
+
+.rate-text {
+    color: var(--theme-orange);
+    font-size: 14px;
+}
+
+.logo-circle {
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Pacifico';
+    color: rgb(59, 5, 5);
+    background-color: #ebdebe;
+    border-radius: 100%;
+    padding: 16px;
+    transform: translateY(-50%);
+}
+
+.restaurant-logo {
+    width: 64px;
+}
+
 .menu-bar {
-    background-color: var(--background-light);
+    background-color: var(--theme-orange);
     height: 64px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 40px;
+    gap: 10%;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
 }
 
 .menu-bar > * {
     cursor: pointer;
+}
+
+
+.menu-header {
+    background: var(--background-light);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 0 16px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+}
+
+.menu-header h3 {
+    margin: 0;
 }
 
 .menu-list {
@@ -78,14 +146,14 @@ header {
 
 .menu-item {
     display: flex;
-    border: solid 1px var(--background-light);
-    padding: 8px;
+    border: solid 2px var(--border-grey);
     border-radius: 8px;
     margin-bottom: 16px;
 }
 
 .menu-item-content {
     width: 100%;
+    padding: 8px;
 }
 
 .menu-item img {
@@ -97,11 +165,19 @@ header {
 }
 
 
+.add-btn-container {
+    border-bottom: solid 2px var(--border-grey);
+    border-left: solid 2px var(--border-grey);
+    border-bottom-left-radius: 8px;
+    height: 16px;
+    padding: 8px;
+}
+
 
 /* ANCHOR basket */
 .basket-section {
     grid-area: basket;
-    margin-right: 16px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .sticky-container {
@@ -117,6 +193,7 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 16px;
 }
 
 .basket-placeholder > * {
@@ -132,18 +209,7 @@ header {
     display: grid;
     grid-template-columns: 1fr 4fr 3fr 2fr 1fr;
     align-items: center;
-}
-
-.jstfy-self-start {
-    justify-self: start;
-}
-
-.jstfy-self-end {
-    justify-self: end;
-}
-
-.jstfy-self-center {
-    justify-self: center;
+    padding: 0 16px;
 }
 
 
@@ -164,7 +230,7 @@ header {
 }
 
 .amount-btn img {
-    height: 16px;
+    width: 12px;
 }
 
 .sum-container {
@@ -326,3 +392,12 @@ footer {
     src: url('fonts/roboto-v30-latin-900italic.woff2') format('woff2');
     /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
+/* pacifico-regular - latin */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Pacifico';
+    font-style: normal;
+    font-weight: 400;
+    src: url('fonts/pacifico-v22-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
