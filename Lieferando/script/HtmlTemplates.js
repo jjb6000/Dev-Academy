@@ -55,6 +55,8 @@ function generateSumContainerHtml(subtotal, total) {
 
 function generateConfirmOrderHtml() {
     return /*html*/`
-        <h3 class="orange-font" >Deine Bestellung wird Übermittelt</h3>
+        <div class="flex-center">
+            <h3 class="orange-font" >Deine Bestellung wird Übermittelt</h3>
+        </div>
     `
 }

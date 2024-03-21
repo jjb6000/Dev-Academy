@@ -50,6 +50,13 @@ h3 {
 }
 
 
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 /* ANCHOR header*/
 header {
     grid-area: header;
@@ -209,7 +216,6 @@ header {
 
 .basket-items {
     width: 100%;
-    text-align: center;
 }
 
 .basket-item {
