@@ -25,7 +25,7 @@
             <img class="atf-image" src="img/burger.jpg" alt="">
             <div class="title-bar">
                 <div>
-                    <h2>Jonas Burgers</h2>
+                    <h2>Jonas' Burgers</h2>
                     <span><img src="icons/star.svg" alt=""></span>
                     <span><img src="icons/star.svg" alt=""></span>
                     <span><img src="icons/star.svg" alt=""></span>
@@ -41,10 +41,10 @@
             </div>
 
             <div class="menu-bar">
-                <p onclick="loadMenu(menuBurger)">Burger</p>
-                <p onclick="loadMenu(menuHotDog)">Hot Dogs</p>
-                <p onclick="loadMenu(menuPommes)">Pommes</p>
-                <p onclick="loadMenu(menuSalads)">Salate</p>
+                <p id="menuBurger" >Burger</p>
+                <p id="menuHotDog">Hot Dogs</p>
+                <p id="menuPommes">Pommes</p>
+                <p id="menuSalads">Salate</p>
             </div>
         </div>
 
@@ -82,6 +82,10 @@
                     <p><b id="total">0,00 €</b></p>
                 </div>
             </div>
+            <div id="payBtn" class="pay-btn-container">
+                <button onclick="orderFunction()" class="pay-btn pointer">Bezahlen</button>
+            </div>
+
         </div>
     </section>
 

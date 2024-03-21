@@ -1,3 +1,23 @@
+document.getElementById('menuBurger').addEventListener('click', () =>  {
+    loadMenu(menuBurger);
+});
+
+
+document.getElementById('menuHotDog').addEventListener('click', () =>  {
+    loadMenu(menuHotDog);
+});
+
+
+document.getElementById('menuPommes').addEventListener('click', () =>  {
+    loadMenu(menuPommes);
+});
+
+
+document.getElementById('menuSalads').addEventListener('click', () =>  {
+    loadMenu(menuSalads);
+});
+
+
 function loadMenu(jsonArray) {
     menuItems.innerHTML = '';
     currentMenu = jsonArray;
@@ -17,6 +37,7 @@ function loadBasket() {
              i);
     }
     showPrices();
+    showPayBtn('flex');
 }
 
 
@@ -46,6 +67,15 @@ function convertToGermanTypeFloat(number) {
     return price.toString().replace('.', ',');
 }
 
+
+function orderFunction() {
+    basketItems.innerHTML = generateConfirmOrderHtml();
+    setTimeout(reload, 2000);
+}
+
+function reload() {
+    window.location.reload();
+}
 
 //ANCHOR Basket validation functions
 
@@ -78,6 +108,7 @@ function checkIfBasketIsEmpty() {
     if (basketObject.names[0] == undefined) {
         basketItems.innerHTML = generateBasketPlaceholderHtml();
         sumContainer.innerHTML = generateSumContainerHtml(convertToGermanTypeFloat(0), convertToGermanTypeFloat(0));
+        showPayBtn('none');
     } else {
         loadBasket();
     }
@@ -101,6 +132,12 @@ function calculatePrices() {
         sum = sum + itemXAmount;
     }
     return sum
+}
+
+
+// ANCHOR pay btn
+function showPayBtn(attr) {
+    payBtn.style.display = attr
 }
 
 

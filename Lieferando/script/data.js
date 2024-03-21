@@ -1,6 +1,7 @@
 const menuItems = document.getElementById('menuItems');
 const basketItems = document.getElementById('basketItems');
 const sumContainer = document.getElementById('sumContainer');
+const payBtn = document.getElementById('payBtn');
 let currentMenu;
 let basketObject = {
     names: [],

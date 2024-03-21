@@ -51,3 +51,10 @@ function generateSumContainerHtml(subtotal, total) {
         <p><b id="total">${total} €</b></p>
     `
 }
+
+
+function generateConfirmOrderHtml() {
+    return /*html*/`
+        <h3 class="orange-font" >Deine Bestellung wird Übermittelt</h3>
+    `
+}
