@@ -21,9 +21,9 @@ function loadBasket() {
 
 
 function addToBasket(menuIndex) {
-    basketObject.names.push(currentMenu[menuIndex]['name']);
-    basketObject.prices.push(currentMenu[menuIndex]['price']);
-    basketObject.amounts.push(1);
+    arrayPush(basketObject.names, currentMenu[menuIndex]['name']);
+    arrayPush(basketObject.prices, currentMenu[menuIndex]['price']);
+    arrayPush(basketObject.amounts, 1);
     loadBasket();
 }
 
@@ -35,9 +35,9 @@ function changeAmountInBasket(basketIndex, number) {
 
 
 function deleteFromBasketObject(basketIndex) {
-    basketObject.names.splice(basketIndex, 1);
-    basketObject.prices.splice(basketIndex, 1);
-    basketObject.amounts.splice(basketIndex, 1);
+    arraySplice(basketObject.names, basketIndex);
+    arraySplice(basketObject.prices, basketIndex);
+    arraySplice(basketObject.amounts, basketIndex);
 }
 
 
@@ -101,6 +101,17 @@ function calculatePrices() {
         sum = sum + itemXAmount;
     }
     return sum
+}
+
+
+// ANCHOR array functions
+function arrayPush(array, value) {
+    array.push(value);
+}
+
+
+function arraySplice(array, value) {
+    array.splice(value, 1);
 }
 
 
