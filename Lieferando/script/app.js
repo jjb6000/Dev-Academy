@@ -2,7 +2,7 @@ function loadMenu(jsonArray) {
     menuItems.innerHTML = '';
     currentMenu = jsonArray;
     for (let i = 0; i < jsonArray.length; i++) {
-        menuItems.innerHTML += generateMenuHtml(jsonArray[i]['name'], jsonArray[i]['ingredients'],  convertToGermanTypeFloat(jsonArray[i]['price'], i));
+        menuItems.innerHTML += generateMenuHtml(jsonArray[i]['name'], jsonArray[i]['ingredients'],  convertToGermanTypeFloat(jsonArray[i]['price']), i);
     }
 }
 
