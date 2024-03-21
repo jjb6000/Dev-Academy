@@ -124,15 +124,28 @@ header {
     margin: 8px 0;
 }
 
+.basket-items {
+    width: 100%;
+}
+
 .basket-item {
     display: grid;
     grid-template-columns: 1fr 4fr 3fr 2fr 1fr;
     align-items: center;
 }
 
-.basket-item:first-child .basket-item:nth-child(4)  {
+.jstfy-self-start {
     justify-self: start;
 }
+
+.jstfy-self-end {
+    justify-self: end;
+}
+
+.jstfy-self-center {
+    justify-self: center;
+}
+
 
 .btn-container {
     display: flex;
@@ -145,6 +158,9 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: white;
+    border: solid 1px var(--border-grey);
+    border-radius: 4px;
 }
 
 .amount-btn img {

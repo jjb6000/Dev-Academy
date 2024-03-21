@@ -7,30 +7,72 @@ function loadMenu(jsonArray) {
 }
 
 
-function addToBasket(index) {
-    let basketIndex = getBasketItemIndex(currentMenu[index]['name']);
-    if (basketIndex == -1) {
-        basketObject.names.push(currentMenu[index]['name']);
-        basketObject.prices.push(currentMenu[index]['price']);
-        basketObject.amounts.push(1);
-    } else {
-        basketObject.amounts[basketIndex] = +basketObject.amounts[basketIndex] + 1;
-    }
-    loadBasket();
-}
-
-
-function getBasketItemIndex(name) {
-    return basketObject.names.indexOf(name);
-}
-
-
 function loadBasket() {
     basketItems.innerHTML = ''
     for (let i = 0; i < basketObject.names.length; i++) {
         const amount = basketObject.amounts[i];
         const name = basketObject.names[i];
         const price = basketObject.prices[i];
-        basketItems.innerHTML += generateBasketHtml(amount, name, price);
+        basketItems.innerHTML += generateBasketHtml(amount, name, price, i);
     }
 }
+
+
+function addToBasket(menuIndex) {
+    basketObject.names.push(currentMenu[menuIndex]['name']);
+    basketObject.prices.push(currentMenu[menuIndex]['price']);
+    basketObject.amounts.push(1);
+    loadBasket();
+}
+
+
+function changeAmountInBasket(basketIndex, number) {
+    basketObject.amounts[basketIndex] = +basketObject.amounts[basketIndex] + number;
+    checkAmountsFor0(basketIndex, basketObject.amounts[basketIndex])
+}
+
+
+function deleteFromBasketObject(basketIndex) {
+    basketObject.names.splice(basketIndex, 1);
+    basketObject.prices.splice(basketIndex, 1);
+    basketObject.amounts.splice(basketIndex, 1);
+}
+
+
+//ANCHOR Basket validation functions
+
+function checkIfBasketIsEmpty() {
+    if (basketObject.names[0] == undefined) {
+        basketItems.innerHTML = generateBasketPlaceholderHtml();
+    } else {
+        loadBasket();
+    }
+}
+
+
+function checkBasketObject(menuIndex) {
+    let basketIndex = getBasketIndex(menuIndex)
+    if (basketIndex == -1) {
+        addToBasket(menuIndex);
+    } else {
+        changeAmountInBasket(basketIndex, 1)
+    }
+}
+
+
+function getBasketIndex(menuIndex) {
+    return basketObject.names.indexOf(currentMenu[menuIndex]['name']);
+}
+
+
+function checkAmountsFor0(basketIndex, number) {
+    if (number == 0) {
+        deleteFromBasketObject(basketIndex);
+        checkIfBasketIsEmpty();
+    } else {
+        loadBasket();
+    }
+}
+
+
+

@@ -1,4 +1,4 @@
-function generateMenuHtml(name, ingredients, price, index) {
+function generateMenuHtml(name, ingredients, price, menuIndex) {
     return /*html*/`
         <div class="menu-item">
             <div class="menu-item-content">
@@ -8,7 +8,7 @@ function generateMenuHtml(name, ingredients, price, index) {
             </div>
 
             <div class="add-btn-container">
-                <img onclick="addToBasket(${index})" src="icons/plus.svg" alt="">
+                <img onclick="checkBasketObject(${menuIndex})" src="icons/plus.svg" alt="">
             </div>
 
         </div>
@@ -16,18 +16,30 @@ function generateMenuHtml(name, ingredients, price, index) {
 }
 
 
-function generateBasketHtml(amount, name, price) {
+function generateBasketHtml(amount, name, price, basketIndex) {
     return /*html*/`
         <div class="basket-item">
             <p>${amount}x</p>
-            <p>${name}</p>
-            <div class="btn-container">
-                <button class="amount-btn"><img src="icons/minus.svg" alt="less"></button>
-                <button class="amount-btn"><img src="icons/plus-gr.svg" alt="more"></button>
-                <img src="icons/pen.svg" alt="edit">
+            <p class="jstfy-self-start">${name}</p>
+            <div class="btn-container jstfy-self-center">
+                <button onclick="changeAmountInBasket(${basketIndex}, -1)" class="amount-btn"><img src="icons/minus.svg" alt="less"></button>
+                <button onclick="changeAmountInBasket(${basketIndex}, 1)" class="amount-btn"><img src="icons/plus-gr.svg" alt="more"></button>
+                <!-- <img src="icons/pen.svg" alt="edit"> -->
             </div>
-            <p>${price}</p>
-            <img src="icons/delete.svg" alt="">
+            <p class="jstfy-self-center" >${price}</p>
+            <img onclick="changeAmountInBasket(${basketIndex}, -${basketObject.amounts[basketIndex]})" class="jstfy-self-end" src="icons/delete.svg" alt="">
         </div>
-    `
+    `;
+}
+
+
+
+function generateBasketPlaceholderHtml() {
+    return /*html*/`
+        <div class="basket-placeholder" id="emptyBasket">
+            <img src="icons/basket.svg" alt="">
+            <h2>Fülle deinen Warenkorb</h2>
+            <div>Füge einige leckere Gerichte aus der Speiekate hinzu und bestelle dein Essen</div>
+        </div>
+    `;
 }
