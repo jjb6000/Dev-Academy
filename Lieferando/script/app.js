@@ -43,8 +43,10 @@ function loadBasket() {
 
 function showBasketOnMobile() {
     basket.classList.add('mobile-basket');
-    menuItems.innerHTML = '';
-    window.scrollTo(0,0)
+    if (window.screen.width < 1200) {
+        menuItems.innerHTML = '';
+        window.scrollTo(0,0)
+    }
 }
 
 
