@@ -24,14 +24,18 @@
         <div class="restaurant-header">
             <img class="atf-image" src="img/burger.jpg" alt="">
             <div class="title-bar">
-                <div>
+                <div class="rest-name">
                     <h2>Jonas' Burgers</h2>
-                    <span><img src="icons/star.svg" alt=""></span>
-                    <span><img src="icons/star.svg" alt=""></span>
-                    <span><img src="icons/star.svg" alt=""></span>
-                    <span><img src="icons/star.svg" alt=""></span>
-                    <span><img src="icons/star_half.svg" alt=""></span>
-                    <span class="rate-text">(508 Berwertungen)</span>
+                    <div class="rating">
+                        <div>
+                            <img src="icons/star.svg" alt="">
+                            <img src="icons/star.svg" alt="">
+                            <img src="icons/star.svg" alt="">
+                            <img src="icons/star.svg" alt="">
+                            <img src="icons/star_half.svg" alt="">
+                        </div>
+                        <span class="rate-text">(508 Berwertungen)</span>
+                    </div>
                 </div>
 
                 <div class="logo-circle">
@@ -41,7 +45,7 @@
             </div>
 
             <div class="menu-bar">
-                <p id="menuBurger" >Burger</p>
+                <p id="menuBurger">Burger</p>
                 <p id="menuHotDog">Hot Dogs</p>
                 <p id="menuPommes">Pommes</p>
                 <p id="menuSalads">Salate</p>
@@ -52,7 +56,7 @@
             <div class="menu-header">
                 <h3>Beliebte Gerichte</h3>
             </div>
-            
+
 
             <div class="menu-items" id="menuItems">
                 <!-- injected from loadMenu() -->
@@ -61,8 +65,11 @@
     </section>
 
     <section class="basket-section">
-        <div class="sticky-container">
-            <h4>Warenkorb</h4>
+        <div id="basket" class="sticky-container">
+            <div class="basket-header">
+                <h4>Warenkorb</h4>
+                <img onclick="closeMobileBasket()" class="close-basket" src="icons/close.svg" alt="">
+            </div>
             <div class="basket-items" id="basketItems">
                 <div class="basket-placeholder" id="emptyBasket">
                     <img src="icons/basket.svg" alt="">

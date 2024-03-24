@@ -97,6 +97,12 @@ header {
     margin-bottom: 16px;
 }
 
+.rating {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
 .rate-text {
     color: var(--theme-orange);
     font-size: 14px;
@@ -201,6 +207,16 @@ header {
     align-items: center;
 }
 
+.basket-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.close-basket {
+    display: none;
+}
+
 .basket-placeholder {
     padding-top: 24px;
     display: flex;
@@ -290,6 +306,69 @@ footer {
     justify-content: center;
     background-color: var(--background-light);
     color: var(--theme-orange);
+}
+
+
+/* ANCHOR media querries */ 
+@media (max-width: 1200px) {
+    .title-bar {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .logo-circle {
+        justify-self: end;
+    }
+
+    .sticky-container {
+        display: none;
+    }
+
+    .mobile-basket {
+        position: absolute;
+        display: flex;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 8px 24px 8px 24px;
+        background-color: white;
+    }
+
+    .close-basket {
+        display: block;
+    }
+
+    .basket-header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    body {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .title-bar {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        height: 200px;
+    }
+
+    .rest-name {
+        transform: translateY(-20%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo-circle {
+        transform: translateY(-10%);
+    }
+
 }
 
 

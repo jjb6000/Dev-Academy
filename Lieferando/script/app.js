@@ -28,16 +28,29 @@ function loadMenu(jsonArray) {
 
 
 function loadBasket() {
+    showBasketOnMobile()
     basketItems.innerHTML = ''
     for (let i = 0; i < basketObject.names.length; i++) {
         basketItems.innerHTML += generateBasketHtml(
             basketObject.amounts[i], 
             basketObject.names[i], 
-            convertToGermanTypeFloat(basketObject.prices[i] * basketObject.amounts[i]),
-             i);
+            convertToGermanTypeFloat(basketObject.prices[i] * basketObject.amounts[i]),i);
     }
     showPrices();
     showPayBtn('flex');
+}
+
+
+function showBasketOnMobile() {
+    basket.classList.add('mobile-basket');
+    menuItems.innerHTML = '';
+    window.scrollTo(0,0)
+}
+
+
+function closeMobileBasket() {
+    basket.classList.remove('mobile-basket');
+    loadMenu(currentMenu);
 }
 
 
@@ -77,8 +90,8 @@ function reload() {
     window.location.reload();
 }
 
-//ANCHOR Basket validation functions
 
+//ANCHOR Basket validation functions
 function checkBasketObject(menuIndex) {
     let basketIndex = getBasketIndex(menuIndex)
     if (basketIndex == -1) {
@@ -115,9 +128,7 @@ function checkIfBasketIsEmpty() {
 }
 
 
-
 // ANCHOR sum
-
 function showPrices() {
     let subtotal = calculatePrices();
     let total = +subtotal + 1;
