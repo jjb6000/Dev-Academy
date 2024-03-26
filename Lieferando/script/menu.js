@@ -36,12 +36,11 @@ function underlineMenu(menu) {
 
 
 function checkMenuBar() {
+    menuBar.innerHTML = generateDesktopMenuBar();
+    menuBar.classList.remove('flex-col');
     if (menuBar.scrollWidth - menuBar.clientWidth > 0) {
-       menuBar.innerHTML = generateMobileMenuBar();
-       menuBar.classList.add('flex-col');
-    } else {
-       menuBar.innerHTML = generateDesktopMenuBar(); 
-       menuBar.classList.remove('flex-col'); 
+        menuBar.innerHTML = generateMobileMenuBar();
+        menuBar.classList.add('flex-col');
     }
 }
 
@@ -52,7 +51,7 @@ function openMobileMenu() {
 
 
 function closeMobileMenu() {
-        menuBar.innerHTML = generateMobileMenuBar();
+    menuBar.innerHTML = generateMobileMenuBar();
 }
 
 
