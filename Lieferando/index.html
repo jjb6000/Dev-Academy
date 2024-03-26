@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="style.css">
     <script defer src="script/data.js"></script>
     <script defer src="script/HtmlTemplates.js"></script>
+    <script defer src="script/basket.js"></script>
     <script defer src="script/app.js"></script>
 </head>
 
-<body onload="loadMenu(menuBurger)">
+<body onload="loadMenu(menuBurger); underlineMenu('menuBurger')">
 
     <header>
         <img class="logo" src="icons/logo.svg" alt="">
@@ -44,11 +45,11 @@
                 </div>
             </div>
 
-            <div class="menu-bar">
-                <p id="menuBurger">Burger</p>
-                <p id="menuHotDog">Hot Dogs</p>
-                <p id="menuPommes">Pommes</p>
-                <p id="menuSalads">Salate</p>
+            <div class="menu-bar" id="menuBar">
+                <p onclick="loadMenu(menuBurger)" id="menuBurger">Burger</p>
+                <p onclick="loadMenu(menuHotDog)" id="menuHotDog">Hot Dogs</p>
+                <p onclick="loadMenu(menuPommes)" id="menuPommes">Pommes</p>
+                <p onclick="loadMenu(menuSalads)" id="menuSalads">Salate</p>
             </div>
         </div>
 
@@ -61,6 +62,10 @@
             <div class="menu-items" id="menuItems">
                 <!-- injected from loadMenu() -->
             </div>
+        </div>
+
+        <div class="basket-link" id="basketLink">
+            <button id="basketLinkBtn" onclick="showBasketOnMobile()" class="pay-btn basket-btn pointer"></button>
         </div>
     </section>
 

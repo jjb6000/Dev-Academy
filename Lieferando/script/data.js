@@ -2,7 +2,9 @@ const menuItems = document.getElementById('menuItems');
 const basketItems = document.getElementById('basketItems');
 const sumContainer = document.getElementById('sumContainer');
 const payBtn = document.getElementById('payBtn');
-const basket = document.getElementById('basket')
+const basket = document.getElementById('basket');
+const menuBar = document.getElementById('menuBar');
+let total;
 let currentMenu;
 let basketObject = {
     names: [],

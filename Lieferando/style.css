@@ -56,6 +56,18 @@ h3 {
     align-items: center;
 }
 
+.flex-col {
+    flex-direction: column;
+}
+
+.text-underline {
+    text-decoration: underline;
+}
+
+.hide {
+    display: none;
+}
+
 
 /* ANCHOR header*/
 header {
@@ -74,7 +86,7 @@ header {
 }
 
 
-/* ANCHOR restaurant and menu */
+/* ANCHOR restaurant*/
 .restaurant-section {
     grid-area: restaurant;
     min-height: calc(100vh - 160px);
@@ -127,9 +139,13 @@ header {
     width: 64px;
 }
 
+
+/* ANCHOR menu bar */
+
 .menu-bar {
     background-color: var(--theme-orange);
-    height: 64px;
+    height: auto;
+    min-height: 64px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -137,13 +153,29 @@ header {
     color: white;
     font-size: 18px;
     font-weight: 500;
+    text-wrap: nowrap;
+    overflow: hidden;
 }
 
 .menu-bar > * {
     cursor: pointer;
+    user-select: none;
+}
+
+.menu-bar img {
+    width: 40px;
+}
+
+.menu-bar p:hover {
+    color: var(--border-grey);
+}
+
+.mobile-menu {
+    text-align: center;
 }
 
 
+/* ANCHOR Menu */
 .menu-header {
     background: var(--background-light);
     height: 80px;
@@ -297,6 +329,23 @@ header {
     background-color: var(--btn-blue);
 }
 
+/* ANCHOR link to basket-btn */
+.basket-link {
+    justify-content: center;
+    position: sticky;
+    bottom: 40px;
+    display: none;
+}
+
+.basket-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    font-weight: 600;
+    background-color: var(--btn-blue);
+}
+
 
 /* ANCHOR footer */
 footer {
@@ -347,6 +396,14 @@ footer {
     body {
         grid-template-columns: 1fr;
     }
+
+    .hide-with-mobile-basket {
+        display: none;
+    }
+
+    .show-with-mobile-basket {
+        display: flex;
+    }
 }
 
 
@@ -369,6 +426,13 @@ footer {
         transform: translateY(-10%);
     }
 
+}
+
+
+@media (max-width: 576px) {
+    .menu-list {
+        padding: 40px 16px;
+    }
 }
 
 

@@ -60,3 +60,40 @@ function generateConfirmOrderHtml() {
         </div>
     `
 }
+
+
+function generateDesktopMenuBar() {
+    return /*html*/`
+        <p onclick="loadMenu(menuBurger)" id="menuBurger">Burger</p>
+        <p onclick="loadMenu(menuHotDog)" id="menuHotDog">Hot Dogs</p>
+        <p onclick="loadMenu(menuPommes)" id="menuPommes">Pommes</p>
+        <p onclick="loadMenu(menuSalads)" id="menuSalads">Salate</p>
+    `
+}
+
+
+function generateMobileMenuBar() {
+    return /*html*/`
+    <img onclick="openMobileMenu()" id="menuBtn" src="icons/menu-btn.svg" alt="Menü">
+    `
+}
+
+
+function generateMobileMenu() {
+    return /*html*/`
+    <img onclick="closeMobileMenu()" id="menuBtn" src="icons/menu-btn.svg" alt="Menü">
+    <div class='mobile-menu'>
+        <p onclick="loadMenu(menuBurger); closeMobileMenu()" id="menuBurger">Burger</p>
+        <p onclick="loadMenu(menuHotDog); closeMobileMenu()" id="menuHotDog">Hot Dogs</p>
+        <p onclick="loadMenu(menuPommes); closeMobileMenu()" id="menuPommes">Pommes</p>
+        <p onclick="loadMenu(menuSalads); closeMobileMenu()" id="menuSalads">Salate</p>
+    </div>
+    `
+}
+
+
+function generateBasketLinkHtml() {
+    return /*html*/`
+        <img src="icons/basket.svg" alt="">Warenkorb (${convertToGermanTypeFloat(total)} €)
+    `   
+}

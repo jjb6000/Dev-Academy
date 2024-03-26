@@ -1,156 +1,58 @@
-document.getElementById('menuBurger').addEventListener('click', () =>  {
-    loadMenu(menuBurger);
-});
-
-
-document.getElementById('menuHotDog').addEventListener('click', () =>  {
-    loadMenu(menuHotDog);
-});
-
-
-document.getElementById('menuPommes').addEventListener('click', () =>  {
-    loadMenu(menuPommes);
-});
-
-
-document.getElementById('menuSalads').addEventListener('click', () =>  {
-    loadMenu(menuSalads);
-});
-
-
+// ANCHOR menu bar
 function loadMenu(jsonArray) {
     menuItems.innerHTML = '';
     currentMenu = jsonArray;
     for (let i = 0; i < jsonArray.length; i++) {
-        menuItems.innerHTML += generateMenuHtml(jsonArray[i]['name'], jsonArray[i]['ingredients'],  convertToGermanTypeFloat(jsonArray[i]['price']), i);
+        menuItems.innerHTML += generateMenuHtml(jsonArray[i]['name'], jsonArray[i]['ingredients'], convertToGermanTypeFloat(jsonArray[i]['price']), i);
     }
+    checkMenuBar();
 }
 
 
-function loadBasket() {
-    showBasketOnMobile()
-    basketItems.innerHTML = ''
-    for (let i = 0; i < basketObject.names.length; i++) {
-        basketItems.innerHTML += generateBasketHtml(
-            basketObject.amounts[i], 
-            basketObject.names[i], 
-            convertToGermanTypeFloat(basketObject.prices[i] * basketObject.amounts[i]),i);
-    }
-    showPrices();
-    showPayBtn('flex');
-}
-
-
-function showBasketOnMobile() {
-    basket.classList.add('mobile-basket');
-    if (window.screen.width < 1200) {
-        menuItems.innerHTML = '';
-        window.scrollTo(0,0)
-    }
-}
-
-
-function closeMobileBasket() {
-    basket.classList.remove('mobile-basket');
-    loadMenu(currentMenu);
-}
-
-
-function addToBasket(menuIndex) {
-    arrayPush(basketObject.names, currentMenu[menuIndex]['name']);
-    arrayPush(basketObject.prices, currentMenu[menuIndex]['price']);
-    arrayPush(basketObject.amounts, 1);
-    loadBasket();
-}
-
-
-function changeAmountInBasket(basketIndex, number) {
-    basketObject.amounts[basketIndex] = +basketObject.amounts[basketIndex] + number;
-    checkAmountsFor0(basketIndex, basketObject.amounts[basketIndex])
-}
-
-
-function deleteFromBasketObject(basketIndex) {
-    arraySplice(basketObject.names, basketIndex);
-    arraySplice(basketObject.prices, basketIndex);
-    arraySplice(basketObject.amounts, basketIndex);
-}
-
-
-function convertToGermanTypeFloat(number) {
-    let price = number.toFixed(2);
-    return price.toString().replace('.', ',');
-}
-
-
-function orderFunction() {
-    basketItems.innerHTML = generateConfirmOrderHtml();
-    setTimeout(reload, 2000);
-}
-
-function reload() {
-    window.location.reload();
-}
-
-
-//ANCHOR Basket validation functions
-function checkBasketObject(menuIndex) {
-    let basketIndex = getBasketIndex(menuIndex)
-    if (basketIndex == -1) {
-        addToBasket(menuIndex);
+// e Function because more menus can be added to the menusbar
+menuBar.addEventListener('click', (e) => {
+    if (e.target.id == 'menuBar') {
+        return
     } else {
-        changeAmountInBasket(basketIndex, 1)
+        underlineMenu(e.target.id);
     }
-}
+});
 
 
-function getBasketIndex(menuIndex) {
-    return basketObject.names.indexOf(currentMenu[menuIndex]['name']);
-}
+window.addEventListener('resize', checkMenuBar)
 
 
-function checkAmountsFor0(basketIndex, number) {
-    if (number == 0) {
-        deleteFromBasketObject(basketIndex);
-        checkIfBasketIsEmpty();
+function underlineMenu(menu) {
+    let menuSliders = document.getElementsByClassName('menu-bar')[0].children;
+    if (menuSliders[0].id == 'menuBtn') {
+        return
     } else {
-        loadBasket();
+        for (let i = 0; i < menuSliders.length; i++) {
+            menuSliders[i].classList.remove('text-underline');
+        }
+        document.getElementById(menu).classList.add('text-underline');
     }
 }
 
 
-function checkIfBasketIsEmpty() {
-    if (basketObject.names[0] == undefined) {
-        basketItems.innerHTML = generateBasketPlaceholderHtml();
-        sumContainer.innerHTML = generateSumContainerHtml(convertToGermanTypeFloat(0), convertToGermanTypeFloat(0));
-        showPayBtn('none');
+function checkMenuBar() {
+    if (menuBar.scrollWidth - menuBar.clientWidth > 0) {
+       menuBar.innerHTML = generateMobileMenuBar();
+       menuBar.classList.add('flex-col');
     } else {
-        loadBasket();
+       menuBar.innerHTML = generateDesktopMenuBar(); 
+       menuBar.classList.remove('flex-col'); 
     }
 }
 
 
-// ANCHOR sum
-function showPrices() {
-    let subtotal = calculatePrices();
-    let total = +subtotal + 1;
-    sumContainer.innerHTML = generateSumContainerHtml(convertToGermanTypeFloat(+subtotal), convertToGermanTypeFloat(+total));
+function openMobileMenu() {
+    menuBar.innerHTML = generateMobileMenu();
 }
 
 
-function calculatePrices() {
-    let sum = 0;
-    for (let i = 0; i < basketObject.prices.length; i++) {
-        const itemXAmount = +basketObject.prices[i] * basketObject.amounts[i];
-        sum = sum + itemXAmount;
-    }
-    return sum
-}
-
-
-// ANCHOR pay btn
-function showPayBtn(attr) {
-    payBtn.style.display = attr
+function closeMobileMenu() {
+        menuBar.innerHTML = generateMobileMenuBar();
 }
 
 
