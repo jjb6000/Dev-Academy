@@ -247,6 +247,7 @@ header {
 
 .close-basket {
     display: none;
+    cursor: pointer;
 }
 
 .basket-placeholder {
