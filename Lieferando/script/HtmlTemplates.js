@@ -18,14 +18,14 @@ function generateMenuHtml(name, ingredients, price, menuIndex) {
 
 function generateBasketHtml(amount, name, price, basketIndex) {
     return /*html*/`
-        <div class="basket-item padd-16-8">
+        <div class="basket-item padd-basket">
             <p>${amount}x</p>
             <p class="jstfy-self-start">${name}</p>
             <div class="btn-container jstfy-self-center">
                 <button onclick="changeAmountInBasket(${basketIndex}, -1)" class="amount-btn pointer"><img src="icons/minus.svg" alt="less"></button>
                 <button onclick="changeAmountInBasket(${basketIndex}, 1)" class="amount-btn pointer"><img src="icons/plus.svg" alt="more"></button>
             </div>
-            <p class="jstfy-self-center" >${price} €</p>
+            <p class="txt-nowrap jstfy-self-center" >${price} €</p>
             <img onclick="changeAmountInBasket(${basketIndex}, -${basketObject.amounts[basketIndex]})" class="pointer jstfy-self-end" src="icons/delete.svg" alt="">
         </div>
     `;

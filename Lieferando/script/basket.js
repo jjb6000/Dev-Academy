@@ -1,6 +1,6 @@
 // ANCHOR Basket functionality
 function loadBasket() {
-    showBasketOnMobile()
+    // showBasketOnMobile()
     basketItems.innerHTML = ''
     for (let i = 0; i < basketObject.names.length; i++) {
         basketItems.innerHTML += generateBasketHtml(
@@ -10,6 +10,7 @@ function loadBasket() {
     }
     showPrices();
     showPayBtn('flex');
+    mobileBasketLink();
 }
 
 
@@ -82,6 +83,7 @@ function checkIfBasketIsEmpty() {
         basketItems.innerHTML = generateBasketPlaceholderHtml();
         sumContainer.innerHTML = generateSumContainerHtml(convertToGermanTypeFloat(0), convertToGermanTypeFloat(0));
         showPayBtn('none');
+        mobileBasketLink();
     } else {
         loadBasket();
     }
@@ -92,7 +94,6 @@ function checkIfBasketIsEmpty() {
 function showBasketOnMobile() {
     basket.classList.add('mobile-basket');
     menuItems.classList.add('hide-with-mobile-basket');
-    document.getElementById('basketLink').classList.add('hide-with-mobile-basket');
     if (window.innerWidth < 1200) {
         window.scroll(0, 0);    
     }
@@ -102,19 +103,7 @@ function showBasketOnMobile() {
 function closeMobileBasket() {
     basket.classList.remove('mobile-basket');
     menuItems.classList.remove('hide-with-mobile-basket');
-    document.getElementById('basketLink').classList.remove('hide-with-mobile-basket');
     loadMenu(currentMenu);
-    showMobileBasketLink();
-}
-
-
-function showMobileBasketLink() {
-    if (basketObject.names[0] == undefined) {
-        document.getElementById('basketLink').classList.remove('show-with-mobile-basket')
-    } else {
-        document.getElementById('basketLink').classList.add('show-with-mobile-basket');
-        document.getElementById('basketLinkBtn').innerHTML = generateBasketLinkHtml();
-    }
 }
 
 

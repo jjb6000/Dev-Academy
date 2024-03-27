@@ -68,6 +68,10 @@ h3 {
     display: none;
 }
 
+.txt-nowrap {
+    text-wrap: nowrap;
+}
+
 
 /* ANCHOR header*/
 header {
@@ -304,8 +308,8 @@ header {
     justify-content: space-between;
 }
 
-.padd-16-8 {
-    padding: 16px 8px;
+.padd-basket {
+    padding: 8px 16px;
 }
 
 .text-end {
@@ -338,9 +342,12 @@ header {
 /* ANCHOR link to basket-btn */
 .basket-link {
     justify-content: center;
+    align-items: center;
     position: sticky;
-    bottom: 40px;
+    bottom: 00px;
     display: none;
+    backdrop-filter: blur(6px);
+    height: 100px;
 }
 
 .basket-btn {
@@ -440,8 +447,8 @@ footer {
         padding: 40px 16px;
     }
 
-    .padd-16-8 {
-        padding: 16px 4px;
+    .padd-basket {
+        padding: 8px 4px;
     }
 }
 

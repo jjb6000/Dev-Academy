@@ -55,6 +55,16 @@ function closeMobileMenu() {
 }
 
 
+function mobileBasketLink() {
+    if (basketObject.names[0] == undefined) {
+        document.getElementById('basketLink').classList.remove('show-with-mobile-basket')
+    } else {
+        document.getElementById('basketLink').classList.add('show-with-mobile-basket');
+        document.getElementById('basketLinkBtn').innerHTML = generateBasketLinkHtml();
+    }
+}
+
+
 // ANCHOR array functions
 function arrayPush(array, value) {
     array.push(value);
