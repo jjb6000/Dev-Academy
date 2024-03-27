@@ -92,6 +92,7 @@ function checkIfBasketIsEmpty() {
 function showBasketOnMobile() {
     basket.classList.add('mobile-basket');
     menuItems.classList.add('hide-with-mobile-basket');
+    document.getElementById('basketLink').classList.add('hide-with-mobile-basket');
     if (window.innerWidth < 1200) {
         window.scroll(0, 0);    
     }
@@ -101,6 +102,7 @@ function showBasketOnMobile() {
 function closeMobileBasket() {
     basket.classList.remove('mobile-basket');
     menuItems.classList.remove('hide-with-mobile-basket');
+    document.getElementById('basketLink').classList.remove('hide-with-mobile-basket');
     loadMenu(currentMenu);
     showMobileBasketLink();
 }

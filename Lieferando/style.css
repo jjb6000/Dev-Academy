@@ -271,7 +271,6 @@ header {
     display: grid;
     grid-template-columns: 1fr 4fr 3fr 2fr 1fr;
     align-items: center;
-    padding: 0 16px;
 }
 
 
@@ -299,13 +298,19 @@ header {
     box-sizing: border-box;
     border-top: solid 2px var(--border-grey);
     border-bottom: solid 2px var(--border-grey);
-    padding: 8px 16px;
     margin-top: 16px;
     display: flex;
     width: 100%;
     justify-content: space-between;
 }
 
+.padd-16-8 {
+    padding: 16px 8px;
+}
+
+.text-end {
+    text-align: end;
+}
 
 .pay-btn-container {
     margin-top: 40px;
@@ -380,7 +385,7 @@ footer {
         left: 0;
         right: 0;
         bottom: 0;
-        padding: 8px 24px 8px 24px;
+        padding: 8px;
         background-color: white;
     }
 
@@ -433,6 +438,10 @@ footer {
 @media (max-width: 576px) {
     .menu-list {
         padding: 40px 16px;
+    }
+
+    .padd-16-8 {
+        padding: 16px 4px;
     }
 }
 
