@@ -1,6 +1,5 @@
 // ANCHOR Basket functionality
 function loadBasket() {
-    // showBasketOnMobile()
     basketItems.innerHTML = ''
     for (let i = 0; i < basketObject.names.length; i++) {
         basketItems.innerHTML += generateBasketHtml(
