@@ -5,10 +5,10 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    gap: 80px;
+    gap: 40px;
 }
 
-h1 {
+h1, h2 {
     color: white;
     font-family: sans-serif;
 }
