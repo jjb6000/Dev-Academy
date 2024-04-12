@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIC TAC TOE</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+
+    <h1>TIC TAC TOE</h1>
+
+    <div class="game-icons">
+        <div class="circle" id="circle"></div>
+        <img class="cross" id="cross" src="icons/cross.svg" alt="">
+    </div>
+    
+    <h2 id="win-container"></h2>
+
+    <div class="grid-container">
+        <div id="field0" onclick="game(event)" class="field first-row"></div>
+        <div id="field1" onclick="game(event)" class="field first-row middle"></div>
+        <div id="field2" onclick="game(event)" class="field first-row"></div>
+        <div id="field3" onclick="game(event)" class="field"></div>
+        <div id="field4" onclick="game(event)" class="field middle"></div>
+        <div id="field5" onclick="game(event)" class="field"></div>
+        <div id="field6" onclick="game(event)" class="field last-row"></div>
+        <div id="field7" onclick="game(event)" class="field last-row middle"></div>
+        <div id="field8" onclick="game(event)" class="field last-row"></div>
+    </div>
+
+
+    
+</body>
+</html>
