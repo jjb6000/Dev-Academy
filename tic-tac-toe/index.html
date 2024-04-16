@@ -13,7 +13,24 @@
 
     <div class="game-icons">
         <div class="circle" id="circle"></div>
-        <img class="cross" id="cross" src="icons/cross.svg" alt="">
+        <svg id="cross" width="80" height="80" xmlns="http://www.w3.org/2000/svg">
+            <style>
+              @keyframes draw {
+                0% {
+                  stroke-dasharray: 0 160;
+                }
+                100% {
+                  stroke-dasharray: 160 0;
+                }
+              }
+              line {
+                stroke-dasharray: 0 160;
+                animation: draw 250ms forwards;
+              }
+            </style>
+            <line x1="0" y1="0" x2="80" y2="80" style="stroke:#FFA500;stroke-width:6"/>
+            <line x1="0" y1="80" x2="80" y2="0" style="stroke:#FFA500;stroke-width:6"/>
+          </svg>
     </div>
     
 
