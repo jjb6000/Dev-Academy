@@ -30,7 +30,7 @@ blur1stElemtentUnblurTheOther(cross, circle);
 
 // ANCHOR FUNCTIONS
 function game(e) {
-    document.getElementById(e.target.id).innerHTML =  htmlFunction();
+    document.getElementById(e.target.id).innerHTML = htmlFunction();
     document.getElementById(e.target.id).removeAttribute('onclick');
     setPlayerToWinningConditionsArray(e.target.id);
     next();
@@ -135,14 +135,40 @@ function winnerText(player) {
 
 function circleHTML() {
     return /*html*/`
-       <div class="circle" id="circle"></div> 
-    `;
+        <svg width="90" height="90" viewBox="0 0 70 70">
+            <circle cx="35" cy="35" r="30" fill="none" stroke="turquoise" stroke-width="5">
+            <animate attributeName="stroke-dasharray"
+              from="0 314"
+              to="314 0"
+              dur="200ms"
+              repeatCount="1"
+              fill="freeze" />
+            </circle>
+        </svg>
+    `
 }
 
 
 function crossHTML() {
     return /*html*/`
-       <img class="cross" id="cross" src="icons/cross.svg" alt=""> 
+        <svg width="80" height="80" xmlns="http://www.w3.org/2000/svg">
+          <style>
+            @keyframes draw {
+              0% {
+                stroke-dasharray: 0 160;
+              }
+              100% {
+                stroke-dasharray: 160 0;
+              }
+            }
+            line {
+              stroke-dasharray: 0 160;
+              animation: draw 250ms forwards;
+            }
+          </style>
+          <line x1="0" y1="0" x2="80" y2="80" style="stroke:#FFA500;stroke-width:6"/>
+          <line x1="0" y1="80" x2="80" y2="0" style="stroke:#FFA500;stroke-width:6"/>
+        </svg>
     `;
 }
 
