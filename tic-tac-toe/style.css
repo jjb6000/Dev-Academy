@@ -27,6 +27,11 @@ h1, h2 {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+}
+
+.field:hover {
+    background-color: rgba(255, 255, 255, 0.089);
 }
 
 .first-row {
@@ -75,4 +80,19 @@ h1, h2 {
     z-index: 99;
     transform: translateY(0px) translateX(0px) rotate(0deg);
     display: none;
+}
+
+button {
+    background-color: rgb(12, 130, 170);
+    color: white;
+    height: 64px;
+    width: 240px;
+    font-size: large;
+    border-radius: 8px;
+    border: solid 4px white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: blue;
 }
