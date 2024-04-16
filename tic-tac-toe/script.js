@@ -35,7 +35,6 @@ function game(e) {
     setPlayerToWinningConditionsArray(e.target.id);
     next();
     checkWin();
-    checkCombinationsLeft();
 }
 
 
