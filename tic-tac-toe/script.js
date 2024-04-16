@@ -23,6 +23,7 @@ const circle = document.getElementById('circle');
 const cross = document.getElementById('cross');
 let setInArray = 'circle';
 let htmlFunction = circleHTML;
+
 blur1stElemtentUnblurTheOther(cross, circle);
 
 
@@ -48,22 +49,28 @@ function setPlayerToWinningConditionsArray(field) {
 }
 
 
+function next() {
+    if (setInArray == 'circle') {
+        setInArray = 'cross';
+        htmlFunction = crossHTML;
+        blur1stElemtentUnblurTheOther(circle, cross);
+    } else {
+        setInArray = 'circle';
+        htmlFunction = circleHTML;
+        blur1stElemtentUnblurTheOther(cross, circle);
+    }
+}
+
+
 
 function checkWin() {
     for (let i = 0; i < winningCombinations.length; i++) {
         if (circleWins(winningCombinations[i])) {
-            setLineOrientation(i);
-            showWinner('Kreis');
-            blur1stElemtentUnblurTheOther(cross, circle);
-            endGame();
+            showWinner(i, 'Kreis', cross, circle);
             break
         };
-
         if (crossWins(winningCombinations[i])) {
-            setLineOrientation(i)
-            showWinner('Kreuz');
-            blur1stElemtentUnblurTheOther(circle, cross);
-            endGame();
+            showWinner(i, 'Kreuz', circle, cross);
             break
         }
     }
@@ -80,31 +87,11 @@ function crossWins(array) {
 }
 
 
-function next() {
-    if (setInArray == 'circle') {
-        setInArray = 'cross';
-        htmlFunction = crossHTML;
-        blur1stElemtentUnblurTheOther(circle, cross);
-    } else {
-        setInArray = 'circle';
-        htmlFunction = circleHTML;
-        blur1stElemtentUnblurTheOther(cross, circle);
-    }
-}
-
-
-function blur1stElemtentUnblurTheOther(element0, element1) {
-    element0.style.filter = 'blur(6px)';
-    element1.style.filter = 'none';
-}
-
-
-function endGame() {
-    setTimeout(siteReload, 3000);
-}
-
-function siteReload() {
-    location.reload()
+function showWinner(i, winner, element0, element1) {
+    setLineOrientation(i);
+    winnerText(winner);
+    blur1stElemtentUnblurTheOther(element0, element1);
+    endGame();
 }
 
 
@@ -120,8 +107,26 @@ function setLineOrientation(i) {
 }
 
 
+function blur1stElemtentUnblurTheOther(element0, element1) {
+    element0.style.filter = 'blur(6px)';
+    element1.style.filter = 'none';
+}
+
+
+
+function endGame() {
+    setTimeout(siteReload, 3000);
+}
+
+
+function siteReload() {
+    location.reload()
+}
+
+
+
 // ANCHOR TEMPLATES
-function showWinner(player) {
+function winnerText(player) {
     document.getElementById('win-container').innerHTML = /*html*/`
         ${player} hat gewonnen!!
     `;
