@@ -4,7 +4,6 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
     gap: 40px;
 }
 
@@ -66,4 +65,14 @@ h1, h2 {
     width: 90px;
     border: solid 9px turquoise;
     border-radius: 100%;
+}
+
+
+.line {
+    height: 4px;
+    width: 700px;
+    background-color: yellow;
+    z-index: 99;
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+    display: none;
 }

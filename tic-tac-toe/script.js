@@ -8,20 +8,32 @@ let winningCombinations = [
     ["field0", "field4", "field8"],
     ["field2", "field4", "field6"],
 ];
-
-
-let circle = document.getElementById('circle');
-let cross = document.getElementById('cross');
-let turn = circle;
+const lineOrientations = {
+    // [y, x, deg, width]
+    0: ['-450px', '0px', '0deg', '600px'],
+    1: ['-286px', '0px', '0deg', '600px'],
+    2: ['-120px', '0px', '0deg', '600px'],
+    3: ['-286px', '-244px', '90deg', '450px'],
+    4: ['-286px', '0px', '90deg', '450px'],
+    5: ['-286px', '244px', '90deg', '450px'],
+    6: ['-286px', '0px', '34deg', '700px'],
+    7: ['-286px', '0px', '-34deg', '700px']
+};
+const circle = document.getElementById('circle');
+const cross = document.getElementById('cross');
 let setInArray = 'circle';
+let htmlFunction = circleHTML;
+blur1stElemtentUnblurTheOther(cross, circle);
 
 
+
+// ANCHOR FUNCTIONS
 function game(e) {
-    document.getElementById(e.target.id).append(turn.cloneNode(true));
+    document.getElementById(e.target.id).innerHTML =  htmlFunction();
     document.getElementById(e.target.id).removeAttribute('onclick');
     setPlayerToWinningConditionsArray(e.target.id);
-    checkWin();
     next();
+    checkWin();
 }
 
 
@@ -40,12 +52,18 @@ function setPlayerToWinningConditionsArray(field) {
 function checkWin() {
     for (let i = 0; i < winningCombinations.length; i++) {
         if (circleWins(winningCombinations[i])) {
-            showWinner('Kreis')
+            setLineOrientation(i);
+            showWinner('Kreis');
+            blur1stElemtentUnblurTheOther(cross, circle);
+            endGame();
             break
         };
 
         if (crossWins(winningCombinations[i])) {
-            showWinner('Kreuz')
+            setLineOrientation(i)
+            showWinner('Kreuz');
+            blur1stElemtentUnblurTheOther(circle, cross);
+            endGame();
             break
         }
     }
@@ -63,18 +81,64 @@ function crossWins(array) {
 
 
 function next() {
-    if (turn == circle) {
-        turn = cross;
+    if (setInArray == 'circle') {
         setInArray = 'cross';
+        htmlFunction = crossHTML;
+        blur1stElemtentUnblurTheOther(circle, cross);
     } else {
-        turn = circle;
         setInArray = 'circle';
+        htmlFunction = circleHTML;
+        blur1stElemtentUnblurTheOther(cross, circle);
     }
 }
 
 
+function blur1stElemtentUnblurTheOther(element0, element1) {
+    element0.style.filter = 'blur(6px)';
+    element1.style.filter = 'none';
+}
+
+
+function endGame() {
+    setTimeout(siteReload, 3000);
+}
+
+function siteReload() {
+    location.reload()
+}
+
+
+function setLineOrientation(i) {
+    let line = document.getElementById('winLine');
+    line.style.display = 'block';
+    line.style.transform = /*css*/`
+         translateY(${lineOrientations[i][0]}) 
+         translateX(${lineOrientations[i][1]}) 
+         rotate(${lineOrientations[i][2]})
+    `;
+    line.style.width = lineOrientations[i][3]
+}
+
+
+// ANCHOR TEMPLATES
 function showWinner(player) {
     document.getElementById('win-container').innerHTML = /*html*/`
         ${player} hat gewonnen!!
     `;
 }
+
+
+function circleHTML() {
+    return /*html*/`
+       <div class="circle" id="circle"></div> 
+    `;
+}
+
+
+function crossHTML() {
+    return /*html*/`
+       <img class="cross" id="cross" src="icons/cross.svg" alt=""> 
+    `;
+}
+
+
