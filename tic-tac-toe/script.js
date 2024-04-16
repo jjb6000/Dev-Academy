@@ -35,6 +35,7 @@ function game(e) {
     setPlayerToWinningConditionsArray(e.target.id);
     next();
     checkWin();
+    checkCombinationsLeft();
 }
 
 
@@ -68,12 +69,35 @@ function checkWin() {
         if (circleWins(winningCombinations[i])) {
             showWinner(i, 'Kreis', cross, circle);
             break
-        };
-        if (crossWins(winningCombinations[i])) {
+        } else if (crossWins(winningCombinations[i])) {
             showWinner(i, 'Kreuz', circle, cross);
             break
+        } else {
+            checkCombinationsLeft();
         }
     }
+}
+
+
+function checkCombinationsLeft() {
+    let endArray = [];
+    for (let i = 0; i < winningCombinations.length; i++) {
+        endArray.push(winningCombinations[i].every(emptyFields));
+    }
+
+    if (endArray.every(allFieldsFilled)) {
+        noWinnerText();
+        endGame();
+    }
+}
+
+function emptyFields(field) {
+    return field == 'cross' || field == 'circle';
+}
+
+
+function allFieldsFilled(field) {
+    return field == true
 }
 
 
@@ -125,10 +149,19 @@ function siteReload() {
 
 
 
+
+
 // ANCHOR TEMPLATES
 function winnerText(player) {
     document.getElementById('win-container').innerHTML = /*html*/`
         ${player} hat gewonnen!!
+    `;
+}
+
+
+function noWinnerText() {
+    document.getElementById('win-container').innerHTML = /*html*/`
+        Unentschieden!!
     `;
 }
 
