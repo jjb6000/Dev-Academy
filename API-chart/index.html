@@ -4,25 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>API & chart.js</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
-    <script type="module" src="chart.js"></script>
-    <script defer src="data.js"></script>
-    <script defer src="script.js"></script>
-
+    <script src="include.js"></script>
+    <script defer src="data.js?v=0.2"></script>
+    <script defer src="chart.js?v=0.2"></script>
 </head>
 
-<body>
+<body onload="drawChart()">
+
+    <div w3-include-html="header.html"></div>
+
     <div>
         <canvas id="myChart"></canvas>
     </div>
 
     <script>
 
-      </script>
+    </script>
 
 
 </body>
+
+<script>
+    includeHTML();
+</script>
 
 </html>
