@@ -10,11 +10,21 @@
     <script src="include.js"></script>
     <script defer src="data.js?v=0.2"></script>
     <script defer src="chart.js?v=0.2"></script>
+    <script defer src="syn.js"></script>
 </head>
 
 <body onload="drawChart()">
 
     <div w3-include-html="header.html"></div>
+
+    <form onsubmit="getURL(); return false" method="get">
+        <input id="input" type="text" required>
+        <button>Suchen</button>
+    </form>
+
+    <h3>Synonyme:</h3>
+    <div id="output"></div>
+
 
     <div>
         <canvas id="myChart"></canvas>
