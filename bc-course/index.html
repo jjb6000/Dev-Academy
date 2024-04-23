@@ -3,11 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bitcoin</title>
-    <script defer src="script.js"></script>
+    <title>Crypto</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+    <script defer src="script/data.js?v=1.0"></script>
+    <script defer src="script/script.js?v=1.0"></script>
+    <script defer src="script/chart.js?v=1.0"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    
+<body onload="drawChart()">
+    <h1>Crypto Umrechungskurs</h1>
+
+    <select name="Crypto Selection" id="cryptoSelect">
+        <option value="BTC">Bitcoin</option>
+        <option value="SOL">Solana</option>
+        <option value="XRP">Ripple</option>
+    </select>
+
+    <button onclick="getURL()">Laden</button>
+    <p id="title"></p>
+    <div id="courseContainer"></div>
+
+
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
 </body>
 </html>
