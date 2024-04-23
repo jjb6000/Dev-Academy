@@ -1,6 +1,10 @@
-let apiData = [65, 59, 80, 81, 56, 55, 40];
-let apiData2 = [65, 60, 86, 86, 56, 40, 40];
-let apiLabels = ['01', '02', '03', '04', '05', '06'];
+// TODO API KEY WIEDER EINSETZEN
+// const API_KEY = 'F1R0AAVWVLRRU233';
+const API_KEY = 'demo';
+
+const courseContainer = document.getElementById('courseContainer');
+let apiData = [];
+let apiLabels = [];
 
 const ctx = document.getElementById('myChart');
 

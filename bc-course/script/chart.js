@@ -1,8 +1,8 @@
 
-
+let myChart
 
 function drawChart() {
-  const myChart = new Chart(ctx, {
+  myChart = new Chart(ctx, {
     type: 'line',
     data: {
       labels: apiLabels,
@@ -16,6 +16,13 @@ function drawChart() {
       options: CONFIG_CHART_OPTIONS
     }
   });
+}
+
+
+function destroyOldChart() {
+  if (myChart != undefined) {
+    myChart.destroy()
+  }
 }
 
 
