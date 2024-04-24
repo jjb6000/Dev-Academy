@@ -1,6 +1,6 @@
-// TODO API KEY WIEDER EINSETZEN
-// const API_KEY = 'F1R0AAVWVLRRU233';
-const API_KEY = 'demo';
+
+const API_KEY = 'F1R0AAVWVLRRU233';
+
 
 const courseContainer = document.getElementById('courseContainer');
 let apiData = [];

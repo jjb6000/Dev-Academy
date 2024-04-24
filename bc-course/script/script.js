@@ -1,7 +1,7 @@
 let currJSON;
 let option = 'BTC';
-let weeklyURL = 'https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_MONTHLY&symbol=BTC&market=CNY&apikey=demo';
-let url = 'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=BTC&to_currency=CNY&apikey=demo'
+// let chartURL = 'https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_MONTHLY&symbol=BTC&market=CNY&apikey=demo';
+// let url = 'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=BTC&to_currency=CNY&apikey=demo'
 
 
 document.getElementById('cryptoSelect').addEventListener('change', (e) => {
@@ -9,18 +9,19 @@ document.getElementById('cryptoSelect').addEventListener('change', (e) => {
     console.log(option)
 })
 
-// TODO ZURÜCK AUF EURO SETZEN
+
 function getURL() {
-    // url = 'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=' + option + '&to_currency=JPY&apikey=' + API_KEY;
-    // weeklyURL = 'https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_MONTHLY&symbol=' + option + '&market=CNY&apikey=' + API_KEY
+    url = 'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=' + option + '&to_currency=EUR&apikey=' + API_KEY;
+    chartURL = 'https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_MONTHLY&symbol=' + option + '&market=USD&apikey=' + API_KEY;
     init(url, showCurr);
-    init(weeklyURL, callChartFunctions);
+    init(chartURL, callChartFunctions);
 }
 
 
 async function init(url, doSomethingFunction) {
     let course = await fetch(url).catch(errorFunction);
     data = await course.json();
+    console.log(data);
     doSomethingFunction(data);
 }
 
