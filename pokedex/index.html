@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script/data.js"></script>
+    <script defer src="script/templates.js"></script>
+    <script defer src="script/app.js"></script>
+    <title>Pokedex App</title>
+</head>
+
+<body onload="getPokemonFromAPI(url)">
+
+    <section class="card-header-section standard-padding">
+        <div class="menu-bar">
+            <img class="clickable" src="icons/back.svg" alt=""><img onclick="loadPokemonPage()" class="clickable" src="icons/heart_fill.svg" alt=""><img class="clickable" src="icons/heart.svg" alt="">
+        </div>
+
+        <div class="title-container" id="titleContainer">
+
+        </div>
+
+        <div class="d-flex-all-center pokemon-pic">
+            <img id="pokePic" src="" alt="">
+        </div>
+    </section>
+
+    <section class="stats-section standard-padding">
+        <div class="stats-navbar d-flex-all-center">
+            <p class="current-stats">About</p>
+            <p>Base Stats</p>
+            <p>Evolution</p>
+            <p>Moves</p>
+        </div>
+
+        <div class="stats">
+            <div class="about-stats">
+                <div class="stat-key grey-font standard-padding">Spiecies</div>
+                <div class="stat-value standard-padding">Seed</div>
+                <div class="stat-key grey-font standard-padding">Spiecies</div>
+                <div class="stat-value standard-padding">Seed</div>
+                <div class="stat-key grey-font standard-padding">Spiecies</div>
+                <div class="stat-value standard-padding">Seed</div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
