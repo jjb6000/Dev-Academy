@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
     <script defer src="script/data.js"></script>
     <script defer src="script/templates.js"></script>
     <script defer src="script/app.js"></script>
@@ -28,8 +29,8 @@
     </section>
 
     <section class="stats-section standard-padding">
-        <div class="stats-navbar d-flex-all-center">
-            <p class="current-stats">About</p>
+        <div id="statsNavbar" class="stats-navbar d-flex-all-center">
+            <p onclick="loadAboutSpecs()" class="current-stats">About</p>
             <p>Base Stats</p>
             <p>Evolution</p>
             <p>Moves</p>

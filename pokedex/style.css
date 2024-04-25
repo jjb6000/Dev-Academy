@@ -100,13 +100,12 @@ h1 {
 }
 
 .stats-navbar {
-    gap: 8%;
     margin-bottom: 24px;
 }
 
 .stats-navbar > * {
     cursor: pointer;
-    padding: 1rem;
+    padding: 1rem 2rem;
     font-weight: 600;
     color: lightgray;
     margin: 0;
@@ -117,7 +116,7 @@ h1 {
 }
 
 .current-stats {
-    border-bottom: solid 2px black;
+    border-bottom: solid 3px black;
     color: black;
 }
 
