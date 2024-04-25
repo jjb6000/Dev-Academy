@@ -73,6 +73,7 @@ h1 {
     height: 2rem;
     border-radius: 16px;
     background-color: rgba(255, 255, 255, 0.266);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .pokemon-number {
@@ -85,7 +86,7 @@ h1 {
 }
 
 .pokemon-pic img {
-    width: 200px;
+    width: 320px;
 }
 
 
@@ -103,15 +104,21 @@ h1 {
     margin-bottom: 24px;
 }
 
-.stats-navbar > * {
+.slider {
+    min-width: 280px;
+    overflow: hidden;
+}
+
+.slider > * {
     cursor: pointer;
     padding: 1rem 2rem;
     font-weight: 600;
+    font-size: larger;
     color: lightgray;
     margin: 0;
 }
 
-.stats-navbar > *:hover {
+.slider > *:hover {
     color: gray;
 }
 

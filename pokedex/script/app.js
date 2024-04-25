@@ -43,7 +43,7 @@ function loadPokeImg() {
 
 
 // ANCHOR POKEMON STATISTICS FUNCTIONS
-document.getElementById('statsNavbar').addEventListener('click', (e) => {
+document.getElementById('slider').addEventListener('click', (e) => {
     if (clickWasOnAMenuItem(e.target.children.length)) {
         removeNavbarSelect();
         e.target.classList.add('current-stats')
@@ -57,8 +57,8 @@ function clickWasOnAMenuItem(childrenOfClickedContainer) {
 
 
 function removeNavbarSelect() {
-    let array = document.getElementById('statsNavbar').childNodes;
-    for (let i = 1; i < array.length; i += 2) {
+    let array = document.getElementById('slider').children;
+    for (let i = 0; i < array.length; i++) {
         array[i].classList.remove('current-stats');
     }
 }
