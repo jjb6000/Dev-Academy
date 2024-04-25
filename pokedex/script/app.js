@@ -19,21 +19,21 @@ function addTypeTags(array) {
 
 
 function loadAboutSpecs() {
-    document.getElementById('stats').innerHTML = loadAboutSpecsHTML(pokemonObject.species.name, pokemonObject.height, pokemonObject.weight)
+    document.getElementById('stats').innerHTML = loadAboutSpecsHTML(pokemonObject.species.name, pokemonObject.height, pokemonObject.weight, returnMultipleAbilitiesInOneString())
 }
 
 
-function returnMultipleValuesInOneString(array, key) {
-    let string
-    for (let i = 0; i < array.length; i++) {
+function returnMultipleAbilitiesInOneString() {
+    let array = pokemonObject.abilities; 
+    let string = array[0].ability.name;
+    for (let i = 1; i < array.length; i++) {
         if (i == array.length) {
-            string = string + array[i].key
+            string = string + array[i].ability.name;
         } else {
-            string = string + ', ' + array[i].key;
-        }
-        string = array[i].key;
-        
+            string = string + ', ' + array[i].ability.name;
+        }        
     }
+    return string;
 }
 
 

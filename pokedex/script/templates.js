@@ -21,7 +21,7 @@ function loadTagHTML(type) {
 }
 
 
-function loadAboutSpecsHTML(spiecies, height, weight) {
+function loadAboutSpecsHTML(spiecies, height, weight, abilities) {
     return /*html*/`
         <div class="about-stats">
                 <div class="stat-key grey-font standard-padding">Spiecies</div>
@@ -31,7 +31,7 @@ function loadAboutSpecsHTML(spiecies, height, weight) {
                 <div class="stat-key grey-font standard-padding">Weight</div>
                 <div class="stat-value standard-padding">${weight}</div>
                 <div class="stat-key grey-font standard-padding">Ability</div>
-                <div class="stat-value standard-padding" id='abilities'></div>
+                <div class="stat-value standard-padding">${abilities}</div>
         </div>
     `
 }
