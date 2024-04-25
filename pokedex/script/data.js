@@ -1,5 +1,5 @@
 let pokemonObject
-let url = 'https://pokeapi.co/api/v2/pokemon/bulbasaur'
+let url = 'https://pokeapi.co/api/v2/pokemon/charmander'
 
 async function getPokemonFromAPI(url) {
    let data = await fetch(url).catch(errorFunction);
