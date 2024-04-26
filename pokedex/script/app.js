@@ -46,7 +46,7 @@ function removeNavbarSelect() {
     }
 }
 
-
+// TODO vielleicht besser current pokemon object, dass einmal alle Daten abruft und fix schreibt, dann müssen die ganzen schleifen nur einmal gemacht werden? 
 // ANCHOR ABOUT SPECS
 function loadAboutSpecs() {
     stats.innerHTML = loadAboutSpecsHTML(pokemonObject.species.name, pokemonObject.height, pokemonObject.weight, returnMultipleAbilitiesInOneString(pokemonObject.abilities))
@@ -73,10 +73,12 @@ function loadBaseStats() {
 }
 
 function getBasicStatsFromAPI() {
+    basicStats = []; 
     for (let i = 0; i < pokemonObject.stats.length; i++) {
         basicStats.push(pokemonObject.stats[i].base_stat);
     }
 }
+
 
 
 
