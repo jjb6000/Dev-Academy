@@ -1,10 +1,11 @@
 let pokemonObject
 let url = 'https://pokeapi.co/api/v2/pokemon/bulbasaur'
 
-let apiData = [];
-let apiLabels = [];
+let basicStats = [];
+let labels = ['HP', 'Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed'];
+let stats;
 
-const ctx = document.getElementById('myChart');
+
 
 
 // ANCHOR   GRAPH CONFIGS
@@ -29,9 +30,10 @@ const CONFIG_BORDER_COLOR = [
 ];
 
 const CONFIG_CHART_OPTIONS = {
-    scales: {
-        y: {
-            beginAtZero: true
+    indexAxis: 'y',
+    elements: {
+        bar: {
+            borderWidth: 2,
         }
     }
 }
@@ -39,9 +41,9 @@ const CONFIG_CHART_OPTIONS = {
 
 // ANCHOR POKEMON FETCH API
 async function getPokemonFromAPI(url) {
-   let data = await fetch(url).catch(errorFunction);
-   pokemonObject = await data.json()
-   console.log(pokemonObject);
+    let data = await fetch(url).catch(errorFunction);
+    pokemonObject = await data.json()
+    console.log(pokemonObject);
 }
 
 

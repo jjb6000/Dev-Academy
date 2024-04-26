@@ -23,12 +23,18 @@ h1 {
 }
 
 .standard-padding {
-    padding: 16px;
+    padding: 1rem;
 }
 
 .d-flex-all-center {
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.d-flex-start {
+    display: flex;
+    justify-content: start;
     align-items: center;
 }
 
@@ -48,8 +54,8 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 16px;
-    padding-top: 24px;
+    margin-bottom: 1rem;
+    padding-top: 0.5rem;
 }
 
 .menu-bar >* {

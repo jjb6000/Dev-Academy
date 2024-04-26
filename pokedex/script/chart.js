@@ -2,26 +2,21 @@
 
 
 function drawChart() {
-  const myChart = new Chart(ctx, {
-    type: 'line',
+  console.log(basicStats);
+  const myChart = new Chart(document.getElementById('myChart'), {
+    type: 'bar',
     data: {
-      labels: apiLabels,
+      labels: labels,
       datasets: [{
-        label: 'My First Dataset',
-        data: apiData,
+         label: 'Base Stats',
+        data: basicStats,
+        fill: 'false',
         backgroundColor: CONFIG_BG_COLOR,
         borderColor: CONFIG_BORDER_COLOR,
         borderWidth: 1
-      },
-      {
-        label: 'My 2nd Dataset',
-        data: apiData2,
-        backgroundColor: CONFIG_BG_COLOR,
-        borderColor: CONFIG_BORDER_COLOR,
-        borderWidth: 1
-      }],
-      options: CONFIG_CHART_OPTIONS
-    }
+      }]
+    },
+    options: CONFIG_CHART_OPTIONS
   });
 }
 

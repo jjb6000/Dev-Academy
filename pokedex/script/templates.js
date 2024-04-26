@@ -35,3 +35,16 @@ function loadAboutSpecsHTML(spiecies, height, weight, abilities) {
         </div>
     `
 }
+
+
+function getBaseStatsHTML(total) {
+    return /*html*/`
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+    <div class="d-flex-start">
+        <p class="standard-padding"><b>Total:</b></p>
+        <p> ${total}</p>
+    </div>
+    `
+}
