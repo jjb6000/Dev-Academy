@@ -1,4 +1,5 @@
-let pokemonObject
+let pokemonObject;
+let currentPokemon;
 let url = 'https://pokeapi.co/api/v2/pokemon/bulbasaur'
 
 let basicStats = [];
@@ -40,13 +41,35 @@ const CONFIG_CHART_OPTIONS = {
 
 
 // ANCHOR POKEMON FETCH API
-async function getPokemonFromAPI(url) {
+async function getPokemon() {
+    pokemonObject = await fetchPokemonAPI(url);
+    let breedingObject = await fetchPokemonAPI(pokemonObject.species.url)
+    console.log(breedingObject)
+
+}
+
+
+async function fetchPokemonAPI(url) {
     let data = await fetch(url).catch(errorFunction);
-    pokemonObject = await data.json()
-    console.log(pokemonObject);
+    return await data.json()
+    
 }
 
 
 function errorFunction() {
     console.log('Fehler aufgetreten',);
 }
+
+
+function buildCurrentPokemon(pokemonObject, breedingObject) {
+    currentPokemon = {
+        name: pokemonObject['species'].name,
+        id: pokemonObject.id,
+        imgUrl: pokemonObject.sprites.front_default,
+        about: {
+    
+        }
+    }
+}
+
+

@@ -21,17 +21,20 @@ function loadTagHTML(type) {
 }
 
 
-function loadAboutSpecsHTML(spiecies, height, weight, abilities) {
+function loadAboutSpecsHTML( abilities) {
     return /*html*/`
         <div class="about-stats">
                 <div class="stat-key grey-font standard-padding">Spiecies</div>
-                <div class="stat-value standard-padding">${spiecies}</div>
+                <div class="stat-value standard-padding">${pokemonObject.species.name}</div>
                 <div class="stat-key grey-font standard-padding">Height</div>
-                <div class="stat-value standard-padding">${height}</div>
+                <div class="stat-value standard-padding">${pokemonObject.height}</div>
                 <div class="stat-key grey-font standard-padding">Weight</div>
-                <div class="stat-value standard-padding">${weight}</div>
+                <div class="stat-value standard-padding">${pokemonObject.weight}</div>
                 <div class="stat-key grey-font standard-padding">Ability</div>
-                <div class="stat-value standard-padding">${abilities}</div>
+                <div class="stat-value standard-padding">${returnMultipleAbilitiesInOneString(pokemonObject.abilities)}</div>
+                <div class="stat-key grey-font standard-padding"><b>Breeding</b></div><br>
+                <div class="stat-key grey-font standard-padding">Egg Groups</div>
+                <div class="stat-value standard-padding">${pokemonObject.weight}</div>
         </div>
     `
 }
