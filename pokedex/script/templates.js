@@ -21,20 +21,22 @@ function loadTagHTML(type) {
 }
 
 
-function loadAboutSpecsHTML( abilities) {
+function loadAboutSpecsHTML() {
     return /*html*/`
         <div class="about-stats">
                 <div class="stat-key grey-font standard-padding">Spiecies</div>
-                <div class="stat-value standard-padding">${pokemonObject.species.name}</div>
+                <div class="stat-value standard-padding">${currentPokemon.name}</div>
                 <div class="stat-key grey-font standard-padding">Height</div>
-                <div class="stat-value standard-padding">${pokemonObject.height}</div>
+                <div class="stat-value standard-padding">${currentPokemon.about.height}</div>
                 <div class="stat-key grey-font standard-padding">Weight</div>
-                <div class="stat-value standard-padding">${pokemonObject.weight}</div>
+                <div class="stat-value standard-padding">${currentPokemon.about.weight}</div>
                 <div class="stat-key grey-font standard-padding">Ability</div>
-                <div class="stat-value standard-padding">${returnMultipleAbilitiesInOneString(pokemonObject.abilities)}</div>
-                <div class="stat-key grey-font standard-padding"><b>Breeding</b></div><br>
+                <div class="stat-value standard-padding">${currentPokemon.about.abilities}</div>
+                <div class="stat-key standard-padding"><b>Breeding</b></div><br>
                 <div class="stat-key grey-font standard-padding">Egg Groups</div>
-                <div class="stat-value standard-padding">${pokemonObject.weight}</div>
+                <div class="stat-value standard-padding">${currentPokemon.about.egg_groups}</div>
+                <div class="stat-key grey-font standard-padding">Egg Cycle</div>
+                <div class="stat-value standard-padding">${currentPokemon.about.egg_cycle}</div>
         </div>
     `
 }

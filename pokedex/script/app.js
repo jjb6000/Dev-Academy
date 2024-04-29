@@ -53,18 +53,6 @@ function loadAboutSpecs() {
 }
 
 
-function returnMultipleAbilitiesInOneString(array) {
-    let string = array[0].ability.name;
-    for (let i = 1; i < array.length; i++) {
-        if (i == array.length) {
-            string = string + array[i].ability.name;
-        } else {
-            string = string + ', ' + array[i].ability.name;
-        }
-    }
-    return string;
-}
-
 // ANCHOR BASE STATS
 function loadBaseStats() {
     getBasicStatsFromAPI();
