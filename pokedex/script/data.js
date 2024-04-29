@@ -2,7 +2,6 @@ let pokemonObject;
 let currentPokemon;
 let url = 'https://pokeapi.co/api/v2/pokemon/rattata'
 
-let basicStats = [];
 let labels = ['HP', 'Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed'];
 let stats;
 
@@ -12,10 +11,10 @@ let stats;
 async function getPokemon() {
     pokemonObject = await fetchPokemonAPI(url);
     let breedingObject = await fetchPokemonAPI(pokemonObject.species.url);
-    let evolutionObject = await fetchPokemonAPI(breedingObject.evolution_chain.url);
+    let evoObject = await fetchPokemonAPI(breedingObject.evolution_chain.url)
     console.log(breedingObject);
-    console.log(evolutionObject)
-    buildCurrentPokemon(pokemonObject, breedingObject);
+    console.log(evoObject);
+    buildCurrentPokemon(pokemonObject, breedingObject, evoObject);
 }
 
 
@@ -29,8 +28,8 @@ function errorFunction() {
     console.log('Fehler aufgetreten',);
 }
 
-
-function buildCurrentPokemon(pokemonObject, breedingObject) {
+// Function to fill json w/ all information from multiple endpoints so all the loops and conversions are only called once 
+function buildCurrentPokemon(pokemonObject, breedingObject, evoObject) {
     currentPokemon = {
         name: pokemonObject['species'].name,
         id: pokemonObject.id,
@@ -41,35 +40,64 @@ function buildCurrentPokemon(pokemonObject, breedingObject) {
             abilities: returnMultipleAbilitiesInOneString(pokemonObject.abilities),
             egg_groups: returnMultipleEggGroupsInOneString(breedingObject.egg_groups),
             egg_cycle: breedingObject.hatch_counter
-        }
+        },
+        basicStats: getBasicStatsFromAPI(),
+        evoLevel: checkEvolutionSteps(evoObject),
+        evoImg: getNextEvoImg(),
     }
 }
 
-// TODO ERST array erzeugen, dann mit tostring umwandeln
+
 function returnMultipleAbilitiesInOneString(array) {
-    let string = array[0].ability.name;
-    for (let i = 1; i < array.length; i++) {
-        if (i == array.length) {
-            string = string + array[i].ability.name;
-        } else {
-            string = string + ', ' + array[i].ability.name;
-        }
+    let abilityArray = [];
+    for (let i = 0; i < array.length; i++) {
+        abilityArray.push(array[i].ability.name);
     }
-    return string;
+    return convertToString(abilityArray);
 }
 
 
 function returnMultipleEggGroupsInOneString(array) {
-    let string = array[0].name;
-    for (let i = 1; i < array.length; i++) {
-        if (i == array.length) {
-            string = string + array[i].name;
-        } else {
-            string = string + ', ' + array[i].name;
-        }
+    let eggArray = [];
+    for (let i = 0; i < array.length; i++) {
+        eggArray.push(array[i].name);
     }
-    return string;
+    return convertToString(eggArray);
 }
+
+
+function convertToString(array) {
+    return array.toString().replaceAll(',', ', ')
+ }
+
+
+ function getBasicStatsFromAPI() {
+    let basicStats = []; 
+    for (let i = 0; i < pokemonObject.stats.length; i++) {
+        basicStats.push(pokemonObject.stats[i].base_stat);
+    }
+    return basicStats
+}
+
+
+function checkEvolutionSteps(evoObject) {
+    if (thirEvolutionStepTrue(evoObject)) {
+        return [evoObject.chain.evolves_to[0].evolution_details[0].min_level]
+    } else {
+        return [evoObject.chain.evolves_to[0].evolution_details[0].min_level, evoObject.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level]
+    }
+}
+
+
+function thirEvolutionStepTrue(evoObject) {
+    return evoObject.chain.evolves_to[0].evolves_to.length == 0
+}
+
+
+function getNextEvoImg() {
+
+}
+
 
 
 // ANCHOR   GRAPH CONFIGS

@@ -53,3 +53,36 @@ function getBaseStatsHTML(total) {
     </div>
     `
 }
+
+
+function getEvoStatsForTwoEvolutionsHTML() {
+    return /*html*/`
+    <div class="evo-container d-flex-all-center">
+        <img src=${currentPokemon.evoImg[0]} alt="">
+        <div class="arrow-container">
+            <img src="icons/arrow_right.svg" alt="">
+            <p>Level ${currentPokemon.evoLevel[0]}</p>
+        </div>
+        <img src="${currentPokemon.evoImg[1]}" alt="">
+        <div class="arrow-container">
+            <img src="icons/arrow_right.svg" alt="">
+            <p>Level ${currentPokemon.evoLevel[1]}</p>
+        </div>
+        <img src="${currentPokemon.evoImg[2]}" alt="">
+    </div>
+    `
+}
+
+
+function getEvoStatsForOneEvolutionHTML() {
+    return /*html*/`
+    <div class="evo-container d-flex-all-center">
+        <img src=${currentPokemon.evoImg[0]} alt="">
+        <div class="arrow-container">
+            <img src="icons/arrow_right.svg" alt="">
+            <p>Level ${currentPokemon.evoLevel[0]}</p>
+        </div>
+        <img src="${currentPokemon.evoImg[1]}" alt="">
+    </div>
+    `
+}

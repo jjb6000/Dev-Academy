@@ -55,17 +55,20 @@ function loadAboutSpecs() {
 
 // ANCHOR BASE STATS
 function loadBaseStats() {
-    getBasicStatsFromAPI();
-    stats.innerHTML = getBaseStatsHTML(basicStats.reduce((a, b) => a + b, 0));
+    stats.innerHTML = getBaseStatsHTML(currentPokemon.basicStats.reduce((a, b) => a + b, 0));
     drawChart();
 }
 
-function getBasicStatsFromAPI() {
-    basicStats = []; 
-    for (let i = 0; i < pokemonObject.stats.length; i++) {
-        basicStats.push(pokemonObject.stats[i].base_stat);
+
+// ANCHOR EVO STATS
+function loadEvolution() {
+    if (currentPokemon.evoLevel.length == 1) {
+        stats.innerHTML = getEvoStatsForOneEvolutionHTML()
+    } else {
+        stats.innerHTML = getEvoStatsForTwoEvolutionsHTML()
     }
 }
+
 
 
 
