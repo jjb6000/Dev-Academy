@@ -58,17 +58,17 @@ function getBaseStatsHTML(total) {
 function getEvoStatsForTwoEvolutionsHTML() {
     return /*html*/`
     <div class="evo-container d-flex-all-center">
-        <img src=${currentPokemon.evoImg[0]} alt="">
+        <img src=${currentPokemon.evolution.evoImg[0]} alt="">
         <div class="arrow-container">
             <img src="icons/arrow_right.svg" alt="">
-            <p>Level ${currentPokemon.evoLevel[0]}</p>
+            <p>Level ${currentPokemon.evolution.evoLevel[0]}</p>
         </div>
-        <img src="${currentPokemon.evoImg[1]}" alt="">
+        <img src="${currentPokemon.evolution.evoImg[1]}" alt="">
         <div class="arrow-container">
             <img src="icons/arrow_right.svg" alt="">
-            <p>Level ${currentPokemon.evoLevel[1]}</p>
+            <p>Level ${currentPokemon.evolution.evoLevel[1]}</p>
         </div>
-        <img src="${currentPokemon.evoImg[2]}" alt="">
+        <img src="${currentPokemon.evolution.evoImg[2]}" alt="">
     </div>
     `
 }
@@ -77,12 +77,12 @@ function getEvoStatsForTwoEvolutionsHTML() {
 function getEvoStatsForOneEvolutionHTML() {
     return /*html*/`
     <div class="evo-container d-flex-all-center">
-        <img src=${currentPokemon.evoImg[0]} alt="">
+        <img src=${currentPokemon.evolution.evoImg[0]} alt="">
         <div class="arrow-container">
             <img src="icons/arrow_right.svg" alt="">
-            <p>Level ${currentPokemon.evoLevel[0]}</p>
+            <p>Level ${currentPokemon.evolution.evoLevel[0]}</p>
         </div>
-        <img src="${currentPokemon.evoImg[1]}" alt="">
+        <img src="${currentPokemon.evolution.evoImg[1]}" alt="">
     </div>
     `
 }

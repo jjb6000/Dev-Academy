@@ -62,7 +62,16 @@ function loadBaseStats() {
 
 // ANCHOR EVO STATS
 function loadEvolution() {
-    if (currentPokemon.evoLevel.length == 1) {
+    if (currentPokemon.evolution.evolve) {
+        loadEvoBasedOnSteps()
+    } else {
+        stats.innerHTML = "This Pokemon doesn't evolve"
+    }
+}
+
+
+function loadEvoBasedOnSteps() {
+    if (currentPokemon.evolution.evoLevel.length == 1) {
         stats.innerHTML = getEvoStatsForOneEvolutionHTML()
     } else {
         stats.innerHTML = getEvoStatsForTwoEvolutionsHTML()

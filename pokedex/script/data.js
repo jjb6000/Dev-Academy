@@ -1,6 +1,7 @@
 let pokemonObject;
 let currentPokemon;
-let url = 'https://pokeapi.co/api/v2/pokemon/rattata'
+let evoObject;
+let url = 'https://pokeapi.co/api/v2/pokemon/charmander'
 
 let labels = ['HP', 'Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed'];
 let stats;
@@ -11,7 +12,7 @@ let stats;
 async function getPokemon() {
     pokemonObject = await fetchPokemonAPI(url);
     let breedingObject = await fetchPokemonAPI(pokemonObject.species.url);
-    let evoObject = await fetchPokemonAPI(breedingObject.evolution_chain.url)
+    evoObject = await fetchPokemonAPI(breedingObject.evolution_chain.url)
     console.log(breedingObject);
     console.log(evoObject);
     buildCurrentPokemon(pokemonObject, breedingObject, evoObject);
@@ -42,8 +43,13 @@ function buildCurrentPokemon(pokemonObject, breedingObject, evoObject) {
             egg_cycle: breedingObject.hatch_counter
         },
         basicStats: getBasicStatsFromAPI(),
-        evoLevel: checkEvolutionSteps(evoObject),
-        evoImg: getNextEvoImg(),
+        evolution: {
+            evolve: doesItEvolve(evoObject)
+        }
+    }
+
+    if (currentPokemon.evolution.evolve) {
+        addEvolution(evoObject);
     }
 }
 
@@ -80,16 +86,32 @@ function convertToString(array) {
 }
 
 
-function checkEvolutionSteps(evoObject) {
-    if (thirEvolutionStepTrue(evoObject)) {
-        return [evoObject.chain.evolves_to[0].evolution_details[0].min_level]
+function doesItEvolve(evoObject) {
+    if (evoObject.chain.evolves_to.length == 0) {
+        return false;
     } else {
-        return [evoObject.chain.evolves_to[0].evolution_details[0].min_level, evoObject.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level]
+        return true;
+    }
+}
+
+function addEvolution(evoObject) {
+    if (thirdEvolutionStepTrue(evoObject)) {
+        currentPokemon.evolution.evoLevel = [evoObject.chain.evolves_to[0].evolution_details[0].min_level];
+    } else {
+        currentPokemon.evolution.evoLevel = [evoObject.chain.evolves_to[0].evolution_details[0].min_level, evoObject.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level];
+        currentPokemon.evolution.evoImg = [buildImgUrl(evoObject.chain.species.url), buildImgUrl(evoObject.chain.evolves_to[0].species.url), buildImgUrl(evoObject.chain.evolves_to[0].evolves_to[0].species.url) ]
     }
 }
 
 
-function thirEvolutionStepTrue(evoObject) {
+function buildImgUrl(str) {
+    return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + str.charAt(str.length-2) + '.png'
+}
+
+
+
+
+function thirdEvolutionStepTrue(evoObject) {
     return evoObject.chain.evolves_to[0].evolves_to.length == 0
 }
 
