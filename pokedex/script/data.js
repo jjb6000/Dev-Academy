@@ -1,7 +1,7 @@
 let pokemonObject;
 let currentPokemon;
 let evoObject;
-let url = 'https://pokeapi.co/api/v2/pokemon/charmander'
+let url = 'https://pokeapi.co/api/v2/pokemon/bulbasaur'
 
 let labels = ['HP', 'Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed'];
 let stats;
@@ -13,8 +13,6 @@ async function getPokemon() {
     pokemonObject = await fetchPokemonAPI(url);
     let breedingObject = await fetchPokemonAPI(pokemonObject.species.url);
     evoObject = await fetchPokemonAPI(breedingObject.evolution_chain.url)
-    console.log(breedingObject);
-    console.log(evoObject);
     buildCurrentPokemon(pokemonObject, breedingObject, evoObject);
     addMovesToCurrentPokemon();
 }

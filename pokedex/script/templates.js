@@ -90,12 +90,14 @@ function getEvoStatsForOneEvolutionHTML() {
 
 function getMoveTableHTML() {
     return /*html*/`
+    <div class="d-flex-all-center">
     <table class="standard-padding" id=moveTable>
         <tr>
-            <th class="ta-start">Move</th>
+            <th>Move</th>
             <th>learned at Level</th>
         </tr>
     </table>
+    </div>
     `
 }
 
