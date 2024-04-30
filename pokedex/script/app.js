@@ -81,10 +81,9 @@ function loadEvoBasedOnSteps() {
 
 function loadMoves() {
     stats.innerHTML = getMoveTableHTML();
-    let array1 = currentPokemon.moves.move
-    let array2 = currentPokemon.moves.level
-    for (let i = 0; i < array1.length; i++) {
-        document.getElementById('moveTable').innerHTML += addMoveTableRow(array1[i], array2[i]);        
+    let array = currentPokemon.moves;
+    for (let i = 0; i < array.length; i++) {
+        document.getElementById('moveTable').innerHTML += addMoveTableRow(array[i][1], array[i][0]);        
     }
 }
 

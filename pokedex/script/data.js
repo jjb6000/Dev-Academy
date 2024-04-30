@@ -45,10 +45,7 @@ function buildCurrentPokemon(pokemonObject, breedingObject, evoObject) {
         evolution: {
             evolve: doesItEvolve(evoObject)
         },
-        moves: {
-            move: [],
-            level: []
-        }
+        moves: []
     }
 
     if (currentPokemon.evolution.evolve) {
@@ -124,8 +121,7 @@ function thirdEvolutionStepTrue(evoObject) {
 function addMovesToCurrentPokemon() {
     for (let i = 0; i < pokemonObject.moves.length; i++) {
         if (pokemonObject.moves[i].version_group_details[0].level_learned_at >= 1) {
-            currentPokemon.moves.move.push(pokemonObject.moves[i].move.name);
-            currentPokemon.moves.level.push(pokemonObject.moves[i].version_group_details[0].level_learned_at);
+            currentPokemon.moves.push([pokemonObject.moves[i].version_group_details[0].level_learned_at, pokemonObject.moves[i].move.name]);
         }   
     }
 }
