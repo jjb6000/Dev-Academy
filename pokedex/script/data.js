@@ -45,6 +45,10 @@ function buildCurrentPokemon(pokemonObject, breedingObject, evoObject) {
         basicStats: getBasicStatsFromAPI(),
         evolution: {
             evolve: doesItEvolve(evoObject)
+        },
+        moves: {
+            move: [],
+            level: []
         }
     }
 
@@ -53,7 +57,7 @@ function buildCurrentPokemon(pokemonObject, breedingObject, evoObject) {
     }
 }
 
-
+// ANCHOR ABOUT STATS
 function returnMultipleAbilitiesInOneString(array) {
     let abilityArray = [];
     for (let i = 0; i < array.length; i++) {
@@ -74,11 +78,12 @@ function returnMultipleEggGroupsInOneString(array) {
 
 function convertToString(array) {
     return array.toString().replaceAll(',', ', ')
- }
+}
 
 
- function getBasicStatsFromAPI() {
-    let basicStats = []; 
+// ANCHOR BASI STATS
+function getBasicStatsFromAPI() {
+    let basicStats = [];
     for (let i = 0; i < pokemonObject.stats.length; i++) {
         basicStats.push(pokemonObject.stats[i].base_stat);
     }
@@ -86,6 +91,8 @@ function convertToString(array) {
 }
 
 
+
+// ANCHOR EVO
 function doesItEvolve(evoObject) {
     if (evoObject.chain.evolves_to.length == 0) {
         return false;
@@ -99,16 +106,14 @@ function addEvolution(evoObject) {
         currentPokemon.evolution.evoLevel = [evoObject.chain.evolves_to[0].evolution_details[0].min_level];
     } else {
         currentPokemon.evolution.evoLevel = [evoObject.chain.evolves_to[0].evolution_details[0].min_level, evoObject.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level];
-        currentPokemon.evolution.evoImg = [buildImgUrl(evoObject.chain.species.url), buildImgUrl(evoObject.chain.evolves_to[0].species.url), buildImgUrl(evoObject.chain.evolves_to[0].evolves_to[0].species.url) ]
+        currentPokemon.evolution.evoImg = [buildImgUrl(evoObject.chain.species.url), buildImgUrl(evoObject.chain.evolves_to[0].species.url), buildImgUrl(evoObject.chain.evolves_to[0].evolves_to[0].species.url)]
     }
 }
 
 
 function buildImgUrl(str) {
-    return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + str.charAt(str.length-2) + '.png'
+    return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + str.charAt(str.length - 2) + '.png'
 }
-
-
 
 
 function thirdEvolutionStepTrue(evoObject) {
@@ -116,10 +121,14 @@ function thirdEvolutionStepTrue(evoObject) {
 }
 
 
-function getNextEvoImg() {
-
+// ANCHOR MOVES
+function addMovesToCurrentPokemon() {
+    for (let i = 0; i < pokemonObject.moves.length; i++) {
+        if (pokemonObject.moves[i].version_group_details[0].level_learned_at > 1) {
+            
+        }   
+    }
 }
-
 
 
 // ANCHOR   GRAPH CONFIGS

@@ -86,3 +86,24 @@ function getEvoStatsForOneEvolutionHTML() {
     </div>
     `
 }
+
+
+function getMoveTableHTML() {
+    return /*html*/`
+    <table id=moveTable>
+        <tr>
+            <th>Move</th>
+            <th>learned at Level</th>
+        </tr>
+    </table>
+    `
+}
+
+function addMoveTableRow(move, level) {
+    return /*html*/`
+        <tr>
+            <td>${move}</td>
+            <td>${level}</td>
+        </tr>
+    `
+}
