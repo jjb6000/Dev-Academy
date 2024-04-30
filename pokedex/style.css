@@ -43,6 +43,15 @@ h1 {
 }
 
 
+tr {
+    text-align: center;
+}
+
+.ta-start {
+    text-align: start;
+}
+
+
 /* ANCHOR HEADER SECTION */
 
 .card-header-section {

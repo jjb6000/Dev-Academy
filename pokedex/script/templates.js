@@ -90,9 +90,9 @@ function getEvoStatsForOneEvolutionHTML() {
 
 function getMoveTableHTML() {
     return /*html*/`
-    <table id=moveTable>
+    <table class="standard-padding" id=moveTable>
         <tr>
-            <th>Move</th>
+            <th class="ta-start">Move</th>
             <th>learned at Level</th>
         </tr>
     </table>
@@ -102,7 +102,7 @@ function getMoveTableHTML() {
 function addMoveTableRow(move, level) {
     return /*html*/`
         <tr>
-            <td>${move}</td>
+            <td class="ta-start">${move}</td>
             <td>${level}</td>
         </tr>
     `

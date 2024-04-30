@@ -16,6 +16,7 @@ async function getPokemon() {
     console.log(breedingObject);
     console.log(evoObject);
     buildCurrentPokemon(pokemonObject, breedingObject, evoObject);
+    addMovesToCurrentPokemon();
 }
 
 
@@ -124,8 +125,9 @@ function thirdEvolutionStepTrue(evoObject) {
 // ANCHOR MOVES
 function addMovesToCurrentPokemon() {
     for (let i = 0; i < pokemonObject.moves.length; i++) {
-        if (pokemonObject.moves[i].version_group_details[0].level_learned_at > 1) {
-            
+        if (pokemonObject.moves[i].version_group_details[0].level_learned_at >= 1) {
+            currentPokemon.moves.move.push(pokemonObject.moves[i].move.name);
+            currentPokemon.moves.level.push(pokemonObject.moves[i].version_group_details[0].level_learned_at);
         }   
     }
 }

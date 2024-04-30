@@ -79,6 +79,16 @@ function loadEvoBasedOnSteps() {
 }
 
 
+function loadMoves() {
+    stats.innerHTML = getMoveTableHTML();
+    let array1 = currentPokemon.moves.move
+    let array2 = currentPokemon.moves.level
+    for (let i = 0; i < array1.length; i++) {
+        document.getElementById('moveTable').innerHTML += addMoveTableRow(array1[i], array2[i]);        
+    }
+}
+
+
 
 
 
