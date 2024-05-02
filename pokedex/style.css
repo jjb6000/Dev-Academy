@@ -128,9 +128,19 @@ tr {
 .card {
     /* background-color: #FB6C6C; */
     background-color: white;
-    height: 100px;
-    width: 160px;
+    height: 128px;
+    width: 192px;
     border-radius: 16px;
+    box-sizing: border-box;
+    padding: 0.5rem;
+}
+
+.card h4 {
+    margin: 0;
+}
+
+.card img {
+    width: 48px;
 }
 
 

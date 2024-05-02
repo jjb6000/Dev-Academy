@@ -33,6 +33,7 @@ function errorFunction() {
 function buildCurrentPokemon(pokemonObject, breedingObject, evoObject) {
     currentPokemon = {
         name: pokemonObject['species'].name,
+        types: putTypesInArray(pokemonObject.types),
         id: pokemonObject.id,
         imgUrl: pokemonObject.sprites.front_default,
         about: {
@@ -52,6 +53,14 @@ function buildCurrentPokemon(pokemonObject, breedingObject, evoObject) {
     if (currentPokemon.evolution.evolve) {
         addEvolution(evoObject);
     }
+}
+
+function putTypesInArray(array) {
+    let types = [];
+    for (let i = 0; i < array.length; i++) {
+        types.push(array[i].type.name);
+    }
+    return types;
 }
 
 // ANCHOR ABOUT STATS

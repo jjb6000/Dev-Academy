@@ -2,13 +2,12 @@ let url = 'https://pokeapi.co/api/v2/pokemon/';
 let Cards = {};
 Cards.names = [];
 Cards.types = []
-Cards.img = [];
+Cards.imgs = [];
 
 async function loadCardsData(url) {
     let twentyPokemons = await fetchPokemonAPI(url);
     getNames(twentyPokemons);
     getCardDetails();
-    renderCards();
 }
 
 
@@ -22,19 +21,14 @@ function getNames(twentyPokemons) {
 async function getCardDetails() {
     for (let i = 0; i < Cards.names.length; i++) {
         let pokemonObject = await fetchPokemonAPI(Cards.names[i].url);
+        Cards.imgs.push(pokemonObject.sprites.front_default);
         Cards.types.push(putTypesInArray(pokemonObject.types));
-        Cards.img.push(pokemonObject.sprites.front_default);
     }
+    renderCards(Cards);
 }
 
 
-function putTypesInArray(array) {
-    let types = [];
-    for (let i = 0; i < array.length; i++) {
-        types.push(array[i].type.name);
-    }
-    return types;
-}
+
 
 
 function defineColor(params) {
@@ -51,10 +45,17 @@ function colorOrder() {
 }
 
 
-function renderCards() {
+function renderCards(Cards) {
     cardSection.innerHTML = ''
     for (let i = 0; i < Cards.names.length; i++) {
-        cardSection.innerHTML += getCardSectionHTML(Cards.names[i].name, Cards.img[i], i);
-        
+        cardSection.innerHTML += getCardSectionHTML(Cards.names[i].name, Cards.imgs[i], i);
+        addTypeTags(Cards.types[i], 'tagdiv' + i)
+    }
+}
+
+
+function addTypeTags(array, id) {
+    for (let i = 0; i < array.length; i++) {
+        document.getElementById(id).innerHTML += loadTagHTML(array[i]);
     }
 }
