@@ -19,12 +19,22 @@ function getNames(twentyPokemons) {
 
 
 async function getCardDetails() {
+    let progress = 0;
     for (let i = 0; i < Cards.names.length; i++) {
         let pokemonObject = await fetchPokemonAPI(Cards.names[i].url);
         Cards.imgs.push(pokemonObject.sprites.front_default);
         Cards.types.push(putTypesInArray(pokemonObject.types));
+        progress+=5
+        setProgressBar('flex', String(progress))
     }
     renderCards(Cards);
+    setProgressBar('none', '0')
+}
+
+
+function setProgressBar(display, progress) {
+    document.getElementById('pBarContainer').style.display = display;
+    document.getElementById('pBar').value = progress;
 }
 
 
