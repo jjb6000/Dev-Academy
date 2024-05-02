@@ -34,6 +34,7 @@ function clickWasOnAMenuItem(childrenOfClickedContainer) {
 }
 
 
+
 function removeNavbarSelect() {
     let array = document.getElementById('slider').children;
     for (let i = 0; i < array.length; i++) {

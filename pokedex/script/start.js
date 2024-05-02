@@ -28,9 +28,6 @@ async function getCardDetails() {
 }
 
 
-
-
-
 function defineColor(params) {
     // group pokemons in arrays to define which groups need same color
 
@@ -59,3 +56,16 @@ function addTypeTags(array, id) {
         document.getElementById(id).innerHTML += loadTagHTML(array[i]);
     }
 }
+
+
+
+cardSection.addEventListener('click', (e) => {
+    if (clickWasOnCard(e.target.id)) {
+        loadPokemonPage(e.target.id)
+    };
+})
+
+function clickWasOnCard(id) {
+    return id != 'cardSection'
+}
+

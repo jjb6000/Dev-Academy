@@ -1,8 +1,10 @@
-function getCardSectionHTML(name, imgSrc, id) {
+function getCardSectionHTML(name, imgSrc, i) {
     return /*html*/`
-        <div id="${id}" class="card">
-           <h4>${name}</h4>
-            <div id="${'tagdiv' + id}"></div>
+        <div id="${name}" class="card">
+            <div>
+                <h4>${name}</h4>
+                <div id="${'tagdiv' + i}"></div>
+            </div>
             <img src="${imgSrc}" alt="">
         </div>
     `
