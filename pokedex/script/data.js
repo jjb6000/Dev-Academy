@@ -1,6 +1,8 @@
 let pokemonObject;
 let currentPokemon;
 let evoObject;
+const cardSection = document.getElementById('cardSection');
+
 
 let labels = ['HP', 'Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed'];
 let stats;

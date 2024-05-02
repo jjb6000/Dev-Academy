@@ -126,7 +126,8 @@ tr {
 }
 
 .card {
-    background-color: #FB6C6C;
+    /* background-color: #FB6C6C; */
+    background-color: white;
     height: 100px;
     width: 160px;
     border-radius: 16px;

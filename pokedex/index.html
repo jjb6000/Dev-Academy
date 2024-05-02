@@ -14,7 +14,7 @@
     <title>Pokedex App</title>
 </head>
 
-<body>
+<body onload="loadCardsData(url)">
     <div class="start-page">
         <section class="card-header-section standard-padding">
             <div class="menu-bar">
@@ -26,12 +26,8 @@
             </div>          
         </section>
 
-        <section class="cards-section">
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
+        <section id="cardSection" class="cards-section">
+
         </section>
 
     </div>

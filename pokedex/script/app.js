@@ -4,16 +4,17 @@
 async function loadPokemonPage(pokemon) {
     await getPokemon('https://pokeapi.co/api/v2/pokemon/' + pokemon);
     document.getElementById('titleContainer').innerHTML = loadPokemonTitleSection(pokemonObject['species'].name, pokemonObject.id, pokemonObject.sprites.front_default);
-    addTypeTags(pokemonObject.types);
+    addTypeTags(pokemonObject.types, 'typeTags');
+    console.log(pokemonObject)
     loadPokeImg();
     stats = document.getElementById('stats');
     loadAboutSpecs();
 }
 
 
-function addTypeTags(array) {
+function addTypeTags(array, id) {
     for (let i = 0; i < array.length; i++) {
-        document.getElementById('typeTags').innerHTML += loadTagHTML(array[i].type.name);
+        document.getElementById(id).innerHTML += loadTagHTML(array[i].type.name);
     }
 }
 

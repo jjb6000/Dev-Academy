@@ -1,4 +1,12 @@
-
+function getCardSectionHTML(name, imgSrc, id) {
+    return /*html*/`
+        <div id="${id}" class="card">
+           <h4>${name}</h4>
+            <div id="${'tagdiv' + id}"></div>
+            <img src="${imgSrc}" alt="">
+        </div>
+    `
+}
 
 function loadPokemonTitleSection(pokeName, pokeID) {
     return /*html*/`
