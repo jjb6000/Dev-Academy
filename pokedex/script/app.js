@@ -1,7 +1,8 @@
 
 // SECTION  INIT POKEMON PAGE
 
-function loadPokemonPage() {
+async function loadPokemonPage(pokemon) {
+    await getPokemon('https://pokeapi.co/api/v2/pokemon/' + pokemon);
     document.getElementById('titleContainer').innerHTML = loadPokemonTitleSection(pokemonObject['species'].name, pokemonObject.id, pokemonObject.sprites.front_default);
     addTypeTags(pokemonObject.types);
     loadPokeImg();

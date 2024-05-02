@@ -1,7 +1,6 @@
 let pokemonObject;
 let currentPokemon;
 let evoObject;
-let url = 'https://pokeapi.co/api/v2/pokemon/bulbasaur'
 
 let labels = ['HP', 'Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed'];
 let stats;
@@ -9,7 +8,7 @@ let stats;
 
 
 // ANCHOR POKEMON FETCH API
-async function getPokemon() {
+async function getPokemon(url) {
     pokemonObject = await fetchPokemonAPI(url);
     let breedingObject = await fetchPokemonAPI(pokemonObject.species.url);
     evoObject = await fetchPokemonAPI(breedingObject.evolution_chain.url)

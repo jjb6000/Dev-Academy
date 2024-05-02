@@ -44,7 +44,7 @@ function loadAboutSpecsHTML() {
 
 function getBaseStatsHTML(total) {
     return /*html*/`
-    <div>
+    <div class="chart">
         <canvas id="myChart"></canvas>
     </div>
     <div class="d-flex-start">
