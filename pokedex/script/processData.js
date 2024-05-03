@@ -8,6 +8,7 @@ async function getPokemon(url) {
     pokemonObject = await fetchPokemonAPI(url);
     let breedingObject = await fetchPokemonAPI(pokemonObject.species.url);
     let evoObject = await fetchPokemonAPI(breedingObject.evolution_chain.url)
+    console.log(evoObject)
     buildCurrentPokemon(pokemonObject, breedingObject, evoObject);
     addMovesToCurrentPokemon();
 }
