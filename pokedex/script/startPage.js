@@ -1,7 +1,7 @@
 let url = 'https://pokeapi.co/api/v2/pokemon/';
 let Cards = {};
 Cards.names = [];
-Cards.types = []
+Cards.types = [];
 Cards.imgs = [];
 
 async function loadCardsData(url) {
