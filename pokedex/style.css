@@ -111,7 +111,6 @@ tr {
     height: 2rem;
     border-radius: 16px;
     background-color: rgba(255, 255, 255, 0.266);
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .pokemon-number {
@@ -125,6 +124,13 @@ tr {
 
 .pokemon-pic img {
     width: 320px;
+}
+
+
+.more-container { 
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: 600;
 }
 
 
@@ -162,7 +168,9 @@ tr {
     width: 48px;
 }
 
-
+.more-icon {
+    width: 48px;
+}
 
 /* ANCHOR STATS SECTION */
 

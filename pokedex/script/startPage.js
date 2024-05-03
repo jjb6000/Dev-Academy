@@ -1,11 +1,13 @@
 let url = 'https://pokeapi.co/api/v2/pokemon/';
 let Cards = {};
+let twentyPokemons;
 Cards.names = [];
 Cards.types = [];
 Cards.imgs = [];
 
 async function loadCardsData(url) {
-    let twentyPokemons = await fetchPokemonAPI(url);
+    console.log(url)
+    twentyPokemons = await fetchPokemonAPI(url);
     getNames(twentyPokemons);
     getCardDetails();
 }
