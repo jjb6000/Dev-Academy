@@ -1,11 +1,5 @@
 let pokemonObject;
 let currentPokemon = {};
-const cardSection = document.getElementById('cardSection');
-const pokemonSection = document.getElementById('specs')
-
-
-let labels = ['HP', 'Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed'];
-let stats;
 
 
 

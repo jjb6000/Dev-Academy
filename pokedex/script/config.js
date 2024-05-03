@@ -1,3 +1,7 @@
+const cardSection = document.getElementById('cardSection');
+const pokemonSection = document.getElementById('specs')
+const labels = ['HP', 'Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed'];
+
 
 // ANCHOR   GRAPH CONFIGS
 const CONFIG_BG_COLOR = [
