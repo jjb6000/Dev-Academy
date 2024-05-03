@@ -34,7 +34,6 @@ function buildCurrentPokemon(pokemonObject, breedingObject, evoObject) {
     currentPokemon.imgUrl = pokemonObject.sprites.front_default;
     addAboutToCurruntPokemon(pokemonObject, breedingObject);
     addMoreStatsToCurrentPokemon(evoObject)
-
 }
 
 
@@ -55,6 +54,9 @@ function addMoreStatsToCurrentPokemon(evoObject) {
         evolve: doesItEvolve(evoObject)
     }
     if (currentPokemon.evolution.evolve) {
+        currentPokemon.evolution.evoLevel = [];
+        currentPokemon.evolution.evoImg = [];
+        currentPokemon.evolution.name = [];
         addEvolution(evoObject);
     }
 }
@@ -101,24 +103,29 @@ function doesItEvolve(evoObject) {
     }
 }
 
-function addEvolution(evoObject) {
-    if (thirdEvolutionStepTrue(evoObject)) {
-        currentPokemon.evolution.evoLevel = [evoObject.chain.evolves_to[0].evolution_details[0].min_level];
-    } else {
-        currentPokemon.evolution.evoLevel = [evoObject.chain.evolves_to[0].evolution_details[0].min_level, evoObject.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level];
-        currentPokemon.evolution.evoImg = [buildImgUrl(evoObject.chain.species.url), buildImgUrl(evoObject.chain.evolves_to[0].species.url), buildImgUrl(evoObject.chain.evolves_to[0].evolves_to[0].species.url)]
-    }
+
+function addEvolution(evoObject) {    
+    currentPokemon.evolution.evoLevel = [evoObject.chain.evolves_to[0].evolution_details[0].min_level];
+    currentPokemon.evolution.evoImg = [currentPokemon.imgUrl, buildImgUrl(evoObject.chain.evolves_to[0].species.url)];
+    currentPokemon.evolution.name = [evoObject.chain.species.name, evoObject.chain.evolves_to[0].species.name];
+    checkForThirdEvoStep(evoObject)
+}
+
+function checkForThirdEvoStep(evoObject) {
+    if (evoObject.chain.evolves_to[0].evolves_to.length != 0) {
+        currentPokemon.evolution.evoLevel.push(evoObject.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level);
+        currentPokemon.evolution.evoImg.push(buildImgUrl(evoObject.chain.evolves_to[0].evolves_to[0].species.url));
+        currentPokemon.evolution.name.push(evoObject.chain.evolves_to[0].evolves_to[0].species.name);
+    } 
 }
 
 
 function buildImgUrl(str) {
-    return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + str.charAt(str.length - 2) + '.png'
+        const parts = str.split("/");
+        const numberString = parts[parts.length - 2];
+    return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + numberString + '.png'
 }
 
-
-function thirdEvolutionStepTrue(evoObject) {
-    return evoObject.chain.evolves_to[0].evolves_to.length == 0
-}
 
 
 // ANCHOR MOVES
