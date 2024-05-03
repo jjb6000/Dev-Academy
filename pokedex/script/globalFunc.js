@@ -6,3 +6,17 @@ function addOrRemoveClasses(set, id, cssClass) {
     }
     setClass[set]();
 }
+
+
+function putTypesInArray(array) {
+    let types = [];
+    for (let i = 0; i < array.length; i++) {
+        types.push(array[i].type.name);
+    }
+    return types;
+}
+
+
+function convertToString(array) {
+    return array.toString().replaceAll(',', ', ')
+}

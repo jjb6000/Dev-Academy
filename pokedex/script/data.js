@@ -31,9 +31,9 @@ function errorFunction() {
 }
 
 
+// ANCHOR build currentPokemon object
 // Function to fill json w/ all information from multiple endpoints so all the loops and conversions are only called once 
 function buildCurrentPokemon(pokemonObject, breedingObject, evoObject) {
-    console.log(evoObject)
     currentPokemon.name = pokemonObject['species'].name;
     currentPokemon.types = putTypesInArray(pokemonObject.types);
     currentPokemon.id = pokemonObject.id;
@@ -59,13 +59,7 @@ function addStatisticsToCurruntPokemon(pokemonObject, breedingObject, evoObject)
     }
 }
 
-function putTypesInArray(array) {
-    let types = [];
-    for (let i = 0; i < array.length; i++) {
-        types.push(array[i].type.name);
-    }
-    return types;
-}
+
 
 // ANCHOR ABOUT STATS
 function returnMultipleAbilitiesInOneString(array) {
@@ -85,10 +79,6 @@ function returnMultipleEggGroupsInOneString(array) {
     return convertToString(eggArray);
 }
 
-
-function convertToString(array) {
-    return array.toString().replaceAll(',', ', ')
-}
 
 
 // ANCHOR BASI STATS
