@@ -106,7 +106,7 @@ function doesItEvolve(evoObject) {
 
 function addEvolution(evoObject) {    
     currentPokemon.evolution.evoLevel = [evoObject.chain.evolves_to[0].evolution_details[0].min_level];
-    currentPokemon.evolution.evoImg = [currentPokemon.imgUrl, buildImgUrl(evoObject.chain.evolves_to[0].species.url)];
+    currentPokemon.evolution.evoImg = [buildImgUrl(evoObject.chain.species.url), buildImgUrl(evoObject.chain.evolves_to[0].species.url)];
     currentPokemon.evolution.name = [evoObject.chain.species.name, evoObject.chain.evolves_to[0].species.name];
     checkForThirdEvoStep(evoObject)
 }
