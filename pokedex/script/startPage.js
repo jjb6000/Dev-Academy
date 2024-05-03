@@ -1,11 +1,11 @@
 let url = 'https://pokeapi.co/api/v2/pokemon/';
 let Cards = {};
 let twentyPokemons;
-Cards.names = [];
-Cards.types = [];
-Cards.imgs = [];
 
 async function loadCardsData(url) {
+    Cards.names = [];
+    Cards.types = [];
+    Cards.imgs = [];
     twentyPokemons = await fetchPokemonAPI(url);
     getNames(twentyPokemons);
     getCardDetails();
@@ -14,7 +14,7 @@ async function loadCardsData(url) {
 
 function getNames(twentyPokemons) {
     for (let i = 0; i < twentyPokemons.results.length; i++) {
-        Cards.names.push(twentyPokemons.results[i]);    
+        Cards.names.push(twentyPokemons.results[i]);
     }
 }
 
@@ -25,7 +25,7 @@ async function getCardDetails() {
         let pokemonObject = await fetchPokemonAPI(Cards.names[i].url);
         Cards.imgs.push(pokemonObject.sprites.front_default);
         Cards.types.push(putTypesInArray(pokemonObject.types));
-        progress+=5
+        progress += 5
         setProgressBar('flex', String(progress))
     }
     renderCards(Cards);
