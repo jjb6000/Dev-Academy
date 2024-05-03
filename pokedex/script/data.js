@@ -1,7 +1,8 @@
 let pokemonObject;
-let currentPokemon;
+let currentPokemon = {};
 let evoObject;
 const cardSection = document.getElementById('cardSection');
+const pokemonSection = document.getElementById('specs')
 
 
 let labels = ['HP', 'Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed'];
@@ -29,29 +30,32 @@ function errorFunction() {
     console.log('Fehler aufgetreten',);
 }
 
+
 // Function to fill json w/ all information from multiple endpoints so all the loops and conversions are only called once 
 function buildCurrentPokemon(pokemonObject, breedingObject, evoObject) {
-    currentPokemon = {
-        name: pokemonObject['species'].name,
-        types: putTypesInArray(pokemonObject.types),
-        id: pokemonObject.id,
-        imgUrl: pokemonObject.sprites.front_default,
-        about: {
-            height: pokemonObject.height,
-            weight: pokemonObject.weight,
-            abilities: returnMultipleAbilitiesInOneString(pokemonObject.abilities),
-            egg_groups: returnMultipleEggGroupsInOneString(breedingObject.egg_groups),
-            egg_cycle: breedingObject.hatch_counter
-        },
-        basicStats: getBasicStatsFromAPI(),
-        evolution: {
-            evolve: doesItEvolve(evoObject)
-        },
-        moves: []
-    }
-
+    console.log(evoObject)
+    currentPokemon.name = pokemonObject['species'].name;
+    currentPokemon.types = putTypesInArray(pokemonObject.types);
+    currentPokemon.id = pokemonObject.id;
+    currentPokemon.imgUrl = pokemonObject.sprites.front_default;
+    addStatisticsToCurruntPokemon(pokemonObject, breedingObject, evoObject);
     if (currentPokemon.evolution.evolve) {
         addEvolution(evoObject);
+    }
+}
+
+
+function addStatisticsToCurruntPokemon(pokemonObject, breedingObject, evoObject) {
+    currentPokemon.about = {
+        height: pokemonObject.height,
+        weight: pokemonObject.weight,
+        abilities: returnMultipleAbilitiesInOneString(pokemonObject.abilities),
+        egg_groups: returnMultipleEggGroupsInOneString(breedingObject.egg_groups),
+        egg_cycle: breedingObject.hatch_counter
+    }
+    currentPokemon.basicStats = getBasicStatsFromAPI();
+    currentPokemon.evolution = {
+        evolve: doesItEvolve(evoObject)
     }
 }
 
@@ -129,10 +133,11 @@ function thirdEvolutionStepTrue(evoObject) {
 
 // ANCHOR MOVES
 function addMovesToCurrentPokemon() {
+    currentPokemon.moves = []
     for (let i = 0; i < pokemonObject.moves.length; i++) {
         if (pokemonObject.moves[i].version_group_details[0].level_learned_at >= 1) {
             currentPokemon.moves.push([pokemonObject.moves[i].version_group_details[0].level_learned_at, pokemonObject.moves[i].move.name]);
-        }   
+        }
     }
 }
 

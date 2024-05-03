@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="icons/logo.svg">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
-    <script defer src="script/data.js"></script>
+    <script defer src="script/data.js?v=1.1"></script>
     <script defer src="script/chart.js?v=1.0"></script>
-    <script defer src="script/templates.js"></script>
-    <script defer src="script/start.js"></script>
-    <script defer src="script/app.js"></script>
+    <script defer src="script/templates.js?v=1.0"></script>
+    <script defer src="script/start.js?v=1.0"></script>
+    <script defer src="script/pokePage.js?v=1.2"></script>
+    <script defer src="script/globalFunc.js?v=1.1"></script>
     <title>Pokedex App</title>
 </head>
 
@@ -22,10 +23,10 @@
         <progress id="pBar" value="32" max="100"></progress>
     </div>
 
-    <div class="start-page">
+    <div id="startPage" class="start-page">
         <section class="card-header-section standard-padding">
             <div class="menu-bar">
-                <img class="clickable" src="icons/back.svg" alt=""><img class="clickable" src="icons/burger.svg" alt="">
+                <img class="clickable lightgrey" src="icons/back_g.svg" alt=""><img class="clickable" src="icons/burger.svg" alt="">
             </div>
 
             <div class="title-container">
@@ -40,10 +41,10 @@
     </div>
 
 
-    <div class="pokemon-details">
-        <section class="card-header-section standard-padding">
+    <div id="specs" class="pokemon-specs">
+        <section class="card-header-section white standard-padding">
             <div class="menu-bar">
-                <img class="clickable" src="icons/back.svg" alt=""><img class="clickable" src="icons/heart.svg" alt="">
+                <img onclick="hideOrShowSpecsOverlay('none', 'remove')" class="clickable" src="icons/back.svg" alt=""><img class="clickable" src="icons/heart.svg" alt="">
             </div>
     
             <div class="title-container" id="titleContainer">

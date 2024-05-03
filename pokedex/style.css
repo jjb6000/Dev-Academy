@@ -6,13 +6,16 @@ body {
     margin: 0;
     font-family: sans-serif;
     font-size: 16px;
-    background-color: #48D0B0;
 }
 
 /* ANCHOR STANDARD CLASSES */
 
 h1 {
     font-size: 2rem;
+}
+
+.d-none {
+    display: none;
 }
 
 .grey-font {
@@ -62,6 +65,12 @@ tr {
     width: 100%;
 }
 
+.white {
+    color: white;
+}
+
+
+/* ANCHOR Start SECTION */
 .progress-bar {
     display: flex;
     flex-direction: column;
@@ -72,11 +81,6 @@ tr {
 
 
 /* ANCHOR HEADER SECTION */
-
-.card-header-section {
-    color: white;
-}
-
 
 .menu-bar {    
     display: flex;
@@ -125,6 +129,12 @@ tr {
 
 
 /* ANCHOR cards section */
+.pokemon-specs {
+    display: none;
+    background-color: #48D0B0;
+}
+
+
 .cards-section {
     display: flex;
     justify-content: center;
@@ -135,7 +145,8 @@ tr {
 
 .card {
     /* background-color: #FB6C6C; */
-    background-color: white;
+    background-color: #48D0B0;
+    color: white;
     height: 128px;
     width: 192px;
     border-radius: 16px;
@@ -226,3 +237,8 @@ tr {
 }
 
 
+@media (max-width: 768px) {
+    .hide-on-mobile {
+        display: none;
+    }
+}

@@ -69,13 +69,4 @@ function addTypeTags(array, id) {
 
 
 
-cardSection.addEventListener('click', (e) => {
-    if (clickWasOnCard(e.target.id)) {
-        loadPokemonPage(e.target.id)
-    };
-})
-
-function clickWasOnCard(id) {
-    return id != 'cardSection'
-}
 
