@@ -42,7 +42,8 @@ function renderCards(Cards) {
     cardSection.innerHTML = ''
     for (let i = 0; i < Cards.names.length; i++) {
         cardSection.innerHTML += getCardSectionHTML(Cards.names[i].name, Cards.imgs[i], i);
-        addTypeTags(Cards.types[i], 'tagdiv' + i)
+        addTypeTags(Cards.types[i], 'tagdiv' + i);
+        defineColor(Cards.names[i].name, Cards.types[i][0])
     }
 }
 

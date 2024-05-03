@@ -20,3 +20,8 @@ function putTypesInArray(array) {
 function convertToString(array) {
     return array.toString().replaceAll(',', ', ')
 }
+
+
+function defineColor(id, type) {
+    document.getElementById(id).style.backgroundColor = TYPE_COLORS[type];
+}
