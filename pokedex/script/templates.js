@@ -1,6 +1,6 @@
 function getCardSectionHTML(name, imgSrc, i) {
     return /*html*/`
-        <div onclick="loadPokemonPage(event)" id="${name}" class="card">
+        <div onclick="loadPokemonPage('${name}')" id="${name}" class="card">
             <div>
                 <h4>${name}</h4>
                 <div id="${'tagdiv' + i}"></div>

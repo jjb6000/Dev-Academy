@@ -2,8 +2,8 @@
 // SECTION  INIT POKEMON PAGE
 const stats = document.getElementById('stats');
 
-async function loadPokemonPage(e) {
-    await getPokemon('https://pokeapi.co/api/v2/pokemon/' + e.target.id);
+async function loadPokemonPage(id) {
+    await getPokemon('https://pokeapi.co/api/v2/pokemon/' + id);
     document.getElementById('titleContainer').innerHTML = loadPokemonTitleSection(pokemonObject['species'].name, pokemonObject.id, pokemonObject.sprites.front_default);
     addTypeTags(currentPokemon.types, 'typeTags');
     defineColor('pokeBg', currentPokemon.types[0])

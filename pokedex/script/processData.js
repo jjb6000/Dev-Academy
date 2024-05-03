@@ -104,7 +104,7 @@ function doesItEvolve(evoObject) {
 }
 
 
-function addEvolution(evoObject) {    
+function addEvolution(evoObject) {
     currentPokemon.evolution.evoLevel = [evoObject.chain.evolves_to[0].evolution_details[0].min_level];
     currentPokemon.evolution.evoImg = [buildImgUrl(evoObject.chain.species.url), buildImgUrl(evoObject.chain.evolves_to[0].species.url)];
     currentPokemon.evolution.name = [evoObject.chain.species.name, evoObject.chain.evolves_to[0].species.name];
@@ -116,13 +116,13 @@ function checkForThirdEvoStep(evoObject) {
         currentPokemon.evolution.evoLevel.push(evoObject.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level);
         currentPokemon.evolution.evoImg.push(buildImgUrl(evoObject.chain.evolves_to[0].evolves_to[0].species.url));
         currentPokemon.evolution.name.push(evoObject.chain.evolves_to[0].evolves_to[0].species.name);
-    } 
+    }
 }
 
 
 function buildImgUrl(str) {
-        const parts = str.split("/");
-        const numberString = parts[parts.length - 2];
+    const strRemovedUrl = str.replace('https://pokeapi.co/api/v2/pokemon-species/', '');
+    const numberString = strRemovedUrl.replace('/', '');
     return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + numberString + '.png'
 }
 
