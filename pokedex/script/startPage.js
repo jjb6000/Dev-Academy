@@ -38,20 +38,6 @@ function setProgressBar(display, progress) {
 }
 
 
-function defineColor(params) {
-    // group pokemons in arrays to define which groups need same color
-
-    // ODER based on https://pokemondb.net/type/poison dual type attack oder pokedex entries? <- wahrscheinlich zu ungenau
-}
-
-
-function colorOrder() {
-    
-    // if last color green
-    //  then red , if red then blue, if blue then yellow
-}
-
-
 function renderCards(Cards) {
     cardSection.innerHTML = ''
     for (let i = 0; i < Cards.names.length; i++) {
