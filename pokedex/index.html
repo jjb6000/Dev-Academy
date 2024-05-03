@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="icons/logo.svg">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
-    <script defer src="script/config.js?v=1.2"></script>
+    <script defer src="script/config.js?v=1.3"></script>
     <script defer src="script/processData.js?v=1.3"></script>
     <script defer src="script/chart.js?v=1.0"></script>
     <script defer src="script/templates.js?v=1.1"></script>
-    <script defer src="script/startPage.js?v=1.2"></script>
-    <script defer src="script/pokePage.js?v=1.4"></script>
+    <script defer src="script/startPage.js?v=1.5"></script>
+    <script defer src="script/pokePage.js?v=1.5"></script>
     <script defer src="script/globalFunc.js?v=1.2"></script>
     <title>Pokedex App</title>
 </head>
@@ -27,7 +27,7 @@
     <div id="startPage" class="start-page">
         <section class="card-header-section standard-padding">
             <div class="menu-bar">
-                <img class="clickable lightgrey" src="icons/back_g.svg" alt=""><img class="clickable" src="icons/burger.svg" alt="">
+                <img id="resetBtn" src="icons/back_g.svg" alt=""><img class="clickable" src="icons/burger.svg" alt="">
             </div>
 
             <div class="title-container">
@@ -39,7 +39,7 @@
 
         </section>
 
-        <div onclick="loadCardsData(twentyPokemons.next)" class="d-flex-all-center standard-padding clickable">
+        <div onclick="loadCardsData(twentyPokemons.next); setResetButton()" class="d-flex-all-center standard-padding clickable">
             <div class="more-container">
                 <div>Load more</div>
                 <img class="more-icon" src="icons/expand_more.svg" alt="">
