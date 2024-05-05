@@ -3,9 +3,11 @@ function getCardSectionHTML(name, imgSrc, i) {
         <div onclick="loadPokemonPage('${name}')" id="${name}" class="card clickable">
             <div>
                 <h4>${name}</h4>
-                <div id="${'tagdiv' + i}"></div>
+                <div class="tags" id="${'tagdiv' + i}"></div>
             </div>
-            <img src="${imgSrc}" alt="">
+            <div class="card-img-container">
+                <img src="${imgSrc}" alt="">
+            </div>
         </div>
     `
 }

@@ -80,13 +80,6 @@ function renderCards(Cards) {
 }
 
 
-function addTypeTags(array, id) {
-    for (let i = 0; i < array.length; i++) {
-        document.getElementById(id).innerHTML += loadTagHTML(array[i]);
-    }
-}
-
-
 function setResetButton() {
     resetBtn.classList.add('clickable');
     resetBtn.src = 'icons/back_b.svg';

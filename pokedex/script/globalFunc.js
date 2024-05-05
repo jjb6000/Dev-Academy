@@ -17,6 +17,13 @@ function putTypesInArray(array) {
 }
 
 
+function addTypeTags(array, id) {
+    for (let i = 0; i < array.length; i++) {
+        document.getElementById(id).innerHTML += loadTagHTML(array[i]);
+    }
+}
+
+
 function convertToString(array) {
     return array.toString().replaceAll(',', ', ')
 }
