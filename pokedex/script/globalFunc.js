@@ -25,3 +25,8 @@ function convertToString(array) {
 function defineColor(id, type) {
     document.getElementById(id).style.backgroundColor = TYPE_COLORS[type];
 }
+
+
+function stopP(event) {
+    event.stopPropagation();
+}

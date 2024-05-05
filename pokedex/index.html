@@ -17,7 +17,7 @@
     <title>Pokedex App</title>
 </head>
 
-<body onload="loadCardsData(url)">
+<body onclick="showMenu('none', false)" onload="loadCardsData(url)">
 
     <div class="progress-bar standard-padding" id="pBarContainer">
         <label for="pBar">Loading Pokemons:</label>
@@ -27,7 +27,7 @@
     <div id="startPage" class="start-page">
         <section class="card-header-section standard-padding">
             <div class="menu-bar">
-                <img id="resetBtn" src="icons/back_g.svg" alt=""><img class="clickable" src="icons/burger.svg" alt="">
+                <img id="resetBtn" src="icons/back_g.svg" alt=""><img onclick="openOrClose(); stopP(event)" class="clickable" src="icons/burger.svg" alt="">
             </div>
 
             <div class="title-container">
@@ -35,11 +35,15 @@
             </div>          
         </section>
 
+        <div class="mob-overlay" id="mobMenu">
+            <p class="clickable" id="navFav" onclick="showMenu('none', false)">Favourits</p>
+        </div>
+
         <section id="cardSection" class="cards-section">
 
         </section>
 
-        <div onclick="loadCardsData(twentyPokemons.next); setResetButton()" class="d-flex-all-center standard-padding clickable">
+        <div id="moreBtn" class="d-flex-all-center standard-padding clickable">
             <div class="more-container">
                 <div>Load more</div>
                 <img class="more-icon" src="icons/expand_more.svg" alt="">

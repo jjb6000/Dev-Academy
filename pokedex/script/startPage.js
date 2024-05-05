@@ -1,6 +1,37 @@
 let url = 'https://pokeapi.co/api/v2/pokemon/';
 let Cards = {};
 let twentyPokemons;
+let mobMenu = document.getElementById('mobMenu');
+let openMenu = false;
+
+
+
+function openOrClose() {
+    if (openMenu == false) {
+        showMenu('flex', true);
+    } else {
+        showMenu('none', false);
+    }
+}
+
+
+function showMenu(attr, boolean) {
+    mobMenu.style.display = attr;
+    openMenu = boolean
+}
+
+
+document.getElementById('moreBtn').addEventListener('click', () => {
+    toStart();
+    loadCardsData(twentyPokemons.next); 
+    setResetButton(); 
+})
+
+
+function toStart() {
+    window.scrollTo(0, 0);
+}
+
 
 async function loadCardsData(url) {
     Cards.names = [];
