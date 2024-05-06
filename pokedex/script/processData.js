@@ -1,15 +1,15 @@
-let pokemonObject;
+let apiData;
 let currentPokemon = {};
 
 
 
 // ANCHOR POKEMON FETCH API
 async function getPokemon(url) {
-    pokemonObject = await fetchPokemonAPI(url);
-    let breedingObject = await fetchPokemonAPI(pokemonObject.species.url);
-    let evoObject = await fetchPokemonAPI(breedingObject.evolution_chain.url)
-    console.log(evoObject)
-    buildCurrentPokemon(pokemonObject, breedingObject, evoObject);
+    apiData = await fetchPokemonAPI(url);
+    let apiDataBreeding = await fetchPokemonAPI(apiData.species.url);
+    let apiDataEvolution = await fetchPokemonAPI(apiDataBreeding.evolution_chain.url)
+    console.log(apiDataEvolution)
+    buildCurrentPokemon(apiData, apiDataBreeding, apiDataEvolution);
     addMovesToCurrentPokemon();
 }
 
@@ -26,38 +26,48 @@ function errorFunction() {
 
 
 // ANCHOR build currentPokemon object
-// Function to fill json w/ all information from multiple endpoints so all the loops and conversions are only called once 
-function buildCurrentPokemon(pokemonObject, breedingObject, evoObject) {
-    currentPokemon.name = pokemonObject['species'].name;
-    currentPokemon.types = putTypesInArray(pokemonObject.types);
-    currentPokemon.id = pokemonObject.id;
-    currentPokemon.imgUrl = pokemonObject.sprites.front_default;
-    addAboutToCurruntPokemon(pokemonObject, breedingObject);
-    addMoreStatsToCurrentPokemon(evoObject)
+// Function to fill json w/ all information from multiple endpoints so all the loops and checks are only called once 
+function buildCurrentPokemon(apiData, apiDataBreeding, apiDataEvolution) {
+    currentPokemon.name = apiData['species'].name;
+    currentPokemon.types = putTypesInArray(apiData.types);
+    currentPokemon.id = apiData.id;
+    currentPokemon.imgUrl = apiData.sprites.front_default;
+    currentPokemon.largeImg = checkImg();
+    addAboutToCurruntPokemon(apiData, apiDataBreeding);
+    addMoreStatsToCurrentPokemon(apiDataEvolution)
 }
 
 
-function addAboutToCurruntPokemon(pokemonObject, breedingObject) {
+function addAboutToCurruntPokemon(apiData, apiDataBreeding) {
     currentPokemon.about = {
-        height: pokemonObject.height,
-        weight: pokemonObject.weight,
-        abilities: returnMultipleAbilitiesInOneString(pokemonObject.abilities),
-        egg_groups: returnMultipleEggGroupsInOneString(breedingObject.egg_groups),
-        egg_cycle: breedingObject.hatch_counter
+        height: apiData.height,
+        weight: apiData.weight,
+        abilities: returnMultipleAbilitiesInOneString(apiData.abilities),
+        egg_groups: returnMultipleEggGroupsInOneString(apiDataBreeding.egg_groups),
+        egg_cycle: apiDataBreeding.hatch_counter
     }
 }
 
 
-function addMoreStatsToCurrentPokemon(evoObject) {
+function addMoreStatsToCurrentPokemon(apiDataEvolution) {
     currentPokemon.basicStats = getBasicStatsFromAPI();
     currentPokemon.evolution = {
-        evolve: doesItEvolve(evoObject)
+        evolve: doesItEvolve(apiDataEvolution)
     }
     if (currentPokemon.evolution.evolve) {
         currentPokemon.evolution.evoLevel = [];
         currentPokemon.evolution.evoImg = [];
         currentPokemon.evolution.name = [];
-        addEvolution(evoObject);
+        addEvolution(apiDataEvolution);
+    }
+}
+
+
+function checkImg() {
+    if (apiData.sprites.other.dream_world.front_default == null) {
+        return apiData.sprites.other.home.front_shiny;
+    } else {
+        return apiData.sprites.other.dream_world.front_default;
     }
 }
 
@@ -86,8 +96,8 @@ function returnMultipleEggGroupsInOneString(array) {
 // ANCHOR BASI STATS
 function getBasicStatsFromAPI() {
     let basicStats = [];
-    for (let i = 0; i < pokemonObject.stats.length; i++) {
-        basicStats.push(pokemonObject.stats[i].base_stat);
+    for (let i = 0; i < apiData.stats.length; i++) {
+        basicStats.push(apiData.stats[i].base_stat);
     }
     return basicStats
 }
@@ -95,8 +105,8 @@ function getBasicStatsFromAPI() {
 
 
 // ANCHOR EVO
-function doesItEvolve(evoObject) {
-    if (evoObject.chain.evolves_to.length == 0) {
+function doesItEvolve(apiDataEvolution) {
+    if (apiDataEvolution.chain.evolves_to.length == 0) {
         return false;
     } else {
         return true;
@@ -104,18 +114,19 @@ function doesItEvolve(evoObject) {
 }
 
 
-function addEvolution(evoObject) {
-    currentPokemon.evolution.evoLevel = [evoObject.chain.evolves_to[0].evolution_details[0].min_level];
-    currentPokemon.evolution.evoImg = [buildImgUrl(evoObject.chain.species.url), buildImgUrl(evoObject.chain.evolves_to[0].species.url)];
-    currentPokemon.evolution.name = [evoObject.chain.species.name, evoObject.chain.evolves_to[0].species.name];
-    checkForThirdEvoStep(evoObject)
+function addEvolution(apiDataEvolution) {
+    currentPokemon.evolution.evoLevel = [apiDataEvolution.chain.evolves_to[0].evolution_details[0].min_level];
+    currentPokemon.evolution.evoImg = [buildImgUrl(apiDataEvolution.chain.species.url), buildImgUrl(apiDataEvolution.chain.evolves_to[0].species.url)];
+    currentPokemon.evolution.name = [apiDataEvolution.chain.species.name, apiDataEvolution.chain.evolves_to[0].species.name];
+    checkForThirdEvoStep(apiDataEvolution)
 }
 
-function checkForThirdEvoStep(evoObject) {
-    if (evoObject.chain.evolves_to[0].evolves_to.length != 0) {
-        currentPokemon.evolution.evoLevel.push(evoObject.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level);
-        currentPokemon.evolution.evoImg.push(buildImgUrl(evoObject.chain.evolves_to[0].evolves_to[0].species.url));
-        currentPokemon.evolution.name.push(evoObject.chain.evolves_to[0].evolves_to[0].species.name);
+
+function checkForThirdEvoStep(apiDataEvolution) {
+    if (apiDataEvolution.chain.evolves_to[0].evolves_to.length != 0) {
+        currentPokemon.evolution.evoLevel.push(apiDataEvolution.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level);
+        currentPokemon.evolution.evoImg.push(buildImgUrl(apiDataEvolution.chain.evolves_to[0].evolves_to[0].species.url));
+        currentPokemon.evolution.name.push(apiDataEvolution.chain.evolves_to[0].evolves_to[0].species.name);
     }
 }
 
@@ -131,9 +142,9 @@ function buildImgUrl(str) {
 // ANCHOR MOVES
 function addMovesToCurrentPokemon() {
     currentPokemon.moves = []
-    for (let i = 0; i < pokemonObject.moves.length; i++) {
-        if (pokemonObject.moves[i].version_group_details[0].level_learned_at >= 1) {
-            currentPokemon.moves.push([pokemonObject.moves[i].version_group_details[0].level_learned_at, pokemonObject.moves[i].move.name]);
+    for (let i = 0; i < apiData.moves.length; i++) {
+        if (apiData.moves[i].version_group_details[0].level_learned_at >= 1) {
+            currentPokemon.moves.push([apiData.moves[i].version_group_details[0].level_learned_at, apiData.moves[i].move.name]);
         }
     }
     currentPokemon.moves.sort((a, b) => a[0] - b[0])

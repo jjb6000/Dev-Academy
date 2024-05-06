@@ -4,9 +4,9 @@ const stats = document.getElementById('stats');
 
 async function loadPokemonPage(id) {
     await getPokemon('https://pokeapi.co/api/v2/pokemon/' + id);
-    document.getElementById('titleContainer').innerHTML = loadPokemonTitleSection(pokemonObject['species'].name, pokemonObject.id, pokemonObject.sprites.front_default);
+    document.getElementById('titleContainer').innerHTML = loadPokemonTitleSection(currentPokemon.name, currentPokemon.id, currentPokemon.imgUrl);
     addTypeTags(currentPokemon.types, 'typeTags');
-    defineColor('pokeBg', currentPokemon.types[0])
+    defineColor('specs', currentPokemon.types[0])
     loadPokeImg();
     loadAboutSpecs();
     hideOrShowSpecsOverlay('block', 'add')
@@ -19,7 +19,7 @@ function hideOrShowSpecsOverlay(attr, set) {
 
 
 function loadPokeImg() {
-    setIcon('pokePic', pokemonObject.sprites.other.dream_world.front_default);
+    setIcon('pokePic', currentPokemon.largeImg);
 }
 
 // !SECTION END
@@ -91,7 +91,7 @@ function loadMoves() {
     stats.innerHTML = getMoveTableHTML();
     let array = currentPokemon.moves;
     for (let i = 0; i < array.length; i++) {
-        document.getElementById('moveTable').innerHTML += addMoveTableRow(array[i][1], array[i][0]);        
+        document.getElementById('moveTable').innerHTML += addMoveTableRow(array[i][1], array[i][0]);
     }
 }
 

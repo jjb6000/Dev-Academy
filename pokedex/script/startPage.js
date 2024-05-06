@@ -115,9 +115,9 @@ function getNames(twentyPokemons) {
 async function getCardDetails() {
     let progress = 0;
     for (let i = 0; i < Cards.names.length; i++) {
-        let pokemonObject = await fetchPokemonAPI(Cards.names[i].url);
-        Cards.imgs.push(pokemonObject.sprites.front_default);
-        Cards.types.push(putTypesInArray(pokemonObject.types));
+        let apiData = await fetchPokemonAPI(Cards.names[i].url);
+        Cards.imgs.push(apiData.sprites.front_default);
+        Cards.types.push(putTypesInArray(apiData.types));
         progress += 5
         setProgressBar('flex', String(progress))
     }
