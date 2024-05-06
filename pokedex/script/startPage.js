@@ -3,6 +3,7 @@ let Cards = {};
 let twentyPokemons;
 let mobMenu = document.getElementById('mobMenu');
 let openMenu = false;
+let favArray = JSON.parse(localStorage.getItem('favouritePokemons')) || [];
 
 
 // ANCHOR MENU FUNCTIONS

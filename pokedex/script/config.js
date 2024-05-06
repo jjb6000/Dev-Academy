@@ -37,7 +37,6 @@ const CONFIG_CHART_OPTIONS = {
 
 
 // ANCHOR TYPE COLORS
-
 const TYPE_COLORS = {
     "normal": "#A8A77A",
     "fire": "#FB6C6C",

@@ -1,4 +1,3 @@
-
 // SECTION  INIT POKEMON PAGE
 const stats = document.getElementById('stats');
 
@@ -9,6 +8,7 @@ async function loadPokemonPage(id) {
     defineColor('specs', currentPokemon.types[0])
     loadPokeImg();
     loadAboutSpecs();
+    heartBtnCheck()
     hideOrShowSpecsOverlay('flex', 'add')
 }
 
@@ -26,14 +26,12 @@ function loadPokeImg() {
 
 // SECTION POKEMON STATISTICS FUNCTIONS
 // ANCHOR STATS NAVBAR 
-
 document.getElementById('slider').addEventListener('click', (e) => {
     if (clickWasOnAMenuItem(e.target.children.length)) {
         removeNavbarSelect();
         e.target.classList.add('current-stats')
     }
 })
-
 
 
 function clickWasOnAMenuItem(childrenOfClickedContainer) {
@@ -94,10 +92,35 @@ function loadMoves() {
         document.getElementById('moveTable').innerHTML += addMoveTableRow(array[i][1], array[i][0]);
     }
 }
-
-
-
-
-
 // !SECTION END
 
+
+// SECTION FAVOURIT POKEMONS
+function updateHeart(src, onclickFunction) {
+    setIcon('heart', src)
+    document.getElementById('heart').setAttribute('onclick', onclickFunction)
+}
+
+
+function heartBtnCheck() {
+    if (favArray.indexOf(currentPokemon.name) == -1) {
+        updateHeart('icons/heart.svg', 'setFavourite()')
+    } else {
+        updateHeart('icons/heart_fill.svg', 'removeFavourite()')
+    }
+}
+
+
+function setFavourite() {
+    favArray.push(currentPokemon.name);
+    localStorage.setItem('favouritePokemons', JSON.stringify(favArray));
+    heartBtnCheck();
+}
+
+
+
+function removeFavourite() {
+    favArray.splice(currentPokemon.name);
+    localStorage.setItem('favouritePokemons', JSON.stringify(favArray));
+    heartBtnCheck();
+}
