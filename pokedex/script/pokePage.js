@@ -9,7 +9,7 @@ async function loadPokemonPage(id) {
     defineColor('specs', currentPokemon.types[0])
     loadPokeImg();
     loadAboutSpecs();
-    hideOrShowSpecsOverlay('block', 'add')
+    hideOrShowSpecsOverlay('flex', 'add')
 }
 
 function hideOrShowSpecsOverlay(attr, set) {
