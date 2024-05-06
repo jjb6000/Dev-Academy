@@ -136,5 +136,6 @@ function addMovesToCurrentPokemon() {
             currentPokemon.moves.push([pokemonObject.moves[i].version_group_details[0].level_learned_at, pokemonObject.moves[i].move.name]);
         }
     }
+    currentPokemon.moves.sort((a, b) => a[0] - b[0])
 }
 

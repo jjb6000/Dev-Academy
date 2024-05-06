@@ -5,7 +5,7 @@ let mobMenu = document.getElementById('mobMenu');
 let openMenu = false;
 
 
-
+// ANCHOR MENU FUNCTIONS
 function openOrClose() {
     if (openMenu == false) {
         showMenu('flex', true);
@@ -21,11 +21,70 @@ function showMenu(attr, boolean) {
 }
 
 
-document.getElementById('moreBtn').addEventListener('click', () => {
-    toStart();
-    loadCardsData(twentyPokemons.next); 
-    setResetButton(); 
-})
+document.getElementById('navStart').addEventListener('click', () => {
+    location.reload();
+});
+
+
+resetBtn.addEventListener('click', () => {
+    if (firstPokemon(Cards.names[0].name)) {
+        return
+    } else {
+        loadCardsData(twentyPokemons.previous);
+    }
+});
+
+
+moreBtn.addEventListener('click', () => {
+    if (lastPokemon(cardSection.children[cardSection.children.length - 1].id)) {
+        return
+    } else {
+        toStart();
+        loadCardsData(twentyPokemons.next);
+    }
+});
+
+
+function checkForFirstPokemon(firstCard) {
+    if (firstPokemon(firstCard)) {
+        nonFunctionalResetBtn();
+    } else {
+        functionalResetBtn();
+    }
+}
+
+
+function functionalResetBtn() {
+    addOrRemoveClasses('add', 'resetBtn', 'clickable');
+    setIcon('resetBtn', 'icons/back_b.svg')
+}
+
+
+function nonFunctionalResetBtn() {
+    addOrRemoveClasses('remove', 'resetBtn', 'clickable');
+    setIcon('resetBtn', 'icons/back_g.svg')
+}
+
+
+function checkForLastPokemon(lastCard) {
+    if (lastPokemon(lastCard)) {
+        nonFunctionalMoreBtn();
+    } else {
+        functionalMoreBtn();        
+    }
+}
+
+
+function functionalMoreBtn() {
+    addOrRemoveClasses('add', 'moreBtn', 'clickable');
+    setIcon('moreIcon', 'icons/expand_more.svg')
+}
+
+
+function nonFunctionalMoreBtn() {
+    addOrRemoveClasses('remove', 'moreBtn', 'clickable');
+    setIcon('moreIcon', 'icons/expand_more_g.svg')
+}
 
 
 function toStart() {
@@ -33,13 +92,16 @@ function toStart() {
 }
 
 
+// ANCHOR LOAD CARDS FUNCTIONS
 async function loadCardsData(url) {
     Cards.names = [];
     Cards.types = [];
     Cards.imgs = [];
     twentyPokemons = await fetchPokemonAPI(url);
     getNames(twentyPokemons);
-    getCardDetails();
+    await getCardDetails();
+    checkForFirstPokemon(Cards.names[0].name);
+    checkForLastPokemon(cardSection.children[cardSection.children.length - 1].id)
 }
 
 
@@ -80,11 +142,7 @@ function renderCards(Cards) {
 }
 
 
-function setResetButton() {
-    resetBtn.classList.add('clickable');
-    resetBtn.src = 'icons/back_b.svg';
-    resetBtn.setAttribute('onclick', 'location.reload()')
-}
+
 
 
 

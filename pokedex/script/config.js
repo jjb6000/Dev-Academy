@@ -2,6 +2,7 @@ const cardSection = document.getElementById('cardSection');
 const pokemonSection = document.getElementById('specs')
 const labels = ['HP', 'Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed'];
 const resetBtn = document.getElementById('resetBtn');
+const moreBtn = document.getElementById('moreBtn');
 
 
 // ANCHOR   GRAPH CONFIGS

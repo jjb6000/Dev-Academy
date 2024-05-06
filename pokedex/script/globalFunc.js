@@ -8,6 +8,21 @@ function addOrRemoveClasses(set, id, cssClass) {
 }
 
 
+function setIcon(id, src) {
+    document.getElementById(id).src = src;
+}
+
+
+function firstPokemon(firstCard) {
+    return firstCard == 'bulbasaur'
+}
+
+
+function lastPokemon(lastCard) {
+    return lastCard == 'terapagos-stellar';
+}
+
+
 function putTypesInArray(array) {
     let types = [];
     for (let i = 0; i < array.length; i++) {

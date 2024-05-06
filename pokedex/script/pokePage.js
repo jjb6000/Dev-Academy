@@ -19,7 +19,7 @@ function hideOrShowSpecsOverlay(attr, set) {
 
 
 function loadPokeImg() {
-    document.getElementById('pokePic').src = pokemonObject.sprites.other.dream_world.front_default
+    setIcon('pokePic', pokemonObject.sprites.other.dream_world.front_default);
 }
 
 // !SECTION END
