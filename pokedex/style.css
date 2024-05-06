@@ -284,6 +284,7 @@ tr {
     justify-content: center;
     align-items: center;
     padding: 0.5rem;
+    text-align: center;
 }
 
 .arrow-container p {

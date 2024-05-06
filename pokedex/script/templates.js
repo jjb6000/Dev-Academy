@@ -73,12 +73,12 @@ function getEvoStatsForTwoEvolutionsHTML() {
         <img src=${currentPokemon.evolution.evoImg[0]} alt="">
         <div class="arrow-container">
             <img src="icons/arrow_right.svg" alt="">
-            <p>Level ${currentPokemon.evolution.evoLevel[0]}</p>
+            <p>${currentPokemon.evolution.evoLevel[0]}</p>
         </div>
         <img src="${currentPokemon.evolution.evoImg[1]}" alt="">
         <div class="arrow-container">
             <img src="icons/arrow_right.svg" alt="">
-            <p>Level ${currentPokemon.evolution.evoLevel[1]}</p>
+            <p>${currentPokemon.evolution.evoLevel[1]}</p>
         </div>
         <img src="${currentPokemon.evolution.evoImg[2]}" alt="">
     </div>
