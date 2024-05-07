@@ -146,8 +146,8 @@ tr {
     font-weight: 700;
     font-size: large;
     border-radius: 16px;
-    background-color: rgb(248, 233, 233);
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: rgb(231, 249, 254);
+    box-shadow: rgba(150, 244, 238, 0.2) 0px 7px 29px 0px;
     position: absolute;
     top: 64px;
     right: 1rem;
@@ -310,5 +310,9 @@ tr {
 @media (min-width: 1080px) {
     main {
         width: 1080px;
+    }
+
+    .mob-overlay {
+        right: calc(((100vw - 1080px) / 2) + 1rem);
     }
 }

@@ -38,7 +38,7 @@ const CONFIG_CHART_OPTIONS = {
 
 // ANCHOR TYPE COLORS
 const TYPE_COLORS = {
-    "normal": "#A8A77A",
+    "normal": "#b9b896",
     "fire": "#FB6C6C",
     "water": "#76BDFE",
     "grass": "#48D0B0",
@@ -49,7 +49,7 @@ const TYPE_COLORS = {
     "ground": "#E2BF65",
     "flying": "#A98FF3",
     "psychic": "#FF6EA8",
-    "bug": "#A6B91A",
+    "bug": "#4dd735",
     "rock": "#B6A136",
     "ghost": "#735797",
     "dragon": "#6F35FC",

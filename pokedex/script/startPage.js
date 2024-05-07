@@ -4,6 +4,10 @@ let twentyPokemons;
 let mobMenu = document.getElementById('mobMenu');
 let openMenu = false;
 let favArray = JSON.parse(localStorage.getItem('favouritePokemons')) || [];
+Cards.names = [];
+Cards.types = [];
+Cards.imgs = [];
+
 
 
 // ANCHOR MENU FUNCTIONS
@@ -31,6 +35,7 @@ resetBtn.addEventListener('click', () => {
     if (firstPokemon(Cards.names[0].name)) {
         return
     } else {
+        resetCardData();
         loadCardsData(twentyPokemons.previous);
     }
 });
@@ -40,10 +45,18 @@ moreBtn.addEventListener('click', () => {
     if (lastPokemon(cardSection.children[cardSection.children.length - 1].id)) {
         return
     } else {
+        resetCardData();
         toStart();
         loadCardsData(twentyPokemons.next);
     }
 });
+
+
+function resetCardData() {
+    Cards.names = [];
+    Cards.types = [];
+    Cards.imgs = [];
+}
 
 
 function checkForFirstPokemon(firstCard) {
@@ -95,9 +108,6 @@ function toStart() {
 
 // ANCHOR LOAD CARDS FUNCTIONS
 async function loadCardsData(url) {
-    Cards.names = [];
-    Cards.types = [];
-    Cards.imgs = [];
     twentyPokemons = await fetchPokemonAPI(url);
     getNames(twentyPokemons);
     await getCardDetails();
@@ -138,10 +148,21 @@ function renderCards(Cards) {
     for (let i = 0; i < Cards.names.length; i++) {
         cardSection.innerHTML += getCardSectionHTML(Cards.names[i].name, Cards.imgs[i], i);
         addTypeTags(Cards.types[i], 'tagdiv' + i);
-        defineColor(Cards.names[i].name, Cards.types[i][0])
+        defineColor(Cards.names[i].name, Cards.types[i][0]);
+        colorForSecondTag();
     }
 }
 
+
+function colorForSecondTag() {
+    let tags = document.getElementsByClassName('tags')
+    for (let i = 0; i < tags.length; i++) {
+        if (tags[i].children.length == 2) {
+            tags[i].children[1].style.backgroundColor = TYPE_COLORS[tags[i].children[1].innerHTML];
+            tags[i].children[1].style.filter = 'grayscale(32%)'
+        };
+    }
+}
 
 
 
