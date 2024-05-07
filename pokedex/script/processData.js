@@ -136,6 +136,14 @@ function checkBabyPokemon(level) {
     if (apiDataEvolution.chain.is_baby) {
         return 'Baby Pokemon'
     } else {
+        return checkIfLevelIsNotNull(level);
+    }
+}
+
+function checkIfLevelIsNotNull(level) {
+    if (level == null) {
+        return '';
+    } else {
         return 'Level ' + String(level);
     }
 }
