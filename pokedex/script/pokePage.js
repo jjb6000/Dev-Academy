@@ -122,8 +122,8 @@ function setFavourite() {
 
 
 function removeFavourite() {
-    favArray.splice(favArray.indexOf(currentPokemon.name));
-    favArrayImg.splice(favArrayImg.indexOf(currentPokemon.imgUrl));
+    favArray.splice(favArray.indexOf(currentPokemon.name), 1);
+    favArrayImg.splice(favArrayImg.indexOf(currentPokemon.imgUrl), 1);
     saveToLS()
     heartBtnCheck();
     renderFavouritsInMenu();
