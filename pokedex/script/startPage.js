@@ -55,20 +55,9 @@ function renderCards(Cards) {
         cardSection.innerHTML += getCardSectionHTML(Cards.names[i].name, Cards.imgs[i], i);
         addTypeTags(Cards.types[i], 'tagdiv' + i);
         defineColor(Cards.names[i].name, Cards.types[i][0]);
-        colorForSecondTag();
     }
 }
 
-
-function colorForSecondTag() {
-    let tags = document.getElementsByClassName('tags')
-    for (let i = 0; i < tags.length; i++) {
-        if (tags[i].children.length == 2) {
-            tags[i].children[1].style.backgroundColor = TYPE_COLORS[tags[i].children[1].innerHTML];
-            tags[i].children[1].style.filter = 'grayscale(32%)'
-        };
-    }
-}
 
 
 // ANCHOR MENU FUNCTIONS
