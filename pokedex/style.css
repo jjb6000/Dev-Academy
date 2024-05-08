@@ -154,7 +154,11 @@ tr {
     display: none;
 }
 
-.mob-overlay p:hover {
+.mob-overlay p {
+    align-self: center;
+}
+
+.mob-overlay div:hover {
     color: grey;
 }
 

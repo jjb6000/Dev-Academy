@@ -12,6 +12,21 @@ function getCardSectionHTML(name, imgSrc, i) {
     `
 }
 
+
+function getFavouritsHTML(pokemon) {
+    return /*html*/`
+        <p onclick="loadPokemonPage('${pokemon}')">${pokemon}</p>
+    `
+}
+
+
+function getNoFavouritsHTML() {
+    return /*html*/`
+        <p>No favourite Pokemons yet</p>
+    `
+}
+
+
 function loadPokemonTitleSection(pokeName, pokeID) {
     return /*html*/`
 

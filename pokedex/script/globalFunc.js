@@ -13,13 +13,13 @@ function setIcon(id, src) {
 }
 
 
-function firstPokemon(firstCard) {
-    return firstCard == 'bulbasaur'
+function firstSite() {
+    return apiDataCards.previous == null;
 }
 
 
-function lastPokemon(lastCard) {
-    return lastCard == 'terapagos-stellar';
+function lastSite() {
+    return apiDataCards.next == null;
 }
 
 
