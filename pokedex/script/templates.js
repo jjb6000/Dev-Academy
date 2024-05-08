@@ -86,17 +86,26 @@ function getBaseStatsHTML(total) {
 function getEvoStatsForTwoEvolutionsHTML() {
     return /*html*/`
     <div class="evo-container d-flex-all-center">
-        <img src=${currentPokemon.evolution.evoImg[0]} alt="">
+        <div class="evo-pokemon">
+            <img src=${currentPokemon.evolution.evoImg[0]} alt="">
+            <div>${currentPokemon.evolution.name[0]}</div>
+        </div>
         <div class="arrow-container">
             <img src="icons/arrow_right.svg" alt="">
             <p>${currentPokemon.evolution.evoLevel[0]}</p>
         </div>
-        <img src="${currentPokemon.evolution.evoImg[1]}" alt="">
+        <div class="evo-pokemon">
+            <img src="${currentPokemon.evolution.evoImg[1]}" alt="">
+            <div>${currentPokemon.evolution.name[1]}</div>
+        </div>
         <div class="arrow-container">
             <img src="icons/arrow_right.svg" alt="">
             <p>${currentPokemon.evolution.evoLevel[1]}</p>
         </div>
-        <img src="${currentPokemon.evolution.evoImg[2]}" alt="">
+        <div class="evo-pokemon">
+            <img src="${currentPokemon.evolution.evoImg[2]}" alt="">
+            <div>${currentPokemon.evolution.name[2]}</div>
+        </div>
     </div>
     `
 }
@@ -105,12 +114,18 @@ function getEvoStatsForTwoEvolutionsHTML() {
 function getEvoStatsForOneEvolutionHTML() {
     return /*html*/`
     <div class="evo-container d-flex-all-center">
-        <img src=${currentPokemon.evolution.evoImg[0]} alt="">
+        <div class="evo-pokemon">
+            <img src=${currentPokemon.evolution.evoImg[0]} alt="">
+            <div>${currentPokemon.evolution.name[0]}</div>
+        </div>
         <div class="arrow-container">
             <img src="icons/arrow_right.svg" alt="">
             <p>${currentPokemon.evolution.evoLevel[0]}</p>
         </div>
-        <img src="${currentPokemon.evolution.evoImg[1]}" alt="">
+        <div class="evo-pokemon">
+            <img src="${currentPokemon.evolution.evoImg[1]}" alt="">
+            <div>${currentPokemon.evolution.name[1]}</div>
+        </div>
     </div>
     `
 }
