@@ -96,12 +96,6 @@ function loadMoves() {
 
 
 // SECTION FAVOURIT POKEMONS
-function updateHeart(src, onclickFunction) {
-    setIcon('heart', src)
-    document.getElementById('heart').setAttribute('onclick', onclickFunction)
-}
-
-
 function heartBtnCheck() {
     if (favArray.indexOf(currentPokemon.name) == -1) {
         updateHeart('icons/heart.svg', 'setFavourite()')
@@ -111,16 +105,32 @@ function heartBtnCheck() {
 }
 
 
+function updateHeart(src, onclickFunction) {
+    setIcon('heart', src)
+    document.getElementById('heart').setAttribute('onclick', onclickFunction)
+}
+
+
 function setFavourite() {
     favArray.push(currentPokemon.name);
-    localStorage.setItem('favouritePokemons', JSON.stringify(favArray));
+    favArrayImg.push(currentPokemon.imgUrl);
+    saveToLS();
     heartBtnCheck();
+    renderFavouritsInMenu();
 }
 
 
 
 function removeFavourite() {
-    favArray.splice(currentPokemon.name);
-    localStorage.setItem('favouritePokemons', JSON.stringify(favArray));
+    favArray.splice(favArray.indexOf(currentPokemon.name));
+    favArrayImg.splice(favArrayImg.indexOf(currentPokemon.imgUrl));
+    saveToLS()
     heartBtnCheck();
+    renderFavouritsInMenu();
+}
+
+
+function saveToLS() {
+    localStorage.setItem('favouritePokemons', JSON.stringify(favArray));
+    localStorage.setItem('favouritePokemonsIcons', JSON.stringify(favArrayImg));
 }

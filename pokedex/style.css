@@ -139,6 +139,7 @@ tr {
 
 /* ANCHOR MENU */
 .mob-overlay {
+    z-index: 99;
     width: 200px;
     padding: 1rem;
     flex-direction: column;
@@ -154,8 +155,21 @@ tr {
     display: none;
 }
 
+.mob-overlay div {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.mob-overlay div img {
+    height: 32px;
+}
+
 .mob-overlay p {
     align-self: center;
+    margin: 0;
+    font-weight: 400;
 }
 
 .mob-overlay div:hover {

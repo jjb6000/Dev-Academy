@@ -13,16 +13,16 @@ function getCardSectionHTML(name, imgSrc, i) {
 }
 
 
-function getFavouritsHTML(pokemon) {
+function getFavouritsHTML(pokemon, img) {
     return /*html*/`
-        <p onclick="loadPokemonPage('${pokemon}')">${pokemon}</p>
+        <div class="clickable" onclick="loadPokemonPage('${pokemon}')"><img src="${img}" alt="">${pokemon}</div>
     `
 }
 
 
 function getNoFavouritsHTML() {
     return /*html*/`
-        <p>No favourite Pokemons yet</p>
+        <p class="grey-font">No favourite Pokemons</p>
     `
 }
 

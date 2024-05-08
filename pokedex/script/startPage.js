@@ -4,6 +4,7 @@ let apiDataCards;
 let mobMenu = document.getElementById('mobMenu');
 let openMenu = false;
 let favArray = JSON.parse(localStorage.getItem('favouritePokemons')) || [];
+let favArrayImg = JSON.parse(localStorage.getItem('favouritePokemonsIcons')) || [];
 Cards.names = [];
 Cards.types = [];
 Cards.imgs = [];
@@ -18,6 +19,7 @@ async function loadCardsData(url) {
     checkForFirstSite();
     checkForLastSite();
     renderCards(Cards);
+    getFavouritPokemons();
 }
 
 
@@ -67,7 +69,6 @@ function colorForSecondTag() {
         };
     }
 }
-
 
 
 // ANCHOR MENU FUNCTIONS
@@ -163,6 +164,24 @@ function nonFunctionalMoreBtn() {
 
 function toStart() {
     window.scrollTo(0, 0);
+}
+
+
+// ANCHOR FAV IN MENU
+function getFavouritPokemons() {
+    if (favArray.length > 0) {
+        renderFavouritsInMenu();
+    } else {
+        document.getElementById('navFav').innerHTML = getNoFavouritsHTML();
+    }
+}
+
+
+function renderFavouritsInMenu() {
+    document.getElementById('navFav').innerHTML = '';
+    for (let i = 0; i < favArray.length; i++) {
+        document.getElementById('navFav').innerHTML += getFavouritsHTML(favArray[i], favArrayImg[i]);  
+    }
 }
 
 
