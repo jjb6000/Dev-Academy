@@ -15,6 +15,7 @@ async function loadPokemonPage(id) {
 function hideOrShowSpecsOverlay(attr, set) {
     pokemonSection.style.display = attr;
     addOrRemoveClasses(set, 'startPage', 'hide-on-mobile');
+    addOrRemoveClasses(set, 'startPage', 'dark-on-desktop');
 }
 
 

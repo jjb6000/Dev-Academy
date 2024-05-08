@@ -133,7 +133,7 @@ function getEvoStatsForOneEvolutionHTML() {
 
 function getMoveTableHTML() {
     return /*html*/`
-    <div class="d-flex-all-center">
+    <div class="table-container d-flex-all-center">
     <table class="standard-padding" id=moveTable>
         <tr>
             <th>Move</th>
