@@ -2,7 +2,7 @@ function getCardSectionHTML(name, imgSrc, i) {
     return /*html*/`
         <div onclick="loadPokemonPage('${name}')" id="${name}" class="card clickable">
             <div>
-                <h4>${name}</h4>
+                <h4>${upperCase(name)}</h4>
                 <div class="tags" id="${'tagdiv' + i}"></div>
             </div>
             <div class="card-img-container">
@@ -15,7 +15,7 @@ function getCardSectionHTML(name, imgSrc, i) {
 
 function getFavouritsHTML(pokemon, img) {
     return /*html*/`
-        <div class="clickable" onclick="loadPokemonPage('${pokemon}')"><img src="${img}" alt="">${pokemon}</div>
+        <div class="clickable" onclick="loadPokemonPage('${pokemon}')"><img src="${img}" alt="">${upperCase(pokemon)}</div>
     `
 }
 
@@ -31,7 +31,7 @@ function loadPokemonTitleSection(pokeName, pokeID) {
     return /*html*/`
 
             <div class="title-and-tags">
-                <h1>${pokeName}</h1>
+                <h1>${upperCase(pokeName)}</h1>
 
                 <div class="tags" id="typeTags"></div>
             </div>
@@ -43,7 +43,7 @@ function loadPokemonTitleSection(pokeName, pokeID) {
 
 function loadTagHTML(type) {
     return /*html*/`
-        <div class="tag d-flex-all-center">${type}</div>
+        <div class="tag d-flex-all-center">${upperCase(type)}</div>
     `
 }
 
@@ -53,7 +53,7 @@ function loadAboutSpecsHTML() {
     return /*html*/`
         <div class="about-stats">
                 <div class="stat-key grey-font standard-padding">Spiecies</div>
-                <div class="stat-value standard-padding">${currentPokemon.name}</div>
+                <div class="stat-value standard-padding">${upperCase(currentPokemon.name)}</div>
                 <div class="stat-key grey-font standard-padding">Height</div>
                 <div class="stat-value standard-padding">${currentPokemon.about.height}</div>
                 <div class="stat-key grey-font standard-padding">Weight</div>
@@ -88,7 +88,7 @@ function getEvoStatsForTwoEvolutionsHTML() {
     <div class="evo-container d-flex-all-center">
         <div class="evo-pokemon">
             <img src=${currentPokemon.evolution.evoImg[0]} alt="">
-            <div>${currentPokemon.evolution.name[0]}</div>
+            <div>${upperCase(currentPokemon.evolution.name[0])}</div>
         </div>
         <div class="arrow-container">
             <img src="icons/arrow_right.svg" alt="">
@@ -96,7 +96,7 @@ function getEvoStatsForTwoEvolutionsHTML() {
         </div>
         <div class="evo-pokemon">
             <img src="${currentPokemon.evolution.evoImg[1]}" alt="">
-            <div>${currentPokemon.evolution.name[1]}</div>
+            <div>${upperCase(currentPokemon.evolution.name[1])}</div>
         </div>
         <div class="arrow-container">
             <img src="icons/arrow_right.svg" alt="">
@@ -104,7 +104,7 @@ function getEvoStatsForTwoEvolutionsHTML() {
         </div>
         <div class="evo-pokemon">
             <img src="${currentPokemon.evolution.evoImg[2]}" alt="">
-            <div>${currentPokemon.evolution.name[2]}</div>
+            <div>${upperCase(currentPokemon.evolution.name[2])}</div>
         </div>
     </div>
     `
@@ -116,7 +116,7 @@ function getEvoStatsForOneEvolutionHTML() {
     <div class="evo-container d-flex-all-center">
         <div class="evo-pokemon">
             <img src=${currentPokemon.evolution.evoImg[0]} alt="">
-            <div>${currentPokemon.evolution.name[0]}</div>
+            <div>${upperCase(currentPokemon.evolution.name[0])}</div>
         </div>
         <div class="arrow-container">
             <img src="icons/arrow_right.svg" alt="">
@@ -124,7 +124,7 @@ function getEvoStatsForOneEvolutionHTML() {
         </div>
         <div class="evo-pokemon">
             <img src="${currentPokemon.evolution.evoImg[1]}" alt="">
-            <div>${currentPokemon.evolution.name[1]}</div>
+            <div>${upperCase(currentPokemon.evolution.name[1])}</div>
         </div>
     </div>
     `
@@ -147,7 +147,7 @@ function getMoveTableHTML() {
 function addMoveTableRow(move, level) {
     return /*html*/`
         <tr>
-            <td class="ta-start">${move}</td>
+            <td class="ta-start">${upperCase(move)}</td>
             <td>${level}</td>
         </tr>
     `

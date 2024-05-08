@@ -78,7 +78,7 @@ function checkImg() {
 function returnMultipleAbilitiesInOneString(array) {
     let abilityArray = [];
     for (let i = 0; i < array.length; i++) {
-        abilityArray.push(array[i].ability.name);
+        abilityArray.push(upperCase(array[i].ability.name));
     }
     return convertToString(abilityArray);
 }
@@ -87,7 +87,7 @@ function returnMultipleAbilitiesInOneString(array) {
 function returnMultipleEggGroupsInOneString(array) {
     let eggArray = [];
     for (let i = 0; i < array.length; i++) {
-        eggArray.push(array[i].name);
+        eggArray.push(upperCase(array[i].name));
     }
     return convertToString(eggArray);
 }
