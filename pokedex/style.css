@@ -352,6 +352,8 @@ tr {
     }
 }
 
+
+/* ANCHOR DESKTOP */
 @media (min-width: 768px) {
     .start-page {
         padding: 1rem;
