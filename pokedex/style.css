@@ -79,7 +79,13 @@ tr {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    display: none;
+    position: absolute;
+    top: 100px;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: rgba(0, 0, 0, 0.674) 0px 7px 29px 0px;
+    width: 280px;
+    left: calc(50vw - 140px);
 }
 
 
@@ -184,7 +190,7 @@ tr {
     flex-wrap: wrap;
 }
 
-.card-header-section .title-container {
+.pokemon-specs .card-header-section .title-container {
     justify-content: space-between;
 }
 
