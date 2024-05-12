@@ -355,6 +355,10 @@ tr {
 
 /* ANCHOR DESKTOP */
 @media (min-width: 768px) {
+    .hide-on-desktop {
+        display: none;
+    }
+
     .start-page {
         padding: 1rem;
         border-radius: 16px;

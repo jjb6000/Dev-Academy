@@ -8,10 +8,10 @@
     <link rel="icon" type="image/x-icon" href="icons/logo.svg">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
     <script defer src="script/config.js?v=1.4"></script>
-    <script defer src="script/processData.js?v=1.6"></script>
+    <script defer src="script/api.js?v=1.6"></script>
     <script defer src="script/chart.js?v=1.0"></script>
     <script defer src="script/templates.js?v=1.4"></script>
-    <script defer src="script/startPage.js?v=2.0"></script>
+    <script defer src="script/cards.js?v=2.0"></script>
     <script defer src="script/pokePage.js?v=2.0"></script>
     <script defer src="script/globalFunc.js?v=2.0"></script>
     <title>Pokedex App</title>
@@ -82,11 +82,20 @@
 
             <section class="stats-section standard-padding">
                 <div class="stats-navbar d-flex-all-center">
-                    <div id="slider" class="slider d-flex-all-center">
+                    <div id="slider" class="slider d-flex-all-center hide-on-mobile">
                         <p onclick="loadAboutSpecs()" class="current-stats">About</p>
                         <p onclick="loadBaseStats()">Base Stats</p>
                         <p onclick="loadEvolution()">Evolution</p>
                         <p onclick="loadMoves()">Moves</p>
+                    </div>
+
+                    <div id="sliderMob" class="slider d-flex-all-center hide-on-desktop">
+                        <img src="icons/chevron_left.svg" alt="">
+                        <p class="current-stats">About</p>
+                        <p class="d-none">Base Stats</p>
+                        <p class="d-none">Evolution</p>
+                        <p class="d-none">Moves</p>
+                        <img src="icons/chevron_right.svg" alt="">
                     </div>
                 </div>
 
