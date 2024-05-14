@@ -351,6 +351,10 @@ tr {
         display: none;
     }
 
+    .pokemon-specs {
+        width: 100vw;
+    }
+
     .evo-container {
         flex-direction: column;
     }
