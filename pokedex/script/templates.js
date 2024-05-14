@@ -70,6 +70,42 @@ function loadAboutSpecsHTML() {
 }
 
 
+function aboutStatsMobileMenuHTML() {
+    return /*html*/`
+            <img id="statsNavLeft" src="icons/chevron_left_g.svg" alt="left">
+            <p class="current-stats">About</p>
+            <img onclick="loadBaseStats()" id="statsNavRight" src="icons/chevron_right.svg" alt="right">
+    `
+}
+
+
+function baseStatsMobileMenuHTML() {
+    return /*html*/`
+            <img onclick="loadAboutSpecs()" id="statsNavLeft" src="icons/chevron_left.svg" alt="left">
+            <p class="current-stats">Base Stats</p>
+            <img onclick="loadEvolution()" id="statsNavRight" src="icons/chevron_right.svg" alt="right">
+    `
+}
+
+
+function evoStatsMobileMenuHTML() {
+    return /*html*/`
+            <img onclick="loadBaseStats()" id="statsNavLeft" src="icons/chevron_left.svg" alt="left">
+            <p class="current-stats">Evolution</p>
+            <img onclick="loadMoves()" id="statsNavRight" src="icons/chevron_right.svg" alt="right">
+    `
+}
+
+
+function moveStatsMobileMenuHTML() {
+    return /*html*/`
+            <img onclick="loadBaseStats()" id="statsNavLeft" src="icons/chevron_left.svg" alt="left">
+            <p class="current-stats">Moves</p>
+            <img id="statsNavRight" src="icons/chevron_right_g.svg" alt="right">
+    `
+}
+
+
 function getBaseStatsHTML(total) {
     return /*html*/`
     <div class="chart">

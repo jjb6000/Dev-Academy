@@ -1,4 +1,7 @@
 // SECTION  INIT POKEMON PAGE
+let mobMenuIndex = 0;
+
+
 const stats = document.getElementById('stats');
 
 async function loadPokemonPage(id) {
@@ -54,10 +57,75 @@ function resetNavbarToAbout() {
 }
 
 
+// ANCHOR MOBILE STATS NAVBAR
+// function mobileNavCheckLeftEnd() {
+//     if (stats.children[0].classList[0] == 'about-stats') {
+//         setIcon('statsNavLeft', 'icons/chevron_left_g.svg');
+//         return false
+//     } else {
+//         setIcon('statsNavLeft', 'icons/chevron_left.svg');
+//         return true
+//     }
+// }
+
+
+// function mobileNavCheckRightEnd() {
+//     if (stats.children[0].classList[0] == 'table-container') {
+//         setIcon('statsNavRight', 'icons/chevron_right_g.svg');
+//         return false
+//     } else {
+//         setIcon('statsNavRight', 'icons/chevron_right.svg');
+//         return true
+//     }
+// }
+
+
+// document.getElementById('statsNavLeft').addEventListener('click', () => {
+//     if (mobileNavCheckLeftEnd()) {
+//         setPreviousStatInMobileNav(mobMenuIndex);
+//         mobMenuIndex++;
+//         setNextStatInMobileNav(mobMenuIndex);
+//     } else {
+//         return
+//     }
+// });
+
+
+// document.getElementById('statsNavRight').addEventListener('click', () => {
+//     if (mobileNavCheckRightEnd()) {
+//         setPreviousStatInMobileNav(mobMenuIndex);
+//         mobMenuIndex--;
+//         setNextStatInMobileNav(mobMenuIndex);
+//     } else {
+//         return
+//     }
+// });
+
+
+// function setPreviousStatInMobileNav(mobMenuIndex) {
+//     document.getElementsByClassName('mob-nav')[mobMenuIndex].classList.remove('current-stats');
+//     document.getElementsByClassName('mob-nav')[mobMenuIndex].classList.add('d-none');
+// }
+
+
+// function setNextStatInMobileNav(mobMenuIndex) {
+//     document.getElementsByClassName('mob-nav')[mobMenuIndex].classList.remove('d-none');
+//     document.getElementsByClassName('mob-nav')[mobMenuIndex].classList.add('current-stats');
+// }
+
+
+function statsMobNavNext(loadStats) {
+    loadStats();
+}
+
+
+
+
 
 // ANCHOR ABOUT SPECS
 function loadAboutSpecs() {
-    stats.innerHTML = loadAboutSpecsHTML()
+    stats.innerHTML = loadAboutSpecsHTML();
+    sliderMob.innerHTML = aboutStatsMobileMenuHTML();
 }
 
 
@@ -65,24 +133,26 @@ function loadAboutSpecs() {
 function loadBaseStats() {
     stats.innerHTML = getBaseStatsHTML(currentPokemon.basicStats.reduce((a, b) => a + b, 0));
     drawChart();
+    sliderMob.innerHTML = baseStatsMobileMenuHTML();
 }
 
 
 // ANCHOR EVO STATS
 function loadEvolution() {
     if (currentPokemon.evolution.evolve) {
-        loadEvoBasedOnSteps()
+        loadEvoBasedOnSteps();
     } else {
-        stats.innerHTML = "This Pokemon doesn't evolve"
+        stats.innerHTML = "This Pokemon doesn't evolve";
     }
+    sliderMob.innerHTML = evoStatsMobileMenuHTML();
 }
 
 
 function loadEvoBasedOnSteps() {
     if (currentPokemon.evolution.evoLevel.length == 1) {
-        stats.innerHTML = getEvoStatsForOneEvolutionHTML()
+        stats.innerHTML = getEvoStatsForOneEvolutionHTML();
     } else {
-        stats.innerHTML = getEvoStatsForTwoEvolutionsHTML()
+        stats.innerHTML = getEvoStatsForTwoEvolutionsHTML();
     }
 }
 
@@ -93,6 +163,7 @@ function loadMoves() {
     for (let i = 0; i < array.length; i++) {
         document.getElementById('moveTable').innerHTML += addMoveTableRow(array[i][1], array[i][0]);
     }
+    sliderMob.innerHTML = moveStatsMobileMenuHTML();
 }
 // !SECTION END
 
