@@ -359,6 +359,11 @@ tr {
         width: 100vw;
     }
 
+    .slider {
+        justify-content: space-between;
+        width: 100%;
+    }
+
     .evo-container {
         flex-direction: column;
     }
