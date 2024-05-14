@@ -29,10 +29,10 @@ function loadPokeImg() {
 // ANCHOR STATS NAVBAR 
 document.getElementById('slider').addEventListener('click', (e) => {
     if (clickWasOnAMenuItem(e.target.children.length)) {
-        removeNavbarSelect();
+        removeNavbarSelect('slider');
         e.target.classList.add('current-stats')
     }
-})
+});
 
 
 function clickWasOnAMenuItem(childrenOfClickedContainer) {
@@ -40,8 +40,8 @@ function clickWasOnAMenuItem(childrenOfClickedContainer) {
 }
 
 
-function removeNavbarSelect() {
-    let array = document.getElementById('slider').children;
+function removeNavbarSelect(id) {
+    let array = document.getElementById(id).children;
     for (let i = 0; i < array.length; i++) {
         array[i].classList.remove('current-stats');
     }
@@ -49,9 +49,10 @@ function removeNavbarSelect() {
 
 
 function resetNavbarToAbout() {
-    removeNavbarSelect();
+    removeNavbarSelect('slider');
     document.getElementById('slider').children[0].classList.add('current-stats')
 }
+
 
 
 // ANCHOR ABOUT SPECS
