@@ -81,6 +81,12 @@ document.getElementById('navStart').addEventListener('click', () => {
 });
 
 
+document.getElementById('navEnd').addEventListener('click', () => {
+    resetCardData();
+    loadCardsData('https://pokeapi.co/api/v2/pokemon?offset=1300&limit=20');
+});
+
+
 resetBtn.addEventListener('click', () => {
     if (firstSite()) {
         return
