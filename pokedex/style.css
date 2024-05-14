@@ -357,6 +357,7 @@ tr {
 
     .pokemon-specs {
         width: 100vw;
+        min-height: 100vh;
     }
 
     .slider {
@@ -366,6 +367,7 @@ tr {
 
     .evo-container {
         flex-direction: column;
+        flex: 1;
     }
 
     .arrow-container {

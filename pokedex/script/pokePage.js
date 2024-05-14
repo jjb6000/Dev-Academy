@@ -76,7 +76,7 @@ function loadEvolution() {
     if (currentPokemon.evolution.evolve) {
         loadEvoBasedOnSteps();
     } else {
-        stats.innerHTML = "This Pokemon doesn't evolve";
+        stats.innerHTML = noEvoStatsHTML();
     }
     sliderMob.innerHTML = evoStatsMobileMenuHTML();
 }

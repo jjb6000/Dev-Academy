@@ -147,6 +147,15 @@ function getEvoStatsForTwoEvolutionsHTML() {
 }
 
 
+function noEvoStatsHTML() {
+    return /*html*/`
+    <div class="evo-container d-flex-all-center">
+    This Pokemon doesn't evolve
+    </div>
+    `
+}
+
+
 function getEvoStatsForOneEvolutionHTML() {
     return /*html*/`
     <div class="evo-container d-flex-all-center">
