@@ -17,6 +17,7 @@ body {
 h1 {
     font-size: 2.5rem;
     font-weight: 600;
+    margin-top: 0;
 }
 
 .d-none {
@@ -146,6 +147,10 @@ tr {
 
 .menu-bar >* {
     height: 24px;
+}
+
+.pokemon-specs .menu-bar {
+    padding: 0.5rem 0;
 }
 
 .mob-overlay {
