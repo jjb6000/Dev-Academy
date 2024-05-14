@@ -34,7 +34,7 @@ async function getCardDetails() {
     let progress = 0;
     for (let i = 0; i < Cards.names.length; i++) {
         let apiData = await fetchPokemonAPI(Cards.names[i].url);
-        Cards.imgs.push(apiData.sprites.front_default);
+        Cards.imgs.push(checkImg(apiData));
         Cards.types.push(putTypesInArray(apiData.types));
         progress += 5
         setProgressBar('flex', String(progress))

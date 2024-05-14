@@ -33,7 +33,7 @@ function buildCurrentPokemon(apiData) {
     currentPokemon.types = putTypesInArray(apiData.types);
     currentPokemon.id = apiData.id;
     currentPokemon.imgUrl = apiData.sprites.front_default;
-    currentPokemon.largeImg = checkImg();
+    currentPokemon.largeImg = checkImg(apiData);
     addAboutToCurruntPokemon(apiData, apiDataBreeding);
     addMoreStatsToCurrentPokemon(apiDataEvolution)
 }
@@ -62,16 +62,6 @@ function addMoreStatsToCurrentPokemon() {
         addEvolution();
     }
 }
-
-
-function checkImg() {
-    if (apiData.sprites.other.dream_world.front_default == null) {
-        return apiData.sprites.other.home.front_shiny;
-    } else {
-        return apiData.sprites.other.dream_world.front_default;
-    }
-}
-
 
 
 // ANCHOR ABOUT STATS

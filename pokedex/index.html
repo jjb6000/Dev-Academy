@@ -17,9 +17,10 @@
     <title>Pokedex App</title>
 </head>
 
-<body onclick="showMenu('none', false)" onload="loadCardsData(url)">
+<body id="body" onclick="showMenu('none', false)" onload="loadCardsData(url)">
 
     <main>
+        <div id="filter" class="black-filter"></div>
         <!-- ANCHOR PROGRESSBAR -->
         <div class="progress-bar standard-padding" id="pBarContainer">
             <label for="pBar">Loading Pokemons:</label>
@@ -58,7 +59,6 @@
                     <img id="moreIcon" class="more-icon" src="icons/expand_more.svg" alt="">
                 </div>
             </div>
-
         </div>
         <!-- !SECTION -->
 
@@ -82,7 +82,7 @@
 
             <section class="stats-section standard-padding">
                 <div class="stats-navbar d-flex-all-center">
-                    <div id="slider" class="slider d-flex-all-center hide-on-mobile">
+                    <div id="slider" class="slider desk-hover d-flex-all-center hide-on-mobile">
                         <p onclick="loadAboutSpecs()" class="current-stats">About</p>
                         <p onclick="loadBaseStats()">Base Stats</p>
                         <p onclick="loadEvolution()">Evolution</p>

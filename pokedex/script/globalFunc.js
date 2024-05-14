@@ -59,3 +59,12 @@ function stopP(event) {
 }
 
 
+function checkImg(apiData) {
+    if (apiData.sprites.other.dream_world.front_default == null) {
+        return apiData.sprites.other.home.front_shiny;
+    } else {
+        return apiData.sprites.other.dream_world.front_default;
+    }
+}
+
+

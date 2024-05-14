@@ -1,7 +1,4 @@
 // SECTION  INIT POKEMON PAGE
-let mobMenuIndex = 0;
-
-
 const stats = document.getElementById('stats');
 
 async function loadPokemonPage(id) {
@@ -16,9 +13,11 @@ async function loadPokemonPage(id) {
 }
 
 function hideOrShowSpecsOverlay(attr, set) {
+    window.scrollTo(0, 0)
     pokemonSection.style.display = attr;
+    document.getElementById('filter').style.display = attr;
     addOrRemoveClasses(set, 'startPage', 'hide-on-mobile');
-    addOrRemoveClasses(set, 'startPage', 'dark-on-desktop');
+    addOrRemoveClasses(set, 'startPage', 'no-events');
 }
 
 
@@ -55,71 +54,6 @@ function resetNavbarToAbout() {
     removeNavbarSelect('slider');
     document.getElementById('slider').children[0].classList.add('current-stats')
 }
-
-
-// ANCHOR MOBILE STATS NAVBAR
-// function mobileNavCheckLeftEnd() {
-//     if (stats.children[0].classList[0] == 'about-stats') {
-//         setIcon('statsNavLeft', 'icons/chevron_left_g.svg');
-//         return false
-//     } else {
-//         setIcon('statsNavLeft', 'icons/chevron_left.svg');
-//         return true
-//     }
-// }
-
-
-// function mobileNavCheckRightEnd() {
-//     if (stats.children[0].classList[0] == 'table-container') {
-//         setIcon('statsNavRight', 'icons/chevron_right_g.svg');
-//         return false
-//     } else {
-//         setIcon('statsNavRight', 'icons/chevron_right.svg');
-//         return true
-//     }
-// }
-
-
-// document.getElementById('statsNavLeft').addEventListener('click', () => {
-//     if (mobileNavCheckLeftEnd()) {
-//         setPreviousStatInMobileNav(mobMenuIndex);
-//         mobMenuIndex++;
-//         setNextStatInMobileNav(mobMenuIndex);
-//     } else {
-//         return
-//     }
-// });
-
-
-// document.getElementById('statsNavRight').addEventListener('click', () => {
-//     if (mobileNavCheckRightEnd()) {
-//         setPreviousStatInMobileNav(mobMenuIndex);
-//         mobMenuIndex--;
-//         setNextStatInMobileNav(mobMenuIndex);
-//     } else {
-//         return
-//     }
-// });
-
-
-// function setPreviousStatInMobileNav(mobMenuIndex) {
-//     document.getElementsByClassName('mob-nav')[mobMenuIndex].classList.remove('current-stats');
-//     document.getElementsByClassName('mob-nav')[mobMenuIndex].classList.add('d-none');
-// }
-
-
-// function setNextStatInMobileNav(mobMenuIndex) {
-//     document.getElementsByClassName('mob-nav')[mobMenuIndex].classList.remove('d-none');
-//     document.getElementsByClassName('mob-nav')[mobMenuIndex].classList.add('current-stats');
-// }
-
-
-function statsMobNavNext(loadStats) {
-    loadStats();
-}
-
-
-
 
 
 // ANCHOR ABOUT SPECS
@@ -207,3 +141,4 @@ function saveToLS() {
     localStorage.setItem('favouritePokemons', JSON.stringify(favArray));
     localStorage.setItem('favouritePokemonsIcons', JSON.stringify(favArrayImg));
 }
+
