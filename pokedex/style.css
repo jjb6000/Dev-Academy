@@ -223,7 +223,7 @@ tr {
     display: flex;
     background-color: #48D0B0;
     color: white;
-    height: 128px;
+    height: 140px;
     width: 192px;
     border-radius: 16px;
     box-sizing: border-box;
@@ -239,6 +239,7 @@ tr {
     margin: 0;
     padding: 0.5rem;
     font-weight: 500;
+    font-size: medium;
 }
 
 .card img {
@@ -262,9 +263,9 @@ tr {
 }
 
 .card .tags .tag {
-    font-size: small;
-    width: 6rem;
-    height: 1.5rem;
+    font-size: x-small;
+    width: 4rem;
+    height: 1.2rem;
 }
 
 /* ANCHOR STATS SECTION */
