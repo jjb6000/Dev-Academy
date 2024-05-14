@@ -12,6 +12,7 @@ async function loadPokemonPage(id) {
     hideOrShowSpecsOverlay('flex', 'add')
 }
 
+
 function hideOrShowSpecsOverlay(attr, set) {
     window.scrollTo(0, 0)
     pokemonSection.style.display = attr;
@@ -24,8 +25,8 @@ function hideOrShowSpecsOverlay(attr, set) {
 function loadPokeImg() {
     setIcon('pokePic', currentPokemon.largeImg);
 }
-
 // !SECTION END
+
 
 // SECTION POKEMON STATISTICS FUNCTIONS
 // ANCHOR STATS NAVBAR 
