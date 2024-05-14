@@ -142,8 +142,7 @@ tr {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 0.5rem;
-    width: 100%;
+    padding: 1rem;
 }
 
 .menu-bar >* {
@@ -321,7 +320,7 @@ tr {
 }
 
 .evo-container {
-    margin-top: 2.5rem;
+    margin: 2.5rem 0;
     gap: 1rem;
 }
 
@@ -346,9 +345,22 @@ tr {
 }
 
 
+/* ANCHOR MOBILE */
 @media (max-width: 768px) {
     .hide-on-mobile {
         display: none;
+    }
+
+    .evo-container {
+        flex-direction: column;
+    }
+
+    .arrow-container {
+        flex-direction: row;
+    }
+
+    .arrow-container img {
+        rotate: 90deg;
     }
 }
 
@@ -394,12 +406,6 @@ tr {
         filter: brightness(40%);
         pointer-events: none;
         background-color: rgba(128, 128, 128, 0.591);
-    }
-
-    .table-container {
-        max-height: 40vh;
-        overflow: hidden;
-        overflow-y: scroll;
     }
 
     table {
