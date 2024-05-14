@@ -377,6 +377,10 @@ tr {
         width: 100%;
     }
 
+    .slider > * {
+        font-size: large;
+    }
+
     .evo-container {
         flex-direction: column;
         flex: 1;
