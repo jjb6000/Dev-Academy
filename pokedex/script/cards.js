@@ -14,8 +14,7 @@ Cards.imgs = [];
 // ANCHOR LOAD CARDS FUNCTIONS
 async function loadCardsData(url) {
     apiDataCards = await fetchPokemonAPI(url);
-    getNames(apiDataCards);
-    await getCardDetails();
+    await getCardDetails(apiDataCards);
     checkForFirstSite();
     checkForLastSite();
     renderCards(Cards);
@@ -23,17 +22,11 @@ async function loadCardsData(url) {
 }
 
 
-function getNames(apiDataCards) {
-    for (let i = 0; i < apiDataCards.results.length; i++) {
-        Cards.names.push(apiDataCards.results[i]);
-    }
-}
-
-
-async function getCardDetails() {
+async function getCardDetails(apiDataCards) {
     let progress = 0;
-    for (let i = 0; i < Cards.names.length; i++) {
-        let apiData = await fetchPokemonAPI(Cards.names[i].url);
+    for (let i = 0; i < apiDataCards.results.length; i++) {
+        Cards.names.push(apiDataCards.results[i])
+        let apiData = await fetchPokemonAPI(apiDataCards.results[i].url);
         Cards.imgs.push(checkImg(apiData));
         Cards.types.push(putTypesInArray(apiData.types));
         progress += 5
