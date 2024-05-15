@@ -5,13 +5,14 @@ const resetBtn = document.getElementById('resetBtn');
 const moreBtn = document.getElementById('moreBtn');
 const sliderMob = document.getElementById('sliderMob');
 
-// class Card {
-//     constructor(name, types, image) {
-//         this.name = name;
-//         this.types = types;
-//         this.img = image;
-//     }
-// }
+
+class Card {
+    constructor(name, types, image) {
+        this.name = name;
+        this.types = types;
+        this.img = image;
+    }
+}
 
 
 // ANCHOR   GRAPH CONFIGS

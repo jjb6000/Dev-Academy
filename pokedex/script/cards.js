@@ -1,13 +1,11 @@
 let url = 'https://pokeapi.co/api/v2/pokemon/';
-let Cards = {};
+let cards = [];
 let apiDataCards;
 let mobMenu = document.getElementById('mobMenu');
 let openMenu = false;
 let favArray = JSON.parse(localStorage.getItem('favouritePokemons')) || [];
 let favArrayImg = JSON.parse(localStorage.getItem('favouritePokemonsIcons')) || [];
-Cards.names = [];
-Cards.types = [];
-Cards.imgs = [];
+
 
 
 
@@ -17,7 +15,7 @@ async function loadCardsData(url) {
     await getCardDetails(apiDataCards);
     checkForFirstSite();
     checkForLastSite();
-    renderCards(Cards);
+    renderCards();
     getFavouritPokemons();
 }
 
@@ -25,10 +23,8 @@ async function loadCardsData(url) {
 async function getCardDetails(apiDataCards) {
     let progress = 0;
     for (let i = 0; i < apiDataCards.results.length; i++) {
-        Cards.names.push(apiDataCards.results[i])
         let apiDataCardDetails = await fetchPokemonAPI(apiDataCards.results[i].url);
-        Cards.imgs.push(checkImg(apiDataCardDetails));
-        Cards.types.push(putTypesInArray(apiDataCardDetails.types));
+        cards[i] = new Card(apiDataCards.results[i], putTypesInArray(apiDataCardDetails.types), checkImg(apiDataCardDetails))
         progress += 5
         setProgressBar('flex', String(progress))
     }
@@ -42,12 +38,12 @@ function setProgressBar(display, progress) {
 }
 
 
-function renderCards(Cards) {
+function renderCards() {
     cardSection.innerHTML = ''
-    for (let i = 0; i < Cards.names.length; i++) {
-        cardSection.innerHTML += getCardSectionHTML(Cards.names[i].name, Cards.imgs[i], i);
-        addTypeTags(Cards.types[i], 'tagdiv' + i);
-        defineColor(Cards.names[i].name, Cards.types[i][0]);
+    for (let i = 0; i < cards.length; i++) {
+        cardSection.innerHTML += getCardSectionHTML(cards[i].name.name, cards[i].name.url, cards[i].img, i);
+        addTypeTags(cards[i].types, 'tagdiv' + i);
+        defineColor(cards[i].name.name, cards[i].types[0]);
     }
 }
 
@@ -102,9 +98,7 @@ moreBtn.addEventListener('click', () => {
 
 
 function resetCardData() {
-    Cards.names = [];
-    Cards.types = [];
-    Cards.imgs = [];
+    cards = [];
 }
 
 

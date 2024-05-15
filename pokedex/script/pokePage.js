@@ -1,8 +1,8 @@
 // SECTION  INIT POKEMON PAGE
 const stats = document.getElementById('stats');
 
-async function loadPokemonPage(id) {
-    await getPokemon('https://pokeapi.co/api/v2/pokemon/' + id);
+async function loadPokemonPage(url) {
+    await getPokemon(url);
     document.getElementById('titleContainer').innerHTML = loadPokemonTitleSection(currentPokemon.name, currentPokemon.id, currentPokemon.imgUrl);
     addTypeTags(currentPokemon.types, 'typeTags');
     defineColor('specs', currentPokemon.types[0])

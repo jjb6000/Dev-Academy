@@ -1,6 +1,6 @@
-function getCardSectionHTML(name, imgSrc, i) {
+function getCardSectionHTML(name, url, imgSrc, i) {
     return /*html*/`
-        <div onclick="loadPokemonPage('${name}')" id="${name}" class="card clickable">
+        <div onclick="loadPokemonPage('${url}')" id="${name}" class="card clickable">
             <div>
                 <h4>${upperCase(name)}</h4>
                 <div class="tags" id="${'tagdiv' + i}"></div>
