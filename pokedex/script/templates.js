@@ -13,9 +13,9 @@ function getCardSectionHTML(name, url, imgSrc, i) {
 }
 
 
-function getFavouritsHTML(pokemon, img) {
+function getFavouritsHTML(pokemon, url, img) {
     return /*html*/`
-        <div class="clickable" onclick="loadPokemonPage('${pokemon}')"><img src="${img}" alt="">${upperCase(pokemon)}</div>
+        <div class="clickable" onclick="loadPokemonPage('${url}')"><img src="${img}" alt="">${upperCase(pokemon)}</div>
     `
 }
 

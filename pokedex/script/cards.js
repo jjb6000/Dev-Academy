@@ -162,8 +162,13 @@ function getFavouritPokemons() {
 function renderFavouritsInMenu() {
     document.getElementById('navFav').innerHTML = '';
     for (let i = 0; i < favArray.length; i++) {
-        document.getElementById('navFav').innerHTML += getFavouritsHTML(favArray[i], favArrayImg[i]);  
+        document.getElementById('navFav').innerHTML += getFavouritsHTML(favArray[i], getURL(favArray[i]), favArrayImg[i]);  
     }
+}
+
+
+function getURL(name) {
+    return 'https://pokeapi.co/api/v2/pokemon/' + String(name);
 }
 
 
