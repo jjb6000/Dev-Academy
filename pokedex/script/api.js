@@ -39,6 +39,8 @@ function buildCurrentPokemon(apiData) {
 }
 
 
+
+// ANCHOR ABOUT STATS
 function addAboutToCurruntPokemon() {
     currentPokemon.about = {
         height: apiData.height,
@@ -50,21 +52,6 @@ function addAboutToCurruntPokemon() {
 }
 
 
-function addMoreStatsToCurrentPokemon() {
-    currentPokemon.basicStats = getBasicStatsFromAPI();
-    currentPokemon.evolution = {
-        evolve: doesItEvolve()
-    }
-    if (currentPokemon.evolution.evolve) {
-        currentPokemon.evolution.evoLevel = [];
-        currentPokemon.evolution.evoImg = [];
-        currentPokemon.evolution.name = [];
-        addEvolution();
-    }
-}
-
-
-// ANCHOR ABOUT STATS
 function returnMultipleAbilitiesInOneString(array) {
     let abilityArray = [];
     for (let i = 0; i < array.length; i++) {
@@ -84,7 +71,7 @@ function returnMultipleEggGroupsInOneString(array) {
 
 
 
-// ANCHOR BASI STATS
+// ANCHOR BASIC STATS
 function getBasicStatsFromAPI() {
     let basicStats = [];
     for (let i = 0; i < apiData.stats.length; i++) {
@@ -94,8 +81,21 @@ function getBasicStatsFromAPI() {
 }
 
 
-
 // ANCHOR EVO
+function addMoreStatsToCurrentPokemon() {
+    currentPokemon.basicStats = getBasicStatsFromAPI();
+    currentPokemon.evolution = {
+        evolve: doesItEvolve()
+    }
+    if (currentPokemon.evolution.evolve) {
+        currentPokemon.evolution.evoLevel = [];
+        currentPokemon.evolution.evoImg = [];
+        currentPokemon.evolution.name = [];
+        addEvolution();
+    }
+}
+
+
 function doesItEvolve() {
     if (apiDataEvolution.chain.evolves_to.length == 0) {
         return false;

@@ -3,7 +3,15 @@ const pokemonSection = document.getElementById('specs')
 const labels = ['HP', 'Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed'];
 const resetBtn = document.getElementById('resetBtn');
 const moreBtn = document.getElementById('moreBtn');
-const sliderMob = document.getElementById('sliderMob')
+const sliderMob = document.getElementById('sliderMob');
+
+// class Card {
+//     constructor(name, types, image) {
+//         this.name = name;
+//         this.types = types;
+//         this.img = image;
+//     }
+// }
 
 
 // ANCHOR   GRAPH CONFIGS
