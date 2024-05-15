@@ -1,11 +1,9 @@
 function getCardSectionHTML(name, url, imgSrc, i) {
     return /*html*/`
         <div onclick="loadPokemonPage('${url}')" id="${name}" class="card clickable">
-            <div>
-                <h4>${upperCase(name)}</h4>
+            <h4>${upperCase(name)}</h4>
+            <div class="inner-card-container">
                 <div class="tags" id="${'tagdiv' + i}"></div>
-            </div>
-            <div class="card-img-container">
                 <img src="${imgSrc}" alt="">
             </div>
         </div>
@@ -99,7 +97,7 @@ function evoStatsMobileMenuHTML() {
 
 function moveStatsMobileMenuHTML() {
     return /*html*/`
-            <img onclick="loadBaseStats()" id="statsNavLeft" src="icons/chevron_left.svg" alt="left">
+            <img onclick="loadEvolution()" id="statsNavLeft" src="icons/chevron_left.svg" alt="left">
             <p class="current-stats">Moves</p>
             <img id="statsNavRight" src="icons/chevron_right_g.svg" alt="right">
     `
