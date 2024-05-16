@@ -149,6 +149,14 @@ function toStart() {
 }
 
 
+document.getElementById('body').addEventListener('click', (e) => {
+    if (e.target.id == 'filter') {
+        hideOrShowSpecsOverlay('none', 'remove'); 
+        resetNavbarToAbout();
+    }
+})
+
+
 // ANCHOR FAV IN MENU
 function getFavouritPokemons() {
     if (favArray.length > 0) {

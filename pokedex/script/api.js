@@ -22,7 +22,8 @@ async function fetchPokemonAPI(url) {
 
 
 function errorFunction() {
-    console.log('Fehler aufgetreten',);
+    console.error('Fehler aufgetreten',);
+    cardSection.innerHTML = 'Oops something went wrong, please try again later'
 }
 
 
