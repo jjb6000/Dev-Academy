@@ -52,37 +52,56 @@ function renderCards() {
 
 // ANCHOR MENU FUNCTIONS
 pokeSearch.addEventListener('click', async () => {
-    checkSearchInput()
-    if (allPokemons == undefined) {
-        allPokemons = await fetchPokemonAPI('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1400');
-    }
-    pokeSearch.addEventListener('search', () => {
-        initSearch(allPokemons);
-    })
-    pokeSearch.addEventListener('keyup', () => {
-        initSearch(allPokemons);
-    })
+    clearSearchResults();
+    let allNames = await fetchAllPokemons();
+
+    pokeSearch.addEventListener('search', (event) => {
+        checkSearchInput(allNames, event.type);
+    });
+    
+    pokeSearch.addEventListener('input', (event) => {
+        checkSearchInput(allNames, event.type);
+    });
 });
 
 
-function initSearch(allPokemons) {
-    checkSearchInput()
+async function fetchAllPokemons() {
+    pokeSearch.placeholder = 'Loading...';
+    if (allPokemons == undefined) {
+        allPokemons = await fetchPokemonAPI('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1400');
+    }
+    pokeSearch.placeholder = 'Search your Pokemon...';
+    return initSearchArray(allPokemons)
+}
+
+
+function initSearchArray(allPokemons) {
     let allNames = [];
     for (let i = 0; i < allPokemons.results.length; i++) {
         allNames.push(allPokemons.results[i].name);
     }
-    searchAll(allNames);
+    return allNames
+}
+
+
+function checkSearchInput(names, eventType) {
+    console.log(eventType);
+    if (pokeSearch.value == '') {
+        clearSearchResults()
+    } else if(eventType == 'input') {
+        searchAll(names)
+    }
 }
 
 
 function searchAll(names) {
     let results = [];
     for (let i = 0; i < names.length; i++) {
-        if (names[i].indexOf(pokeSearch.value.toLowerCase()) > -1) {
+        if (names[i].indexOf(pokeSearch.value.toLowerCase()) > -1 && pokeSearch.value != '') {
             results.push(names[i]);
             showResults(results)
-        } 
-    } 
+        }
+    }
 }
 
 
@@ -90,18 +109,6 @@ function showResults(results) {
     clearSearchResults()
     for (let i = 0; i < setLoopNotLongerThanFive(results); i++) {
         searchResults.innerHTML += loadSearchResultHTML(results[i]);
-    }
-}
-
-
-pokeSearch.addEventListener('change', () => {
-    checkSearchInput()
-})
-
-
-function checkSearchInput() {
-    if (pokeSearch.value == '') {
-        clearSearchResults()
     }
 }
 

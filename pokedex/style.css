@@ -177,6 +177,10 @@ tr {
     margin-top: 0;
 }
 
+.search-output p:hover {
+    color: #48D0B0;
+}
+
 .menu-bar-grid {    
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
