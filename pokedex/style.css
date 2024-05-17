@@ -155,7 +155,7 @@ tr {
 
 .search {
     width: 280px;
-    height: 40px;
+    height: 32px;
     border-style: solid;
     border-radius: 16px;
     border-color: #0a5342;
@@ -183,7 +183,7 @@ tr {
     padding: 1rem 1rem 0 1rem;
 }
 
-.menu-bar-grid >* {
+.menu-bar-grid img {
     height: 24px;
 }
 
@@ -455,6 +455,10 @@ tr {
     .search {
         width: 180px;
     }
+
+    .search-output div {
+        width: 140 px;
+    }    
 
     .pokemon-pic img {
         width: 200px;
