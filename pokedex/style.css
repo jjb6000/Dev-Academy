@@ -154,10 +154,14 @@ tr {
 }
 
 .search {
+    width: 280px;
+    height: 40px;
+    border-style: solid;
+    border-radius: 16px;
+    border-color: #0a5342;
+    font-family: 'Poppins';
     justify-self: center;
 }
-
-
 
 .search-output div {
     width: 240px;
@@ -249,15 +253,6 @@ tr {
 }
 
 /* ANCHOR CARDS SECTION */
-.search {
-    width: 280px;
-    height: 40px;
-    border-style: solid;
-    border-radius: 16px;
-    border-color: #0a5342;
-    font-family: 'Poppins';
-}
-
 .cards-section {
     display: flex;
     justify-content: center;
@@ -455,6 +450,10 @@ tr {
 
     .tags {
         flex-direction: column;
+    }
+
+    .search {
+        width: 180px;
     }
 
     .pokemon-pic img {
