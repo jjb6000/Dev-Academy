@@ -1,6 +1,7 @@
 let url = 'https://pokeapi.co/api/v2/pokemon/';
 let cards = [];
 let apiDataCards;
+let allPokemons;
 let mobMenu = document.getElementById('mobMenu');
 let openMenu = false;
 let favArray = JSON.parse(localStorage.getItem('favouritePokemons')) || [];
@@ -50,6 +51,76 @@ function renderCards() {
 
 
 // ANCHOR MENU FUNCTIONS
+pokeSearch.addEventListener('click', async () => {
+    checkSearchInput()
+    if (allPokemons == undefined) {
+        allPokemons = await fetchPokemonAPI('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1400');
+    }
+    pokeSearch.addEventListener('search', () => {
+        initSearch(allPokemons);
+    })
+    pokeSearch.addEventListener('keyup', () => {
+        initSearch(allPokemons);
+    })
+});
+
+
+function initSearch(allPokemons) {
+    checkSearchInput()
+    let allNames = [];
+    for (let i = 0; i < allPokemons.results.length; i++) {
+        allNames.push(allPokemons.results[i].name);
+    }
+    searchAll(allNames);
+}
+
+
+function searchAll(names) {
+    let results = [];
+    for (let i = 0; i < names.length; i++) {
+        if (names[i].indexOf(pokeSearch.value.toLowerCase()) > -1) {
+            results.push(names[i]);
+            showResults(results)
+        } 
+    } 
+}
+
+
+function showResults(results) {
+    clearSearchResults()
+    for (let i = 0; i < setLoopNotLongerThanFive(results); i++) {
+        searchResults.innerHTML += loadSearchResultHTML(results[i]);
+    }
+}
+
+
+pokeSearch.addEventListener('change', () => {
+    checkSearchInput()
+})
+
+
+function checkSearchInput() {
+    if (pokeSearch.value == '') {
+        clearSearchResults()
+    }
+}
+
+
+function clearSearchResults() {
+    searchResults.innerHTML = ''
+}
+
+
+function setLoopNotLongerThanFive(results) {
+    if (results.length > 5) {
+        return 5;
+    } else {
+        return results.length
+    }
+}
+
+
+
 function openOrClose() {
     if (openMenu == false) {
         showMenu('flex', true);
@@ -127,7 +198,7 @@ function checkForLastSite() {
     if (lastSite()) {
         nonFunctionalMoreBtn();
     } else {
-        functionalMoreBtn();        
+        functionalMoreBtn();
     }
 }
 
@@ -151,7 +222,7 @@ function toStart() {
 
 document.getElementById('body').addEventListener('click', (e) => {
     if (e.target.id == 'filter') {
-        hideOrShowSpecsOverlay('none', 'remove'); 
+        hideOrShowSpecsOverlay('none', 'remove');
         resetNavbarToAbout();
     }
 })
@@ -170,7 +241,7 @@ function getFavouritPokemons() {
 function renderFavouritsInMenu() {
     document.getElementById('navFav').innerHTML = '';
     for (let i = 0; i < favArray.length; i++) {
-        document.getElementById('navFav').innerHTML += getFavouritsHTML(favArray[i], getURL(favArray[i]), favArrayImg[i]);  
+        document.getElementById('navFav').innerHTML += getFavouritsHTML(favArray[i], getURL(favArray[i]), favArrayImg[i]);
     }
 }
 

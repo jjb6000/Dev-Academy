@@ -108,6 +108,10 @@ tr {
     align-items: center;
 }
 
+.title-container h1 {
+    margin-top: 2rem;
+}
+
 .tags {
     display: flex;
     gap: 0.8rem;
@@ -149,6 +153,36 @@ tr {
     width: 100%;
 }
 
+.search {
+    justify-self: center;
+}
+
+
+
+.search-output div {
+    width: 240px;
+    box-sizing: border-box;
+    /* border-left: solid 1px gray;
+    border-right: solid 1px gray;
+    border-bottom: solid 1px gray;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px; */
+}
+
+.search-output p {
+    margin-top: 0;
+}
+
+.menu-bar-grid {    
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    padding: 1rem 1rem 0 1rem;
+}
+
+.menu-bar-grid >* {
+    height: 24px;
+}
+
 .menu-bar {    
     display: flex;
     justify-content: space-between;
@@ -158,6 +192,10 @@ tr {
 
 .menu-bar >* {
     height: 24px;
+}
+
+.burger {
+    justify-self: end;
 }
 
 .pokemon-specs .menu-bar {
@@ -211,6 +249,15 @@ tr {
 }
 
 /* ANCHOR CARDS SECTION */
+.search {
+    width: 280px;
+    height: 40px;
+    border-style: solid;
+    border-radius: 16px;
+    border-color: #0a5342;
+    font-family: 'Poppins';
+}
+
 .cards-section {
     display: flex;
     justify-content: center;

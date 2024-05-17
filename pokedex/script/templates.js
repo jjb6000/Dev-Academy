@@ -39,6 +39,13 @@ function loadPokemonTitleSection(pokeName, pokeID) {
 }
 
 
+function loadSearchResultHTML(name, url) {
+    return /*html*/`
+        <p onclick="loadPokemonPage('https://pokeapi.co/api/v2/pokemon/${name}')" class="clickable">${upperCase(name)}</p>
+    `
+}
+
+
 function loadTagHTML(type) {
     return /*html*/`
         <div class="tag d-flex-all-center">${upperCase(type)}</div>

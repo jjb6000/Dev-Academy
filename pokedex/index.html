@@ -31,9 +31,18 @@
         <!-- SECTION START SCREEN -->
         <div id="startPage" class="start-page">
             <section class="card-header-section standard-padding">
-                <div class="menu-bar">
-                    <img id="resetBtn" src="icons/back_g.svg" alt=""><img onclick="openOrClose(); stopP(event)"
-                        class="clickable" src="icons/burger.svg" alt="">
+                <div class="menu-bar-grid">
+                    <img id="resetBtn" src="icons/back_g.svg" alt="">
+
+                    <input id="pokeSearch" class="search standard-padding" placeholder="Search your Pokemon..." type="search">
+                    
+                    <img onclick="openOrClose(); stopP(event)" class="clickable burger" src="icons/burger.svg" alt="">
+                </div>
+
+                <div class="search-output d-flex-all-center">
+                    <div id="searchOutput" class="standard-padding">
+
+                    </div>
                 </div>
 
                 <div class="title-container">

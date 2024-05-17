@@ -4,6 +4,8 @@ const labels = ['HP', 'Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed'];
 const resetBtn = document.getElementById('resetBtn');
 const moreBtn = document.getElementById('moreBtn');
 const sliderMob = document.getElementById('sliderMob');
+const pokeSearch = document.getElementById('pokeSearch');
+const searchResults = document.getElementById('searchOutput');
 
 
 class Card {

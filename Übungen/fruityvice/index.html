@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruity</title>
+
+
+</head>
+<body>
+
+    <form onsubmit="getThisFruit(event); return false">
+        <input type="text" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="outputContainer">
+        
+        
+    </div>
+    
+</body>
+
+<script>
+    const outContainer = document.getElementById('outputContainer')
+    let fruitJson;
+
+    async function getThisFruit(e) {
+        let fruit = e.srcElement[0].value;
+        let url = 'https://www.fruityvice.com/api/fruit/' + String(fruit)
+        console.log(url);
+        fruitJson = await getFruits(url)
+        console.log(fruitJson);
+        outContainer.innerHTML = renderNutritionsHTML(fruitJson.name, fruitJson.nutritions.calories, fruitJson.nutritions.fat, fruitJson.nutritions.sugar)
+    }
+
+    
+
+    async function getFruits(url) {
+        let response = await fetch(url).catch(errorFunction);
+        return await response.json()
+    }
+
+
+    function errorFunction(error) {
+        console.warn(error);
+        outContainer.innerHTML = /*html*/`
+        <h1>no such fruit</h1>
+        `;
+    }
+
+
+
+    function renderNutritionsHTML(name, calories, fat, sugar) {
+        return /*html*/`
+        <h1>${name}</h1>
+        <table>
+        <tr>
+            <td>Calories</td>
+            <td>${calories}</td>
+        </tr>
+        <tr>
+            <td>Fat</td>
+            <td>${fat}</td>
+        </tr>
+        <tr>
+            <td>Sugar</td>
+            <td>${sugar}</td>
+        </tr>
+        </table>
+        `
+    }
+</script>
+</html>
