@@ -18,12 +18,19 @@
         
         
     </div>
+
+    <button onclick="doSth()">Button</button>
     
 </body>
 
 <script>
     const outContainer = document.getElementById('outputContainer')
     let fruitJson;
+
+
+    function doSth(params) {
+        alert('hallo welt')
+    }
 
     async function getThisFruit(e) {
         let fruit = e.srcElement[0].value;
