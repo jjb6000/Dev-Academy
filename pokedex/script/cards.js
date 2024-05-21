@@ -59,11 +59,11 @@ document.addEventListener('scrollend', () => {
 });
 
 
-function lazyLoad() {
+async function lazyLoad() {
     if (firstCards()) {
-        loadCardsData('https://pokeapi.co/api/v2/pokemon/?offset=' + String(appStatus.initialAmountOfCardsMinusFour) + '&limit=' + String(appStatus.cardsInRow));
+        await loadCardsData('https://pokeapi.co/api/v2/pokemon/?offset=' + String(appStatus.initialAmountOfCardsMinusFour) + '&limit=' + String(appStatus.cardsInRow));
     } else {
-        loadCardsData(apiDataCards.next);
+        await loadCardsData(apiDataCards.next);
     }
 }
 
