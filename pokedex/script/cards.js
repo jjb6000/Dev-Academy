@@ -1,5 +1,5 @@
-let url = 'https://pokeapi.co/api/v2/pokemon/';
 let cards = [];
+let currentScroll = 0;
 let apiDataCards;
 let allPokemons;
 let mobMenu = document.getElementById('mobMenu');
@@ -12,18 +12,24 @@ let favArrayImg = JSON.parse(localStorage.getItem('favouritePokemonsIcons')) || 
 
 // ANCHOR LOAD CARDS FUNCTIONS
 async function initialLoad() {
+    getFavouritPokemons();
     await loadCardsData('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=4');
     let morePokemons = getAmountsOfCardsFittingViewport();
     if (morePokemons > 0) {
-        loadCardsData('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=' + String(morePokemons))
+        loadCardsData('https://pokeapi.co/api/v2/pokemon/?offset=4&limit=' + String(morePokemons))
     }   
 }
 
+
 function getAmountsOfCardsFittingViewport() {
-    let cardSpaceH = window.visualViewport.height - 140;
-    let column = Math.floor(cardSpaceH / document.getElementsByClassName('card')[0].clientHeight);
-    let amountOfCards = (column * getWidthMultiplicator()) - 4; // -4 because 4are already loaded during initial load
-    return amountOfCards    
+    let cardSpaceH = window.visualViewport.height - document.getElementById('headerSectionStart').clientHeight;
+    let rows = Math.floor(cardSpaceH / document.getElementsByClassName('card')[0].clientHeight);
+    let amountOfCards = (rows * getWidthMultiplicator()) - 4;
+    if (amountOfCards <= 16) {
+        return amountOfCards
+    } else {
+        return 16
+    }
 }
 
 
@@ -45,23 +51,33 @@ function hasNeighborInSameRow(i) {
 }
 
 
+document.addEventListener('scrollend', () => {
+    if (window.scrollY > 0) {
+        console.log('ende');
+        if (!lastSite()) {
+            loadCardsData(apiDataCards.next);
+        }
+    } 
+});
+
+
 
 async function loadCardsData(url) {
     apiDataCards = await fetchPokemonAPI(url);
     await getCardDetails(apiDataCards);
     checkForFirstSite();
-    checkForLastSite();
+    // checkForLastSite();
     renderCards();
-    getFavouritPokemons();
 }
 
 
 async function getCardDetails(apiDataCards) {
+    console.log(cards.length);
     let progress = 0;
     for (let i = 0; i < apiDataCards.results.length; i++) {
         let apiDataCardDetails = await fetchPokemonAPI(apiDataCards.results[i].url);
-        cards[i] = new Card(apiDataCards.results[i], putTypesInArray(apiDataCardDetails.types), checkImg(apiDataCardDetails))
-        progress += 5
+        cards.push(new Card(apiDataCards.results[i], putTypesInArray(apiDataCardDetails.types), checkImg(apiDataCardDetails)));
+        progress += 5;
         setProgressBar('flex', String(progress))
     }
     setProgressBar('none', '0')
@@ -75,7 +91,6 @@ function setProgressBar(display, progress) {
 
 
 function renderCards() {
-    cardSection.innerHTML = ''
     for (let i = 0; i < cards.length; i++) {
         cardSection.innerHTML += getCardSectionHTML(cards[i].name.name, cards[i].name.url, cards[i].img, i);
         addTypeTags(cards[i].types, 'tagdiv' + i);
@@ -189,25 +204,25 @@ document.getElementById('navEnd').addEventListener('click', () => {
 });
 
 
-resetBtn.addEventListener('click', () => {
-    if (firstSite()) {
-        return
-    } else {
-        resetCardData();
-        loadCardsData(apiDataCards.previous);
-    }
-});
+// resetBtn.addEventListener('click', () => {
+//     if (firstSite()) {
+//         return
+//     } else {
+//         resetCardData();
+//         loadCardsData(apiDataCards.previous);
+//     }
+// });
 
 
-moreBtn.addEventListener('click', () => {
-    if (lastSite()) {
-        return
-    } else {
-        resetCardData();
-        toStart();
-        loadCardsData(apiDataCards.next);
-    }
-});
+// moreBtn.addEventListener('click', () => {
+//     if (lastSite()) {
+//         return
+//     } else {
+//         resetCardData();
+//         toStart();
+//         loadCardsData(apiDataCards.next);
+//     }
+// });
 
 
 function resetCardData() {
@@ -236,25 +251,25 @@ function nonFunctionalResetBtn() {
 }
 
 
-function checkForLastSite() {
-    if (lastSite()) {
-        nonFunctionalMoreBtn();
-    } else {
-        functionalMoreBtn();
-    }
-}
+// function checkForLastSite() {
+//     if (lastSite()) {
+//         nonFunctionalMoreBtn();
+//     } else {
+//         functionalMoreBtn();
+//     }
+// }
 
 
-function functionalMoreBtn() {
-    addOrRemoveClasses('add', 'moreBtn', 'clickable');
-    setIcon('moreIcon', 'icons/expand_more.svg')
-}
+// function functionalMoreBtn() {
+//     addOrRemoveClasses('add', 'moreBtn', 'clickable');
+//     setIcon('moreIcon', 'icons/expand_more.svg')
+// }
 
 
-function nonFunctionalMoreBtn() {
-    addOrRemoveClasses('remove', 'moreBtn', 'clickable');
-    setIcon('moreIcon', 'icons/expand_more_g.svg')
-}
+// function nonFunctionalMoreBtn() {
+//     addOrRemoveClasses('remove', 'moreBtn', 'clickable');
+//     setIcon('moreIcon', 'icons/expand_more_g.svg')
+// }
 
 
 function toStart() {
