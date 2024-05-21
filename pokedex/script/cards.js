@@ -1,5 +1,5 @@
 let cards = [];
-let currentScroll = 0;
+let initialAmountOfCards;
 let apiDataCards;
 let allPokemons;
 let mobMenu = document.getElementById('mobMenu');
@@ -24,12 +24,11 @@ async function initialLoad() {
 function getAmountsOfCardsFittingViewport() {
     let cardSpaceH = window.visualViewport.height - document.getElementById('headerSectionStart').clientHeight;
     let rows = Math.floor(cardSpaceH / document.getElementsByClassName('card')[0].clientHeight);
-    let amountOfCards = (rows * getWidthMultiplicator()) - 4;
-    if (amountOfCards <= 16) {
-        return amountOfCards
-    } else {
-        return 16
-    }
+    initialAmountOfCards = (rows * getWidthMultiplicator()) - 4;
+    if (initialAmountOfCards > 16) {
+        initialAmountOfCards = 16;
+    } 
+    return initialAmountOfCards;
 }
 
 
@@ -53,20 +52,31 @@ function hasNeighborInSameRow(i) {
 
 document.addEventListener('scrollend', () => {
     if (window.scrollY > 0) {
-        console.log('ende');
         if (!lastSite()) {
-            loadCardsData(apiDataCards.next);
+            lazyLoad();
         }
     } 
 });
+
+
+function lazyLoad() {
+    if (firstCards()) {
+        loadCardsData('https://pokeapi.co/api/v2/pokemon/?offset=' + String(initialAmountOfCards) + '&limit=4');
+    } else {
+        loadCardsData(apiDataCards.next);
+    }
+}
+
+
+function firstCards() {
+    return initialAmountOfCards + 4 == cards.length
+}
 
 
 
 async function loadCardsData(url) {
     apiDataCards = await fetchPokemonAPI(url);
     await getCardDetails(apiDataCards);
-    checkForFirstSite();
-    // checkForLastSite();
     renderCards();
 }
 
@@ -194,82 +204,9 @@ function showMenu(attr, boolean) {
 
 
 document.getElementById('navStart').addEventListener('click', () => {
-    location.reload();
-});
-
-
-document.getElementById('navEnd').addEventListener('click', () => {
     resetCardData();
-    loadCardsData('https://pokeapi.co/api/v2/pokemon?offset=1300&limit=20');
+    initialLoad();
 });
-
-
-// resetBtn.addEventListener('click', () => {
-//     if (firstSite()) {
-//         return
-//     } else {
-//         resetCardData();
-//         loadCardsData(apiDataCards.previous);
-//     }
-// });
-
-
-// moreBtn.addEventListener('click', () => {
-//     if (lastSite()) {
-//         return
-//     } else {
-//         resetCardData();
-//         toStart();
-//         loadCardsData(apiDataCards.next);
-//     }
-// });
-
-
-function resetCardData() {
-    cards = [];
-}
-
-
-function checkForFirstSite() {
-    if (firstSite()) {
-        nonFunctionalResetBtn();
-    } else {
-        functionalResetBtn();
-    }
-}
-
-
-function functionalResetBtn() {
-    addOrRemoveClasses('add', 'resetBtn', 'clickable');
-    setIcon('resetBtn', 'icons/back_b.svg')
-}
-
-
-function nonFunctionalResetBtn() {
-    addOrRemoveClasses('remove', 'resetBtn', 'clickable');
-    setIcon('resetBtn', 'icons/back_g.svg')
-}
-
-
-// function checkForLastSite() {
-//     if (lastSite()) {
-//         nonFunctionalMoreBtn();
-//     } else {
-//         functionalMoreBtn();
-//     }
-// }
-
-
-// function functionalMoreBtn() {
-//     addOrRemoveClasses('add', 'moreBtn', 'clickable');
-//     setIcon('moreIcon', 'icons/expand_more.svg')
-// }
-
-
-// function nonFunctionalMoreBtn() {
-//     addOrRemoveClasses('remove', 'moreBtn', 'clickable');
-//     setIcon('moreIcon', 'icons/expand_more_g.svg')
-// }
 
 
 function toStart() {

@@ -68,3 +68,7 @@ function checkImg(apiData) {
 }
 
 
+function resetCardData() {
+    cards = [];
+}
+

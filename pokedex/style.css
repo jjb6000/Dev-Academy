@@ -92,12 +92,13 @@ tr {
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 80px;
+    bottom: 180px;
     background-color: white;
     border-radius: 16px;
     box-shadow: rgba(0, 0, 0, 0.674) 0px 7px 29px 0px;
     width: 280px;
     left: calc(50vw - 150px);
+    z-index: 999;
 }
 
 
@@ -509,7 +510,8 @@ tr {
 
     .cards-section {
         flex: 1;
-        gap: 4rem;
+        gap: 3.5rem;
+        margin-top: 1rem;
     }
 
     .card {
