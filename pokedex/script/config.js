@@ -17,6 +17,13 @@ class Card {
 }
 
 
+const appStatus = {
+    openMenu: false,
+    initialAmountOfCardsMinusFour: null,
+    cardsInRow: null
+}
+
+
 // ANCHOR   GRAPH CONFIGS
 const CONFIG_BG_COLOR = [
     'rgba(255, 99, 132, 0.2)',

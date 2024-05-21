@@ -1,9 +1,8 @@
 let cards = [];
-let initialAmountOfCards;
+let initialAmountOfCardsMinusFour;
 let apiDataCards;
 let allPokemons;
 let mobMenu = document.getElementById('mobMenu');
-let openMenu = false;
 let favArray = JSON.parse(localStorage.getItem('favouritePokemons')) || [];
 let favArrayImg = JSON.parse(localStorage.getItem('favouritePokemonsIcons')) || [];
 
@@ -24,11 +23,12 @@ async function initialLoad() {
 function getAmountsOfCardsFittingViewport() {
     let cardSpaceH = window.visualViewport.height - document.getElementById('headerSectionStart').clientHeight;
     let rows = Math.floor(cardSpaceH / document.getElementsByClassName('card')[0].clientHeight);
-    initialAmountOfCards = (rows * getWidthMultiplicator()) - 4;
-    if (initialAmountOfCards > 16) {
-        initialAmountOfCards = 16;
+    initialAmountOfCardsMinusFour = (rows * getWidthMultiplicator()) - 4;
+    if (initialAmountOfCardsMinusFour > 16) {
+        initialAmountOfCardsMinusFour = 16;
     } 
-    return initialAmountOfCards;
+    appStatus.initialAmountOfCardsMinusFour = initialAmountOfCardsMinusFour;
+    return initialAmountOfCardsMinusFour;
 }
 
 
@@ -41,6 +41,7 @@ function getWidthMultiplicator() {
             break
         }
     }
+    appStatus.cardsInRow = cardsInRowCounter;
     return cardsInRowCounter;
 }
 
@@ -61,7 +62,7 @@ document.addEventListener('scrollend', () => {
 
 function lazyLoad() {
     if (firstCards()) {
-        loadCardsData('https://pokeapi.co/api/v2/pokemon/?offset=' + String(initialAmountOfCards) + '&limit=4');
+        loadCardsData('https://pokeapi.co/api/v2/pokemon/?offset=' + String(appStatus.initialAmountOfCardsMinusFour) + '&limit=' + String(appStatus.cardsInRow));
     } else {
         loadCardsData(apiDataCards.next);
     }
@@ -69,7 +70,7 @@ function lazyLoad() {
 
 
 function firstCards() {
-    return initialAmountOfCards + 4 == cards.length
+    return appStatus.initialAmountOfCardsMinusFour + 4 == cards.length
 }
 
 
@@ -189,7 +190,7 @@ function setLoopNotLongerThanFive(results) {
 
 
 function openOrClose() {
-    if (openMenu == false) {
+    if (appStatus.openMenu == false) {
         showMenu('flex', true);
     } else {
         showMenu('none', false);
@@ -199,7 +200,7 @@ function openOrClose() {
 
 function showMenu(attr, boolean) {
     mobMenu.style.display = attr;
-    openMenu = boolean
+    appStatus.openMenu = boolean;
 }
 
 
