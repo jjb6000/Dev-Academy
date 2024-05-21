@@ -1,5 +1,4 @@
 let cards = [];
-let initialAmountOfCardsMinusFour;
 let apiDataCards;
 let allPokemons;
 let mobMenu = document.getElementById('mobMenu');
