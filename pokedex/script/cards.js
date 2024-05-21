@@ -72,7 +72,6 @@ async function loadCardsData(url) {
 
 
 async function getCardDetails(apiDataCards) {
-    console.log(cards.length);
     let progress = 0;
     for (let i = 0; i < apiDataCards.results.length; i++) {
         let apiDataCardDetails = await fetchPokemonAPI(apiDataCards.results[i].url);
@@ -91,6 +90,7 @@ function setProgressBar(display, progress) {
 
 
 function renderCards() {
+    cardSection.innerHTML = '';
     for (let i = 0; i < cards.length; i++) {
         cardSection.innerHTML += getCardSectionHTML(cards[i].name.name, cards[i].name.url, cards[i].img, i);
         addTypeTags(cards[i].types, 'tagdiv' + i);
