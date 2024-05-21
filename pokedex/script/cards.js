@@ -11,6 +11,41 @@ let favArrayImg = JSON.parse(localStorage.getItem('favouritePokemonsIcons')) || 
 
 
 // ANCHOR LOAD CARDS FUNCTIONS
+async function initialLoad() {
+    await loadCardsData('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=4');
+    let morePokemons = getAmountsOfCardsFittingViewport();
+    if (morePokemons > 0) {
+        loadCardsData('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=' + String(morePokemons))
+    }   
+}
+
+function getAmountsOfCardsFittingViewport() {
+    let cardSpaceH = window.visualViewport.height - 140;
+    let column = Math.floor(cardSpaceH / document.getElementsByClassName('card')[0].clientHeight);
+    let amountOfCards = (column * getWidthMultiplicator()) - 4; // -4 because 4are already loaded during initial load
+    return amountOfCards    
+}
+
+
+function getWidthMultiplicator() {
+    let cardsInRowCounter = 1
+    for (let i = 1; i < 4; i++) {
+        if (hasNeighborInSameRow(i)) {
+            cardsInRowCounter++
+        } else {
+            break
+        }
+    }
+    return cardsInRowCounter;
+}
+
+
+function hasNeighborInSameRow(i) {
+    return document.getElementsByClassName('card')[0].getBoundingClientRect().left < document.getElementsByClassName('card')[i].getBoundingClientRect().left
+}
+
+
+
 async function loadCardsData(url) {
     apiDataCards = await fetchPokemonAPI(url);
     await getCardDetails(apiDataCards);
