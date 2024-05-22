@@ -20,7 +20,9 @@ class Card {
 const appStatus = {
     openMenu: false,
     initialAmountOfCardsMinusFour: null,
-    cardsInRow: null
+    cardsInRow: null,
+    lowest_scroll: 0,
+    request_pending: false
 }
 
 

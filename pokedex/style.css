@@ -555,6 +555,10 @@ tr {
     table {
         width: 70%;
     }
+
+    .standard-padding {
+        padding: 1rem;
+    }
 }
 
 
@@ -566,4 +570,5 @@ tr {
     .mob-overlay {
         right: calc(((100vw - 1080px) / 2) + 1rem);
     }
+
 }
