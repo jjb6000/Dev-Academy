@@ -4,12 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fruity</title>
-
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+    }
+</style>
 
 </head>
 <body>
-
-    <form onsubmit="getThisFruit(event); return false">
+    <h1>Fruits</h1>
+    <form onsubmit="getEndpoint(event); return false">
         <input type="text" required>
         <button type="submit">Submit</button>
     </form>
@@ -19,28 +27,54 @@
         
     </div>
 
-    <button onclick="doSth()">Button</button>
+    <h2>All Fruits click here</h2>
+    <div>
+        <button onclick="allFruits()" >All Fruits</button>
+
+        <div>
+            <table id="allContainer">
+
+            </table>
+        </div>
+    </div>
+
     
 </body>
 
 <script>
-    const outContainer = document.getElementById('outputContainer')
+    const outContainer = document.getElementById('outputContainer');
+    const allContainer = document.getElementById('allContainer');
     let fruitJson;
 
-
-    function doSth(params) {
-        alert('hallo welt')
+    function getEndpoint(e) {
+        let url = buildURL(e.srcElement[0].value);
+        getThisFruit(url);
     }
 
-    async function getThisFruit(e) {
-        let fruit = e.srcElement[0].value;
-        let url = 'https://www.fruityvice.com/api/fruit/' + String(fruit)
-        console.log(url);
+
+    async function getThisFruit(url) {
+        outContainer.innerHTML = '';
         fruitJson = await getFruits(url)
         console.log(fruitJson);
-        outContainer.innerHTML = renderNutritionsHTML(fruitJson.name, fruitJson.nutritions.calories, fruitJson.nutritions.fat, fruitJson.nutritions.sugar)
+        outContainer.innerHTML = renderNutritionsHTML(fruitJson.name, fruitJson.nutritions.calories, fruitJson.nutritions.fat, fruitJson.nutritions.protein, fruitJson.nutritions.sugar)
     }
 
+
+    async function allFruits() {
+        allContainer.innerHTML = '';
+        fruitsJson = await getFruits('https://www.fruityvice.com/api/fruit/all/');
+        console.log(fruitsJson);
+        for (let i = 0; i < fruitsJson.length; i++) {
+            fruitsJson[i].name;
+            allContainer.innerHTML += renderFruitRowHTML(fruitsJson[i].name, fruitsJson[i].family);
+        } 
+    }
+
+
+    function buildURL(endpoint) {
+        console.log('https://www.fruityvice.com/api/fruit/' + String(endpoint));
+        return 'https://www.fruityvice.com/api/fruit/' + String(endpoint)
+    }
     
 
     async function getFruits(url) {
@@ -52,13 +86,13 @@
     function errorFunction(error) {
         console.warn(error);
         outContainer.innerHTML = /*html*/`
-        <h1>no such fruit</h1>
+        <h2>no such fruit</h2>
         `;
     }
 
 
 
-    function renderNutritionsHTML(name, calories, fat, sugar) {
+    function renderNutritionsHTML(name, calories, fat, protein, sugar) {
         return /*html*/`
         <h1>${name}</h1>
         <table>
@@ -72,10 +106,26 @@
         </tr>
         <tr>
             <td>Sugar</td>
+            <td>${protein}</td>
+        </tr>
+        <tr>
+            <td>Sugar</td>
             <td>${sugar}</td>
         </tr>
         </table>
         `
     }
+
+
+    function renderFruitRowHTML(name, family) {
+        return /*html*/`
+        <tr>
+            <td>${name}</td>
+            <td>${family}</td>
+            <td><button onclick="getThisFruit(buildURL('${name}'))">More info</button></td>
+        </tr>
+        `
+    }
 </script>
+
 </html>
