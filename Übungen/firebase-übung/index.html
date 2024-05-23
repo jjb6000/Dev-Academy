@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase-Test</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="app.js"></script>
+</head>
+<body>
+
+    <section>
+        <h2>Create User</h2>
+        <form onsubmit="setUser(); return false" action="">
+            <input placeholder="Name" type="text" required>
+            <input placeholder="Email" type="email" required>
+            <input placeholder="Stadt" type="text" required>
+            <input placeholder="Haustier" type="text" required>
+            <button type="submit">Speichern</button>
+        </form>
+    </section>
+
+
+
+    <section>
+        <h2>Get User-Info</h2>
+        <form onsubmit="getEndpoint(event); return false" action="" method="get">
+            <input placeholder="Email" type="text" required>
+            <button type="submit">Bestätigen</button>
+        </form>
+    </section>
+
+
+    <section>
+        <h2>User-Info</h2>
+        <div id="outputContainer" class="output">
+            <p class="hidden">Name: asd</p>
+            <p class="hidden">Stadt: asd</p>
+            <p class="hidden">Haustier: asd</p>
+        </div>
+    </section>
+
+
+
+    
+</body>
+</html>
