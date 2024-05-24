@@ -1,4 +1,5 @@
 const outputContainer = document.getElementById('outputContainer');
+const messageContainer = document.getElementById('messageContainer');
 const FIREBASE = 'https://devacademytest-45922-default-rtdb.europe-west1.FIREBASEdatabase.app/';
 let user;
 
@@ -29,8 +30,10 @@ function setUser(e) {
 
 
 async function getData(url) {
-    let data = await fetch(url + ".json").catch(errorFunction);
-    return await data.json();
+    let response = await fetch(url + ".json").catch(errorFunction);
+    console.log(response.status);
+    showStatus(response.status);
+    return await response.json();
 }
 
 
@@ -42,6 +45,8 @@ async function putData(url, data={}) {
         },
         body: JSON.stringify(data)
     }).catch(errorFunction);
+    console.log(response.status);
+    showStatus(response.status);
     return await response.json();
 }
 
@@ -56,6 +61,8 @@ async function deleteData(url) {
     let response = await fetch(url + ".json", {
         method: 'DELETE'
     }).catch(errorFunction);
+    console.log(response.status);
+    showStatus(response.status);
     return await response.json();
 }
 
@@ -64,6 +71,15 @@ function errorFunction() {
     console.error('Fehler aufgetreten',);
     outputContainer.innerHTML = 'Oops something went wrong, please try again later'
 }
+
+
+// function showStatus(statusCode) {
+//     if (statusCode == 200) {
+//         messageContainer.innerHTML = 'Anfrage erfolgreich!'
+//     } else {
+//         messageContainer.innerHTML = 'Etwas ist schief gelaufen'
+//     }
+// }
 
 
 
