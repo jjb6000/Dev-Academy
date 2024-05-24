@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Firebase-Test</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="class.js"></script>
     <script defer src="app.js"></script>
 </head>
 <body>
 
     <section>
         <h2>Create User</h2>
-        <form onsubmit="setUser(); return false" action="">
+        <form id="createForm" action="">
             <input placeholder="Name" type="text" required>
             <input placeholder="Email" type="email" required>
             <input placeholder="Stadt" type="text" required>
@@ -24,12 +25,19 @@
 
     <section>
         <h2>Get User-Info</h2>
-        <form onsubmit="getEndpoint(event); return false" action="" method="get">
+        <form onsubmit="getInfo(event); return false" action="" method="get">
             <input placeholder="Email" type="text" required>
             <button type="submit">Bestätigen</button>
         </form>
     </section>
 
+    <section>
+        <h2>Delete User</h2>
+        <form onsubmit="deleteUser(event); return false" action="" method="get">
+            <input placeholder="Email" type="text" required>
+            <button type="submit">Bestätigen</button>
+        </form>
+    </section>
 
     <section>
         <h2>User-Info</h2>
