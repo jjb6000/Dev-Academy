@@ -12,11 +12,10 @@ let favArrayImg = JSON.parse(localStorage.getItem('favouritePokemonsIcons')) || 
 async function initialLoad() {
     getFavouritPokemons();
     appStatus.request_pending = true;
-    await loadCardsData('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=4');
-    let morePokemons = getAmountsOfCardsFittingViewport();
-    if (morePokemons > 0) {
-        loadCardsData('https://pokeapi.co/api/v2/pokemon/?offset=4&limit=' + String(morePokemons))
-    }   
+    await loadCardsData('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=80');
+    renderCards(0, 4);
+    getAmountsOfCardsFittingViewport();
+    renderCards(0, cardSection.children.length + appStatus.initialAmountOfCardsMinusFour);
     appStatus.request_pending = false;
 }
 
@@ -29,7 +28,6 @@ function getAmountsOfCardsFittingViewport() {
         initialAmountOfCardsMinusFour = 16;
     } 
     appStatus.initialAmountOfCardsMinusFour = initialAmountOfCardsMinusFour;
-    return initialAmountOfCardsMinusFour;
 }
 
 
@@ -52,10 +50,11 @@ function hasNeighborInSameRow(i) {
 }
 
 
-document.addEventListener('scrollend', () => {
-    if (window.scrollY > appStatus.lowest_scroll && !lastSite() && !appStatus.request_pending) {
+document.addEventListener('scrollend', async () => {
+    if (window.scrollY > appStatus.lowest_scroll) {
         console.log('load');
-        lazyLoad();
+        renderCards(0, cardSection.children.length + appStatus.initialAmountOfCardsMinusFour);
+        await hiddenLoad();
         appStatus.lowest_scroll = window.scrollY;
     } else {
         console.log('no load');
@@ -63,12 +62,11 @@ document.addEventListener('scrollend', () => {
 });
 
 
-async function lazyLoad() {
-    if (firstCards()) {
-        await loadCardsData('https://pokeapi.co/api/v2/pokemon/?offset=' + String(appStatus.initialAmountOfCardsMinusFour + 4) + '&limit=' + String(appStatus.cardsInRow));
-    } else {
+async function hiddenLoad() {
+    if (cardSection.children.length > cards.length / 2 && !lastSite() && !appStatus.request_pending) {
+        console.info('fetch');
         await loadCardsData(apiDataCards.next);
-    }
+    } 
 }
 
 
@@ -77,13 +75,11 @@ function firstCards() {
 }
 
 
-
 async function loadCardsData(url) {
     appStatus.request_pending = true;
     apiDataCards = await fetchPokemonAPI(url);
     await getCardDetails(apiDataCards);
     appStatus.request_pending = false;
-    renderCards();
 }
 
 
@@ -105,9 +101,9 @@ function setProgressBar(display, progress) {
 }
 
 
-function renderCards() {
+function renderCards(start, end) {
     cardSection.innerHTML = '';
-    for (let i = 0; i < cards.length; i++) {
+    for (let i = start; i < end; i++) {
         cardSection.innerHTML += getCardSectionHTML(cards[i].name.name, cards[i].name.url, cards[i].img, i);
         addTypeTags(cards[i].types, 'tagdiv' + i);
         defineColor(cards[i].name.name, cards[i].types[0]);
