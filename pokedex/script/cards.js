@@ -50,12 +50,12 @@ function hasNeighborInSameRow(i) {
 }
 
 
-document.addEventListener('scrollend', async () => {
+document.addEventListener('scrollend', () => {
     if (window.scrollY > appStatus.lowest_scroll) {
         console.log('load');
         renderCards(0, cardSection.children.length + appStatus.initialAmountOfCardsMinusFour);
-        await hiddenLoad();
         appStatus.lowest_scroll = window.scrollY;
+        hiddenLoad();
     } else {
         console.log('no load');
     }
