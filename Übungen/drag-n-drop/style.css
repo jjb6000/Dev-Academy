@@ -1,0 +1,44 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    gap: 48px;
+}
+
+.drop-field {
+    width: 680px;
+    height: 240px;
+    background-color: aliceblue;
+    display: flex;
+    gap: 2rem;
+    padding: 1rem;
+    border: dotted 1px grey;
+    border-radius: 8px;
+}
+
+.card {
+    width: 80px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background-color: antiquewhite;
+    border-radius: 4px;
+    border: solid black 2px;
+}
+
+
+.drag-highlight {
+    background-color: rgb(200, 228, 253);
+}
+
+
+@media (min-width: 1080px) {
+    .drop-field {
+        width: 980px;
+    }
+}

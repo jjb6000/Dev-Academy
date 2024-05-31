@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag-n-Drop</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <script defer src="templates.js"></script>
+
+</head>
+<body onload="initCardsData()">
+
+    <div ondragover="allowDrop(event)" class="drop-field" id="backlog"></div>
+    <div ondragover="allowDrop(event)" class="drop-field" id="done"></div>
+</body>
+</html>
