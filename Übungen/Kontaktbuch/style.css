@@ -1,0 +1,70 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+button {
+    background-color: rgb(0, 123, 238);
+    border: none;
+    height: 2rem;
+    width: 140px;
+    border-radius: 6px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-container {
+    display: flex;
+    align-items: end;
+    flex: 1;
+}
+
+button:hover {
+    background-color: blue;
+}
+
+header {
+    padding: 0.5rem 2rem;
+    background-color: rgba(0, 255, 255, 0.103);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    gap: 1rem;
+}
+
+.contact-list {
+    width: 20vw;
+}
+
+.contact-container {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+}
+
+.add-container {
+    flex: 1;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    height: 20vh;
+}
+
+.add-container input {
+    height: 2rem;
+}
+
+.input-container {
+    padding: 1rem 0;
+    display: flex;
+    gap: 1rem;
+}
+

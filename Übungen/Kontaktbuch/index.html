@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakte</title>
+    <script defer src="classes/contact.class.js"></script>
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="addContactToList()">
+    <header>
+        <h1>Kontakte</h1>
+    </header>
+
+    <main class="main-container">
+        <div id="contactList" class="contact-list">
+        </div>
+
+        <form id="addForm" class="add-container">
+            <div class="input-container">
+                <input id="fNameInput" placeholder="Vorname" type="text" required>
+                <input id="lNameInput" placeholder="Nachname" type="text" required>
+            </div>
+            <div class="input-container">
+                <input id="telInput" placeholder="Telefonnummer" type="tel" required>
+            </div>
+            <div class="btn-container">
+                <button type="submit">Hinzufügen</button>
+            </div>
+        </form>
+    </main>
+    
+</body>
+</html>
