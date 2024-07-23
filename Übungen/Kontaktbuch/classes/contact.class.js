@@ -17,4 +17,8 @@ class Contact {
     call() {
         window.location.href = 'tel:' + this.number;
     }
+
+    changeLastName(newLastName) {
+        this.lastName = newLastName;
+    }
 }

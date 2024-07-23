@@ -21,12 +21,18 @@ function addContactToList() {
 }
 
 
+function callContact(e) {
+    contacts[e.target.parentNode.id].call();
+}
+
+
 
 function addContactToListHTML(firstName, lastName, number, index) {
     return /*html*/`
-        <div id="c${index}" class="contact-container">
+        <div id="${index}" class="contact-container">
             <p>${firstName} ${lastName}</p>
             <p>Tel: ${number}</p>
+            <button onclick="callContact(event)">Anrufen</button>
         </div>
     `
 }
@@ -37,3 +43,5 @@ document.getElementById('addForm').addEventListener('submit', function(e) {
     addContact(document.getElementById('fNameInput').value, document.getElementById('lNameInput').value, document.getElementById('telInput').value);
     ['fNameInput', 'lNameInput', 'telInput'].forEach(id => document.getElementById(id).value = '');
 });
+
+
