@@ -38,7 +38,7 @@ function addContactToListHTML(firstName, lastName, number, index) {
 }
 
 
-document.getElementById('addForm').addEventListener('submit', function(e) {
+document.getElementById('addForm').addEventListener('submit', e => {
     e.preventDefault();
     addContact(document.getElementById('fNameInput').value, document.getElementById('lNameInput').value, document.getElementById('telInput').value);
     ['fNameInput', 'lNameInput', 'telInput'].forEach(id => document.getElementById(id).value = '');
