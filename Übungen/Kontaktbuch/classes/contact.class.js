@@ -1,24 +1,19 @@
 
-class Contact {
-    firstName;
-    lastName;
+class Contact extends Person {
     number;
+    email;
 
-    constructor(firstName, lastName, number) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    constructor(firstName, lastName, number, email) {
+        super(firstName, lastName)
         this.number = number;
-    }
-
-    printFullName() {
-        console.log(`${this.firstName} ${this.lastName}`);
+        this.email = email;
     }
 
     call() {
         window.location.href = 'tel:' + this.number;
     }
 
-    changeLastName(newLastName) {
-        this.lastName = newLastName;
+    mail() {
+        window.location.href = 'mailto:' + this.email;
     }
 }
