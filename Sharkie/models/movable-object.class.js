@@ -12,15 +12,21 @@ class MovableObject {
     }
 
     moveRight() {
-        console.log('move right');
+        if (this.x < 600) {
+            this.x = this.x + 24;
+        } 
     }
 
     moveUp() {
-        console.log('up');
+        if (this.y > -64) {
+            this.y = this.y - 24;
+        }
     }
 
     moveDown() {
-        console.log('down');
+        if (this.y < 368) {
+            this.y = this.y + 24;
+        }
     }
 
 }

@@ -5,6 +5,8 @@ class Character extends MovableObject {
     }
 
     moveLeft() {
-        console.log('move left')
+        if (this.x > -72) {
+            this.x = this.x - 24;   
+        }
     }
 }
