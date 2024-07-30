@@ -1,13 +1,9 @@
-let canvas;
-let character = new Image();
-let ctx;
+let canvas = document.getElementById('canvas');
+let world;
 
 
 function initGame() {
-    canvas = document.getElementById('canvas');
-    character.src = '../Sharkie/img/1.IDLE/1.png';
-    let ctx = canvas.getContext('2d');
-    console.log(ctx);
+    world = new World(canvas)
 }
 
 

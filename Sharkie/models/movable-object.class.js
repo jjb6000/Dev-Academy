@@ -1,14 +1,18 @@
-class MovableObject extends World {
+
+class MovableObject {
     x = 120;
-    y = 400;
+    y = 200;
+    height = 150;
+    width = 150;
     img;
+
+    loadImage(path) {
+        this.img = new Image();
+        this.img.src = path;
+    }
 
     moveRight() {
         console.log('move right');
-    }
-
-    moveLeft() {
-        console.log('move left')
     }
 
     moveUp() {
@@ -19,9 +23,4 @@ class MovableObject extends World {
         console.log('down');
     }
 
-
-
-    constructor() {
-
-    }
 }
