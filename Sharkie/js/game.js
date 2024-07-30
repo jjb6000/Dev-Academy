@@ -14,9 +14,9 @@ function initGame() {
 
 
 function processKeyInput(e) {
-    console.log(e.key);
-    if (keyFunctionObject[e.key]) {
-        keyFunctionObject[e.key]();
+    let action = keyFunctionObject[e.key]
+    if (action) {
+        action();
     }
 }
 
