@@ -1,0 +1,5 @@
+class Bubble extends MovableObject {
+
+
+
+}

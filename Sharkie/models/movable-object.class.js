@@ -1,4 +1,4 @@
-class MovableObject {
+class MovableObject extends World {
     x = 120;
     y = 400;
     img;
@@ -8,8 +8,18 @@ class MovableObject {
     }
 
     moveLeft() {
-        console.log();
+        console.log('move left')
     }
+
+    moveUp() {
+        console.log('up');
+    }
+
+    moveDown() {
+        console.log('down');
+    }
+
+
 
     constructor() {
 
