@@ -4,8 +4,8 @@ class Character extends MovableObject {
         super().loadImage('../Sharkie/img/sharkie/1.IDLE/1.png')
     }
 
-    moveLeft() {
-        if (this.x > -72) {
+    moveLeft(borderWest = -72) {
+        if (this.x > borderWest) {
             this.x = this.x - 24;   
         }
     }

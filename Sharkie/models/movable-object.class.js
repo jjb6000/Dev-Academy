@@ -11,20 +11,20 @@ class MovableObject {
         this.img.src = path;
     }
 
-    moveRight() {
-        if (this.x < 600) {
+    moveRight(borderEast = 600) {
+        if (this.x < borderEast) {
             this.x = this.x + 24;
         } 
     }
 
-    moveUp() {
-        if (this.y > -64) {
+    moveUp(borderNorth = -64) {
+        if (this.y > borderNorth) {
             this.y = this.y - 24;
         }
     }
 
-    moveDown() {
-        if (this.y < 368) {
+    moveDown(borderSouth = 368) {
+        if (this.y < borderSouth) {
             this.y = this.y + 24;
         }
     }
