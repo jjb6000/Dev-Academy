@@ -4,8 +4,14 @@ class World {
         new Jellyfish(),
         new Pufferfish(),
         new Jellyfish(),
-    ]
-    canvas
+    ];
+    collectables = [
+        new Bubble(),
+        new Bubble(),
+        new Bubble(),
+    ];
+    bg = new Background
+    canvas;
     ctx;
 
     constructor(canvas) {
@@ -16,16 +22,15 @@ class World {
 
     drawWorld() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.fillStyle = 'blue';
-        this.ctx.fillRect(0, 0, 100, 100);
-
-        this.ctx.drawImage(this.character.img, this.character.x, this.character.y, this.character.width, this.character.height)
-
+        this.ctx.drawImage(this.bg.img, this.bg.x, this.bg.y, this.bg.width, this.bg.height)
+        this.ctx.drawImage(this.character.img, this.character.x, this.character.y, this.character.width, this.character.height);
         this.enemies.forEach((enemy) => {
             this.ctx.drawImage(enemy.img, enemy.x, enemy.y, enemy.width, enemy.height)
         });
-
+        this.collectables.forEach((collectable) => {
+            this.ctx.drawImage(collectable.img, collectable.x, collectable.y, collectable.width, collectable.height)
+        });
         requestAnimationFrame(() => this.drawWorld());
-
     }
+
 }
