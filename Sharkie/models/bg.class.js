@@ -4,7 +4,7 @@ class Background extends MovableObject {
     height = 480;
     width = 720;
 
-    constructor() {
-        super().loadImage('../Sharkie/img/bg/Light/1.png')
+    constructor(imagePath = '../Sharkie/img/bg/Light/1.png') {
+        super().loadImage(imagePath)
     }
 }

@@ -10,7 +10,12 @@ class World {
         new Bubble(),
         new Bubble(),
     ];
-    bg = new Background
+    backgroundObjects = [
+        new Background('../Sharkie/img/bg/Layers/5. Water/D1.png'),
+        new Background('../Sharkie/img/bg/Layers/3.Fondo 1/D.png'),
+        new Background('../Sharkie/img/bg/Layers/4.Fondo 2/D1.png'),
+        new Background('../Sharkie/img/bg/Layers/2. Floor/L1.png')
+    ];
     canvas;
     ctx;
 
@@ -22,15 +27,19 @@ class World {
 
     drawWorld() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.drawImage(this.bg.img, this.bg.x, this.bg.y, this.bg.width, this.bg.height)
-        this.ctx.drawImage(this.character.img, this.character.x, this.character.y, this.character.width, this.character.height);
-        this.enemies.forEach((enemy) => {
-            this.ctx.drawImage(enemy.img, enemy.x, enemy.y, enemy.width, enemy.height)
-        });
-        this.collectables.forEach((collectable) => {
-            this.ctx.drawImage(collectable.img, collectable.x, collectable.y, collectable.width, collectable.height)
-        });
+        this.addObjectsToMap(this.backgroundObjects);
+        this.addToMap(this.character);
+        this.addObjectsToMap(this.enemies);
+        this.addObjectsToMap(this.collectables);
         requestAnimationFrame(() => this.drawWorld());
+    }
+
+    addObjectsToMap(objects) {
+        objects.forEach(o => this.addToMap(o))
+    }
+
+    addToMap(movableObject) {
+        this.ctx.drawImage(movableObject.img, movableObject.x, movableObject.y, movableObject.width, movableObject.height)
     }
 
 }
