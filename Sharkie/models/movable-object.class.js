@@ -17,6 +17,12 @@ class MovableObject {
         } 
     }
 
+    moveLeft(borderWest = -72, step = 24) {
+        if (this.x > borderWest) {
+            this.x = this.x - step;   
+        }
+    }
+
     moveUp(borderNorth = -100, step = 24) {
         if (this.y > borderNorth) {
             this.y = this.y - step;
@@ -27,6 +33,14 @@ class MovableObject {
         if (this.y < borderSouth) {
             this.y = this.y + step;
         }
+    }
+
+    movingAnimation(pathArray, counterMax, intervalTime) {
+        setInterval(() => {
+            this.counter++
+            if (this.counter === counterMax) {this.counter = 0}
+            this.loadImage(this.pathArray[this.counter])
+        }, intervalTime);
     }
 
 }
