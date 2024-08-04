@@ -1,9 +1,9 @@
 class World {
     character = new Character();
     enemies = [
-        new Jellyfish(),
+        new Jellyfish1(),
         new Pufferfish(),
-        new Jellyfish(),
+        new Jellyfish2(),
     ];
     collectables = [
         new Bubble(),
