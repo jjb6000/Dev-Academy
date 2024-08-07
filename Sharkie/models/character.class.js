@@ -4,16 +4,16 @@ class Character extends MovableObject {
     x = 0;
     y = 80;
     moving = false;
-    characterIntervall
-    imageCache = [
-        '../Sharkie/img/sharkie/3.Swim/1.png',
-        '../Sharkie/img/sharkie/3.Swim/2.png',
-        '../Sharkie/img/sharkie/3.Swim/3.png',
-        '../Sharkie/img/sharkie/3.Swim/4.png',
-        '../Sharkie/img/sharkie/3.Swim/5.png',
-        '../Sharkie/img/sharkie/3.Swim/6.png',
-    ];
+    characterIntervall;
     imageIndex = 0;
+    imageCache = [
+        this.createImageForCache('../Sharkie/img/sharkie/3.Swim/1.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/3.Swim/2.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/3.Swim/3.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/3.Swim/4.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/3.Swim/5.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/3.Swim/6.png'),
+    ];
 
     constructor() {
         super().loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');

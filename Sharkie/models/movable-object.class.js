@@ -37,8 +37,14 @@ class MovableObject {
 
     movingAnimation(imageCache) {
         let i = this.imageIndex % imageCache.length;
-        this.loadImage(imageCache[i]);  
+        this.img = imageCache[i];  
         this.imageIndex++;  
+    }
+
+    createImageForCache(path) {
+        let img = new Image();
+        img.src = path;
+        return img;
     }
 
 }
