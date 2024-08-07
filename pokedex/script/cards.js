@@ -32,16 +32,16 @@ function getAmountsOfCardsFittingViewport() {
 
 
 function getWidthMultiplicator() {
-    let cardsInRowCounter = 1
+    let cardsInRowimageIndex = 1
     for (let i = 1; i < 4; i++) {
         if (hasNeighborInSameRow(i)) {
-            cardsInRowCounter++
+            cardsInRowimageIndex++
         } else {
             break
         }
     }
-    appStatus.cardsInRow = cardsInRowCounter;
-    return cardsInRowCounter;
+    appStatus.cardsInRow = cardsInRowimageIndex;
+    return cardsInRowimageIndex;
 }
 
 

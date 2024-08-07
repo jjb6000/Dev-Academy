@@ -11,36 +11,34 @@ class MovableObject {
         this.img.src = path;
     }
 
-    moveRight(borderEast = 528, step = 24) {
+    moveRight(borderEast = 528, speed = 24) {
         if (this.x < borderEast) {
-            this.x = this.x + step;
+            this.x = this.x + speed;
         } 
     }
 
-    moveLeft(borderWest = -72, step = 24) {
+    moveLeft(borderWest = -72, speed = 24) {
         if (this.x > borderWest) {
-            this.x = this.x - step;   
+            this.x = this.x - speed;   
         }
     }
 
-    moveUp(borderNorth = -100, step = 24) {
+    moveUp(borderNorth = -100, speed = 24) {
         if (this.y > borderNorth) {
-            this.y = this.y - step;
+            this.y = this.y - speed;
         }
     }
 
-    moveDown(borderSouth = 280, step = 24) {
+    moveDown(borderSouth = 280, speed = 24) {
         if (this.y < borderSouth) {
-            this.y = this.y + step;
+            this.y = this.y + speed;
         }
     }
 
-    movingAnimation(pathArray, counterMax, intervalTime) {
-        setInterval(() => {
-            this.counter++
-            if (this.counter === counterMax) {this.counter = 0}
-            this.loadImage(this.pathArray[this.counter])
-        }, intervalTime);
+    movingAnimation(imageCache) {
+        let i = this.imageIndex % imageCache.length;
+        this.loadImage(imageCache[i]);  
+        this.imageIndex++;  
     }
 
 }

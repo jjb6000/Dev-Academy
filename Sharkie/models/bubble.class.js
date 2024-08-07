@@ -9,7 +9,7 @@ class Bubble extends MovableObject {
     }
 
     animate() {
-        setInterval(() => this.moveUp(-300, 1), 1000 / 60)
+        setInterval(() => this.moveUp(-300, 0.5), 1000 / 60)
     }
 
 }

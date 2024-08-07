@@ -48,7 +48,7 @@ function addAboutToCurruntPokemon() {
         weight: apiData.weight,
         abilities: returnMultipleAbilitiesInOneString(apiData.abilities),
         egg_groups: returnMultipleEggGroupsInOneString(apiDataBreeding.egg_groups),
-        egg_cycle: apiDataBreeding.hatch_counter
+        egg_cycle: apiDataBreeding.hatch_imageIndex
     }
 }
 
