@@ -6,8 +6,8 @@ class  Keyboard {
     keyFunctionObject = {
         'ArrowUp': () => world.character.moveUp(),
         'ArrowDown': () => world.character.moveDown(),
-        'ArrowRight': () => world.character.moveRight(),
-        'ArrowLeft': () => world.character.moveLeft(),
+        'ArrowRight': () => this.initRightMove(),
+        'ArrowLeft': () => this.initLeftMove(),
     }
 
     processKeyInput(e) {
@@ -16,5 +16,16 @@ class  Keyboard {
             action();
             world.character.moving = true;
         }
+    }
+
+    initRightMove() {
+        world.character.otherDirection = false;
+        world.character.moveRight();
+        world.camera_x = -world.character.x * 0.1;
+    }
+
+    initLeftMove() {
+        world.character.otherDirection = true;
+        world.character.moveLeft();
     }
 }

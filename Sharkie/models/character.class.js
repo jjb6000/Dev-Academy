@@ -4,7 +4,7 @@ class Character extends MovableObject {
     x = 0;
     y = 80;
     moving = false;
-    characterIntervall;
+    otherDirection = false;
     imageIndex = 0;
     imageCache = [
         this.createImageForCache('../Sharkie/img/sharkie/3.Swim/1.png'),
@@ -33,10 +33,6 @@ class Character extends MovableObject {
         this.moving = false;
         console.log('stop');
         this.loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
-    }
-
-    flipSharkie() {
-        
     }
 
 }

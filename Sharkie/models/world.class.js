@@ -16,6 +16,8 @@ class World {
         new Background('../Sharkie/img/bg/Layers/4.Fondo 2/D1.png'),
         new Background('../Sharkie/img/bg/Layers/2. Floor/L1.png')
     ];
+    keyboard = new Keyboard();
+    camera_x = 0;
     canvas;
     ctx;
 
@@ -25,21 +27,45 @@ class World {
         this.drawWorld();
     }
 
+
     drawWorld() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.backgroundObjects);
         this.addToMap(this.character);
         this.addObjectsToMap(this.enemies);
         this.addObjectsToMap(this.collectables);
+        this.ctx.translate(-this.camera_x, 0);
         requestAnimationFrame(() => this.drawWorld());
     }
+
 
     addObjectsToMap(objects) {
         objects.forEach(o => this.addToMap(o))
     }
 
+
     addToMap(movableObject) {
-        this.ctx.drawImage(movableObject.img, movableObject.x, movableObject.y, movableObject.width, movableObject.height)
+        if (movableObject.otherDirection) {
+            this.flip(movableObject);
+        }
+        this.ctx.drawImage(movableObject.img, movableObject.x, movableObject.y, movableObject.width, movableObject.height);
+        if (movableObject.otherDirection) {
+            this.reFlip(movableObject);
+        }
     }
 
+
+    flip(movableObject) {
+        this.ctx.save();
+        this.ctx.translate(movableObject.width, 0);
+        this.ctx.scale(-1, 1);
+        movableObject.x = movableObject.x * -1;   
+    }
+
+
+    reFlip(movableObject) {
+        movableObject.x = movableObject.x * -1;
+        this.ctx.restore();
+    }
 }
