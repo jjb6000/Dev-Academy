@@ -1,21 +1,6 @@
 class World {
     character = new Character();
-    enemies = [
-        new Jellyfish1(),
-        new Pufferfish(),
-        new Jellyfish2(),
-    ];
-    collectables = [
-        new Bubble(),
-        new Bubble(),
-        new Bubble(),
-    ];
-    backgroundObjects = [
-        new Background('../Sharkie/img/bg/Layers/5. Water/D1.png'),
-        new Background('../Sharkie/img/bg/Layers/3.Fondo 1/D.png'),
-        new Background('../Sharkie/img/bg/Layers/4.Fondo 2/D1.png'),
-        new Background('../Sharkie/img/bg/Layers/2. Floor/L1.png')
-    ];
+    level = level1;
     keyboard = new Keyboard();
     camera_x = 0;
     canvas;
@@ -31,16 +16,16 @@ class World {
     drawWorld() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
-        this.addObjectsToMap(this.backgroundObjects);
+        this.addMultiObjectsToMap(this.level.backgroundObjects);
         this.addToMap(this.character);
-        this.addObjectsToMap(this.enemies);
-        this.addObjectsToMap(this.collectables);
+        this.addMultiObjectsToMap(this.level.enemies);
+        this.addMultiObjectsToMap(this.level.collectables);
         this.ctx.translate(-this.camera_x, 0);
         requestAnimationFrame(() => this.drawWorld());
     }
 
 
-    addObjectsToMap(objects) {
+    addMultiObjectsToMap(objects) {
         objects.forEach(o => this.addToMap(o))
     }
 

@@ -1,4 +1,4 @@
-class  Keyboard {
+class Keyboard {
     UP = false;
     DOWN = false;
     RIGHT = false;
@@ -20,12 +20,13 @@ class  Keyboard {
 
     initRightMove() {
         world.character.otherDirection = false;
-        world.character.moveRight();
-        world.camera_x = -world.character.x * 0.1;
+        world.character.moveRight(level1.levelEnd, 24);
+        world.camera_x = -world.character.x * 0.8;
     }
 
     initLeftMove() {
         world.character.otherDirection = true;
-        world.character.moveLeft();
+        world.character.moveLeft(-400, 24);
+        world.camera_x = -world.character.x * 0.8;
     }
 }
