@@ -3,6 +3,7 @@ class Keyboard {
     DOWN = false;
     RIGHT = false;
     LEFT = false;
+
     keyFunctionObject = {
         'ArrowUp': () => world.character.moveUp(),
         'ArrowDown': () => world.character.moveDown(),

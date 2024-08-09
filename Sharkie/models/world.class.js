@@ -1,14 +1,16 @@
 class World {
     character = new Character();
-    level = level1;
     keyboard = new Keyboard();
+    level;
     camera_x = 0;
     canvas;
     ctx;
+    bg_sound = new Audio('../Sharkie/audio/shark-bg-sound.mp3') 
 
-    constructor(canvas) {
+    constructor(canvas, level) {
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
+        this.level = level;
         this.drawWorld();
     }
 
@@ -22,6 +24,7 @@ class World {
         this.addMultiObjectsToMap(this.level.collectables);
         this.ctx.translate(-this.camera_x, 0);
         requestAnimationFrame(() => this.drawWorld());
+        // this.bg_sound.play();
     }
 
 
@@ -31,6 +34,7 @@ class World {
 
 
     addToMap(movableObject) {
+        this.setWorldVariablesToAllInstances(movableObject)
         if (movableObject.otherDirection) {
             this.flip(movableObject);
         }
@@ -41,11 +45,17 @@ class World {
     }
 
 
+    setWorldVariablesToAllInstances(movableObject) {
+        movableObject.world = this;
+        movableObject.level = this.level;
+    }
+
+
     flip(movableObject) {
         this.ctx.save();
         this.ctx.translate(movableObject.width, 0);
         this.ctx.scale(-1, 1);
-        movableObject.x = movableObject.x * -1;   
+        movableObject.x = movableObject.x * -1;
     }
 
 

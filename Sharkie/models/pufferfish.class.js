@@ -28,3 +28,6 @@ class Pufferfish extends MovableObject {
     }
 
 }
+
+// 652
+// 998

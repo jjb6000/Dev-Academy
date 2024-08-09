@@ -5,6 +5,8 @@ class MovableObject {
     height = 150;
     width = 150;
     img;
+    world;
+    level;
 
     loadImage(path) {
         this.img = new Image();
