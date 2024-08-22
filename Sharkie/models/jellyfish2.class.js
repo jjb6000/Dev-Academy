@@ -1,6 +1,6 @@
 class Jellyfish2 extends Jellyfish {
     imageIndex = 3;
-    imageCache = [
+    animationImageCache = [
         this.createImageForCache('../Sharkie/img/enemies/2 Jelly fish/Regular damage/Lila 1.png'),
         this.createImageForCache('../Sharkie/img/enemies/2 Jelly fish/Regular damage/Lila 2.png'),
         this.createImageForCache('../Sharkie/img/enemies/2 Jelly fish/Regular damage/Lila 2.png'),
@@ -16,6 +16,6 @@ class Jellyfish2 extends Jellyfish {
     }
 
     animationIntervall(intervalTime) {
-        setInterval(() => this.movingAnimation(this.imageCache), intervalTime);
+        setInterval(() => this.movingAnimation(this.animationImageCache), intervalTime);
     }
 }

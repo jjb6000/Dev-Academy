@@ -7,7 +7,7 @@ class Character extends MovableObject {
     otherDirection = false;
     imageIndex = 0;
     swim_sound = new Audio('../Sharkie/audio/move.mp3');
-    imageCache = [
+    animationImageCache = [
         this.createImageForCache('../Sharkie/img/sharkie/3.Swim/1.png'),
         this.createImageForCache('../Sharkie/img/sharkie/3.Swim/2.png'),
         this.createImageForCache('../Sharkie/img/sharkie/3.Swim/3.png'),
@@ -26,7 +26,7 @@ class Character extends MovableObject {
         setInterval(() => {
             if (this.moving) {
                 this.swim_sound.play();    
-                this.movingAnimation(this.imageCache)
+                this.movingAnimation(this.animationImageCache)
             }
         }, 150);
     }

@@ -4,7 +4,7 @@ class Whale extends MovableObject {
     width = 280;
     speed = 1;
     y = 0
-    imageCache = [
+    animationImageCache = [
         this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/2.floating/1.png'),
         this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/2.floating/2.png'),
         this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/2.floating/3.png'),
@@ -33,6 +33,6 @@ class Whale extends MovableObject {
     }
 
     animationIntervall(intervalTime) {
-        setInterval(() => this.movingAnimation(this.imageCache), intervalTime);
+        setInterval(() => this.movingAnimation(this.animationImageCache), intervalTime);
     }
 }

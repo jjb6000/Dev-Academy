@@ -3,7 +3,7 @@ class Pufferfish extends MovableObject {
     height = 100;
     width = 100;
     speed = 0.6 + Math.random() * 0.6;
-    imageCache = [
+    animationImageCache = [
         this.createImageForCache('../Sharkie/img/enemies/1.Puffer fish (3 color options)/1.Swim/1.swim1.png'),
         this.createImageForCache('../Sharkie/img/enemies/1.Puffer fish (3 color options)/1.Swim/1.swim2.png'),
         this.createImageForCache('../Sharkie/img/enemies/1.Puffer fish (3 color options)/1.Swim/1.swim3.png'),
@@ -23,7 +23,7 @@ class Pufferfish extends MovableObject {
     }
 
     animationIntervall(intervalTime) {
-        setInterval(() => this.movingAnimation(this.imageCache), intervalTime);
+        setInterval(() => this.movingAnimation(this.animationImageCache), intervalTime);
     }
 
 }
