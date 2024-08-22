@@ -45,7 +45,6 @@ class World {
     }
 
     belowTriggerDistance(object) {
-        console.log(object.x + this.camera_x < this.canvas.width);
         if (object.x + this.camera_x < this.canvas.width) {
             return true;
         }
