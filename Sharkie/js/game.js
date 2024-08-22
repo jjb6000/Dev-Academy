@@ -3,7 +3,8 @@ let world;
 
 
 function initGame() {
-    world = new World(canvas, level1)
+    world = new World(canvas, level1);
+    
 }
 
 

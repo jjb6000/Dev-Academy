@@ -14,6 +14,7 @@ const level1 = new Level(
         new Jellyfish1(levelEnd),
         new Pufferfish(levelEnd),
         new Jellyfish2(levelEnd),
+        new Whale(levelEnd)
     ],
     collectables = [
         new Bubble(levelEnd),
