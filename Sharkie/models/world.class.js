@@ -5,7 +5,7 @@ class World {
     camera_x = 0;
     canvas;
     ctx;
-    bg_sound = new Audio('../Sharkie/audio/shark-bg-sound.mp3') 
+    bg_sound = new Audio('../Sharkie/audio/shark-bg-sound.mp3'); 
 
     constructor(canvas, level) {
         this.canvas = canvas;
@@ -22,6 +22,8 @@ class World {
         this.addToMap(this.character);
         this.addMultiObjectsToMap(this.level.enemies);
         this.addMultiObjectsToMap(this.level.collectables);
+        this.triggerAnimationBasedOnProgress(this.level.enemies);
+        this.triggerAnimationBasedOnProgress(this.level.collectables);
         this.ctx.translate(-this.camera_x, 0);
         requestAnimationFrame(() => this.drawWorld());
         // this.bg_sound.play();
@@ -33,8 +35,26 @@ class World {
     }
 
 
+    triggerAnimationBasedOnProgress(objects) {
+        objects.forEach(o => {
+            if (o.enemyOnHold && this.belowTriggerDistance(o)) {
+                o.animate();
+                o.enemyOnHold = false;
+            }
+        })
+    }
+
+    belowTriggerDistance(object) {
+        console.log(object.x + this.camera_x < this.canvas.width);
+        if (object.x + this.camera_x < this.canvas.width) {
+            return true;
+        }
+    }
+
+
     addToMap(movableObject) {
-        this.setWorldVariablesToAllInstances(movableObject)
+        // this.setWorldVariablesToAllInstances(movableObject) //TODO needed?
+        movableObject.currentCameraPosition = this.camera_x;
         if (movableObject.otherDirection) {
             this.flip(movableObject);
         }

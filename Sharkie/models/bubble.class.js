@@ -5,7 +5,7 @@ class Bubble extends MovableObject {
         super().loadImage('../Sharkie/img/sharkie/4.Attack/Bubble trap/Bubble.png');
         this.x = Math.random() * levelEnd;
         this.y = Math.random() * 480;
-        this.animate();
+        // this.animate();
     }
 
     animate() {

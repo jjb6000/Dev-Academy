@@ -8,11 +8,10 @@ class Jellyfish2 extends Jellyfish {
         this.createImageForCache('../Sharkie/img/enemies/2 Jelly fish/Regular damage/Lila 3.png'),
         this.createImageForCache('../Sharkie/img/enemies/2 Jelly fish/Regular damage/Lila 4.png')
     ];
-    speed = 0.1 + Math.random() * 0.8;
 
     constructor() {
         super().loadImage('../Sharkie/img/enemies/2 Jelly fish/Regular damage/Lila 1.png');
-        this.jellyMove(this.speed);
+        this.speed = 0.1 + Math.random() * 0.8;
         this.animationIntervall(150);
     }
 

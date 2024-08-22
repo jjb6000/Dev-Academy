@@ -3,10 +3,11 @@ class Jellyfish extends MovableObject {
     width = 100;
     y = Math.random() * 480;
     x = 200 + Math.random() * levelEnd;
+    speed;
 
-    jellyMove(speed) {
+    animate() {
         setInterval(() => {
-            this.moveUp(-300, speed);
+            this.moveUp(-300, this.speed);
         }, 1000 / 60);
     }
 }

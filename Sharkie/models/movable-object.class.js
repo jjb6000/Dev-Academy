@@ -6,7 +6,8 @@ class MovableObject {
     width = 150;
     img;
     level;
-    endBossTrigger = false;
+    currentCameraPosition;
+    enemyOnHold = true;
 
     loadImage(path) {
         this.img = new Image();

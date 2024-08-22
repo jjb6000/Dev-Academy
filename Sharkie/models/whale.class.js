@@ -24,15 +24,12 @@ class Whale extends MovableObject {
     constructor(levelEnd) {
         super().loadImage('../Sharkie/img/enemies/3 Final Enemy/1.Introduce/1.png');
         this.x = levelEnd -200;
-        this.animate();
         this.animationIntervall(120);
     }
 
 
     animate() {
-        if (this.endBossTrigger) {
-            setInterval(() => this.moveLeft(-100, this.speed), 1000 / 60);
-        }
+        setInterval(() => this.moveLeft(-100, this.speed), 1000 / 60);
     }
 
     animationIntervall(intervalTime) {
