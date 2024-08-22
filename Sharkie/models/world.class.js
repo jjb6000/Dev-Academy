@@ -22,8 +22,6 @@ class World {
         this.addToMap(this.character);
         this.addMultiObjectsToMap(this.level.enemies);
         this.addMultiObjectsToMap(this.level.collectables);
-        this.triggerAnimationBasedOnProgress(this.level.enemies);
-        this.triggerAnimationBasedOnProgress(this.level.collectables);
         this.ctx.translate(-this.camera_x, 0);
         requestAnimationFrame(() => this.drawWorld());
         // this.bg_sound.play();
@@ -32,22 +30,6 @@ class World {
 
     addMultiObjectsToMap(objects) {
         objects.forEach(o => this.addToMap(o))
-    }
-
-
-    triggerAnimationBasedOnProgress(objects) {
-        objects.forEach(o => {
-            if (o.enemyOnHold && this.belowTriggerDistance(o)) {
-                o.animate();
-                o.enemyOnHold = false;
-            }
-        })
-    }
-
-    belowTriggerDistance(object) {
-        if (object.x + this.camera_x < this.canvas.width) {
-            return true;
-        }
     }
 
 

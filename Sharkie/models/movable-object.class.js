@@ -7,7 +7,7 @@ class MovableObject {
     img;
     level;
     currentCameraPosition;
-    enemyOnHold = true;
+    // enemyOnHold = true;
 
     loadImage(path) {
         this.img = new Image();
