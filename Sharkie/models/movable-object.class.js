@@ -38,9 +38,9 @@ class MovableObject {
         }
     }
 
-    movingAnimation(animationImageCache) {
-        let i = this.imageIndex % animationImageCache.length;
-        this.img = animationImageCache[i];  
+    movingAnimation(ANIMATION_IMGs) {
+        let i = this.imageIndex % ANIMATION_IMGs.length;
+        this.img = ANIMATION_IMGs[i];  
         this.imageIndex++;  
     }
 

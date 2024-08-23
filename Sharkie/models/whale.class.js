@@ -4,7 +4,7 @@ class Whale extends MovableObject {
     width = 280;
     speed = 1;
     y = 0;
-    animationImageCache = [
+    ANIMATION_IMGs = [
         this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/2.floating/1.png'),
         this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/2.floating/2.png'),
         this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/2.floating/3.png'),
@@ -19,7 +19,7 @@ class Whale extends MovableObject {
         this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/2.floating/12.png'),
         this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/2.floating/13.png')
     ];
-    introImageCache = [
+    INTRO_IMGs = [
         this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/1.Introduce/1.png'),
         this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/1.Introduce/2.png'),
         this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/1.Introduce/3.png'),
@@ -36,14 +36,15 @@ class Whale extends MovableObject {
     constructor(levelEnd) {
         super().loadImage('../Sharkie/img/enemies/3 Final Enemy/1.Introduce/1.png');
         this.x = levelEnd -200;
-        this.introduceWhale(0);
+        // this.introduceWhale(0);
     }
 
 
-    introduceWhale(i) {
+    introduceWhale() {
+        let i = 0
         const introIntervall = setInterval(() => {
             if (this.objectIsOnScreen(this.x) && i < 9) {
-                this.movingAnimation(this.introImageCache);
+                this.movingAnimation(this.INTRO_IMGs);
                 i++;
             } 
 
@@ -52,6 +53,7 @@ class Whale extends MovableObject {
             }
         }, 200);    
     }
+
 
     stopIntroAndSetNewIntervalls(introIntervall) {
         clearInterval(introIntervall);
@@ -69,6 +71,6 @@ class Whale extends MovableObject {
     }
 
     animationIntervall(intervalTime) {
-        setInterval(() => this.movingAnimation(this.animationImageCache), intervalTime);
+        setInterval(() => this.movingAnimation(this.ANIMATION_IMGs), intervalTime);
     }
 }
