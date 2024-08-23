@@ -3,7 +3,7 @@ class Whale extends MovableObject {
     height = 280;
     width = 280;
     speed = 1;
-    y = 0
+    y = 0;
     animationImageCache = [
         this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/2.floating/1.png'),
         this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/2.floating/2.png'),
@@ -19,22 +19,50 @@ class Whale extends MovableObject {
         this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/2.floating/12.png'),
         this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/2.floating/13.png')
     ];
-    // introImageCache = [
-    //     this.createImageForCache(),
-    // ];
+    introImageCache = [
+        this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/1.Introduce/1.png'),
+        this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/1.Introduce/2.png'),
+        this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/1.Introduce/3.png'),
+        this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/1.Introduce/4.png'),
+        this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/1.Introduce/5.png'),
+        this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/1.Introduce/6.png'),
+        this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/1.Introduce/7.png'),
+        this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/1.Introduce/8.png'),
+        this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/1.Introduce/9.png'),
+        this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/1.Introduce/10.png')
+    ];
 
 
     constructor(levelEnd) {
         super().loadImage('../Sharkie/img/enemies/3 Final Enemy/1.Introduce/1.png');
         this.x = levelEnd -200;
+        this.introduceWhale(0);
+    }
+
+
+    introduceWhale(i) {
+        const introIntervall = setInterval(() => {
+            if (this.objectIsOnScreen(this.x) && i < 9) {
+                this.movingAnimation(this.introImageCache);
+                i++;
+            } 
+
+            if (i === 9) {
+                this.stopIntroAndSetNewIntervalls(introIntervall);
+            }
+        }, 200);    
+    }
+
+    stopIntroAndSetNewIntervalls(introIntervall) {
+        clearInterval(introIntervall);
         this.animate();
         this.animationIntervall(120);
     }
 
 
-    animate() {
+    animate() {        
         setInterval(() => {
-            if (this.x + this.currentCameraPosition < canvas.width) {
+            if (this.objectIsOnScreen(this.x)) {
                 this.moveLeft(-100, this.speed);
             }
         }, 1000 / 60); 

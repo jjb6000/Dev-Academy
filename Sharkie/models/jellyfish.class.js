@@ -7,7 +7,7 @@ class Jellyfish extends MovableObject {
 
     animate() {
         setInterval(() => {
-            if (this.x + this.currentCameraPosition < canvas.width) {
+            if (this.objectIsOnScreen(this.x)) {
                 this.moveUp(-300, this.speed);
             }
         }, 1000 / 60);

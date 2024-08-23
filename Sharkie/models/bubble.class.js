@@ -10,7 +10,7 @@ class Bubble extends MovableObject {
 
     animate() {
         setInterval(() => {
-            if (this.x + this.currentCameraPosition < canvas.width) {
+            if (this.objectIsOnScreen(this.x)) {
                 this.moveUp(-300, 0.5)
             }
         }, 1000 / 60);

@@ -22,12 +22,12 @@ class Keyboard {
     initRightMove() {
         world.character.otherDirection = false;
         world.character.moveRight(level1.levelEnd, 24);
-        world.camera_x = -world.character.x * 0.8;
+        world.camera_x = -world.character.x * 0.9;
     }
 
     initLeftMove() {
         world.character.otherDirection = true;
         world.character.moveLeft(-400, 24);
-        world.camera_x = -world.character.x * 0.8;
+        world.camera_x = -world.character.x * 0.9;
     }
 }

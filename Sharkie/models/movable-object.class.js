@@ -50,4 +50,8 @@ class MovableObject {
         return img;
     }
 
+    objectIsOnScreen(x) {
+        return x + this.currentCameraPosition < canvas.width
+    }
+
 }
