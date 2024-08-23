@@ -5,13 +5,15 @@ class World {
     camera_x = 0;
     canvas;
     ctx;
-    bg_sound = new Audio('../Sharkie/audio/shark-bg-sound.mp3'); 
+    bg_sound = new Audio('../Sharkie/audio/shark-bg-sound.mp3');
+    redFrames = false; //TODO delete
 
     constructor(canvas, level) {
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
         this.level = level;
         this.drawWorld();
+        this.collisionDetection();
     }
 
 
@@ -34,22 +36,64 @@ class World {
 
 
     addToMap(movableObject) {
-        // this.setWorldVariablesToAllInstances(movableObject) //TODO needed?
         movableObject.currentCameraPosition = this.camera_x;
+
         if (movableObject.otherDirection) {
             this.flip(movableObject);
         }
-        this.ctx.drawImage(movableObject.img, movableObject.x, movableObject.y, movableObject.width, movableObject.height);
+
+        movableObject.draw(this.ctx);
+
         if (movableObject.otherDirection) {
             this.reFlip(movableObject);
+        }
+
+        this.redFramesForAllObjects(movableObject); //TODO delete
+    }
+
+
+    collisionDetection() {
+        setInterval(() => {
+            let collisionBox = this.character.getCollisionBox(this.character);
+            this.level.enemies.forEach(enemy => {
+                if (this.character.isColliding(enemy)) {
+                    console.log('Character collision with', enemy);
+                }
+            })
+        }, 800)
+    }
+
+
+    redFramesForAllObjects(mo) { //TODO delete
+        if (this.redFrames && !this.isBackground(mo)) {
+            this.ctx.beginPath();
+            this.ctx.lineWidth = '2';
+            this.ctx.strokeStyle = 'red';
+            this.ctx.rect(mo.x, mo.y, mo.width, mo.height);
+            this.ctx.stroke();
+        }
+        if (mo instanceof Character) {
+            // collisionBox
+            let collisionBox = this.character.getCollisionBox(mo);            
+            this.ctx.beginPath();
+            this.ctx.lineWidth = '2';
+            this.ctx.strokeStyle = 'yellow';
+            this.ctx.rect(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
+            this.ctx.stroke();
         }
     }
 
 
-    setWorldVariablesToAllInstances(movableObject) {
-        movableObject.world = this;
-        movableObject.level = this.level;
+
+
+
+    isBackground(mo) {
+        return mo instanceof Background;
     }
+
+
+
+
 
 
     flip(movableObject) {

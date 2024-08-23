@@ -36,7 +36,7 @@ class Whale extends MovableObject {
     constructor(levelEnd) {
         super().loadImage('../Sharkie/img/enemies/3 Final Enemy/1.Introduce/1.png');
         this.x = levelEnd -200;
-        // this.introduceWhale();
+        this.introduceWhale();
     }
 
 

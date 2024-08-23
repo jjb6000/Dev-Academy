@@ -9,9 +9,10 @@ class Keyboard {
         'ArrowDown': () => world.character.moveDown(),
         'ArrowRight': () => this.initRightMove(),
         'ArrowLeft': () => this.initLeftMove(),
+        'r': () => world.redFrames ? world.redFrames = false : world.redFrames = true, //TODO delete 
     }
 
-    processKeyInput(e) {
+    processKeyInput(e) {       
         let action = this.keyFunctionObject[e.key]
         if (action) {
             action();
