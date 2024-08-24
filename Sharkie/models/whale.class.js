@@ -36,6 +36,10 @@ class Whale extends MovableObject {
     constructor(levelEnd) {
         super().loadImage('../Sharkie/img/enemies/3 Final Enemy/1.Introduce/1.png');
         this.x = levelEnd -200;
+        this.OFFSET_X_RIGHT = 60;
+        this.OFFSET_X_LEFT = 30;
+        this.OFFSET_Y_TOP = 140;
+        this.OFFSET_Y_BOTTOM = 60;
         this.introduceWhale();
     }
 

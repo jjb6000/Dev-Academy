@@ -1,4 +1,3 @@
-
 class MovableObject {
     x = 120;
     y = 200;
@@ -7,7 +6,10 @@ class MovableObject {
     img;
     level;
     currentCameraPosition;
-    // enemyOnHold = true;
+    OFFSET_X_RIGHT = 0;
+    OFFSET_X_LEFT = 0;
+    OFFSET_Y_TOP = 0;
+    OFFSET_Y_BOTTOM = 0;
 
 
     draw(ctx) {

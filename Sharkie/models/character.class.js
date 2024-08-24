@@ -3,9 +3,6 @@ class Character extends MovableObject {
     width = 240;
     x = 0;
     y = 80;
-    OFFSET_X = 48;
-    OFFSET_Y_TOP = 112;
-    OFFSET_Y_BOTTOM = 58;
     moving = false;
     otherDirection = false;
     imageIndex = 0;
@@ -23,6 +20,10 @@ class Character extends MovableObject {
     constructor() {
         super().loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
         this.animate();
+        this.OFFSET_X_RIGHT = 56;
+        this.OFFSET_X_LEFT = 56;
+        this.OFFSET_Y_TOP = 128;
+        this.OFFSET_Y_BOTTOM = 64;
     }
 
 
@@ -42,17 +43,18 @@ class Character extends MovableObject {
     }
 
     isColliding(enemy) {
-        let characterBox = this.getCollisionBox(this)
-        return (characterBox.x + characterBox.width) >= enemy.x && characterBox.x <= (enemy.x + enemy.width) &&
-            (characterBox.y + characterBox.height) >= enemy.y &&
-            (characterBox.y) <= (enemy.y + enemy.height);
+        let characterBox = this.getCollisionBox(this);
+        let enemyBox = this.getCollisionBox(enemy)
+        return (characterBox.x + characterBox.width) >= enemyBox.x && characterBox.x <= (enemyBox.x + enemyBox.width) &&
+            (characterBox.y + characterBox.height) >= enemyBox.y &&
+            (characterBox.y) <= (enemyBox.y + enemyBox.height);
     }
 
     getCollisionBox(mo) {
         return {
-            'x': mo.x + mo.OFFSET_X, 
+            'x': mo.x + mo.OFFSET_X_LEFT, 
             'y': mo.y + mo.OFFSET_Y_TOP, 
-            'width':mo.width - 2 * mo.OFFSET_X, 
+            'width':mo.width - mo.OFFSET_X_LEFT - mo.OFFSET_X_RIGHT, 
             'height': mo.height - mo.OFFSET_Y_BOTTOM - mo.OFFSET_Y_TOP
         }
     }

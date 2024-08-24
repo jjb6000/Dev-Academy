@@ -6,7 +6,7 @@ class World {
     canvas;
     ctx;
     bg_sound = new Audio('../Sharkie/audio/shark-bg-sound.mp3');
-    redFrames = false; //TODO delete
+    devMode = false; //TODO delete
 
     constructor(canvas, level) {
         this.canvas = canvas;
@@ -48,36 +48,40 @@ class World {
             this.reFlip(movableObject);
         }
 
-        this.redFramesForAllObjects(movableObject); //TODO delete
+        this.devModeForAllObjects(movableObject); //TODO delete
     }
 
 
     collisionDetection() {
         setInterval(() => {
-            let collisionBox = this.character.getCollisionBox(this.character);
             this.level.enemies.forEach(enemy => {
                 if (this.character.isColliding(enemy)) {
                     console.log('Character collision with', enemy);
+                }
+            })
+
+            this.level.collectables.forEach(item => {
+                if (this.character.isColliding(item)) {
+                    console.log('Character collision with', item);
                 }
             })
         }, 800)
     }
 
 
-    redFramesForAllObjects(mo) { //TODO delete
-        if (this.redFrames && !this.isBackground(mo)) {
+    devModeForAllObjects(mo) { //TODO delete
+        if (this.devMode && !this.isBackground(mo)) {
+            this.ctx.beginPath();
+            this.ctx.lineWidth = '2';
+            this.ctx.strokeStyle = 'green';
+            this.ctx.rect(mo.x, mo.y, mo.width, mo.height);
+            this.ctx.stroke();
+
+            // collisionBox
+            let collisionBox = this.character.getCollisionBox(mo);
             this.ctx.beginPath();
             this.ctx.lineWidth = '2';
             this.ctx.strokeStyle = 'red';
-            this.ctx.rect(mo.x, mo.y, mo.width, mo.height);
-            this.ctx.stroke();
-        }
-        if (mo instanceof Character) {
-            // collisionBox
-            let collisionBox = this.character.getCollisionBox(mo);            
-            this.ctx.beginPath();
-            this.ctx.lineWidth = '2';
-            this.ctx.strokeStyle = 'yellow';
             this.ctx.rect(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
             this.ctx.stroke();
         }

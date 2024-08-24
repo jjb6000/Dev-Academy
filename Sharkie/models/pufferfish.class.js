@@ -16,6 +16,10 @@ class Pufferfish extends MovableObject {
         super().loadImage('../Sharkie/img/enemies/1.Puffer fish (3 color options)/1.Swim/1.swim1.png');
         this.x = 200 + Math.random() * levelEnd;
         this.y = Math.random() * 480;
+        this.OFFSET_X_RIGHT = 24;
+        this.OFFSET_X_LEFT = 8;
+        this.OFFSET_Y_TOP = 16;
+        this.OFFSET_Y_BOTTOM = 36;
         this.animate();
         this.animationIntervall(150);
     }

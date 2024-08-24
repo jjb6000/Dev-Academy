@@ -9,7 +9,7 @@ class Keyboard {
         'ArrowDown': () => world.character.moveDown(),
         'ArrowRight': () => this.initRightMove(),
         'ArrowLeft': () => this.initLeftMove(),
-        'r': () => world.redFrames ? world.redFrames = false : world.redFrames = true, //TODO delete 
+        'D': () => world.devMode ? world.devMode = false : world.devMode = true, //TODO delete 
     }
 
     processKeyInput(e) {       

@@ -12,6 +12,10 @@ class Jellyfish1 extends Jellyfish {
     constructor() {
         super().loadImage('../Sharkie/img/enemies/2 Jelly fish/Regular damage/Yellow 1.png');
         this.speed = 0.1 + Math.random() * 0.8;
+        this.OFFSET_X_RIGHT = 12;
+        this.OFFSET_X_LEFT = 12;
+        this.OFFSET_Y_TOP = 12;
+        this.OFFSET_Y_BOTTOM = 24;
         this.animate();
         this.animationIntervall(150);
     }
