@@ -56,5 +56,8 @@ const level1 = new Level(
         new Background('../Sharkie/img/bg/Layers/4.Fondo 2/D2.png', 3 * 719),
         new Background('../Sharkie/img/bg/Layers/2. Floor/D2.png', 3 * 719)
     ],
+    firedBubbles = [
+        
+    ],
     levelEnd
 )

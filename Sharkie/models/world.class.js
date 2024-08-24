@@ -24,9 +24,16 @@ class World {
         this.addToMap(this.character);
         this.addMultiObjectsToMap(this.level.enemies);
         this.addMultiObjectsToMap(this.level.collectables);
+        this.checkForFiredBubbles(this.level.firedBubbles);
         this.ctx.translate(-this.camera_x, 0);
         requestAnimationFrame(() => this.drawWorld());
         // this.bg_sound.play();
+    }
+
+    checkForFiredBubbles(objectArray) {
+        if (objectArray.length > 0) {
+            this.addMultiObjectsToMap(objectArray)
+        }
     }
 
 
@@ -51,17 +58,21 @@ class World {
         this.devModeForAllObjects(movableObject); //TODO delete
     }
 
+    lookForFiredBubbles() {
+
+    }
+
 
     collisionDetection() {
         setInterval(() => {
             this.level.enemies.forEach(enemy => {
-                if (this.character.isColliding(enemy)) {
+                if (this.character.isColliding(enemy) && this.devMode) {
                     console.log('Character collision with', enemy);
                 }
             })
 
             this.level.collectables.forEach(item => {
-                if (this.character.isColliding(item)) {
+                if (this.character.isColliding(item) && this.devMode) {
                     console.log('Character collision with', item);
                 }
             })
@@ -88,14 +99,9 @@ class World {
     }
 
 
-
-
-
     isBackground(mo) {
         return mo instanceof Background;
     }
-
-
 
 
 
