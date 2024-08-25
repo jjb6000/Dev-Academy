@@ -14,7 +14,7 @@ class Keyboard {
         'D': () => world.devMode ? world.devMode = false : world.devMode = true, //TODO delete 
     }
 
-    processKeyInput(e) {
+    processKeyInput(e) {        
         let action = this.keyFunctionObject[e.key]
         if (action) {
             action();
@@ -40,22 +40,19 @@ class Keyboard {
     }
 
     initBubbleAttack() {
-        world.character.bubbleAttack = true;
-        if (world.character.bubblesInStorage()) {
-            world.character.bubbleStorage--;
-            let bubbleCoo = this.calcBubbleCoordinates()
-            let bubble = new AttackBubble(bubbleCoo.x, bubbleCoo.y) 
-            world.level.firedBubbles.push(bubble);
+        if (Date.now() - world.character.timeStampLastBubbleAttack > 600 && world.character.bubbleStorage > 0) {
+            world.character.bubbleAnimation();   
         }
+        world.character.timeStampLastBubbleAttack = Date.now()
     }
 
-    calcBubbleCoordinates() {
-        console.log(world.character.x);
-        
-        return {
-            'x': world.character.x + world.character.width,
-            'y': world.character.y + 300
-        }
-        
+
+    stopDoing(e) {       
+        world.character.finAttack = false;
+        world.character.moving = false;
+        world.character.isBubbleAttacking = false;
+        world.character.swim_sound.pause();
+        world.character.loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
     }
+
 }

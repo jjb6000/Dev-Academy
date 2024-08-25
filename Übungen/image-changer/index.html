@@ -20,7 +20,7 @@
 
 <body>
     <form action="">
-        <input type="number" name="Intervall" id="intervall" placeholder="Wie viel Sekunden?" min="1" max="15" required>
+        <input type="number" name="Interval" id="Interval" placeholder="Wie viel Sekunden?" min="1" max="15" required>
         <button onclick="startImg()" type="button">Starten</button>
     </form>
 
@@ -36,7 +36,7 @@
     let currentImg = 0;
 
     function startImg() {
-        let time = document.getElementById('intervall').value * 1000
+        let time = document.getElementById('Interval').value * 1000
 
         if (time < 1) {
             alert('Gib eine Zahl größer 0 Null ein');

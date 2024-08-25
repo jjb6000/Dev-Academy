@@ -46,23 +46,23 @@ class Whale extends MovableObject {
 
     introduceWhale() {
         let i = 0
-        const introIntervall = setInterval(() => {
+        const introInterval = setInterval(() => {
             if (this.objectIsOnScreen(this.x) && i < 9) {
                 this.movingAnimation(this.INTRO_IMGs);
                 i++;
             } 
 
             if (i === 9) {
-                this.stopIntroAndSetNewIntervalls(introIntervall);
+                this.stopIntroAndSetNewIntervals(introInterval);
             }
         }, 100);    
     }
 
 
-    stopIntroAndSetNewIntervalls(introIntervall) {
-        clearInterval(introIntervall);
+    stopIntroAndSetNewIntervals(introInterval) {
+        clearInterval(introInterval);
         this.animate();
-        this.animationIntervall(120);
+        this.animationInterval(120);
     }
 
 
@@ -74,7 +74,7 @@ class Whale extends MovableObject {
         }, 1000 / 60); 
     }
 
-    animationIntervall(intervalTime) {
+    animationInterval(intervalTime) {
         setInterval(() => this.movingAnimation(this.ANIMATION_IMGs), intervalTime);
     }
 }

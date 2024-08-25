@@ -13,6 +13,7 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.level = level;
         this.drawWorld();
+        this.character.world = this;
         this.collisionDetection();
     }
 

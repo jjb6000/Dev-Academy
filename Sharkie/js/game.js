@@ -14,5 +14,5 @@ window.onload = () => initGame();
 
 window.onkeydown = (e) => world.keyboard.processKeyInput(e);
 
-window.onkeyup = () => world.character.stopDoing();
+window.onkeyup = (e) => world.keyboard.stopDoing(e);
 

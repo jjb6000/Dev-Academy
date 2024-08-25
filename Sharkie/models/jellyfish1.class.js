@@ -17,10 +17,10 @@ class Jellyfish1 extends Jellyfish {
         this.OFFSET_Y_TOP = 12;
         this.OFFSET_Y_BOTTOM = 24;
         this.animate();
-        this.animationIntervall(150);
+        this.animationInterval(150);
     }
 
-    animationIntervall(intervalTime) {
+    animationInterval(intervalTime) {
         setInterval(() => this.movingAnimation(this.ANIMATION_IMGs), intervalTime);
     }
 }

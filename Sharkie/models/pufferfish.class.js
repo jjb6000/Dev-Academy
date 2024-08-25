@@ -21,7 +21,7 @@ class Pufferfish extends MovableObject {
         this.OFFSET_Y_TOP = 16;
         this.OFFSET_Y_BOTTOM = 36;
         this.animate();
-        this.animationIntervall(150);
+        this.animationInterval(150);
     }
 
     animate() {
@@ -32,7 +32,7 @@ class Pufferfish extends MovableObject {
         }, 1000 / 60);
     }
 
-    animationIntervall(intervalTime) {
+    animationInterval(intervalTime) {
         setInterval(() => this.movingAnimation(this.ANIMATION_IMGs), intervalTime);
     }
 
