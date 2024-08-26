@@ -77,16 +77,16 @@ class World {
 
     isCharacterColidingWithEnemy() {
         this.level.enemies.forEach(enemy => {
-            if (this.character.isColliding(enemy) && this.devMode) {
-                console.log('Character collision with', enemy);
+            if (this.character.isColliding(enemy)) {
+                this.devModeCollisionLog(enemy, this.character);
             }
         })
     }
 
     isCharacterColidingWithCollectable() {
         this.level.collectables.forEach(item => {
-            if (this.character.isColliding(item) && this.devMode) {
-                console.log('Character collision with', item);
+            if (this.character.isColliding(item)) {
+                this.devModeCollisionLog(this.character, item);
             }
         })
     }
@@ -101,10 +101,17 @@ class World {
 
     isFiredBubbleColidingWithEnemy(bubble) {
         this.level.enemies.forEach(enemy => {
-            if (bubble.isColliding(enemy) && this.devMode) {
-                console.log(bubble, 'collision with', enemy);
+            if (bubble.isColliding(enemy)) {
+                this.devModeCollisionLog(bubble, enemy)
             }
         })
+    }
+
+
+    devModeCollisionLog(object1, object2) {
+        if (this.devMode) {
+            console.log(object1, 'hits', object2);
+        }
     }
 
 

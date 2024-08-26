@@ -10,6 +10,8 @@ class MovableObject {
     OFFSET_X_LEFT = 0;
     OFFSET_Y_TOP = 0;
     OFFSET_Y_BOTTOM = 0;
+    health = 100;
+    attackDamage = 0;
 
 
     draw(ctx) {
