@@ -62,22 +62,4 @@ class MovableObject {
         return x + this.currentCameraPosition < canvas.width
     }
 
-    isColliding(enemy) {
-        let characterBox = this.getCollisionBox(this);
-        let enemyBox = this.getCollisionBox(enemy)
-        return (characterBox.x + characterBox.width) >= enemyBox.x && characterBox.x <= (enemyBox.x + enemyBox.width) &&
-            (characterBox.y + characterBox.height) >= enemyBox.y &&
-            (characterBox.y) <= (enemyBox.y + enemyBox.height);
-    }
-
-    getCollisionBox(mo) {
-        return {
-            'x': mo.x + mo.OFFSET_X_LEFT, 
-            'y': mo.y + mo.OFFSET_Y_TOP, 
-            'width':mo.width - mo.OFFSET_X_LEFT - mo.OFFSET_X_RIGHT, 
-            'height': mo.height - mo.OFFSET_Y_BOTTOM - mo.OFFSET_Y_TOP
-        }
-    }
-
-
 }

@@ -12,6 +12,10 @@ class AttackBubble extends Character {
         this.x = x;
         this.y = y;      
         this.animate();
+        this.OFFSET_X_RIGHT = 0;
+        this.OFFSET_X_LEFT = 0;
+        this.OFFSET_Y_TOP = 0;
+        this.OFFSET_Y_BOTTOM = 0;
     }
 
     animate() {

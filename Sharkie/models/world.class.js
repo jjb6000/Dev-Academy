@@ -66,18 +66,45 @@ class World {
 
     collisionDetection() {
         setInterval(() => {
-            this.level.enemies.forEach(enemy => {
-                if (this.character.isColliding(enemy) && this.devMode) {
-                    console.log('Character collision with', enemy);
-                }
-            })
+            this.isCharacterColidingWithEnemy();
 
-            this.level.collectables.forEach(item => {
-                if (this.character.isColliding(item) && this.devMode) {
-                    console.log('Character collision with', item);
-                }
-            })
+            this.isCharacterColidingWithCollectable();
+
+            this.areFiredBubblesColidingWithEnemies()
         }, 800)
+    }
+
+
+    isCharacterColidingWithEnemy() {
+        this.level.enemies.forEach(enemy => {
+            if (this.character.isColliding(enemy) && this.devMode) {
+                console.log('Character collision with', enemy);
+            }
+        })
+    }
+
+    isCharacterColidingWithCollectable() {
+        this.level.collectables.forEach(item => {
+            if (this.character.isColliding(item) && this.devMode) {
+                console.log('Character collision with', item);
+            }
+        })
+    }
+
+    areFiredBubblesColidingWithEnemies() {
+        if (this.level.firedBubbles.length > 0) {
+            this.level.firedBubbles.forEach(bubble => {
+                this.isFiredBubbleColidingWithEnemy(bubble)
+            })
+        }
+    }
+
+    isFiredBubbleColidingWithEnemy(bubble) {
+        this.level.enemies.forEach(enemy => {
+            if (bubble.isColliding(enemy) && this.devMode) {
+                console.log(bubble, 'collision with', enemy);
+            }
+        })
     }
 
 
