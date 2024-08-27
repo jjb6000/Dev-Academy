@@ -81,7 +81,7 @@ class MovableObject {
     }
 
     stillHurts() {
-        return Date.now() - this.lastHit < 1000;
+        return Date.now() - this.lastHit < 500;
     }
 
 }
