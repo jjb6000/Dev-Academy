@@ -103,8 +103,7 @@ class Character extends MovableObject {
         return {
             'x': this.world.character.x + this.width - this.OFFSET_X_LEFT,
             'y': this.world.character.y + this.OFFSET_Y_TOP
-        }
-        
+        }    
     }
 
     bubbleAnimation() {
@@ -134,6 +133,16 @@ class Character extends MovableObject {
 
     bubblesInStorage() {
         return this.bubbleStorage > 0;
+    }
+
+    changeOffsetDuringFinAttack() {
+        if (this.finAttack) {
+            this.OFFSET_X_LEFT = 30;
+            this.OFFSET_X_RIGHT = 30;
+        } else {
+            this.OFFSET_X_LEFT = 56;
+            this.OFFSET_X_RIGHT = 56;
+        }
     }
 
     isColliding(enemy) {

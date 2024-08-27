@@ -8,9 +8,27 @@ class Jellyfish extends MovableObject {
 
     animate() {
         setInterval(() => {
-            if (this.objectIsOnScreen(this.x)) {
+            if (this.objectIsOnScreen(this.x) && !this.isDead) {
                 this.moveUp(-300, this.speed);
             }
+
+            if (this.isDead) {
+                this.deadBodyMovement()
+            }
         }, 1000 / 60);
+    }
+
+    animationInterval(intervalTime) {
+        setInterval(() => {
+            if (!this.isDead) {
+                this.movingAnimation(this.ANIMATION_IMGs);
+            } else {
+                this.movingAnimation(this.JELLY_BUBBLE_DEAD_IMGs);
+            }
+        }, intervalTime);
+    }
+
+    deadBodyMovement() {
+        this.moveUp(-300, 1);
     }
 }

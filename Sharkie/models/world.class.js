@@ -71,7 +71,7 @@ class World {
             this.isCharacterColidingWithCollectable();
 
             this.areFiredBubblesColidingWithEnemies()
-        }, 800)
+        }, 200)
     }
 
 

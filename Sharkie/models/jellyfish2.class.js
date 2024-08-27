@@ -8,6 +8,13 @@ class Jellyfish2 extends Jellyfish {
         this.createImageForCache('../Sharkie/img/enemies/2 Jelly fish/Regular damage/Lila 3.png'),
         this.createImageForCache('../Sharkie/img/enemies/2 Jelly fish/Regular damage/Lila 4.png')
     ];
+    JELLY_BUBBLE_DEAD_IMGs = [
+        this.createImageForCache('../Sharkie/img/enemies/2 Jelly fish/Dead/Lila/L1.png'),
+        this.createImageForCache('../Sharkie/img/enemies/2 Jelly fish/Dead/Lila/L2.png'),
+        this.createImageForCache('../Sharkie/img/enemies/2 Jelly fish/Dead/Lila/L3.png'),
+        this.createImageForCache('../Sharkie/img/enemies/2 Jelly fish/Dead/Lila/L4.png')
+    ];
+
 
     constructor() {
         super().loadImage('../Sharkie/img/enemies/2 Jelly fish/Regular damage/Lila 1.png');
@@ -21,9 +28,5 @@ class Jellyfish2 extends Jellyfish {
         this.attack = 'poison';
         this.animate();
         this.animationInterval(150);
-    }
-
-    animationInterval(intervalTime) {
-        setInterval(() => this.movingAnimation(this.ANIMATION_IMGs), intervalTime);
     }
 }

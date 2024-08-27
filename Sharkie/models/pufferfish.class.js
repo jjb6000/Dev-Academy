@@ -29,14 +29,27 @@ class Pufferfish extends MovableObject {
 
     animate() {
         setInterval(() => {
-            if (this.objectIsOnScreen(this.x)) {
+            if (this.objectIsOnScreen(this.x) && !this.isDead) {
                 this.moveLeft(-100, this.speed)
+            }
+
+            if (this.isDead) {                
+                this.moveRight(9999, 1);
+                this.moveDown(9999, 1);
             }
         }, 1000 / 60);
     }
 
     animationInterval(intervalTime) {
-        setInterval(() => this.movingAnimation(this.ANIMATION_IMGs), intervalTime);
+        setInterval(() => {
+            if (!this.isDead) {
+                this.movingAnimation(this.ANIMATION_IMGs)
+            }
+
+            if (this.isDead) {
+                this.loadImage('../Sharkie/img/enemies/1.Puffer fish (3 color options)/4.DIE/1.Dead 2 (can animate by going down to the floor after the Fin Slap attack).png')
+            }
+        }, intervalTime);
     }
 
 }

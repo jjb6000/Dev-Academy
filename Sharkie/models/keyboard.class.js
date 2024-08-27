@@ -37,6 +37,7 @@ class Keyboard {
 
     initFinAttack() {
         if (!world.character.stillHurts()) {
+            world.character.changeOffsetDuringFinAttack();
             world.character.finAttack = true;
         }    
     }
@@ -51,6 +52,7 @@ class Keyboard {
 
     stopDoing(e) {       
         world.character.finAttack = false;
+        world.character.changeOffsetDuringFinAttack();
         world.character.moving = false;
         world.character.isBubbleAttacking = false;
         world.character.swim_sound.pause();

@@ -8,7 +8,6 @@ class AttackBubble extends Character {
 
     constructor(x, y) {
         super().loadImage('../Sharkie/img/sharkie/4.Attack/Bubble trap/Bubble.png');
-        console.log(x, y);
         this.x = x;
         this.y = y;      
         this.animate();
