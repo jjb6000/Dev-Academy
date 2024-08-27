@@ -36,7 +36,9 @@ class Keyboard {
     }
 
     initFinAttack() {
-        world.character.finAttack = true;
+        if (!world.character.stillHurts()) {
+            world.character.finAttack = true;
+        }    
     }
 
     initBubbleAttack() {

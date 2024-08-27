@@ -18,6 +18,7 @@ class Jellyfish2 extends Jellyfish {
         this.OFFSET_Y_BOTTOM = 24;
         this.health = 50;
         this.attackDamage = 10;
+        this.attack = 'poison';
         this.animate();
         this.animationInterval(150);
     }

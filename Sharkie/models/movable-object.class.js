@@ -6,6 +6,7 @@ class MovableObject {
     img;
     level;
     isDead = false;
+    lastHit = 0;
     currentCameraPosition;
     OFFSET_X_RIGHT = 0;
     OFFSET_X_LEFT = 0;
@@ -14,6 +15,7 @@ class MovableObject {
     health = 100;
     ownDamage = 0;
     attackDamage = 0;
+    attack;
 
 
     draw(ctx) {
@@ -69,12 +71,17 @@ class MovableObject {
 
     gotHurt(damage) {
         this.ownDamage += damage;
+        this.lastHit = Date.now();
         if (this.health - this.ownDamage <= 0) {
             this.isDead = true;
         }
         if (!this.isDead) {
             console.log(this, 'Gesundheit:',(this.health - this.ownDamage) / this.health);   
         }
+    }
+
+    stillHurts() {
+        return Date.now() - this.lastHit < 1000;
     }
 
 }

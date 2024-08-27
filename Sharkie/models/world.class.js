@@ -78,10 +78,19 @@ class World {
     isCharacterColidingWithEnemy() {
         this.level.enemies.forEach(enemy => {
             if (this.character.isColliding(enemy) && !enemy.isDead && !this.character.isDead) {
-                this.character.finAttack ? enemy.gotHurt(this.character.attackDamage) : this.character.gotHurt(enemy.attackDamage);
+                this.checkIfCharacterCollidsWhileAttack(enemy);
                 this.devModeCollisionLog(enemy, this.character);
             }
         })
+    }
+
+    checkIfCharacterCollidsWhileAttack(enemy) {
+        if (this.character.finAttack) {
+            enemy.gotHurt(this.character.attackDamage)
+        } else {
+            this.character.gotHurt(enemy.attackDamage)
+            this.character.attackedBy = enemy.attack;
+        }
     }
 
     isCharacterColidingWithCollectable() {

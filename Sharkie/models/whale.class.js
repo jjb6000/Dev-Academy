@@ -42,6 +42,7 @@ class Whale extends MovableObject {
         this.OFFSET_Y_BOTTOM = 60;
         this.health = 500;
         this.attackDamage = 30;
+        this.attack = 'poison';
         this.introduceWhale();
     }
 

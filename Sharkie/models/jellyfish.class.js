@@ -5,6 +5,7 @@ class Jellyfish extends MovableObject {
     x = 200 + Math.random() * levelEnd;
     speed;
 
+
     animate() {
         setInterval(() => {
             if (this.objectIsOnScreen(this.x)) {
