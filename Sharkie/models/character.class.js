@@ -130,4 +130,10 @@ class Character extends MovableObject {
         }
     }
 
+    collects(item) {
+        if (item instanceof Bubble) {
+            this.bubbleStorage += 1;
+        }
+    }
+
 }

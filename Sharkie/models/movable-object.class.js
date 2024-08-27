@@ -5,6 +5,7 @@ class MovableObject {
     width = 150;
     img;
     level;
+    isDead = false;
     currentCameraPosition;
     OFFSET_X_RIGHT = 0;
     OFFSET_X_LEFT = 0;
@@ -63,6 +64,17 @@ class MovableObject {
 
     objectIsOnScreen(x) {
         return x + this.currentCameraPosition < canvas.width
+    }
+
+
+    gotHurt(damage) {
+        this.ownDamage += damage;
+        if (this.health - this.ownDamage <= 0) {
+            this.isDead = true;
+        }
+        if (!this.isDead) {
+            console.log(this, 'Gesundheit:',(this.health - this.ownDamage) / this.health);   
+        }
     }
 
 }
