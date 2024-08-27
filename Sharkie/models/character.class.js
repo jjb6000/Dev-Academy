@@ -45,6 +45,8 @@ class Character extends MovableObject {
     constructor() {
         super().loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
         this.animate();
+        this.health = 100;
+        this.attackDamage = 50;
         this.OFFSET_X_RIGHT = 56;
         this.OFFSET_X_LEFT = 56;
         this.OFFSET_Y_TOP = 128;

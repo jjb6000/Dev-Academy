@@ -11,6 +11,7 @@ class MovableObject {
     OFFSET_Y_TOP = 0;
     OFFSET_Y_BOTTOM = 0;
     health = 100;
+    ownDamage = 0;
     attackDamage = 0;
 
 

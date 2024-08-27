@@ -20,6 +20,8 @@ class Pufferfish extends MovableObject {
         this.OFFSET_X_LEFT = 8;
         this.OFFSET_Y_TOP = 16;
         this.OFFSET_Y_BOTTOM = 36;
+        this.health = 50;
+        this.attackDamage = 20;
         this.animate();
         this.animationInterval(150);
     }

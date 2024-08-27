@@ -40,6 +40,8 @@ class Whale extends MovableObject {
         this.OFFSET_X_LEFT = 30;
         this.OFFSET_Y_TOP = 140;
         this.OFFSET_Y_BOTTOM = 60;
+        this.health = 500;
+        this.attackDamage = 30;
         this.introduceWhale();
     }
 

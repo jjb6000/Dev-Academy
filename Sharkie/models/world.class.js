@@ -78,6 +78,7 @@ class World {
     isCharacterColidingWithEnemy() {
         this.level.enemies.forEach(enemy => {
             if (this.character.isColliding(enemy)) {
+                this.character.finAttack ? this.damageForEnemy(enemy, this.character.attackDamage) : this.damageForCharacter(enemy.attackDamage);
                 this.devModeCollisionLog(enemy, this.character);
             }
         })
@@ -102,9 +103,27 @@ class World {
     isFiredBubbleColidingWithEnemy(bubble) {
         this.level.enemies.forEach(enemy => {
             if (bubble.isColliding(enemy)) {
+                this.damageForEnemy(enemy, bubble.attackDamage);
+                this.popBubble(bubble)
                 this.devModeCollisionLog(bubble, enemy)
             }
         })
+    }
+
+    damageForEnemy(enemy, damage) {
+        enemy.ownDamage += damage;
+        console.log('Gesundheit Gegner:',(enemy.health - enemy.ownDamage) / enemy.health);
+    }
+
+    damageForCharacter(damage) {
+        this.character.ownDamage += damage;
+        console.log('Sharkie Gesundheit:',(this.character.health - this.character.ownDamage) / this.character.health);
+        
+    }
+
+    popBubble(bubble) {
+        console.log(this.level.firedBubbles.indexOf(bubble), 'Bubble poped');
+        this.level.firedBubbles.splice(this.level.firedBubbles.indexOf(bubble), 1);
     }
 
 
