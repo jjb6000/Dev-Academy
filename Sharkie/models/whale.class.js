@@ -1,8 +1,9 @@
 class Whale extends MovableObject {
-    imageIndex = 0;
     height = 280;
     width = 280;
     speed = 1;
+    dieAnimationCounter = 0;
+    imageIndex = 0;
     y = 0;
     ANIMATION_IMGs = [
         this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/2.floating/1.png'),
@@ -30,6 +31,19 @@ class Whale extends MovableObject {
         this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/1.Introduce/8.png'),
         this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/1.Introduce/9.png'),
         this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/1.Introduce/10.png')
+    ];
+    OUCH_IMGs = [
+        this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/Hurt/1.png'),
+        this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/Hurt/2.png'),
+        this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/Hurt/3.png'),
+        this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/Hurt/4.png')
+    ];
+    WHALE_DEAD_IMGs = [
+        this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/Dead/Mesa de trabajo 2 copia 6.png'),
+        this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/Dead/Mesa de trabajo 2 copia 7.png'),
+        this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/Dead/Mesa de trabajo 2 copia 8.png'),
+        this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/Dead/Mesa de trabajo 2 copia 9.png'),
+        this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png')
     ];
 
 
@@ -71,13 +85,46 @@ class Whale extends MovableObject {
 
     animate() {        
         setInterval(() => {
-            if (this.objectIsOnScreen(this.x)) {
+            if (this.objectIsOnScreen(this.x) && !this.isDead) {
                 this.moveLeft(-100, this.speed);
             }
+
+            if (this.isDead) {
+                this.moveUp(-9999, 1);
+            }
+
         }, 1000 / 60); 
     }
 
     animationInterval(intervalTime) {
-        setInterval(() => this.movingAnimation(this.ANIMATION_IMGs), intervalTime);
+        const aliveInterval = setInterval(() => {
+            
+            if (!this.isDead && !this.stillHurts()) {
+                this.movingAnimation(this.ANIMATION_IMGs);
+            }
+            
+            if (this.stillHurts() && !this.isDead) {
+                this.movingAnimation(this.OUCH_IMGs);
+            }
+
+            if (this.isDead) {
+                this.loadImage('../Sharkie/img/enemies/3 Final Enemy/Dead/Mesa de trabajo 2.png'); 
+                this.deadWhale(aliveInterval);
+            }
+        }, intervalTime);
+    }
+
+
+    deadWhale(aliveInterval) { 
+        this.imageIndex = 0; 
+        clearInterval(aliveInterval);
+        setInterval(() => {
+            if (this.objectIsOnScreen(this.x) && this.dieAnimationCounter < 5) {
+                this.movingAnimation(this.WHALE_DEAD_IMGs);
+                this.dieAnimationCounter++;
+            } 
+        }, 120); 
     }
 }
+
+
