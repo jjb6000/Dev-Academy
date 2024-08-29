@@ -106,6 +106,13 @@ class Character extends MovableObject {
         }    
     }
 
+    initBubbleAttack() {
+        if (Date.now() - this.timeStampLastBubbleAttack > 600 && this.bubbleStorage > 0) {
+            this.bubbleAnimation();   
+        }
+        this.timeStampLastBubbleAttack = Date.now()
+    }
+
     bubbleAnimation() {
         this.isBubbleAttacking = true;
         let i = 0
@@ -134,6 +141,20 @@ class Character extends MovableObject {
     bubblesInStorage() {
         return this.bubbleStorage > 0;
     }
+
+
+    initFinAttack() {
+        if (!this.stillHurts()) {
+            this.changeOffsetDuringFinAttack();
+            this.finAttack = true;
+        }    
+    }
+
+    stopFinAttack() {
+        this.finAttack = false;       
+        this.changeOffsetDuringFinAttack();
+    }
+
 
     changeOffsetDuringFinAttack() {
         if (this.finAttack) {

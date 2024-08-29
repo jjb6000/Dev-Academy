@@ -1,10 +1,5 @@
 class Whale extends MovableObject {
-    height = 280;
-    width = 280;
-    speed = 1;
     dieAnimationCounter = 0;
-    imageIndex = 0;
-    y = 0;
     ANIMATION_IMGs = [
         this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/2.floating/1.png'),
         this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/2.floating/2.png'),
@@ -49,7 +44,12 @@ class Whale extends MovableObject {
 
     constructor(levelEnd) {
         super().loadImage('../Sharkie/img/enemies/3 Final Enemy/1.Introduce/1.png');
+        this.imageIndex = 0;
+        this.height = 280;
+        this.width = 280;
+        this.y = 0;
         this.x = levelEnd -200;
+        this.speed = 1;
         this.OFFSET_X_RIGHT = 60;
         this.OFFSET_X_LEFT = 30;
         this.OFFSET_Y_TOP = 140;

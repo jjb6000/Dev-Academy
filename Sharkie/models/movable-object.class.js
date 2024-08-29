@@ -1,13 +1,9 @@
-class MovableObject {
-    x = 120;
-    y = 200;
-    height = 150;
-    width = 150;
-    img;
+class MovableObject extends DrawObject {
     level;
     isDead = false;
     lastHit = 0;
     currentCameraPosition;
+    speed = 1;
     OFFSET_X_RIGHT = 0;
     OFFSET_X_LEFT = 0;
     OFFSET_Y_TOP = 0;
@@ -17,16 +13,6 @@ class MovableObject {
     attackDamage = 0;
     attack;
 
-
-    draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    }
-
-
-    loadImage(path) {
-        this.img = new Image();
-        this.img.src = path;
-    }
 
     moveRight(borderEast = 528, speed = 24) {
         if (this.x < borderEast) {
@@ -56,12 +42,6 @@ class MovableObject {
         let i = this.imageIndex % imgArray.length;
         this.img = imgArray[i];  
         this.imageIndex++;  
-    }
-
-    createImageForCache(path) {
-        let img = new Image();
-        img.src = path;
-        return img;
     }
 
     objectIsOnScreen(x) {

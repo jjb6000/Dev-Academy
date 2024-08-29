@@ -123,7 +123,6 @@ class World {
 
 
     popBubble(bubble) {
-        console.log(this.level.firedBubbles.indexOf(bubble), 'Bubble poped');
         this.level.firedBubbles.splice(this.level.firedBubbles.indexOf(bubble), 1);
     }
 

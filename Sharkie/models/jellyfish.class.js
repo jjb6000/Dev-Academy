@@ -1,9 +1,12 @@
 class Jellyfish extends MovableObject {
-    height = 100;
-    width = 100;
-    y = 100 + Math.random() * 280;
-    x = 200 + Math.random() * levelEnd;
-    speed;
+
+    constructor() {
+        super();
+        this.height = 100;
+        this.width = 100;
+        this.y = 100 + Math.random() * 280;
+        this.x = 200 + Math.random() * levelEnd;
+    }
 
 
     animate() {
