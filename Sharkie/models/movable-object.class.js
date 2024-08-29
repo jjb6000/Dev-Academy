@@ -1,6 +1,5 @@
 class MovableObject extends DrawObject {
     level;
-    isDead = false;
     lastHit = 0;
     currentCameraPosition;
     speed = 1;
@@ -52,16 +51,17 @@ class MovableObject extends DrawObject {
     gotHurt(damage) {
         this.ownDamage += damage;
         this.lastHit = Date.now();
-        if (this.health - this.ownDamage <= 0) {
-            this.isDead = true;
-        }
-        if (!this.isDead) {
+        if (!this.isDead()) {
             console.log(this, 'Gesundheit:',(this.health - this.ownDamage) / this.health);   
         }
     }
 
     stillHurts() {
         return Date.now() - this.lastHit < 500;
+    }
+
+    isDead() {
+        return this.health - this.ownDamage <= 0;
     }
 
 }

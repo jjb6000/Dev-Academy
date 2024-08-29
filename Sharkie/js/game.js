@@ -12,7 +12,10 @@ function initGame() {
 // ANCHOR Eventlisteners
 window.onload = () => initGame();
 
-window.onkeydown = (e) => world.keyboard.processKeyInput(e, true);
+window.onkeydown = (e) => {
+    world.keyboard.processKeyInput(e, true);
+    world.keyboard.checkDevMode(e);
+}
 
 window.onkeyup = (e) => world.keyboard.processKeyInput(e, false);
 

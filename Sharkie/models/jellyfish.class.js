@@ -1,5 +1,6 @@
 class Jellyfish extends MovableObject {
 
+
     constructor() {
         super();
         this.height = 100;
@@ -11,11 +12,11 @@ class Jellyfish extends MovableObject {
 
     animate() {
         setInterval(() => {
-            if (this.objectIsOnScreen(this.x) && !this.isDead) {
+            if (this.objectIsOnScreen(this.x) && !this.isDead()) {
                 this.moveUp(-300, this.speed);
             }
 
-            if (this.isDead) {
+            if (this.isDead()) {
                 this.deadBodyMovement()
             }
         }, 1000 / 60);
@@ -23,7 +24,7 @@ class Jellyfish extends MovableObject {
 
     animationInterval(intervalTime) {
         setInterval(() => {
-            if (!this.isDead) {
+            if (!this.isDead()) {
                 this.movingAnimation(this.ANIMATION_IMGs);
             } else {
                 this.movingAnimation(this.JELLY_BUBBLE_DEAD_IMGs);

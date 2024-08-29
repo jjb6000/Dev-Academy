@@ -77,7 +77,7 @@ class World {
 
     isCharacterColidingWithEnemy() {
         this.level.enemies.forEach(enemy => {
-            if (this.character.isColliding(enemy) && !enemy.isDead && !this.character.isDead) {
+            if (this.character.isColliding(enemy) && !enemy.isDead() && !this.character.isDead()) {
                 this.checkIfCharacterCollidsWhileAttack(enemy);
                 this.devModeCollisionLog(enemy, this.character);
             }

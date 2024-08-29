@@ -85,11 +85,11 @@ class Whale extends MovableObject {
 
     animate() {        
         setInterval(() => {
-            if (this.objectIsOnScreen(this.x) && !this.isDead) {
+            if (this.objectIsOnScreen(this.x) && !this.isDead()) {
                 this.moveLeft(-100, this.speed);
             }
 
-            if (this.isDead) {
+            if (this.isDead()) {
                 this.moveUp(-9999, 1);
             }
 
@@ -99,15 +99,15 @@ class Whale extends MovableObject {
     animationInterval(intervalTime) {
         const aliveInterval = setInterval(() => {
             
-            if (!this.isDead && !this.stillHurts()) {
+            if (!this.isDead() && !this.stillHurts()) {
                 this.movingAnimation(this.ANIMATION_IMGs);
             }
             
-            if (this.stillHurts() && !this.isDead) {
+            if (this.stillHurts() && !this.isDead()) {
                 this.movingAnimation(this.OUCH_IMGs);
             }
 
-            if (this.isDead) {
+            if (this.isDead()) {
                 this.loadImage('../Sharkie/img/enemies/3 Final Enemy/Dead/Mesa de trabajo 2.png'); 
                 this.deadWhale(aliveInterval);
             }
