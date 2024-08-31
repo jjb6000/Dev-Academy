@@ -1,7 +1,6 @@
 class World {
     character = new Character();
     keyboard = new Keyboard();
-    healthStatusBar = new HealthBar();
     level;
     camera_x = 0;
     canvas;
@@ -22,19 +21,23 @@ class World {
     drawWorld() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
-        this.addMultiObjectsToMap(this.level.backgroundObjects);
-        this.addToMap(this.character);
-        this.addMultiObjectsToMap(this.level.enemies);
-        this.addMultiObjectsToMap(this.level.collectables);
-        this.checkForFiredBubbles(this.level.firedBubbles);
+        this.setMovableObjects();
         this.ctx.translate(-this.camera_x, 0);
         this.setStaticObjects();
         requestAnimationFrame(() => this.drawWorld());
         // this.bg_sound.play();
     }
 
+    setMovableObjects() {
+        this.addMultiObjectsToMap(this.level.backgroundObjects);
+        this.addToMap(this.character);
+        this.addMultiObjectsToMap(this.level.enemies);
+        this.addMultiObjectsToMap(this.level.collectables);
+        this.checkForFiredBubbles(this.level.firedBubbles);
+    }
+
     setStaticObjects() {
-        this.addToMap(this.healthStatusBar);
+        this.addMultiObjectsToMap(this.level.statusBars);
     }
 
     checkForFiredBubbles(objectArray) {

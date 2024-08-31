@@ -59,5 +59,9 @@ const level1 = new Level(
     firedBubbles = [
         
     ],
+    statusBars = [
+        new HealthBar(),
+        new CoinBar()
+    ],
     levelEnd
 )
