@@ -1,6 +1,7 @@
 class World {
     character = new Character();
     keyboard = new Keyboard();
+    healthStatusBar = new HealthBar();
     level;
     camera_x = 0;
     canvas;
@@ -27,8 +28,13 @@ class World {
         this.addMultiObjectsToMap(this.level.collectables);
         this.checkForFiredBubbles(this.level.firedBubbles);
         this.ctx.translate(-this.camera_x, 0);
+        this.setStaticObjects();
         requestAnimationFrame(() => this.drawWorld());
         // this.bg_sound.play();
+    }
+
+    setStaticObjects() {
+        this.addToMap(this.healthStatusBar);
     }
 
     checkForFiredBubbles(objectArray) {

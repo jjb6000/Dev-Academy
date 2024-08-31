@@ -52,7 +52,10 @@ class MovableObject extends DrawObject {
         this.ownDamage += damage;
         this.lastHit = Date.now();
         if (!this.isDead()) {
-            console.log(this, 'Gesundheit:',(this.health - this.ownDamage) / this.health);   
+            if (this instanceof Character) {
+                world.healthStatusBar.reduceBar(this.health - this.ownDamage);
+            }
+            console.log(this, 'Gesundheit:',(this.health - this.ownDamage));   
         }
     }
 
