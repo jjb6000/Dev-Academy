@@ -105,8 +105,8 @@ class World {
     isCharacterColidingWithCollectable() {
         this.level.collectables.forEach(item => {
             if (this.character.isColliding(item)) {
+                this.removeItem(item);
                 this.character.collects(item);
-                this.removeItem(item)
                 this.devModeCollisionLog(this.character, item);
             }
         })

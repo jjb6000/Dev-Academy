@@ -1,13 +1,6 @@
 class StatusBar extends DrawObject {
-STATUS_IMGs;
-statusToImgIndexTranslator = {
-    100: 0,
-    80: 1,
-    60: 2,
-    40: 3,
-    20: 4,
-    0: 5
-}
+STATUS_IMG_OBJECT;
+possibleStatusArray = [100, 80, 60, 40, 20, 0];
 
     constructor() {
         super();
@@ -15,10 +8,9 @@ statusToImgIndexTranslator = {
         this.width = 240;
     }
 
-    reduceBar(health) {
-        const possibleStatusArray = [100, 80, 60, 40, 20, 0];
-        const barStatus = possibleStatusArray.find(status => status <= health);
-        this.img = this.STATUS_IMGs[this.statusToImgIndexTranslator[barStatus]];
+    updateBar(exactStatus) {
+        const barStatus = this.possibleStatusArray.find(status => status <= exactStatus);
+        this.img = this.STATUS_IMG_OBJECT[barStatus];
     }
     
 }

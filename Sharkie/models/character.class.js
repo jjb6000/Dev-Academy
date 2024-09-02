@@ -9,7 +9,9 @@ class Character extends MovableObject {
     isBubbleAttacking = false;
     attackedBy;
     timeStampLastBubbleAttack = 0;
-    bubbleStorage = 3;
+    bubbleStorage = 0;
+    coinStorage = 0;
+    poisonStorage = 0;
     otherDirection = false;
     imageIndex = 0;
     swim_sound = new Audio('../Sharkie/audio/move.mp3');
@@ -93,22 +95,22 @@ class Character extends MovableObject {
     bubbleAttack() {
         if (this.bubblesInStorage()) {
             this.bubbleStorage--;
-            let bubbleCoo = this.calcBubbleCoordinates()           
+            let bubbleCoo = this.calcBubbleCoordinates()
             this.world.level.firedBubbles.push(new AttackBubble(bubbleCoo.x, bubbleCoo.y));
             this.loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
         }
     }
 
-    calcBubbleCoordinates() {        
+    calcBubbleCoordinates() {
         return {
             'x': this.world.character.x + this.width - this.OFFSET_X_LEFT,
             'y': this.world.character.y + this.OFFSET_Y_TOP
-        }    
+        }
     }
 
     initBubbleAttack() {
         if (Date.now() - this.timeStampLastBubbleAttack > 600 && this.bubbleStorage > 0) {
-            this.bubbleAnimation();   
+            this.bubbleAnimation();
         }
         this.timeStampLastBubbleAttack = Date.now()
     }
@@ -120,7 +122,7 @@ class Character extends MovableObject {
             if (i < 8 && this.isBubbleAttacking) {
                 this.movingAnimation(this.BUBBLE_ATTACK_IMGs);
                 i++;
-            } 
+            }
 
             if (i === 7) {
                 world.character.bubbleAttack();
@@ -129,7 +131,7 @@ class Character extends MovableObject {
             if (i === 8 || !this.isBubbleAttacking) {
                 this.stopBubbleInterval(bubbleInterval);
             }
-        }, 150);    
+        }, 150);
     }
 
     stopBubbleInterval(bubbleInterval) {
@@ -147,11 +149,11 @@ class Character extends MovableObject {
         if (!this.stillHurts()) {
             this.changeOffsetDuringFinAttack();
             this.finAttack = true;
-        }    
+        }
     }
 
     stopFinAttack() {
-        this.finAttack = false;       
+        this.finAttack = false;
         this.changeOffsetDuringFinAttack();
     }
 
@@ -176,9 +178,9 @@ class Character extends MovableObject {
 
     getCollisionBox(mo) {
         return {
-            'x': mo.x + mo.OFFSET_X_LEFT, 
-            'y': mo.y + mo.OFFSET_Y_TOP, 
-            'width':mo.width - mo.OFFSET_X_LEFT - mo.OFFSET_X_RIGHT, 
+            'x': mo.x + mo.OFFSET_X_LEFT,
+            'y': mo.y + mo.OFFSET_Y_TOP,
+            'width': mo.width - mo.OFFSET_X_LEFT - mo.OFFSET_X_RIGHT,
             'height': mo.height - mo.OFFSET_Y_BOTTOM - mo.OFFSET_Y_TOP
         }
     }
@@ -187,6 +189,26 @@ class Character extends MovableObject {
         if (item instanceof Bubble) {
             this.bubbleStorage += 1;
         }
+
+        if (item instanceof Coin) {
+            this.coinStorage += 1;
+            this.updateCollectBars(1, this.world.level.collectables.filter(c => c instanceof Coin).length);
+        }
+
+        if (item instanceof Poison) {
+            this.poisonStorage += 1;
+            this.updateCollectBars(2, this.world.level.collectables.filter(c => c instanceof Poison).length);
+        }
+    }
+
+    updateCollectBars(statusBar, uncollectedItems) {
+        if (uncollectedItems === 0) {
+            world.level.statusBars[statusBar].updateBar(100)
+        } else {
+            let maximum = uncollectedItems + this.coinStorage;
+            world.level.statusBars[statusBar].updateBar(100 * this.coinStorage / maximum);
+        }
+
     }
 
 }

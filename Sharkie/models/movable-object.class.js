@@ -51,11 +51,9 @@ class MovableObject extends DrawObject {
     gotHurt(damage) {
         this.ownDamage += damage;
         this.lastHit = Date.now();
-        if (!this.isDead()) {
-            if (this instanceof Character) {
-                world.level.statusBars[0].reduceBar(this.health - this.ownDamage);
-            }
-            console.log(this, 'Gesundheit:',(this.health - this.ownDamage));   
+        if (this instanceof Character) {
+            console.log(this, 'Gesundheit:',(this.health - this.ownDamage)); 
+            world.level.statusBars[0].updateBar(this.health - this.ownDamage);
         }
     }
 
