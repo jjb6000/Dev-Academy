@@ -1,5 +1,5 @@
 class MovableObject extends DrawObject {
-    level;
+    // world;
     lastHit = 0;
     currentCameraPosition;
     speed = 1;
@@ -11,6 +11,7 @@ class MovableObject extends DrawObject {
     ownDamage = 0;
     attackDamage = 0;
     attack;
+    hasItems = 1;
 
 
     moveRight(borderEast = 528, speed = 24) {
@@ -63,6 +64,19 @@ class MovableObject extends DrawObject {
 
     isDead() {
         return this.health - this.ownDamage <= 0;
+    }
+
+    checkIfAboveGround() {
+        if (this.y < 300) {
+            setInterval(() => {
+                this.moveDown(401, 2)
+            }, 1000 / 60);
+        }
+    }
+
+    dropItem(item) {
+        this.hasItems--;        
+        world.level.collectables.push(item);
     }
 
 }

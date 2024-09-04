@@ -5,13 +5,14 @@ class Coin extends MovableObject {
         this.createImageForCache('../Sharkie/img/collect/1. Coins/3.png'),
         this.createImageForCache('../Sharkie/img/collect/1. Coins/4.png')
     ];
-    constructor(levelEnd) {
+    constructor(x, y) {
         super().loadImage('../Sharkie/img/collect/1. Coins/2.png');
         this.height = 48;
         this.width = 48;
-        this.x = Math.random() * levelEnd;
-        this.y = 300 + Math.random() * 100;
+        this.x = x;
+        this.y = y;
         this.animationInterval(150);
+        this.checkIfAboveGround();
     }
 
     animationInterval(intervalTime) {

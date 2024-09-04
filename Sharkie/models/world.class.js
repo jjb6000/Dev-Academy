@@ -15,6 +15,7 @@ class World {
         this.drawWorld();
         this.character.world = this;
         this.collisionDetection();
+        this.newBubblesInterval();
     }
 
 
@@ -54,6 +55,7 @@ class World {
 
     addToMap(movableObject) {
         movableObject.currentCameraPosition = this.camera_x;
+        // movableObject.world = this;
 
         if (movableObject.otherDirection) {
             this.flip(movableObject);
@@ -68,10 +70,6 @@ class World {
         this.devModeForAllObjects(movableObject); //TODO delete
     }
 
-    lookForFiredBubbles() {
-
-    }
-
 
     collisionDetection() {
         setInterval(() => {
@@ -79,7 +77,9 @@ class World {
 
             this.isCharacterColidingWithCollectable();
 
-            this.areFiredBubblesColidingWithEnemies()
+            this.isCharacterCollectingHisFiredBubble();
+
+            this.areFiredBubblesColidingWithEnemies();
         }, 200)
     }
 
@@ -105,11 +105,21 @@ class World {
     isCharacterColidingWithCollectable() {
         this.level.collectables.forEach(item => {
             if (this.character.isColliding(item)) {
-                this.removeItem(item);
+                this.removeItem(item, 'collectable');
                 this.character.collects(item);
                 this.devModeCollisionLog(this.character, item);
             }
-        })
+        });
+    }
+
+    isCharacterCollectingHisFiredBubble() {
+        this.level.firedBubbles.forEach(item => {
+            if (this.character.isColliding(item)) {
+                this.removeItem(item, 'attackBubble');
+                this.character.collects(item);
+                this.devModeCollisionLog(this.character, item);
+            }
+        });
     }
 
     areFiredBubblesColidingWithEnemies() {
@@ -135,8 +145,14 @@ class World {
         this.level.firedBubbles.splice(this.level.firedBubbles.indexOf(bubble), 1);
     }
 
-    removeItem(item) {
-        this.level.collectables.splice(this.level.collectables.indexOf(item), 1);
+    removeItem(item, type) {
+        if (type === 'collectable') {
+            this.level.collectables.splice(this.level.collectables.indexOf(item), 1);
+        }
+        if (type === 'attackBubble') {
+            this.level.firedBubbles.splice(this.level.firedBubbles.indexOf(item), 1);
+        }
+        
     }
 
 
@@ -184,5 +200,14 @@ class World {
     reFlip(movableObject) {
         movableObject.x = movableObject.x * -1;
         this.ctx.restore();
+    }
+
+
+    newBubblesInterval() {
+        setInterval(() => {
+            for (let i = 0; i < 10; i++) {
+                this.level.collectables.push(new Bubble(this.level.levelEnd));    
+            }
+        }, 10000);
     }
 }

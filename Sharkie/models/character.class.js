@@ -1,7 +1,7 @@
 class Character extends MovableObject {
     world;
-    height = 240;
-    width = 240;
+    height = 280;
+    width = 280;
     x = 0;
     y = 80;
     moving = false;
@@ -41,6 +41,7 @@ class Character extends MovableObject {
         this.createImageForCache('../Sharkie/img/sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/5.png'),
         this.createImageForCache('../Sharkie/img/sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png'),
         this.createImageForCache('../Sharkie/img/sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png'),
         this.createImageForCache('../Sharkie/img/sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png')
     ];
     ELECTRIC_OUCH_IMGs = [
@@ -61,10 +62,10 @@ class Character extends MovableObject {
         this.animate();
         this.health = 100;
         this.attackDamage = 50;
-        this.OFFSET_X_RIGHT = 56;
-        this.OFFSET_X_LEFT = 56;
-        this.OFFSET_Y_TOP = 128;
-        this.OFFSET_Y_BOTTOM = 64;
+        this.OFFSET_X_RIGHT = 66;
+        this.OFFSET_X_LEFT = 66;
+        this.OFFSET_Y_TOP = 138;
+        this.OFFSET_Y_BOTTOM = 74;
     }
 
 
@@ -119,16 +120,16 @@ class Character extends MovableObject {
         this.isBubbleAttacking = true;
         let i = 0
         const bubbleInterval = setInterval(() => {
-            if (i < 8 && this.isBubbleAttacking) {
+            if (i < 9 && this.isBubbleAttacking) {
                 this.movingAnimation(this.BUBBLE_ATTACK_IMGs);
                 i++;
             }
 
-            if (i === 7) {
+            if (i === 8) {
                 world.character.bubbleAttack();
             }
 
-            if (i === 8 || !this.isBubbleAttacking) {
+            if (i === 9 || !this.isBubbleAttacking) {
                 this.stopBubbleInterval(bubbleInterval);
             }
         }, 150);
@@ -186,7 +187,7 @@ class Character extends MovableObject {
     }
 
     collects(item) {
-        if (item instanceof Bubble) {
+        if (item instanceof Bubble || item instanceof AttackBubble) {
             this.bubbleStorage += 1;
         }
 

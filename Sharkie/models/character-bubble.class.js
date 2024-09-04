@@ -18,8 +18,13 @@ class AttackBubble extends Character {
     }
 
     animate() {
+        let upForce = 0;
         setInterval(() => {
+            this.speed > 0? this.speed = this.speed - 0.001 : this.speed = 0;
             this.moveRight(2000, this.speed);
+            upForce = upForce + 0.002;
+            this.moveUp(-9999, upForce);
+
         }, 1000 / 60);
     }
 }

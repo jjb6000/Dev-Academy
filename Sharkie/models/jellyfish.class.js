@@ -5,8 +5,6 @@ class Jellyfish extends MovableObject {
         super();
         this.height = 100;
         this.width = 100;
-        this.y = 100 + Math.random() * 280;
-        this.x = 200 + Math.random() * levelEnd;
     }
 
 
@@ -27,7 +25,10 @@ class Jellyfish extends MovableObject {
             if (!this.isDead()) {
                 this.movingAnimation(this.ANIMATION_IMGs);
             } else {
-                this.movingAnimation(this.JELLY_BUBBLE_DEAD_IMGs);
+                this.movingAnimation(this.JELLY_BUBBLE_DEAD_IMGs);                
+                if(this.hasItems > 0) {
+                    this.dropItem(new Poison(this.x, this.y));                    
+                }
             }
         }, intervalTime);
     }

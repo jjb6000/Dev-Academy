@@ -1,12 +1,13 @@
 class Poison extends MovableObject {
 
-    constructor(levelEnd) {
+    constructor(x, y) {
         super();
         this.loadImage(this.setRandomDirectionImg());
         this.height = 52;
         this.width = 48;
-        this.x = Math.random() * levelEnd;
-        this.y = 360 + Math.random() * 40;
+        this.x = x;
+        this.y = y
+        this.checkIfAboveGround();
     }
 
     setRandomDirectionImg() {
