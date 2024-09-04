@@ -5,6 +5,7 @@ class Keyboard {
     LEFT = false;
     X_BTN = false;
     SPACE = false;
+    V_BTN = false;
 
     keyFunctionObject = {
         'ArrowUp': (boolean) => this.UP = boolean,
@@ -13,6 +14,7 @@ class Keyboard {
         'ArrowLeft': (boolean) => this.LEFT = boolean,
         ' ': (boolean) => this.SPACE = boolean,
         'x': (boolean) => this.X_BTN = boolean,
+        'v': (boolean) => this.V_BTN = boolean
     }
 
 
@@ -32,6 +34,7 @@ class Keyboard {
         if (this.RIGHT) this.initRightMove();
         if (this.LEFT) this.initLeftMove();
         if (this.X_BTN) world.character.initBubbleAttack();
+        if (this.V_BTN) world.character.initPoisonAttack();
         if (this.SPACE) world.character.initFinAttack();
     }
 
@@ -51,7 +54,7 @@ class Keyboard {
 
 
     stopDoing() {
-        if (!this.X_BTN) world.character.isBubbleAttacking = false;
+        if (!this.X_BTN && !this.V_BTN) world.character.isBubbleAttacking = false;
         if (!this.SPACE) world.character.stopFinAttack()
         if (this.noBtnPressed()) {
             world.character.moving = false;
@@ -61,7 +64,7 @@ class Keyboard {
     }
 
     noBtnPressed() {
-        return !this.UP && !this.DOWN && !this.RIGHT && !this.LEFT && !this.X_BTN && !this.SPACE
+        return !this.UP && !this.DOWN && !this.RIGHT && !this.LEFT && !this.X_BTN && !this.SPACE && !this.V_BTN
     }
 
     checkDevMode(e) {

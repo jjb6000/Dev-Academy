@@ -44,6 +44,17 @@ class Character extends MovableObject {
         this.createImageForCache('../Sharkie/img/sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png'),
         this.createImageForCache('../Sharkie/img/sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png')
     ];
+    POISON_BUBBLE_ATTACK_IMGs = [
+        this.createImageForCache('../Sharkie/img/sharkie/4.Attack/Bubble trap/For Whale/1.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/4.Attack/Bubble trap/For Whale/2.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/4.Attack/Bubble trap/For Whale/3.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/4.Attack/Bubble trap/For Whale/4.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/4.Attack/Bubble trap/For Whale/5.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/4.Attack/Bubble trap/For Whale/6.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/4.Attack/Bubble trap/For Whale/7.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/4.Attack/Bubble trap/For Whale/7.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/4.Attack/Bubble trap/For Whale/8.png')
+    ];
     ELECTRIC_OUCH_IMGs = [
         this.createImageForCache('../Sharkie/img/sharkie/5.Hurt/2.Electric shock/1.png'),
         this.createImageForCache('../Sharkie/img/sharkie/5.Hurt/2.Electric shock/2.png'),
@@ -93,13 +104,16 @@ class Character extends MovableObject {
         }
     }
 
-    bubbleAttack() {
-        if (this.bubblesInStorage()) {
-            this.bubbleStorage--;
-            let bubbleCoo = this.calcBubbleCoordinates()
+    bubbleAttack(attackType) {
+        let bubbleCoo = this.calcBubbleCoordinates();
+        if (attackType === 'posion') {
+            this.world.level.firedBubbles.push(new PoisonBubble(bubbleCoo.x, bubbleCoo.y));
+            this.poisonStorage--
+        } else {
             this.world.level.firedBubbles.push(new AttackBubble(bubbleCoo.x, bubbleCoo.y));
-            this.loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
-        }
+            this.bubbleStorage--;
+        }       
+        this.loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
     }
 
     calcBubbleCoordinates() {
@@ -111,22 +125,31 @@ class Character extends MovableObject {
 
     initBubbleAttack() {
         if (Date.now() - this.timeStampLastBubbleAttack > 600 && this.bubbleStorage > 0) {
-            this.bubbleAnimation();
+            this.bubbleAnimation(this.BUBBLE_ATTACK_IMGs, 'bubble');
         }
-        this.timeStampLastBubbleAttack = Date.now()
+        this.timeStampLastBubbleAttack = Date.now();
     }
 
-    bubbleAnimation() {
+
+    initPoisonAttack() {        
+        if (Date.now() - this.timeStampLastBubbleAttack > 600 && this.poisonStorage > 0) {
+            this.bubbleAnimation(this.POISON_BUBBLE_ATTACK_IMGs, 'poison');            
+        }
+        this.timeStampLastBubbleAttack = Date.now();
+    }
+
+
+    bubbleAnimation(imgArray, attackType) {        
         this.isBubbleAttacking = true;
         let i = 0
         const bubbleInterval = setInterval(() => {
             if (i < 9 && this.isBubbleAttacking) {
-                this.movingAnimation(this.BUBBLE_ATTACK_IMGs);
+                this.movingAnimation(imgArray);
                 i++;
             }
 
             if (i === 8) {
-                world.character.bubbleAttack();
+                this.bubbleAttack(attackType);
             }
 
             if (i === 9 || !this.isBubbleAttacking) {
@@ -169,6 +192,7 @@ class Character extends MovableObject {
         }
     }
 
+
     isColliding(enemy) {
         let characterBox = this.getCollisionBox(this);
         let enemyBox = this.getCollisionBox(enemy)
@@ -176,6 +200,7 @@ class Character extends MovableObject {
             (characterBox.y + characterBox.height) >= enemyBox.y &&
             (characterBox.y) <= (enemyBox.y + enemyBox.height);
     }
+
 
     getCollisionBox(mo) {
         return {
@@ -185,6 +210,7 @@ class Character extends MovableObject {
             'height': mo.height - mo.OFFSET_Y_BOTTOM - mo.OFFSET_Y_TOP
         }
     }
+
 
     collects(item) {
         if (item instanceof Bubble || item instanceof AttackBubble) {
