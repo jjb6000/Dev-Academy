@@ -106,7 +106,7 @@ class Character extends MovableObject {
 
     bubbleAttack(attackType) {
         let bubbleCoo = this.calcBubbleCoordinates();
-        if (attackType === 'posion') {
+        if (attackType === 'poison') {
             this.world.level.firedBubbles.push(new PoisonBubble(bubbleCoo.x, bubbleCoo.y));
             this.poisonStorage--
         } else {
@@ -157,6 +157,7 @@ class Character extends MovableObject {
             }
         }, 150);
     }
+
 
     stopBubbleInterval(bubbleInterval) {
         clearInterval(bubbleInterval);
@@ -219,23 +220,11 @@ class Character extends MovableObject {
 
         if (item instanceof Coin) {
             this.coinStorage += 1;
-            this.updateCollectBars(1, this.world.level.collectables.filter(c => c instanceof Coin).length);
         }
 
         if (item instanceof Poison) {
             this.poisonStorage += 1;
-            this.updateCollectBars(2, this.world.level.collectables.filter(c => c instanceof Poison).length);
         }
-    }
-
-    updateCollectBars(statusBar, uncollectedItems) {
-        if (uncollectedItems === 0) {
-            world.level.statusBars[statusBar].updateBar(100)
-        } else {
-            let maximum = uncollectedItems + this.coinStorage;
-            world.level.statusBars[statusBar].updateBar(100 * this.coinStorage / maximum);
-        }
-
     }
 
 }

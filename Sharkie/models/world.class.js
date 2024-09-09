@@ -11,6 +11,8 @@ class World {
     constructor(canvas, level) {
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
+        this.ctx.font = '24px Luckiest Guy';
+        this.ctx.fillStyle = 'darkblue';
         this.level = level;
         this.drawWorld();
         this.character.world = this;
@@ -29,6 +31,7 @@ class World {
         // this.bg_sound.play();
     }
 
+
     setMovableObjects() {
         this.addMultiObjectsToMap(this.level.backgroundObjects);
         this.addToMap(this.character);
@@ -37,9 +40,19 @@ class World {
         this.checkForFiredBubbles(this.level.firedBubbles);
     }
 
+
     setStaticObjects() {
         this.addMultiObjectsToMap(this.level.statusBars);
+        this.writeOnCanvas('Bubbles: ' + String(this.character.bubbleStorage), 20, 70);
+        this.writeOnCanvas('Poison: ' + String(this.character.poisonStorage), 20, 100);
+        this.writeOnCanvas('Coins: ' + String(this.character.coinStorage), 20, 130);
     }
+
+
+    writeOnCanvas(text, x, y) {
+        this.ctx.fillText(text, x, y)
+    }
+
 
     checkForFiredBubbles(objectArray) {
         if (objectArray.length > 0) {

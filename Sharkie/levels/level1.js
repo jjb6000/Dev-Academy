@@ -99,9 +99,7 @@ const level1 = new Level(
 
     ],
     statusBars = [
-        new HealthBar(),
-        new CoinBar(),
-        new PoisonBar()
+        new HealthBar()
     ],
     levelEnd
 )
