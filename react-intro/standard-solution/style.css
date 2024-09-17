@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+h1, p {
+    margin: 0;
+}
+
+.navbar {
+    background-color: aliceblue;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.module-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1rem;
+}
+
+.module {
+    width: 12rem;
+    border: 1px solid #c7c7c7;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.module:hover {
+    scale: 1.02;
+}
+
+.module-img {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    height: 10rem;
+    background-color: antiquewhite;
+}
+
+.module-text {
+    padding: 0.5rem;
+}
