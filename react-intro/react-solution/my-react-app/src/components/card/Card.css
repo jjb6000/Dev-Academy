@@ -1,0 +1,21 @@
+.module {
+    width: 12rem;
+    border: 1px solid #c7c7c7;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.module:hover {
+    scale: 1.02;
+}
+
+.module-img {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    height: 10rem;
+    background-color: antiquewhite;
+}
+
+.module-text {
+    padding: 0.5rem;
+}
