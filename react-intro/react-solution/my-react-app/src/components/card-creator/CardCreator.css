@@ -5,13 +5,14 @@
     border: 1px solid #c7c7c7;
     border-radius: 8px;
     padding: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
     background-color: white;
 }
 
-.card-form-container form {
+.card-form {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 1rem;
     min-width: 300px;
     width: 50%;
@@ -20,33 +21,19 @@
 .form-section {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
-.card-form-container form textarea {
+.card-form textarea {
     height: 6rem;
     border-radius: 8px;
     padding: 0.5rem;
     font-family: sans-serif;
 }
 
-.card-form-container form select {
+.card-form select {
     height: 2rem;
     border-radius: 8px;
     font-size: 1rem;
 }
 
-.card-form-container form button {
-    height: 2rem;
-    border-radius: 8px;
-    font-size: 1rem;
-    color: white;
-    border: none;
-    background-color: dodgerblue;
-    cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-.card-form-container form button:hover {
-    background-color: rgb(61, 61, 254);
-    scale: 1.005;
-}

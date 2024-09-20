@@ -6,7 +6,7 @@ function Navbar() {
     
     return (
         <nav className="navbar">
-            <h1>Eine schöne Seite</h1>
+            <h1>React learning sandbox</h1>
         </nav>
     )
 }

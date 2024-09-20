@@ -1,0 +1,17 @@
+
+.standard-button {
+    height: 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: white;
+    border: none;
+    background-color: dodgerblue;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 20rem;
+}
+
+
+.standard-button:hover {
+    background-color: rgb(19, 89, 202);
+}
