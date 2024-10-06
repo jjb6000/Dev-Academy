@@ -6,7 +6,7 @@ class World {
     canvas;
     ctx;
     bg_sound = new Audio('../Sharkie/audio/shark-bg-sound.mp3');
-    devMode = false; //TODO delete
+    devMode = false; 
 
     constructor(canvas, level) {
         this.canvas = canvas;
@@ -176,7 +176,7 @@ class World {
     }
 
 
-    devModeForAllObjects(mo) { //TODO delete
+    devModeForAllObjects(mo) { 
         if (this.devMode && !this.isBackground(mo)) {
             this.ctx.beginPath();
             this.ctx.lineWidth = '2';
