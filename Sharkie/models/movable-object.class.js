@@ -10,6 +10,7 @@ class MovableObject extends DrawObject {
     health = 100;
     ownDamage = 0;
     attackDamage = 0;
+    dieAnimationCounter = 0;
     attack;
     hasItems = 1;
 

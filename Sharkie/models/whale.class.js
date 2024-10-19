@@ -1,5 +1,4 @@
 class Whale extends MovableObject {
-    dieAnimationCounter = 0;
     ANIMATION_IMGs = [
         this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/2.floating/1.png'),
         this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/2.floating/2.png'),

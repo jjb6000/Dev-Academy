@@ -29,13 +29,13 @@ class Keyboard {
     }
 
     callCharacterActions() {
-        if (this.UP) world.character.moveUp();
-        if (this.DOWN) world.character.moveDown();
-        if (this.RIGHT) this.initRightMove();
-        if (this.LEFT) this.initLeftMove();
-        if (this.X_BTN) world.character.initBubbleAttack();
-        if (this.V_BTN) world.character.initPoisonAttack();
-        if (this.SPACE) world.character.initFinAttack();
+        if (this.UP && !world.character.isDead()) world.character.moveUp();
+        if (this.DOWN && !world.character.isDead()) world.character.moveDown();
+        if (this.RIGHT && !world.character.isDead()) this.initRightMove();
+        if (this.LEFT && !world.character.isDead()) this.initLeftMove();
+        if (this.X_BTN && !world.character.isDead()) world.character.initBubbleAttack();
+        if (this.V_BTN && !world.character.isDead()) world.character.initPoisonAttack();
+        if (this.SPACE && !world.character.isDead()) world.character.initFinAttack();
     }
 
 
@@ -59,7 +59,7 @@ class Keyboard {
         if (this.noBtnPressed()) {
             world.character.moving = false;
             world.character.swim_sound.pause();
-            world.character.loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
+            world.character.isDead() ? world.character.loadImage('../Sharkie/img/sharkie/6.dead/1.Poisoned/12.png') : world.character.loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
         }
     }
 

@@ -1,5 +1,6 @@
 class Character extends MovableObject {
     world;
+    gameOver = false;
     height = 280;
     width = 280;
     x = 0;
@@ -66,6 +67,32 @@ class Character extends MovableObject {
         this.createImageForCache('../Sharkie/img/sharkie/5.Hurt/1.Poisoned/4.png'),
         this.createImageForCache('../Sharkie/img/sharkie/5.Hurt/1.Poisoned/5.png')
     ];
+    DEAD_BY_POISON_IMGs = [
+        this.createImageForCache('../Sharkie/img/sharkie/6.dead/1.Poisoned/1.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/6.dead/1.Poisoned/2.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/6.dead/1.Poisoned/3.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/6.dead/1.Poisoned/4.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/6.dead/1.Poisoned/5.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/6.dead/1.Poisoned/6.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/6.dead/1.Poisoned/7.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/6.dead/1.Poisoned/8.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/6.dead/1.Poisoned/9.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/6.dead/1.Poisoned/10.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/6.dead/1.Poisoned/11.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/6.dead/1.Poisoned/12.png'),
+    ];
+    DEAD_BY_SHOCK_IMGs = [
+        this.createImageForCache('../Sharkie/img/sharkie/6.dead/2.Electro_shock/1.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/6.dead/2.Electro_shock/2.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/6.dead/2.Electro_shock/3.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/6.dead/2.Electro_shock/4.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/6.dead/2.Electro_shock/5.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/6.dead/2.Electro_shock/6.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/6.dead/2.Electro_shock/7.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/6.dead/2.Electro_shock/8.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/6.dead/2.Electro_shock/9.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/6.dead/2.Electro_shock/10.png'),
+    ];
 
 
     constructor() {
@@ -82,16 +109,18 @@ class Character extends MovableObject {
 
     animate() {
         setInterval(() => {
-            if (!this.moving && !this.finAttack && !this.isBubbleAttacking && !this.stillHurts()) this.loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
+            if (!this.moving && !this.finAttack && !this.isBubbleAttacking && !this.stillHurts() && !this.isDead()) this.loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
             if (this.moving || this.finAttack) {
                 this.swim_sound.play();
             }
 
-            if (this.moving && !this.isBubbleAttacking && !this.stillHurts()) this.movingAnimation(this.ANIMATION_IMGs);
+            if (this.moving && !this.isBubbleAttacking && !this.stillHurts() && !this.isDead()) this.movingAnimation(this.ANIMATION_IMGs);
 
-            if (this.finAttack) this.movingAnimation(this.FIN_ATTACK_IMGs);
+            if (this.finAttack && !this.isDead()) this.movingAnimation(this.FIN_ATTACK_IMGs);
 
-            if (this.stillHurts()) this.movingAnimation(this.returnHurtAnimationBasedOnAttack(this.attackedBy));
+            if (this.stillHurts() && !this.isDead()) this.movingAnimation(this.returnHurtAnimationBasedOnAttack(this.attackedBy));
+
+            if (this.isDead()) this.deadSharkie();
 
         }, 150);
     }
@@ -101,7 +130,7 @@ class Character extends MovableObject {
             return this.ELECTRIC_OUCH_IMGs;
         } else {
             return this.POISON_OUCH_IMGs;
-        }
+        }                
     }
 
     bubbleAttack(attackType) {
@@ -115,6 +144,32 @@ class Character extends MovableObject {
         }       
         this.loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
     }
+
+
+    deadSharkie() { 
+        if (this.attackedBy === 'electric') {
+            this.sharkieInTunaCanAnimation(this.DEAD_BY_SHOCK_IMGs)
+        }
+        if (this.attackedBy === 'poison') {
+            this.sharkieInTunaCanAnimation(this.DEAD_BY_POISON_IMGs)
+        }
+    }
+
+
+    sharkieInTunaCanAnimation(imgArray) {
+        setInterval(() => {
+            if (this.dieAnimationCounter < imgArray.length) {
+                this.img = imgArray[this.dieAnimationCounter];
+            }
+            if (this.dieAnimationCounter >= imgArray.length) {
+                this.img = imgArray[imgArray.length -1]
+                this.gameOver = true;
+            }
+            this.dieAnimationCounter++
+        }, 150);
+    }
+
+
 
     calcBubbleCoordinates() {
         return {
@@ -226,5 +281,8 @@ class Character extends MovableObject {
             this.poisonStorage += 1;
         }
     }
+
+
+
 
 }
