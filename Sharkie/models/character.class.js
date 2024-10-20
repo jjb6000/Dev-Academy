@@ -170,7 +170,6 @@ class Character extends MovableObject {
     }
 
 
-
     calcBubbleCoordinates() {
         return {
             'x': this.world.character.x + this.width - this.OFFSET_X_LEFT,

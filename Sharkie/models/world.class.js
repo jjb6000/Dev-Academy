@@ -1,6 +1,7 @@
 class World {
     character = new Character();
     keyboard = new Keyboard();
+    tryAgainBtn = new TryAgainBtn();
     level;
     camera_x = 0;
     canvas;
@@ -46,6 +47,11 @@ class World {
         this.writeOnCanvas('Bubbles: ' + String(this.character.bubbleStorage), 20, 70);
         this.writeOnCanvas('Poison: ' + String(this.character.poisonStorage), 20, 100);
         this.writeOnCanvas('Coins: ' + String(this.character.coinStorage), 20, 130);
+        if (this.character.gameOver) {
+            this.addToMap(this.tryAgainBtn);
+            this.addToMap(new GameOver())
+        }
+        if (this.devMode) this.drawMiddle();
     }
 
 
@@ -194,6 +200,22 @@ class World {
         }
     }
 
+    drawMiddle() {
+        this.ctx.beginPath();
+        this.ctx.lineWidth = '2';
+        this.ctx.strokeStyle = 'yellow';
+        this.ctx.moveTo(this.canvas.width / 2, 0);
+        this.ctx.lineTo(this.canvas.width / 2, this.canvas.height);
+        this.ctx.stroke();
+
+        this.ctx.beginPath();
+        this.ctx.lineWidth = '2';
+        this.ctx.strokeStyle = 'yellow';
+        this.ctx.moveTo(0, this.canvas.height / 2);
+        this.ctx.lineTo(this.canvas.width, this.canvas.height / 2);
+        this.ctx.stroke();
+    }
+
 
     isBackground(mo) {
         return mo instanceof Background;
@@ -222,5 +244,21 @@ class World {
                 this.level.collectables.push(new Bubble(this.level.levelEnd));    
             }
         }, 10000);
+    }
+
+
+    // ANCHOR Eventlistener
+    addEvents() {
+        this.canvas.addEventListener('click', (e) => this.handleClick(e));
+    }
+
+
+    handleClick(e) {
+        if (this.isClickOnTryAgainBtn(e.offsetX, e.offsetY)) initGame();
+    }
+
+
+    isClickOnTryAgainBtn(x, y) {
+        return x < 500 && x > 220 && y < 380 && y > 300 
     }
 }
