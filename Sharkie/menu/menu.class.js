@@ -10,7 +10,6 @@ class Menu {
         this.ctx.font = '24px Luckiest Guy';
         this.ctx.fillStyle = 'darkblue';
         this.drawMenu();
-        this.addEvents();
     }
 
     drawMenu() {
@@ -49,27 +48,6 @@ class Menu {
         this.ctx.lineTo(this.canvas.width, this.canvas.height / 2);
         this.ctx.stroke();
     }
-
-
-    addEvents() {
-        this.canvas.addEventListener('click', (e) => this.handleClick(e))
-    }
-
-
-    handleClick(e) {
-        console.log('x:', e.offsetX, 'y:', e.offsetY);
-
-        if (this.isClickOnStart(e.offsetX, e.offsetY)) initGame();
-        
-        
-    }
-
-    isClickOnStart(x, y) {
-        return x < 500 && x > 220 && y < 380 && y > 300 
-    }
-
-
-
 
 
 }

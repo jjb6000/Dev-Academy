@@ -13,6 +13,7 @@ class MovableObject extends DrawObject {
     dieAnimationCounter = 0;
     attack;
     hasItems = 1;
+    readyForGarbageCollection = false;
 
 
     moveRight(borderEast = 528, speed = 24) {
@@ -53,8 +54,7 @@ class MovableObject extends DrawObject {
     gotHurt(damage) {
         this.ownDamage += damage;
         this.lastHit = Date.now();
-        if (this instanceof Character) {
-            console.log(this, 'Gesundheit:',(this.health - this.ownDamage)); 
+        if (this instanceof Character) { 
             world.level.statusBars[0].updateBar(this.health - this.ownDamage);
         }
     }
@@ -69,8 +69,11 @@ class MovableObject extends DrawObject {
 
     checkIfAboveGround() {
         if (this.y < 300) {
-            setInterval(() => {
-                this.moveDown(401, 2)
+            const downForce = setInterval(() => {
+                this.moveDown(401, 2);
+                if (this.y >= 401) {
+                    clearInterval(downForce)
+                }
             }, 1000 / 60);
         }
     }

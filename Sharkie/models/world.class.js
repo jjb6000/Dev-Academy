@@ -1,20 +1,25 @@
 class World {
-    character = new Character();
-    keyboard = new Keyboard();
+    character;
+    keyboard;
     tryAgainBtn = new TryAgainBtn();
+    gameOverImg = new GameOver();
     level;
     camera_x = 0;
     canvas;
     ctx;
+    gameOver = false;
     bg_sound = new Audio('../Sharkie/audio/shark-bg-sound.mp3');
-    devMode = false; 
+    devMode = false;
+    collisionCheckIntervall
 
-    constructor(canvas, level) {
+    constructor(canvas, level, charcater, keyboard) {
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
         this.ctx.font = '24px Luckiest Guy';
         this.ctx.fillStyle = 'darkblue';
         this.level = level;
+        this.character = charcater;
+        this.keyboard = keyboard;
         this.drawWorld();
         this.character.world = this;
         this.collisionDetection();
@@ -48,8 +53,11 @@ class World {
         this.writeOnCanvas('Poison: ' + String(this.character.poisonStorage), 20, 100);
         this.writeOnCanvas('Coins: ' + String(this.character.coinStorage), 20, 130);
         if (this.character.gameOver) {
+            clearInterval(this.collisionCheckIntervall)
+            this.gameOver = true;
             this.addToMap(this.tryAgainBtn);
-            this.addToMap(new GameOver())
+            this.addToMap(this.gameOverImg);
+            this.writeOnCanvas('Back to Menu', 280, 440);
         }
         if (this.devMode) this.drawMiddle();
     }
@@ -86,12 +94,16 @@ class World {
             this.reFlip(movableObject);
         }
 
+        if (movableObject.readyForGarbageCollection) {
+            this.removeItem(movableObject);
+        }
+
         this.devModeForAllObjects(movableObject); //TODO delete
     }
 
 
     collisionDetection() {
-        setInterval(() => {
+        this.collisionCheckIntervall = setInterval(() => {
             this.isCharacterColidingWithEnemy();
 
             this.isCharacterColidingWithCollectable();
@@ -103,9 +115,10 @@ class World {
     }
 
 
+
     isCharacterColidingWithEnemy() {
         this.level.enemies.forEach(enemy => {
-            if (this.character.isColliding(enemy) && !enemy.isDead() && !this.character.isDead()) {
+            if (this.character.isColliding(enemy) && !enemy.isDead() && !this.character.isDead() && !this.gameOver) {
                 this.checkIfCharacterCollidsWhileAttack(enemy);
                 this.devModeCollisionLog(enemy, this.character);
             }
@@ -117,6 +130,7 @@ class World {
             enemy.gotHurt(this.character.attackDamage)
         } else {
             this.character.gotHurt(enemy.attackDamage)
+            if (this.devMode) console.log('Sharkie Gesundheit:', (this.character.health - this.character.ownDamage));
             this.character.attackedBy = enemy.attack;
         }
     }
@@ -124,8 +138,8 @@ class World {
     isCharacterColidingWithCollectable() {
         this.level.collectables.forEach(item => {
             if (this.character.isColliding(item)) {
-                this.removeItem(item, 'collectable');
                 this.character.collects(item);
+                this.removeItem(item);
                 this.devModeCollisionLog(this.character, item);
             }
         });
@@ -134,7 +148,7 @@ class World {
     isCharacterCollectingHisFiredBubble() {
         this.level.firedBubbles.forEach(item => {
             if (this.character.isColliding(item)) {
-                this.removeItem(item, 'attackBubble');
+                this.removeItem(item);
                 this.character.collects(item);
                 this.devModeCollisionLog(this.character, item);
             }
@@ -164,14 +178,14 @@ class World {
         this.level.firedBubbles.splice(this.level.firedBubbles.indexOf(bubble), 1);
     }
 
-    removeItem(item, type) {
-        if (type === 'collectable') {
+    removeItem(item) {
+        if (item instanceof Bubble || item instanceof Coin || item instanceof Poison) {                        
             this.level.collectables.splice(this.level.collectables.indexOf(item), 1);
         }
-        if (type === 'attackBubble') {
+        if (item instanceof AttackBubble) {
+            item.stop()
             this.level.firedBubbles.splice(this.level.firedBubbles.indexOf(item), 1);
         }
-        
     }
 
 
@@ -182,7 +196,7 @@ class World {
     }
 
 
-    devModeForAllObjects(mo) { 
+    devModeForAllObjects(mo) {
         if (this.devMode && !this.isBackground(mo)) {
             this.ctx.beginPath();
             this.ctx.lineWidth = '2';
@@ -241,24 +255,33 @@ class World {
     newBubblesInterval() {
         setInterval(() => {
             for (let i = 0; i < 10; i++) {
-                this.level.collectables.push(new Bubble(this.level.levelEnd));    
+                this.level.collectables.push(new Bubble(this.level.levelEnd));
             }
         }, 10000);
     }
 
 
     // ANCHOR Eventlistener
-    addEvents() {
-        this.canvas.addEventListener('click', (e) => this.handleClick(e));
-    }
+    // addEvents() {
+    //     this.canvas.addEventListener('click', (e) => this.handleClick(e));
+    // }
 
 
-    handleClick(e) {
-        if (this.isClickOnTryAgainBtn(e.offsetX, e.offsetY)) initGame();
-    }
+    // handleClick(e) {
+    //     // if (this.isClickOnTryAgainBtn(e.offsetX, e.offsetY)) reStart(this);
+
+    //     if (this.isClickOnBackToMenu(e.offsetX, e.offsetY)) {
+    //         console.log(true);
+    //         initMenu()
+    //     };
+    // }
 
 
-    isClickOnTryAgainBtn(x, y) {
-        return x < 500 && x > 220 && y < 380 && y > 300 
-    }
+    // isClickOnTryAgainBtn(x, y) {
+    //     return x < 500 && x > 220 && y < 380 && y > 300
+    // }
+
+    // isClickOnBackToMenu(x, y) {
+    //     return x < 440 && x > 280 && y < 440 && y > 420
+    // }
 }
