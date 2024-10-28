@@ -82,23 +82,25 @@ class World {
 
     addToMap(movableObject) {
         movableObject.currentCameraPosition = this.camera_x;
-        // movableObject.world = this;
-
+        this.checkForGarbage(movableObject);
         if (movableObject.otherDirection) {
             this.flip(movableObject);
         }
-
         movableObject.draw(this.ctx);
-
         if (movableObject.otherDirection) {
             this.reFlip(movableObject);
         }
+        this.devModeForAllObjects(movableObject); //TODO delete
+    }
 
+
+    checkForGarbage(movableObject) {
         if (movableObject.readyForGarbageCollection) {
             this.removeItem(movableObject);
         }
-
-        this.devModeForAllObjects(movableObject); //TODO delete
+        if (this.gameOver && movableObject instanceof Coin) {
+            movableObject.stop()
+        }
     }
 
 
@@ -183,8 +185,11 @@ class World {
             this.level.collectables.splice(this.level.collectables.indexOf(item), 1);
         }
         if (item instanceof AttackBubble) {
-            item.stop()
+            item.bubbleStop()
             this.level.firedBubbles.splice(this.level.firedBubbles.indexOf(item), 1);
+        }
+        if (item instanceof Jellyfish || item instanceof Pufferfish || item instanceof Whale) {
+            this.level.enemies.splice(this.level.enemies.indexOf(item), 1);
         }
     }
 
@@ -253,9 +258,12 @@ class World {
 
 
     newBubblesInterval() {
-        setInterval(() => {
+        const newBubbles = setInterval(() => {
             for (let i = 0; i < 10; i++) {
                 this.level.collectables.push(new Bubble(this.level.levelEnd));
+            }
+            if (this.gameOver) {                
+                clearInterval(newBubbles)
             }
         }, 10000);
     }

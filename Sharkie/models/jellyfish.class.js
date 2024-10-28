@@ -1,5 +1,6 @@
 class Jellyfish extends MovableObject {
-
+    intervall_1;
+    intervall_2;
 
     constructor() {
         super();
@@ -9,7 +10,7 @@ class Jellyfish extends MovableObject {
 
 
     animate() {
-        setInterval(() => {
+        this.intervall_1 = setInterval(() => {
             if (this.objectIsOnScreen(this.x) && !this.isDead()) {
                 this.moveUp(-300, this.speed);
             }
@@ -21,19 +22,23 @@ class Jellyfish extends MovableObject {
     }
 
     animationInterval(intervalTime) {
-        setInterval(() => {
+        this.intervall_2 = setInterval(() => {
             if (!this.isDead()) {
                 this.movingAnimation(this.ANIMATION_IMGs);
             } else {
-                this.movingAnimation(this.JELLY_BUBBLE_DEAD_IMGs);                
-                if(this.hasItems > 0) {
-                    this.dropItem(new Poison(this.x, this.y));                    
+                this.movingAnimation(this.JELLY_BUBBLE_DEAD_IMGs);
+                if (this.hasItems > 0) {
+                    this.dropItem(new Poison(this.x, this.y));
                 }
             }
         }, intervalTime);
     }
 
     deadBodyMovement() {
-        this.moveUp(-300, 1);
+        this.moveUp(-100, 1);
+        if (this.y < -80) {
+            this.stop()
+        }
     }
+
 }

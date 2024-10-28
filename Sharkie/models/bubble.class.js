@@ -11,8 +11,8 @@ class Bubble extends MovableObject {
     }
 
     animate() {
-        this.bubbleIntervall = setInterval(() => {
-            this.moveUp(-100, 0.5);
+        this.intervall_1 = setInterval(() => {
+            this.moveUp(-100, 0.5);            
             if (this.y <= -99) {
                 this.readyForGarbageCollection = true;
                 this.stop();
@@ -20,7 +20,4 @@ class Bubble extends MovableObject {
         }, 1000 / 60);
     }
 
-    stop() {
-        clearInterval(this.bubbleIntervall);
-    }
 }

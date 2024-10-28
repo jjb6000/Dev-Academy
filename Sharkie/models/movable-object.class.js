@@ -14,6 +14,8 @@ class MovableObject extends DrawObject {
     attack;
     hasItems = 1;
     readyForGarbageCollection = false;
+    intervall_1;
+    intervall_2;
 
 
     moveRight(borderEast = 528, speed = 24) {
@@ -81,6 +83,14 @@ class MovableObject extends DrawObject {
     dropItem(item) {
         this.hasItems--;        
         world.level.collectables.push(item);
+    }
+
+    stop() {
+        clearInterval(this.intervall_1);
+        if (this.intervall_2) {
+            clearInterval(this.intervall_2);
+        }
+        this.readyForGarbageCollection = true;        
     }
 
 }

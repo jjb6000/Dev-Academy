@@ -25,14 +25,14 @@ class AttackBubble extends Character {
             this.moveRight(2000, this.speed);
             upForce = upForce + 0.002;
             this.moveUp(-100, upForce);
-            if (this.y <= -99) {
+            if (this.y <= -80) {
                 this.readyForGarbageCollection = true;
             }
         }, 1000 / 60);
     }
 
 
-    stop() {
+    bubbleStop() {
         console.log('Attack bubble delete:', this.readyForGarbageCollection); // TODO delete
         clearInterval(this.upForceInterval);
     }

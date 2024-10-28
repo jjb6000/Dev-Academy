@@ -28,7 +28,7 @@ class Pufferfish extends MovableObject {
     }
 
     animate() {
-        setInterval(() => {
+        this.intervall_1 = setInterval(() => {
             if (this.objectIsOnScreen(this.x) && !this.isDead()) {
                 this.moveLeft(-100, this.speed)
             }
@@ -41,7 +41,7 @@ class Pufferfish extends MovableObject {
     }
 
     animationInterval(intervalTime) {
-        setInterval(() => {
+        this.intervall_2 = setInterval(() => {
             if (!this.isDead()) {
                 this.movingAnimation(this.ANIMATION_IMGs)
             }
