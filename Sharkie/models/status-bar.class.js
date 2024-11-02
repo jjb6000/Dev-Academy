@@ -17,13 +17,11 @@ possibleStatusArray = [100, 80, 60, 40, 20, 0];
         this.y = 0;
     }
 
-    updateBar(exactStatus) {
-        let barStatus = this.possibleStatusArray.find(status => status <= exactStatus);
-        if (barStatus < 0) {
-            barStatus = 0;
+    updateBar(health) {
+        if (health < 0) {
+            health = 0
         }
-        console.log('barStatus: ', barStatus);
-        
+        let barStatus = this.possibleStatusArray.find(status => status <= health);
         this.img = this.STATUS_IMG_OBJECT[barStatus];  
     }
     

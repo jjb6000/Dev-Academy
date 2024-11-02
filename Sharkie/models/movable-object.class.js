@@ -60,7 +60,7 @@ class MovableObject extends DrawObject {
     gotHurt(damage) {
         this.ownDamage += damage;
         this.lastHit = Date.now();
-        if (this instanceof Character) { 
+        if (this instanceof Character) {             
             world.level.statusBars[0].updateBar(this.health - this.ownDamage);
         }
     }
