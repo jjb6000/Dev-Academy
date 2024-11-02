@@ -13,7 +13,6 @@ class MovableObject extends DrawObject {
     dieAnimationCounter = 0;
     attack;
     hasItems = 1;
-    readyForGarbageCollection = false;
     intervall_1;
     intervall_2;
 
@@ -24,11 +23,13 @@ class MovableObject extends DrawObject {
         } 
     }
 
+
     moveLeft(borderWest = -72, speed = 24) {
         if (this.x > borderWest) {
             this.x = this.x - speed;   
         }
     }
+
 
     moveUp(borderNorth = -100, speed = 24) {
         if (this.y > borderNorth) {
@@ -36,17 +37,20 @@ class MovableObject extends DrawObject {
         }
     }
 
+
     moveDown(borderSouth = 280, speed = 24) {
         if (this.y < borderSouth) {
             this.y = this.y + speed;
         }
     }
 
+
     movingAnimation(imgArray) {
         let i = this.imageIndex % imgArray.length;
         this.img = imgArray[i];  
         this.imageIndex++;  
     }
+
 
     objectIsOnScreen(x) {
         return x + this.currentCameraPosition < canvas.width
@@ -61,13 +65,16 @@ class MovableObject extends DrawObject {
         }
     }
 
+
     stillHurts() {
         return Date.now() - this.lastHit < 500;
     }
 
+
     isDead() {
         return this.health - this.ownDamage <= 0;
     }
+
 
     checkIfAboveGround() {
         if (this.y < 300) {
@@ -80,17 +87,21 @@ class MovableObject extends DrawObject {
         }
     }
 
+
     dropItem(item) {
         this.hasItems--;        
         world.level.collectables.push(item);
     }
 
+
     stop() {
-        clearInterval(this.intervall_1);
+        if (this.intervall_1) {
+            clearInterval(this.intervall_1);
+        }
         if (this.intervall_2) {
             clearInterval(this.intervall_2);
         }
-        this.readyForGarbageCollection = true;        
+        this.readyForGarbageCollection = true;                 
     }
 
 }

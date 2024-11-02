@@ -22,7 +22,9 @@ possibleStatusArray = [100, 80, 60, 40, 20, 0];
         if (barStatus < 0) {
             barStatus = 0;
         }
-        this.img = this.STATUS_IMG_OBJECT[barStatus];
+        console.log('barStatus: ', barStatus);
+        
+        this.img = this.STATUS_IMG_OBJECT[barStatus];  
     }
     
 }

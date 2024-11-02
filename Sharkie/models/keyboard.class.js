@@ -20,7 +20,7 @@ class Keyboard {
 
     processKeyInput(e, boolean) {
         let action = this.keyFunctionObject[e.key]
-        if (action && !world.character.isDead()) {
+        if (action && !world.character.isDead() && world.status === 'game') {
             action(boolean);
             this.callCharacterActions();
             world.character.moving = true;
@@ -72,5 +72,7 @@ class Keyboard {
             world.devMode ? world.devMode = false : world.devMode = true
         }
     }
+
+    
 
 }

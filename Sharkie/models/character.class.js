@@ -147,14 +147,12 @@ class Character extends MovableObject {
 
     deadSharkie(sharkieDoingSomething) {
         if (this.attackedBy === 'electric') {
-            this.sharkieInTunaCanAnimation(this.DEAD_BY_SHOCK_IMGs)
+            this.sharkieInTunaCanAnimation(this.DEAD_BY_SHOCK_IMGs);
         }
         if (this.attackedBy === 'poison') {
-            this.sharkieInTunaCanAnimation(this.DEAD_BY_POISON_IMGs)
+            this.sharkieInTunaCanAnimation(this.DEAD_BY_POISON_IMGs);
         }
-        console.log('init GO:', this);
-        clearInterval(sharkieDoingSomething)
-        initGameOver();
+        clearInterval(sharkieDoingSomething);
     }
 
 
@@ -204,11 +202,9 @@ class Character extends MovableObject {
                 this.movingAnimation(imgArray);
                 i++;
             }
-
             if (i === 8) {
                 this.bubbleAttack(attackType);
             }
-
             if (i === 9 || !this.isBubbleAttacking) {
                 this.stopBubbleInterval(bubbleInterval);
             }
@@ -283,8 +279,5 @@ class Character extends MovableObject {
             this.poisonStorage += 1;
         }
     }
-
-
-
 
 }

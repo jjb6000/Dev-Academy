@@ -12,6 +12,12 @@ class Menu {
         this.drawMenu();
     }
 
+    aniFrame = () => requestAnimationFrame(() => this.drawMenu());
+
+    cancelAnimation() {
+        cancelAnimationFrame(aniFrame)
+    }
+
     drawMenu() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.menuBgObjects.forEach(objectArray => {
@@ -21,7 +27,7 @@ class Menu {
             })
         });
         this.drawMiddle();
-        requestAnimationFrame(() => this.drawMenu());
+        this.aniFrame();
     }
 
     devModeForAllObjects(mo) { //TODO delete

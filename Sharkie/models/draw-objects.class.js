@@ -5,6 +5,7 @@ class DrawObject {
     width = 150;
     img;
     imageIndex = 0;
+    readyForGarbageCollection = false;
 
     loadImage(path) {
         this.img = new Image();

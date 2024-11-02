@@ -3,22 +3,25 @@ class World {
     keyboard;
     tryAgainBtn = new TryAgainBtn();
     gameOverImg = new GameOver();
+    gameOverBg = new Background('../Sharkie/img/bg/Dark/1.png', 0)
     level;
     camera_x = 0;
     canvas;
     ctx;
-    gameOver = false;
+    status = 'startMenu';
     bg_sound = new Audio('../Sharkie/audio/shark-bg-sound.mp3');
     devMode = false;
-    collisionCheckIntervall
+    collisionCheckIntervall;
+    menuBgObjects
 
-    constructor(canvas, level, charcater, keyboard) {
+    constructor(canvas, level, charcater, menu, keyboard) {
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
         this.ctx.font = '24px Luckiest Guy';
         this.ctx.fillStyle = 'darkblue';
         this.level = level;
         this.character = charcater;
+        this.menuBgObjects = menu
         this.keyboard = keyboard;
         this.drawWorld();
         this.character.world = this;
@@ -29,12 +32,46 @@ class World {
 
     drawWorld() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.statusGameController();
+        requestAnimationFrame(() => this.drawWorld());
+        // this.bg_sound.play();
+    }
+
+    statusGameController() {
+        if (this.status === 'game') {
+            this.game()
+        }
+        if (this.status === 'gameOver') {
+            clearInterval(this.collisionCheckIntervall);
+            this.gameOver()
+        }
+        if (this.status === 'startMenu') {
+            this.startMenu()
+        }
+    }
+
+    game() {
         this.ctx.translate(this.camera_x, 0);
         this.setMovableObjects();
         this.ctx.translate(-this.camera_x, 0);
         this.setStaticObjects();
-        requestAnimationFrame(() => this.drawWorld());
-        // this.bg_sound.play();
+    }
+
+    startMenu() {
+        if (this.menuBgObjects) {
+            this.menuBgObjects.forEach(objectArray => {
+                this.addMultiObjectsToMap(objectArray);
+            });
+        }
+        if (this.devMode) this.drawMiddle();
+    }
+
+    gameOver() {
+        this.level = {};
+        this.addToMap(this.gameOverBg);
+        this.addToMap(this.tryAgainBtn);
+        this.addToMap(this.gameOverImg);
+        this.writeOnCanvas('Back to Menu', 280, 440);
     }
 
 
@@ -53,11 +90,7 @@ class World {
         this.writeOnCanvas('Poison: ' + String(this.character.poisonStorage), 20, 100);
         this.writeOnCanvas('Coins: ' + String(this.character.coinStorage), 20, 130);
         if (this.character.gameOver) {
-            clearInterval(this.collisionCheckIntervall)
-            this.gameOver = true;
-            this.addToMap(this.tryAgainBtn);
-            this.addToMap(this.gameOverImg);
-            this.writeOnCanvas('Back to Menu', 280, 440);
+            this.status = 'gameOver';
         }
         if (this.devMode) this.drawMiddle();
     }
@@ -98,14 +131,18 @@ class World {
         if (movableObject.readyForGarbageCollection) {
             this.removeItem(movableObject);
         }
-        if (this.gameOver && movableObject instanceof Coin) {
-            movableObject.stop()
+        if (this.status === 'gameOver' && movableObject instanceof MovableObject && !movableObject instanceof Background) {
+            movableObject.stop();
+            this.removeItem(movableObject);
         }
     }
 
 
     collisionDetection() {
         this.collisionCheckIntervall = setInterval(() => {
+            if (this.status !== 'game') {
+                return
+            }
             this.isCharacterColidingWithEnemy();
 
             this.isCharacterColidingWithCollectable();
@@ -113,19 +150,19 @@ class World {
             this.isCharacterCollectingHisFiredBubble();
 
             this.areFiredBubblesColidingWithEnemies();
-        }, 200)
+        }, 200);
     }
-
 
 
     isCharacterColidingWithEnemy() {
         this.level.enemies.forEach(enemy => {
-            if (this.character.isColliding(enemy) && !enemy.isDead() && !this.character.isDead() && !this.gameOver) {
+            if (this.character.isColliding(enemy) && !enemy.isDead() && !this.character.isDead() && this.status !== 'gameOVer') {
                 this.checkIfCharacterCollidsWhileAttack(enemy);
                 this.devModeCollisionLog(enemy, this.character);
             }
         })
     }
+
 
     checkIfCharacterCollidsWhileAttack(enemy) {
         if (this.character.finAttack) {
@@ -180,8 +217,9 @@ class World {
         this.level.firedBubbles.splice(this.level.firedBubbles.indexOf(bubble), 1);
     }
 
+
     removeItem(item) {
-        if (item instanceof Bubble || item instanceof Coin || item instanceof Poison) {                        
+        if (item instanceof Bubble || item instanceof Coin || item instanceof Poison) {
             this.level.collectables.splice(this.level.collectables.indexOf(item), 1);
         }
         if (item instanceof AttackBubble) {
@@ -259,11 +297,15 @@ class World {
 
     newBubblesInterval() {
         const newBubbles = setInterval(() => {
+            if (this.status === 'gameOver') {
+                clearInterval(newBubbles);
+                return
+            }
+            if (this.status === 'startMenu') {
+                return
+            }
             for (let i = 0; i < 10; i++) {
                 this.level.collectables.push(new Bubble(this.level.levelEnd));
-            }
-            if (this.gameOver) {                
-                clearInterval(newBubbles)
             }
         }, 10000);
     }
