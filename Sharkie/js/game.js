@@ -20,7 +20,7 @@ function loading() {
     ctx.fillText('Loading', 300, 240);
     resetInstances();
     initGame();
-    
+
 }
 
 
@@ -38,15 +38,18 @@ function initMenu() {
 
 
 function handleClick(e) {
-    if (e.target.id !== 'canvas') {
+    if (e.target.id !== 'canvas' || !world || !world.status && world.status === 'game') {
         return
     }
-    if (world && world.status === 'startMenu') {
+    if (world.status === 'startMenu') {
         menuActions(e);
     }
-    if (world && world.status === 'gameOver') {
+    if (world.status === 'gameOver') {
         console.log('go action');
         gameOverScreenActions(e);
+    }
+    if (world.status === 'InstructionsMenu') {
+        console.log('go action');
     }
 }
 

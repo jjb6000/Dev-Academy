@@ -24,7 +24,8 @@
     <script defer src="models/character-bubble.class.js"></script>
     <script defer src="models/poison-bubble.class.js"></script>
     <script defer src="models/bg.class.js"></script>
-    <script defer src="models/try-again-btn.class.js"></script>
+    <script defer src="menu/try-again-btn.class.js"></script>
+    <script defer src="menu/button.class.js"></script>
     <script defer src="menu/gameOver.class.js"></script>
     <script defer src="models/keyboard.class.js"></script>
     <script defer src="models/world.class.js"></script>
@@ -39,9 +40,20 @@
 
     <h1>Sharkie the Shark</h1>
 
-    <canvas id="canvas" width="720px" height="480px">
+    <div class="canvas-container">
+        <canvas id="canvas" width="720px" height="480px"></canvas>
 
-    </canvas>
+        <div class="instructions">
+            <img class="basic-controls-img" src="./img/menu/Instructions 2.png" alt="">
+            <div class="special-attack-instructions">
+                <img src="./img/menu/Key/x.svg" alt=""><span>Bubble Attack (you need to collect Bubbles)</span>
+            </div>
+            <div class="special-attack-instructions">
+                <img src="./img/menu/Key/v.svg" alt=""><span>Poison Bubble Attack (you need to collect Poison)</span>
+            </div>
+        </div>
+    </div>
+    
     
 </body>
 </html>

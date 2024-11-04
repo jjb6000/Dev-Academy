@@ -21,7 +21,9 @@ const MENU = () => {
                 new Jellyfish1(719),
             ],
             [
-                new StartBtn()
+                new Button(220, 120, 80, 280, './img/menu/Key/instructions-btn.svg'),
+                new Button(220, 260, 80, 280, './img/menu/Start/4.png'),
+                new Button(250, 400, 60, 220, './img/menu/Full Screen/Mesa de trabajo 6.png'),
             ]
         ]
     )

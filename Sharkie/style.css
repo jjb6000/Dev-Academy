@@ -6,10 +6,56 @@ body {
     align-items: center;
     flex-direction: column;
     height: 100vh;
+    background-color: darkblue;
+    color: white;
+}
+
+h1 {
+    color: white;
+}
+
+.canvas-container {
+    position: relative;
+
 }
 
 canvas {
     background-color: black;
+}
+
+.instructions {
+    position: absolute;
+    border-radius: 32px;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    background-color: rgb(0, 217, 255);
+    border: solid white 6px;
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.special-attack-instructions {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    color: yellow;
+    font-size: 24px;
+}
+
+.special-attack-instructions img {
+    height: 80px;
+    width: 80px;
+    padding: 8px;
+}
+
+.basic-controls-img {
+    width: 340px;
+    height: 200px;
 }
 
 
