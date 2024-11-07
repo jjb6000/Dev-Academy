@@ -1,4 +1,5 @@
-let canvas = document.getElementById('canvas');
+const canvas = document.getElementById('canvas');
+const instructionsMenu = document.getElementById('instructions');
 let world;
 let menu;
 let level;
@@ -37,10 +38,11 @@ function initMenu() {
 
 
 
-function handleClick(e) {
+function handleClick(e) {    
     if (e.target.id !== 'canvas' || !world || !world.status && world.status === 'game') {
         return
     }
+    console.log(e.offsetX, e.offsetY);
     if (world.status === 'startMenu') {
         menuActions(e);
     }
@@ -48,15 +50,16 @@ function handleClick(e) {
         console.log('go action');
         gameOverScreenActions(e);
     }
-    if (world.status === 'InstructionsMenu') {
-        console.log('go action');
-    }
+
 }
 
 
 function menuActions(e) {
-    if (isClickOnStart(e.offsetX, e.offsetY)) {
+    if (isClickOnStart(e.offsetX, e.offsetY) && instructionsMenu.style.display === 'none') {
         startGame();
+    }
+    if (isClickOnInstructions(e.offsetX, e.offsetY) && instructionsMenu.style.display === 'none') {
+        instructionsMenu.style.display = 'flex'
     }
 }
 
@@ -74,6 +77,10 @@ function gameOverScreenActions(e) {
 
 function isClickOnStart(x, y) {
     return x < 500 && x > 220 && y < 380 && y > 300
+}
+
+function isClickOnInstructions(x, y) {
+    return x < 500 && x > 220 && y < 200 && y > 118
 }
 
 
@@ -135,6 +142,10 @@ function applyGameEventListeners() {
 
 window.onload = () => initMenu();
 window.addEventListener('click', (e) => handleClick(e));
+
+document.getElementById('menuCloseBtn').addEventListener('click', () => {
+    instructionsMenu.style.display = 'none';
+})
 
 
 

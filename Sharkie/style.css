@@ -26,10 +26,10 @@ canvas {
 .instructions {
     position: absolute;
     border-radius: 32px;
-    top: 40px;
+    top: 32px;
     left: 40px;
     right: 40px;
-    bottom: 40px;
+    bottom: 32px;
     background-color: rgb(0, 217, 255);
     border: solid white 6px;
     z-index: 99;
@@ -37,6 +37,27 @@ canvas {
     flex-direction: column;
     justify-content: start;
     align-items: center;
+}
+
+.instructions-header {
+    position: relative;
+    width: 100%;
+    text-align: center;
+
+}
+
+.close-button {
+    cursor: pointer;
+    font-size: 48px;
+    padding: 4px 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.close-button:hover {
+    background-color: rgba(0, 0, 0, 0.082);
+    border-radius: 24px;
 }
 
 .special-attack-instructions {

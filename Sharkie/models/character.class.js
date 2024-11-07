@@ -135,10 +135,10 @@ class Character extends MovableObject {
     bubbleAttack(attackType) {
         let bubbleCoo = this.calcBubbleCoordinates();
         if (attackType === 'poison') {
-            this.world.level.firedBubbles.push(new PoisonBubble(bubbleCoo.x, bubbleCoo.y));
+            this.world.level.firedBubbles.push(new PoisonBubble(bubbleCoo.x, bubbleCoo.y, this.otherDirection));
             this.poisonStorage--
         } else {
-            this.world.level.firedBubbles.push(new AttackBubble(bubbleCoo.x, bubbleCoo.y));
+            this.world.level.firedBubbles.push(new AttackBubble(bubbleCoo.x, bubbleCoo.y, this.otherDirection));
             this.bubbleStorage--;
         }
         this.loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
