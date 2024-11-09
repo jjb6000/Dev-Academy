@@ -44,8 +44,8 @@ class AttackBubble extends Character {
     
 
     bubbleAttackDirectionLeft() {
-        this.speed > 0? this.speed = this.speed + 0.001 : this.speed = 0;
-        this.moveLeft(2000, this.speed);
+        this.speed > 0? this.speed = this.speed - 0.001 : this.speed = 0;
+        this.moveLeft(-2000, this.speed);
     }
 
 

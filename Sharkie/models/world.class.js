@@ -37,6 +37,7 @@ class World {
         // this.bg_sound.play();
     }
 
+
     statusGameController() {
         if (this.status === 'game') {
             this.game()
@@ -50,12 +51,14 @@ class World {
         }
     }
 
+
     game() {
         this.ctx.translate(this.camera_x, 0);
         this.setMovableObjects();
         this.ctx.translate(-this.camera_x, 0);
         this.setStaticObjects();
     }
+
 
     startMenu() {
         if (this.menuBgObjects) {
@@ -65,6 +68,7 @@ class World {
         }
         if (this.devMode) this.drawMiddle();
     }
+
 
     gameOver() {
         this.level = {};
