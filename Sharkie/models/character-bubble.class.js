@@ -22,11 +22,8 @@ class AttackBubble extends Character {
     animate() {
         let upForce = 0;
         const upForceInterval = setInterval(() => {
-            if (this.otherDirection) {
-                this.bubbleAttackDirectionLeft();
-            } else {
-                this.bubbleAttackDirectionRight();
-            }
+        this.speed > 0? this.speed = this.speed - 0.001 : this.speed = 0;
+           this.otherDirection ? this.moveLeft(-2000, this.speed) : this.moveRight(2000, this.speed);
             upForce = upForce + 0.002;
             this.moveUp(-100, upForce);
             if (this.y <= -80) {
@@ -37,15 +34,5 @@ class AttackBubble extends Character {
     }
 
 
-    bubbleAttackDirectionRight() {        
-        this.speed > 0? this.speed = this.speed - 0.001 : this.speed = 0;
-        this.moveRight(2000, this.speed)
-    }
-    
-
-    bubbleAttackDirectionLeft() {
-        this.speed > 0? this.speed = this.speed - 0.001 : this.speed = 0;
-        this.moveLeft(-2000, this.speed);
-    }
 
 }
