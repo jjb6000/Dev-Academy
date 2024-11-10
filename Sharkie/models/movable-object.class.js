@@ -13,8 +13,6 @@ class MovableObject extends DrawObject {
     dieAnimationCounter = 0;
     attack;
     hasItems = 1;
-    intervall_1;
-    intervall_2;
     intervals = [];
 
 

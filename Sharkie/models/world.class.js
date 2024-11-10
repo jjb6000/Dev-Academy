@@ -80,7 +80,7 @@ class World {
     }
 
     stopAllMovingAnimations() {
-        if (!this.level.enemies) return;
+        if (!this.level || !this.level.hasOwnProperty('enemies')) return;
         this.level.enemies.forEach(mO => mO.stop());
         if (this.level.firedBubbles.length > 0) {
             this.level.firedBubbles.forEach(fO => fO.stop());
