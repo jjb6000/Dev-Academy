@@ -78,6 +78,18 @@ class World {
         this.writeOnCanvas('Back to Menu', 280, 440);
     }
 
+    stopAllMovingAnimations() {
+        this.level.enemies.forEach(mO => mO.stop());
+        if (this.level.firedBubbles.length > 0) {
+            this.level.firedBubbles.forEach(fO => fO.stop());
+        }
+        this.level.collectables.forEach(cO => {
+            if (!cO instanceof Poison) {
+                cO.stop();
+            }
+        });
+    }
+
 
     setMovableObjects() {
         this.addMultiObjectsToMap(this.level.backgroundObjects);
@@ -227,7 +239,6 @@ class World {
             this.level.collectables.splice(this.level.collectables.indexOf(item), 1);
         }
         if (item instanceof AttackBubble) {
-            item.bubbleStop()
             this.level.firedBubbles.splice(this.level.firedBubbles.indexOf(item), 1);
         }
         if (item instanceof Jellyfish || item instanceof Pufferfish || item instanceof Whale) {

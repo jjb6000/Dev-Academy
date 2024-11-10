@@ -4,7 +4,6 @@ class AttackBubble extends Character {
     speed = 0.9;
     x;
     y;
-    upForceInterval
 
 
     constructor(x, y, otherDirectiionBoolean) {
@@ -22,7 +21,7 @@ class AttackBubble extends Character {
 
     animate() {
         let upForce = 0;
-        this.upForceInterval = setInterval(() => {
+        const upForceInterval = setInterval(() => {
             if (this.otherDirection) {
                 this.bubbleAttackDirectionLeft();
             } else {
@@ -31,9 +30,10 @@ class AttackBubble extends Character {
             upForce = upForce + 0.002;
             this.moveUp(-100, upForce);
             if (this.y <= -80) {
-                this.readyForGarbageCollection = true;
+                this.stop()
             }
         }, 1000 / 60);
+        this.intervals.push(upForceInterval);
     }
 
 
@@ -48,9 +48,4 @@ class AttackBubble extends Character {
         this.moveLeft(-2000, this.speed);
     }
 
-
-    bubbleStop() {
-        console.log('Attack bubble delete:', this.readyForGarbageCollection); // TODO delete
-        clearInterval(this.upForceInterval);
-    }
 }

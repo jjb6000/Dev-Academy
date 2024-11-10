@@ -28,20 +28,23 @@ class Pufferfish extends MovableObject {
     }
 
     animate() {
-        this.intervall_1 = setInterval(() => {
+        const interval_1 = setInterval(() => {
             if (this.objectIsOnScreen(this.x) && !this.isDead()) {
                 this.moveLeft(-100, this.speed)
             }
-
             if (this.isDead()) {                
                 this.moveRight(9999, 1);
                 this.moveDown(9999, 1);
             }
+            if (this.y > 500) {
+                this.stop();
+            }
         }, 1000 / 60);
+        this.intervals.push(interval_1);
     }
 
     animationInterval(intervalTime) {
-        this.intervall_2 = setInterval(() => {
+        const interval_2 = setInterval(() => {
             if (!this.isDead()) {
                 this.movingAnimation(this.ANIMATION_IMGs)
             }
@@ -51,6 +54,7 @@ class Pufferfish extends MovableObject {
                 if(this.hasItems > 0) this.dropItem(new Coin(this.x, this.y));
             }
         }, intervalTime);
+        this.intervals.push(interval_2);
     }
 
 }

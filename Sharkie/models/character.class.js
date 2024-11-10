@@ -273,6 +273,7 @@ class Character extends MovableObject {
 
         if (item instanceof Coin) {
             this.coinStorage += 1;
+            item.stop()
         }
 
         if (item instanceof Poison) {

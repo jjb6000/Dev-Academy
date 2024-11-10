@@ -15,6 +15,7 @@ class MovableObject extends DrawObject {
     hasItems = 1;
     intervall_1;
     intervall_2;
+    intervals = [];
 
 
     moveRight(borderEast = 528, speed = 24) {
@@ -95,12 +96,7 @@ class MovableObject extends DrawObject {
 
 
     stop() {
-        if (this.intervall_1) {
-            clearInterval(this.intervall_1);
-        }
-        if (this.intervall_2) {
-            clearInterval(this.intervall_2);
-        }
+        this.intervals.forEach(interval => clearInterval(interval));
         this.readyForGarbageCollection = true;                 
     }
 

@@ -83,16 +83,18 @@ class Whale extends MovableObject {
 
 
     animate() {        
-        setInterval(() => {
+        const interval = setInterval(() => {
             if (this.objectIsOnScreen(this.x) && !this.isDead()) {
                 this.moveLeft(-100, this.speed);
             }
-
             if (this.isDead()) {
                 this.moveUp(-9999, 1);
             }
-
+            if (this.y < -120) {
+                this.stop();
+            }
         }, 1000 / 60); 
+        this.intervals.push(interval);
     }
 
     animationInterval(intervalTime) {
@@ -117,12 +119,13 @@ class Whale extends MovableObject {
     deadWhale(aliveInterval) { 
         this.imageIndex = 0; 
         clearInterval(aliveInterval);
-        setInterval(() => {
+        const deadWhaleInterval = setInterval(() => {
             if (this.objectIsOnScreen(this.x) && this.dieAnimationCounter < 5) {
                 this.movingAnimation(this.WHALE_DEAD_IMGs);
                 this.dieAnimationCounter++;
             } 
         }, 120); 
+        this.intervals.push(deadWhaleInterval);
     }
 }
 

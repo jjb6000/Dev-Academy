@@ -10,13 +10,13 @@ class Bubble extends MovableObject {
     }
 
     animate() {
-        this.intervall_1 = setInterval(() => {
+        const interval = setInterval(() => {
             this.moveUp(-100, 0.5);            
-            if (this.y <= -90) {
-                this.readyForGarbageCollection = true;                
+            if (this.y <= -90) {             
                 this.stop();
             }
         }, 1000 / 60);
+        this.intervals.push(interval);
     }
 
 }

@@ -10,7 +10,7 @@ class Jellyfish extends MovableObject {
 
 
     animate() {
-        this.intervall_1 = setInterval(() => {
+        const interval_1 = setInterval(() => {
             if (this.objectIsOnScreen(this.x) && !this.isDead()) {
                 this.moveUp(-300, this.speed);
             }
@@ -19,10 +19,11 @@ class Jellyfish extends MovableObject {
                 this.deadBodyMovement()
             }
         }, 1000 / 60);
+        this.intervals.push(interval_1)
     }
 
     animationInterval(intervalTime) {
-        this.intervall_2 = setInterval(() => {
+        const interval_2 = setInterval(() => {
             if (!this.isDead()) {
                 this.movingAnimation(this.ANIMATION_IMGs);
             } else {
@@ -32,6 +33,7 @@ class Jellyfish extends MovableObject {
                 }
             }
         }, intervalTime);
+        this.intervals.push(interval_2)
     }
 
     deadBodyMovement() {
