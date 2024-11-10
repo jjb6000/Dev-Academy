@@ -71,6 +71,7 @@ class World {
 
 
     gameOver() {
+        this.stopAllMovingAnimations();
         this.level = {};
         this.addToMap(this.gameOverBg);
         this.addToMap(this.tryAgainBtn);
@@ -79,6 +80,7 @@ class World {
     }
 
     stopAllMovingAnimations() {
+        if (!this.level.enemies) return;
         this.level.enemies.forEach(mO => mO.stop());
         if (this.level.firedBubbles.length > 0) {
             this.level.firedBubbles.forEach(fO => fO.stop());
