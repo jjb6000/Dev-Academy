@@ -109,7 +109,7 @@ class Character extends MovableObject {
     animate() {
         const sharkieDoingSomething = setInterval(() => {
             if (!this.moving && !this.finAttack && !this.isBubbleAttacking && !this.stillHurts() && !this.isDead()) this.loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
-            if (this.moving || this.finAttack && !this.isDead()) {
+            if (this.moving || this.finAttack && !this.gameOver) {
                 this.swim_sound.play();
             }
 
@@ -248,8 +248,8 @@ class Character extends MovableObject {
 
 
     isColliding(enemy) {
-        let characterBox = this.getCollisionBox(this);
-        let enemyBox = this.getCollisionBox(enemy)
+        const characterBox = this.getCollisionBox(this);
+        const enemyBox = this.getCollisionBox(enemy)
         return (characterBox.x + characterBox.width) >= enemyBox.x && characterBox.x <= (enemyBox.x + enemyBox.width) &&
             (characterBox.y + characterBox.height) >= enemyBox.y &&
             (characterBox.y) <= (enemyBox.y + enemyBox.height);

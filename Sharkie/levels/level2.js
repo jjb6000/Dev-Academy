@@ -1,6 +1,7 @@
 
-const level1 = () => {
-    const levelEnd = 2000;
+
+const level2 = () => {
+    const levelEnd = 3000;
     return (
         new Level(
             enemies = [
@@ -16,6 +17,12 @@ const level1 = () => {
                 new Jellyfish1(levelEnd),
                 new Pufferfish(levelEnd),
                 new Jellyfish2(levelEnd),
+                new Jellyfish3(levelEnd),
+                new Jellyfish4(levelEnd),
+                new Jellyfish3(levelEnd),
+                new Jellyfish4(levelEnd),
+                new Jellyfish3(levelEnd),
+                new Jellyfish4(levelEnd),
                 new Whale(levelEnd)
             ],
             collectables = [
@@ -67,6 +74,12 @@ const level1 = () => {
                 new Poison(Math.random() * levelEnd, 360 + Math.random() * 40),
                 new Poison(Math.random() * levelEnd, 360 + Math.random() * 40),
                 new Poison(Math.random() * levelEnd, 360 + Math.random() * 40),
+                new Coin(Math.random() * levelEnd, 340 + Math.random() * 60),
+                new Coin(Math.random() * levelEnd, 340 + Math.random() * 60),
+                new Coin(Math.random() * levelEnd, 340 + Math.random() * 60),
+                new Poison(Math.random() * levelEnd, 360 + Math.random() * 40),
+                new Poison(Math.random() * levelEnd, 360 + Math.random() * 40),
+                new Poison(Math.random() * levelEnd, 360 + Math.random() * 40),
                 new Poison(Math.random() * levelEnd, 360 + Math.random() * 40),
                 new Poison(Math.random() * levelEnd, 360 + Math.random() * 40),
                 new Poison(Math.random() * levelEnd, 360 + Math.random() * 40),
@@ -95,7 +108,12 @@ const level1 = () => {
                 new Background('../Sharkie/img/bg/Layers/5. Water/D2.png', 3 * 719),
                 new Background('../Sharkie/img/bg/Layers/3.Fondo 1/D2.png', 3 * 719),
                 new Background('../Sharkie/img/bg/Layers/4.Fondo 2/D2.png', 3 * 719),
-                new Background('../Sharkie/img/bg/Layers/2. Floor/D2.png', 3 * 719)
+                new Background('../Sharkie/img/bg/Layers/2. Floor/D2.png', 3 * 719),
+
+                new Background('../Sharkie/img/bg/Layers/5. Water/D2.png', 4 * 719),
+                new Background('../Sharkie/img/bg/Layers/3.Fondo 1/D2.png', 4 * 719),
+                new Background('../Sharkie/img/bg/Layers/4.Fondo 2/D2.png', 4 * 719),
+                new Background('../Sharkie/img/bg/Layers/2. Floor/D2.png', 4 * 719)
             ],
             firedBubbles = [
 

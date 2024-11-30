@@ -30,12 +30,9 @@ function initMenu() {
     character = new Character();
     keyboard = new Keyboard();
     level = level1();
-    world = new World(canvas, level, character, menu, keyboard);
+    world = new World(canvas, 'startMenu', level, character, menu, keyboard);
     applyGameEventListeners();
 }
-
-
-
 
 
 function handleClick(e) {    
@@ -63,6 +60,7 @@ function menuActions(e) {
     }
 }
 
+
 function gameOverScreenActions(e) {
     if (isClickOnStart(e.offsetX, e.offsetY)) {
         reStartGame();
@@ -74,14 +72,15 @@ function gameOverScreenActions(e) {
 }
 
 
-
 function isClickOnStart(x, y) {
     return x < 500 && x > 220 && y < 380 && y > 300
 }
 
+
 function isClickOnInstructions(x, y) {
     return x < 500 && x > 220 && y < 200 && y > 118
 }
+
 
 
 function isClickOnBackToMenu(x, y) {
@@ -93,10 +92,7 @@ function startGame() {
     world.status = 'game';
     menu.forEach(menuArray => {
         menuArray.forEach(o => {
-            if (o instanceof MovableObject) {
-                o.stop()
-            }
-            o.readyForGarbageCollection = true;
+            if (o instanceof MovableObject) o.stop();
         })
     });
     world.menu = null;
@@ -109,13 +105,17 @@ function reStartGame() {
     keyboard = new Keyboard();
     level = level1();
     menu = null;
-    world = new World(canvas, level, character, menu, keyboard);
-    world.status = 'game';
+    world = new World(canvas, 'game', level, character, menu, keyboard);
 }
 
 
 function nextLevel() {
-    // TODO
+    resetInstances();
+    level = level2();
+    character = new Character();
+    keyboard = new Keyboard();
+    
+    world = new World(canvas, 'game', level, character, menu, keyboard);
 }
 
 

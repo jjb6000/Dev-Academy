@@ -1,4 +1,5 @@
 class Whale extends MovableObject {
+    whaleGone = false;
     ANIMATION_IMGs = [
         this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/2.floating/1.png'),
         this.createImageForCache('../Sharkie/img/enemies/3 Final Enemy/2.floating/2.png'),
@@ -91,11 +92,13 @@ class Whale extends MovableObject {
                 this.moveUp(-9999, 1);
             }
             if (this.y < -120) {
+                this.whaleGone = true;
                 this.stop();
             }
         }, 1000 / 60); 
         this.intervals.push(interval);
     }
+
 
     animationInterval(intervalTime) {
         const aliveInterval = setInterval(() => {

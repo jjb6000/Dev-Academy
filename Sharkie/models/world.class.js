@@ -3,18 +3,21 @@ class World {
     keyboard;
     tryAgainBtn = new TryAgainBtn();
     gameOverImg = new GameOver();
-    gameOverBg = new Background('../Sharkie/img/bg/Dark/1.png', 0)
+    gameOverBg = new Background('../Sharkie/img/bg/Dark/1.png', 0);
+    status;
     level;
     camera_x = 0;
     canvas;
     ctx;
-    status = 'startMenu';
     bg_sound = new Audio('../Sharkie/audio/shark-bg-sound.mp3');
     devMode = false;
-    collisionCheckIntervall;
+    collisionCheckInterval;
     menuBgObjects
+    animationFrame;
+    newBubblesInterval;
 
-    constructor(canvas, level, charcater, menu, keyboard) {
+    constructor(canvas, status, level, charcater, menu, keyboard) {
+        this.status = status
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
         this.ctx.font = '24px Luckiest Guy';
@@ -26,29 +29,27 @@ class World {
         this.drawWorld();
         this.character.world = this;
         this.collisionDetection();
-        this.newBubblesInterval();
+        this.newBubbles();
     }
 
 
-    drawWorld() {
+    drawWorld() {        
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.statusGameController();
-        requestAnimationFrame(() => this.drawWorld());
+        this.animationFrame = requestAnimationFrame(() => {
+            if (this.status !== 'readyForNextLevel') {
+                this.drawWorld()
+            }
+        });
         // this.bg_sound.play();
     }
 
 
     statusGameController() {
-        if (this.status === 'game') {
-            this.game()
-        }
-        if (this.status === 'gameOver') {
-            clearInterval(this.collisionCheckIntervall);
-            this.gameOver()
-        }
-        if (this.status === 'startMenu') {
-            this.startMenu()
-        }
+        if (this.status === 'game') this.game();
+        if (this.status === 'gameOver') this.gameOver();
+        if (this.status === 'startMenu') this.startMenu();
+        if (this.status === 'readyForNextLevel') this.prepareNextLevel();
     }
 
 
@@ -71,6 +72,7 @@ class World {
 
 
     gameOver() {
+        clearInterval(this.collisionCheckInterval);
         this.stopAllMovingAnimations();
         this.level = {};
         this.addToMap(this.gameOverBg);
@@ -79,8 +81,19 @@ class World {
         this.writeOnCanvas('Back to Menu', 280, 440);
     }
 
+
+    prepareNextLevel() {
+        // debugger
+        clearInterval(this.collisionCheckInterval);
+        this.stopAllMovingAnimations();
+        cancelAnimationFrame(this.animationFrame);
+        nextLevel();
+    }
+
+
     stopAllMovingAnimations() {
         if (!this.level || !this.level.hasOwnProperty('enemies')) return;
+        clearInterval(this.newBubblesInterval);
         this.level.enemies.forEach(mO => mO.stop());
         if (this.level.firedBubbles.length > 0) {
             this.level.firedBubbles.forEach(fO => fO.stop());
@@ -141,7 +154,10 @@ class World {
         if (movableObject.otherDirection) {
             this.reFlip(movableObject);
         }
-        this.devModeForAllObjects(movableObject); //TODO delete
+        this.devModeForAllObjects(movableObject);
+        if (movableObject instanceof Whale && movableObject.whaleGone) {
+            this.status = 'readyForNextLevel';            
+        } 
     }
 
 
@@ -157,10 +173,10 @@ class World {
 
 
     collisionDetection() {
-        this.collisionCheckIntervall = setInterval(() => {
+        this.collisionCheckInterval = setInterval(() => {
             if (this.status !== 'game') {
                 return
-            }
+            }            
             this.isCharacterColidingWithEnemy();
 
             this.isCharacterColidingWithCollectable();
@@ -184,7 +200,7 @@ class World {
 
     checkIfCharacterCollidsWhileAttack(enemy) {
         if (this.character.finAttack) {
-            enemy.gotHurt(this.character.attackDamage)
+            enemy.gotHurt(this.character.attackDamage);
         } else {
             this.character.gotHurt(enemy.attackDamage)
             if (this.devMode) console.log('Sharkie Gesundheit:', (this.character.health - this.character.ownDamage));
@@ -202,6 +218,7 @@ class World {
         });
     }
 
+
     isCharacterCollectingHisFiredBubble() {
         this.level.firedBubbles.forEach(item => {
             if (this.character.isColliding(item)) {
@@ -212,6 +229,7 @@ class World {
         });
     }
 
+
     areFiredBubblesColidingWithEnemies() {
         if (this.level.firedBubbles.length > 0) {
             this.level.firedBubbles.forEach(bubble => {
@@ -219,6 +237,7 @@ class World {
             })
         }
     }
+
 
     isFiredBubbleColidingWithEnemy(bubble) {
         this.level.enemies.forEach(enemy => {
@@ -274,6 +293,7 @@ class World {
         }
     }
 
+
     drawMiddle() {
         this.ctx.beginPath();
         this.ctx.lineWidth = '2';
@@ -296,8 +316,6 @@ class World {
     }
 
 
-
-
     flip(movableObject) {
         this.ctx.save();
         this.ctx.translate(movableObject.width, 0);
@@ -312,10 +330,10 @@ class World {
     }
 
 
-    newBubblesInterval() {
-        const newBubbles = setInterval(() => {
+    newBubbles() {
+        this.newBubblesInterval = setInterval(() => {
             if (this.status === 'gameOver') {
-                clearInterval(newBubbles);
+                clearInterval(this.newBubblesInterval);
                 return
             }
             if (this.status === 'startMenu') {
@@ -327,28 +345,4 @@ class World {
         }, 10000);
     }
 
-
-    // ANCHOR Eventlistener
-    // addEvents() {
-    //     this.canvas.addEventListener('click', (e) => this.handleClick(e));
-    // }
-
-
-    // handleClick(e) {
-    //     // if (this.isClickOnTryAgainBtn(e.offsetX, e.offsetY)) reStart(this);
-
-    //     if (this.isClickOnBackToMenu(e.offsetX, e.offsetY)) {
-    //         console.log(true);
-    //         initMenu()
-    //     };
-    // }
-
-
-    // isClickOnTryAgainBtn(x, y) {
-    //     return x < 500 && x > 220 && y < 380 && y > 300
-    // }
-
-    // isClickOnBackToMenu(x, y) {
-    //     return x < 440 && x > 280 && y < 440 && y > 420
-    // }
 }
