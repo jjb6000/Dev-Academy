@@ -133,7 +133,7 @@ class Character extends MovableObject {
     }
 
     bubbleAttack(attackType) {
-        let bubbleCoo = this.calcBubbleCoordinates();
+        const bubbleCoo = this.calcBubbleCoordinates();
         if (attackType === 'poison') {
             this.world.level.firedBubbles.push(new PoisonBubble(bubbleCoo.x, bubbleCoo.y, this.otherDirection));
             this.poisonStorage--

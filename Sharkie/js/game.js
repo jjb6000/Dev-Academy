@@ -35,7 +35,7 @@ function initMenu() {
 }
 
 
-function handleClick(e) {    
+function handleClick(e) {
     if (e.target.id !== 'canvas' || !world || !world.status && world.status === 'game') {
         return
     }
@@ -114,8 +114,12 @@ function nextLevel() {
     level = level2();
     character = new Character();
     keyboard = new Keyboard();
-    
-    world = new World(canvas, 'game', level, character, menu, keyboard);
+    world = new World(canvas, 'initNextLevel', level, character, menu, keyboard);
+    setTimeout(() => {
+        world.status = 'game'
+        world.ctx.font = '24px Luckiest Guy';
+        world.ctx.fillStyle = 'darkblue';
+    }, 2000);
 }
 
 

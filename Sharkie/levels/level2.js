@@ -1,6 +1,7 @@
 
 
 const level2 = () => {
+    const currentLevel = 2;
     const levelEnd = 3000;
     return (
         new Level(
@@ -121,6 +122,7 @@ const level2 = () => {
             statusBars = [
                 new HealthBar()
             ],
-            levelEnd
+            levelEnd,
+            currentLevel
         ))
 }

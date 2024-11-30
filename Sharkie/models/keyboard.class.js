@@ -29,13 +29,13 @@ class Keyboard {
     }
 
     callCharacterActions() {
-        if (this.UP && !world.character.isDead()) world.character.moveUp();
-        if (this.DOWN && !world.character.isDead()) world.character.moveDown();
-        if (this.RIGHT && !world.character.isDead()) this.initRightMove();
-        if (this.LEFT && !world.character.isDead()) this.initLeftMove();
-        if (this.X_BTN && !world.character.isDead()) world.character.initBubbleAttack();
-        if (this.V_BTN && !world.character.isDead()) world.character.initPoisonAttack();
-        if (this.SPACE && !world.character.isDead()) world.character.initFinAttack();
+        if (this.UP) world.character.moveUp();
+        if (this.DOWN) world.character.moveDown();
+        if (this.RIGHT) this.initRightMove();
+        if (this.LEFT) this.initLeftMove();
+        if (this.X_BTN && world.character.bubbleStorage > 0) world.character.initBubbleAttack();
+        if (this.V_BTN && world.character.poisonStorage > 0) world.character.initPoisonAttack();
+        if (this.SPACE) world.character.initFinAttack();
     }
 
 

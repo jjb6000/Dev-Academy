@@ -3,7 +3,7 @@ class World {
     keyboard;
     tryAgainBtn = new TryAgainBtn();
     gameOverImg = new GameOver();
-    gameOverBg = new Background('../Sharkie/img/bg/Dark/1.png', 0);
+    defaultBg = new Background('../Sharkie/img/bg/Dark/1.png', 0);
     status;
     level;
     camera_x = 0;
@@ -50,6 +50,7 @@ class World {
         if (this.status === 'gameOver') this.gameOver();
         if (this.status === 'startMenu') this.startMenu();
         if (this.status === 'readyForNextLevel') this.prepareNextLevel();
+        if (this.status === 'initNextLevel') this.nextLevel();
     }
 
 
@@ -75,7 +76,7 @@ class World {
         clearInterval(this.collisionCheckInterval);
         this.stopAllMovingAnimations();
         this.level = {};
-        this.addToMap(this.gameOverBg);
+        this.addToMap(this.defaultBg);
         this.addToMap(this.tryAgainBtn);
         this.addToMap(this.gameOverImg);
         this.writeOnCanvas('Back to Menu', 280, 440);
@@ -83,11 +84,18 @@ class World {
 
 
     prepareNextLevel() {
-        // debugger
         clearInterval(this.collisionCheckInterval);
         this.stopAllMovingAnimations();
         cancelAnimationFrame(this.animationFrame);
         nextLevel();
+    }
+
+
+    nextLevel() {
+        this.addToMap(this.defaultBg);
+        this.ctx.font = '80px Luckiest Guy';
+        this.ctx.fillStyle = 'yellow';
+        this.writeOnCanvas('Level ' + this.level.currentLevel, 240, 160);
     }
 
 
@@ -199,7 +207,7 @@ class World {
 
 
     checkIfCharacterCollidsWhileAttack(enemy) {
-        if (this.character.finAttack) {
+        if (this.character.finAttack && !(enemy instanceof Jellyfish3) && !(enemy instanceof Jellyfish4)) {
             enemy.gotHurt(this.character.attackDamage);
         } else {
             this.character.gotHurt(enemy.attackDamage)
@@ -207,6 +215,7 @@ class World {
             this.character.attackedBy = enemy.attack;
         }
     }
+
 
     isCharacterColidingWithCollectable() {
         this.level.collectables.forEach(item => {
