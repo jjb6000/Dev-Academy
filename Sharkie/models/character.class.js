@@ -178,6 +178,7 @@ class Character extends MovableObject {
         }
     }
 
+    
     initBubbleAttack() {
         if (Date.now() - this.timeStampLastBubbleAttack > 600 && this.bubbleStorage > 0) {
             this.bubbleAnimation(this.BUBBLE_ATTACK_IMGs, 'bubble');

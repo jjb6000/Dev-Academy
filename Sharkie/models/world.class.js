@@ -128,9 +128,6 @@ class World {
         this.writeOnCanvas('Bubbles: ' + String(this.character.bubbleStorage), 20, 70);
         this.writeOnCanvas('Poison: ' + String(this.character.poisonStorage), 20, 100);
         this.writeOnCanvas('Coins: ' + String(this.character.coinStorage), 20, 130);
-        if (this.character.gameOver) {
-            this.status = 'gameOver';
-        }
         if (this.devMode) this.drawMiddle();
     }
 
@@ -153,6 +150,7 @@ class World {
 
 
     addToMap(movableObject) {
+        this.statusTriggerCheck(movableObject)
         movableObject.currentCameraPosition = this.camera_x;
         this.checkForGarbage(movableObject);
         if (movableObject.otherDirection) {
@@ -163,8 +161,15 @@ class World {
             this.reFlip(movableObject);
         }
         this.devModeForAllObjects(movableObject);
-        if (movableObject instanceof Whale && movableObject.whaleGone) {
+    }
+
+
+    statusTriggerCheck(mO) {
+        if (mO instanceof Whale && mO.whaleGone) {
             this.status = 'readyForNextLevel';            
+        }
+        if (mO instanceof Character && mO.gameOver) {
+            this.status = 'gameOver';
         } 
     }
 

@@ -1,17 +1,19 @@
 const canvas = document.getElementById('canvas');
 const instructionsMenu = document.getElementById('instructions');
+const gameState = {
+    game: 'game', 
+    gameOver: 'gameOver', 
+    startMenu: 'startMenu', 
+    ready4NextLvl: 'readyForNextLevel', 
+    initNextLevel: 'initNextLevel',
+    end: 'end'
+}
 let world;
 let menu;
 let level;
 let character;
 let keyboard;
 
-
-
-// function initMenu() {
-//     resetInstances();
-//     applyMenuEventListeners()
-// }
 
 function loading() {
     ctx = canvas.getContext('2d');
@@ -30,7 +32,7 @@ function initMenu() {
     character = new Character();
     keyboard = new Keyboard();
     level = level1();
-    world = new World(canvas, 'startMenu', level, character, menu, keyboard);
+    world = new World(canvas, gameState.startMenu, level, character, menu, keyboard);
     applyGameEventListeners();
 }
 
@@ -40,11 +42,10 @@ function handleClick(e) {
         return
     }
     console.log(e.offsetX, e.offsetY);
-    if (world.status === 'startMenu') {
+    if (world.status === gameState.startMenu) {
         menuActions(e);
     }
     if (world.status === 'gameOver') {
-        console.log('go action');
         gameOverScreenActions(e);
     }
 
@@ -89,7 +90,7 @@ function isClickOnBackToMenu(x, y) {
 
 
 function startGame() {
-    world.status = 'game';
+    world.status = gameState.game;
     menu.forEach(menuArray => {
         menuArray.forEach(o => {
             if (o instanceof MovableObject) o.stop();
@@ -105,21 +106,32 @@ function reStartGame() {
     keyboard = new Keyboard();
     level = level1();
     menu = null;
-    world = new World(canvas, 'game', level, character, menu, keyboard);
+    world = new World(canvas, gameState.game, level, character, menu, keyboard);
 }
 
 
 function nextLevel() {
+    const currentLevel = level.currentLevel;
     resetInstances();
-    level = level2();
+    level = getNextLevel(currentLevel + 1);
     character = new Character();
     keyboard = new Keyboard();
-    world = new World(canvas, 'initNextLevel', level, character, menu, keyboard);
+    world = new World(canvas, gameState.initNextLevel, level, character, menu, keyboard);
     setTimeout(() => {
-        world.status = 'game'
+        world.status = gameState.game
         world.ctx.font = '24px Luckiest Guy';
         world.ctx.fillStyle = 'darkblue';
     }, 2000);
+}
+
+
+function getNextLevel(levelCounter) {
+    if (levelCounter === 2) {
+        return level2();
+    }
+    if (levelCounter === 3) {
+        return level3();
+    }
 }
 
 
