@@ -7,25 +7,23 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="../Sharkie/img/sharkie/1.IDLE/1.png">
     <script defer src="models/draw-objects.class.js"></script>
-    <script defer src="models/movable-object.class.js"></script>
+    <script defer src="models/movable-objects/movable-object.class.js"></script>
     <script defer src="models/status-bar.class.js"></script>
     <script defer src="models/health-bar.class.js"></script>
-    <script defer src="models/coin-bar.class.js"></script>
-    <script defer src="models/poison-bar.class.js"></script>
-    <script defer src="models/character.class.js"></script>
-    <script defer src="models/pufferfish.class.js"></script>
-    <script defer src="models/jellyfish.class.js"></script>
-    <script defer src="models/jellyfish1.class.js"></script>
-    <script defer src="models/jellyfish2.class.js"></script>
-    <script defer src="models/jellyfish3.class.js"></script>
-    <script defer src="models/jellyfish4.class.js"></script>
-    <script defer src="models/whale.class.js"></script>
-    <script defer src="models/bubble.class.js"></script>
-    <script defer src="models/poison.class.js"></script>
-    <script defer src="models/coin.class.js"></script>
-    <script defer src="models/character-bubble.class.js"></script>
-    <script defer src="models/poison-bubble.class.js"></script>
-    <script defer src="models/bg.class.js"></script>
+    <script defer src="models/movable-objects/character/character.class.js"></script>
+    <script defer src="models/movable-objects/pufferfish.class.js"></script>
+    <script defer src="models/movable-objects/jellyfish.class.js"></script>
+    <script defer src="models/movable-objects/jellyfish1.class.js"></script>
+    <script defer src="models/movable-objects/jellyfish2.class.js"></script>
+    <script defer src="models/movable-objects/jellyfish3.class.js"></script>
+    <script defer src="models/movable-objects/jellyfish4.class.js"></script>
+    <script defer src="models/movable-objects/whale.class.js"></script>
+    <script defer src="models/movable-objects/bubble.class.js"></script>
+    <script defer src="models/movable-objects/poison.class.js"></script>
+    <script defer src="models/movable-objects/coin.class.js"></script>
+    <script defer src="models/movable-objects/character/character-bubble.class.js"></script>
+    <script defer src="models/movable-objects/character/poison-bubble.class.js"></script>
+    <script defer src="models/movable-objects/bg.class.js"></script>
     <script defer src="menu/try-again-btn.class.js"></script>
     <script defer src="menu/button.class.js"></script>
     <script defer src="menu/gameOver.class.js"></script>
@@ -44,7 +42,8 @@
 
     <h1>Sharkie the Shark</h1>
 
-    <div class="canvas-container">
+    <div id="canvasContainer" class="canvas-container">
+        
         <canvas id="canvas" width="720px" height="480px"></canvas>
 
         <div style="display: none;" id="instructions" class="instructions">
@@ -59,6 +58,13 @@
                 <img src="./img/menu/Key/v.svg" alt=""><span>Poison Bubble Attack (you need to collect Poison)</span>
             </div>
         </div>
+    </div>
+
+    <div style="display: none;" id="endContainer" class="game-end-container">
+        <h1>Congrats, you won!</h1>
+        <h2>Your Score:</h2>
+        <p>2000 Coins</p>
+        
     </div>
     
     

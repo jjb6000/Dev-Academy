@@ -79,6 +79,24 @@ canvas {
     height: 200px;
 }
 
+.game-end-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-end-container h1 {
+    font-size: 4rem;
+    color: yellow;
+}
+
+.game-end-container h2 {
+    font-size: 3rem;
+    color: palegreen;
+}
+
 
 /* luckiest-guy-regular - latin */
 @font-face {

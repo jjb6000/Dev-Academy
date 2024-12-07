@@ -37,7 +37,7 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.statusGameController();
         this.animationFrame = requestAnimationFrame(() => {
-            if (this.status !== 'readyForNextLevel') {
+            if (this.status !== gameState.ready4NextLvl) {
                 this.drawWorld()
             }
         });
@@ -46,11 +46,11 @@ class World {
 
 
     statusGameController() {
-        if (this.status === 'game') this.game();
-        if (this.status === 'gameOver') this.gameOver();
-        if (this.status === 'startMenu') this.startMenu();
-        if (this.status === 'readyForNextLevel') this.prepareNextLevel();
-        if (this.status === 'initNextLevel') this.nextLevel();
+        if (this.status === gameState.game) this.game();
+        if (this.status === gameState.gameOver) this.gameOver();
+        if (this.status === gameState.startMenu) this.startMenu();
+        if (this.status === gameState.ready4NextLvl) this.prepareNextLevel();
+        if (this.status === gameState.initNextLevel) this.nextLevel();
     }
 
 
@@ -166,10 +166,10 @@ class World {
 
     statusTriggerCheck(mO) {
         if (mO instanceof Whale && mO.whaleGone) {
-            this.status = 'readyForNextLevel';            
+            this.status = gameState.ready4NextLvl;            
         }
         if (mO instanceof Character && mO.gameOver) {
-            this.status = 'gameOver';
+            this.status = gameState.gameOver;
         } 
     }
 
@@ -178,7 +178,7 @@ class World {
         if (movableObject.readyForGarbageCollection) {
             this.removeItem(movableObject);
         }
-        if (this.status === 'gameOver' && movableObject instanceof MovableObject && !movableObject instanceof Background) {
+        if (this.status === gameState.gameOver && movableObject instanceof MovableObject && !movableObject instanceof Background) {
             movableObject.stop();
             this.removeItem(movableObject);
         }
@@ -187,7 +187,7 @@ class World {
 
     collisionDetection() {
         this.collisionCheckInterval = setInterval(() => {
-            if (this.status !== 'game') {
+            if (this.status !== gameState.game) {
                 return
             }            
             this.isCharacterColidingWithEnemy();
@@ -203,7 +203,7 @@ class World {
 
     isCharacterColidingWithEnemy() {
         this.level.enemies.forEach(enemy => {
-            if (this.character.isColliding(enemy) && !enemy.isDead() && !this.character.isDead() && this.status !== 'gameOVer') {
+            if (this.character.isColliding(enemy) && !enemy.isDead() && !this.character.isDead() && this.status !== gameState.gameOver) {
                 this.checkIfCharacterCollidsWhileAttack(enemy);
                 this.devModeCollisionLog(enemy, this.character);
             }

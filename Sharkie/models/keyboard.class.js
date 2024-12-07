@@ -23,9 +23,9 @@ class Keyboard {
         if (action && !world.character.isDead() && world.status === 'game') {
             action(boolean);
             this.callCharacterActions();
-            world.character.moving = true;
-            this.stopDoing();
+            world.character.moving = true;   
         }
+        this.stopDoing();
     }
 
     callCharacterActions() {

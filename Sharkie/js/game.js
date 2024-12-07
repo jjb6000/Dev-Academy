@@ -90,12 +90,12 @@ function isClickOnBackToMenu(x, y) {
 
 
 function startGame() {
-    world.status = gameState.game;
     menu.forEach(menuArray => {
         menuArray.forEach(o => {
             if (o instanceof MovableObject) o.stop();
         })
     });
+    world.status = gameState.game;
     world.menu = null;
 }
 
