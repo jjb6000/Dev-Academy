@@ -175,7 +175,7 @@ class Character extends MovableObject {
 
     calcBubbleCoordinates() {
         return {
-            'x': this.world.character.x + this.width - this.OFFSET_X_LEFT,
+            'x': this.world.character.x + this.width + 20 - this.OFFSET_X_LEFT,
             'y': this.world.character.y + this.OFFSET_Y_TOP
         }
     }
@@ -211,7 +211,7 @@ class Character extends MovableObject {
             if (i === 9 || !this.isBubbleAttacking) {
                 this.stopBubbleInterval(bubbleInterval);
             }
-        }, 150);
+        }, 100);
     }
 
 

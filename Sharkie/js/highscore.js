@@ -11,10 +11,10 @@ function saveHighscore(highscores) {
 }
 
 
-function newHighscore(coins) {
+function setNewHighscore(coins) {
     let highscores;
     getHighscores() ? highscores = getHighscores() : highscores = [];
     highscores.push(coins);
-    highscores.sort((a, b) => a - b);
+    highscores.sort((b, a) => a - b);
     saveHighscore(highscores)
 }

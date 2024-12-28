@@ -13,7 +13,7 @@ class World {
     devMode = false;
     collisionCheckInterval;
     menuBgObjects
-    animationFrame;
+    animationFrame = 0;
     newBubblesInterval;
 
     constructor(canvas, status, level, charcater, menu, keyboard) {
@@ -26,22 +26,24 @@ class World {
         this.character = charcater;
         this.menuBgObjects = menu
         this.keyboard = keyboard;
-        this.drawWorld();
         this.character.world = this;
+        this.drawWorld();
         this.collisionDetection();
         this.newBubbles();
     }
 
 
+
+
     drawWorld() {        
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.statusGameController();
+        // this.bg_sound.play();
         this.animationFrame = requestAnimationFrame(() => {
-            if (this.status !== gameState.ready4NextLvl) {
+            if (this.status !== gameState.ready4NextLvl && this.status !== gameState.end) {
                 this.drawWorld()
             }
         });
-        // this.bg_sound.play();
     }
 
 
@@ -50,7 +52,8 @@ class World {
         if (this.status === gameState.gameOver) this.gameOver();
         if (this.status === gameState.startMenu) this.startMenu();
         if (this.status === gameState.ready4NextLvl) this.prepareNextLevel();
-        if (this.status === gameState.initNextLevel) this.nextLevel();
+        if (this.status === gameState.initNextLevel) this.startNextLevel();
+        if (this.status === gameState.end) this.end();
     }
 
 
@@ -84,18 +87,30 @@ class World {
 
 
     prepareNextLevel() {
+        cancelAnimationFrame(this.animationFrame);
         clearInterval(this.collisionCheckInterval);
         this.stopAllMovingAnimations();
-        cancelAnimationFrame(this.animationFrame);
+        console.log('call next level in game.js', Date.now());
+        
         nextLevel();
     }
 
 
-    nextLevel() {
+    startNextLevel() {
         this.addToMap(this.defaultBg);
         this.ctx.font = '80px Luckiest Guy';
         this.ctx.fillStyle = 'yellow';
         this.writeOnCanvas('Level ' + this.level.currentLevel, 240, 160);
+    }
+
+
+    end() {
+        clearInterval(this.collisionCheckInterval);
+        this.stopAllMovingAnimations();
+        cancelAnimationFrame(this.animationFrame);
+        this.addToMap(this.defaultBg);
+        this.writeOnCanvas('You won!!', 240, 160);
+        endScreen(this.character.coinStorage)
     }
 
 
@@ -165,12 +180,15 @@ class World {
 
 
     statusTriggerCheck(mO) {
-        if (mO instanceof Whale && mO.whaleGone) {
-            this.status = gameState.ready4NextLvl;            
+        if (mO instanceof Whale && mO.whaleGone && this.level.currentLevel < 3) {
+            this.status = gameState.ready4NextLvl;          
         }
         if (mO instanceof Character && mO.gameOver) {
             this.status = gameState.gameOver;
         } 
+        if (mO instanceof Whale && mO.whaleGone && this.level.currentLevel === 3) {
+            this.status = gameState.end;            
+        }
     }
 
 
@@ -357,6 +375,16 @@ class World {
                 this.level.collectables.push(new Bubble(this.level.levelEnd));
             }
         }, 10000);
+    }
+
+
+    cheat() {
+        this.level.enemies.forEach(item => {
+            if (item instanceof Whale) {
+                item.ownDamage = 2000;
+                item.x = this.character.x +200
+            }
+        })
     }
 
 }

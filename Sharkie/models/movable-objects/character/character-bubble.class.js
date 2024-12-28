@@ -9,7 +9,7 @@ class AttackBubble extends Character {
     constructor(x, y, otherDirectionBoolean) {
         super().loadImage('../Sharkie/img/sharkie/4.Attack/Bubble trap/Bubble.png');       
         this.y = y;
-        otherDirectionBoolean ? this.x = x - 240 : this.x = x;     
+        otherDirectionBoolean ? this.x = x - 260 : this.x = x;     
         this.animate();
         this.OFFSET_X_RIGHT = 0;
         this.OFFSET_X_LEFT = 0;
@@ -25,7 +25,7 @@ class AttackBubble extends Character {
            this.otherDirection ? this.moveLeft(-2000, this.speed) : this.moveRight(2000, this.speed);
             upForce = upForce + 0.002;
             this.moveUp(-100, upForce);
-            if (this.y <= -80) {
+            if (this.y <= -180) {
                 this.stop()
             }
         }, 1000 / 60);

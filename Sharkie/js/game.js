@@ -135,6 +135,25 @@ function getNextLevel(levelCounter) {
 }
 
 
+function endScreen(coins) {
+    resetInstances();
+    instructionsMenu.style.display = 'flex';
+    instructionsMenu.innerHTML = getSuccessScreen();
+    setNewHighscore(coins);
+    const highscore = getHighscores();
+    displayHighscore(highscore)
+}
+
+
+function displayHighscore(highscore) {
+    highscore.forEach(hs => {
+        const li = document.createElement("li");
+        li.appendChild(document.createTextNode(hs));
+        document.getElementById('hsList').appendChild(li);
+    });
+}
+
+
 function resetInstances() {
     world.keyboard = null;
     world.level = null;

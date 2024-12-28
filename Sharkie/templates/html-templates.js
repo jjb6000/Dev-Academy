@@ -1,10 +1,10 @@
 
-function getSuccessScreen(highscore) {
+function getSuccessScreen() {
     return /*html*/`
-    <div style="display: none;" id="endContainer" class="game-end-container">
+    <div id="endContainer" class="game-end-container">
         <h1>Congrats, you won!</h1>
         <h2>Your Score:</h2>
-        <p>${highscore} Coins</p>
+        <ol id='hsList'></ol>
 
         <div>
             <button>To Menu</button>
