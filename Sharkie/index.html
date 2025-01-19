@@ -24,13 +24,10 @@
     <script defer src="models/movable-objects/character/character-bubble.class.js"></script>
     <script defer src="models/movable-objects/character/poison-bubble.class.js"></script>
     <script defer src="models/movable-objects/bg.class.js"></script>
-    <script defer src="menu/try-again-btn.class.js"></script>
-    <script defer src="menu/button.class.js"></script>
     <script defer src="menu/gameOver.class.js"></script>
     <script defer src="models/keyboard.class.js"></script>
     <script defer src="models/world.class.js"></script>
     <script defer src="models/level.class.js"></script>
-    <script defer src="menu/start-btn.class.js"></script>
     <script defer src="levels/level1.js"></script>
     <script defer src="levels/level2.js"></script>
     <script defer src="levels/level3.js"></script>
@@ -47,6 +44,16 @@
     <div id="canvasContainer" class="canvas-container">
         
         <canvas id="canvas" width="720px" height="480px"></canvas>
+
+        <div style="display: none;" id="btnDiv" class="btn-div">
+            <img id="instBtn" class="menu-btns" src="./img/menu/Key/instructions-btn.svg" alt="">
+            <img id="startBtn" class="menu-btns" src="./img/menu/Start/4.png" alt="">
+        </div>
+
+        <div style="display: none;" id="gameOverBtnDiv" class="gameOver-layout">
+            <img id="againBtn" class="menu-btns" src="./img/menu/Try again/try-again.png" alt="">
+            <p id="backToMenuBtn">Back to Menu</p>
+        </div>
 
         <div style="display: none;" id="instructions" class="instructions">
             <div class="instructions-header">

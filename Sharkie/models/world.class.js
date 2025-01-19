@@ -1,7 +1,6 @@
 class World {
     character;
     keyboard;
-    tryAgainBtn = new TryAgainBtn();
     gameOverImg = new GameOver();
     defaultBg = new Background('../Sharkie/img/bg/Dark/1.png', 0);
     status;
@@ -15,7 +14,8 @@ class World {
     menuBgObjects
     animationFrame = 0;
     newBubblesInterval;
-
+    gOBtnSwitch = false;
+    startBtnSwitch = false;
     constructor(canvas, status, level, charcater, menu, keyboard) {
         this.status = status
         this.canvas = canvas;
@@ -71,6 +71,10 @@ class World {
                 this.addMultiObjectsToMap(objectArray);
             });
         }
+        if (!this.startBtnSwitch) {
+            startBtns.style.display = 'flex';
+            this.startBtnSwitch = true;
+        }
         if (this.devMode) this.drawMiddle();
     }
 
@@ -80,9 +84,12 @@ class World {
         this.stopAllMovingAnimations();
         this.level = {};
         this.addToMap(this.defaultBg);
-        this.addToMap(this.tryAgainBtn);
         this.addToMap(this.gameOverImg);
-        this.writeOnCanvas('Back to Menu', 280, 440);
+        if (!this.gOBtnSwitch) {
+            gameOverBtns.style.display = 'flex';
+            this.gOBtnSwitch = true;
+        }
+        
     }
 
 

@@ -1,5 +1,7 @@
 const canvas = document.getElementById('canvas');
 const instructionsMenu = document.getElementById('instructions');
+const gameOverBtns = document.getElementById('gameOverBtnDiv');
+const startBtns = document.getElementById('btnDiv');
 const gameState = {
     game: 'game', 
     gameOver: 'gameOver', 
@@ -13,6 +15,13 @@ let menu;
 let level;
 let character;
 let keyboard;
+
+window.addEventListener('load', () => {
+    console.log(navigator.userAgent);
+})
+
+
+
 
 
 function loading() {
@@ -28,6 +37,7 @@ function loading() {
 
 
 function initMenu() {
+    gameOverBtns.style.display = 'none';
     menu = MENU();
     character = new Character();
     keyboard = new Keyboard();
@@ -52,44 +62,13 @@ function handleClick(e) {
 }
 
 
-function menuActions(e) {
-    if (isClickOnStart(e.offsetX, e.offsetY) && instructionsMenu.style.display === 'none') {
-        startGame();
-    }
-    if (isClickOnInstructions(e.offsetX, e.offsetY) && instructionsMenu.style.display === 'none') {
-        instructionsMenu.style.display = 'flex'
-    }
-}
 
 
-function gameOverScreenActions(e) {
-    if (isClickOnStart(e.offsetX, e.offsetY)) {
-        reStartGame();
-    }
-    if (isClickOnBackToMenu(e.offsetX, e.offsetY)) {
-        resetInstances();
-        initMenu();
-    };
-}
-
-
-function isClickOnStart(x, y) {
-    return x < 500 && x > 220 && y < 380 && y > 300
-}
-
-
-function isClickOnInstructions(x, y) {
-    return x < 500 && x > 220 && y < 200 && y > 118
-}
-
-
-
-function isClickOnBackToMenu(x, y) {
-    return x < 440 && x > 280 && y < 440 && y > 420
-}
 
 
 function startGame() {
+    startBtns.style.display = 'none';
+    gameOverBtns.style.display = 'none';
     menu.forEach(menuArray => {
         menuArray.forEach(o => {
             if (o instanceof MovableObject) o.stop();
@@ -101,6 +80,7 @@ function startGame() {
 
 
 function reStartGame() {
+    gameOverBtns.style.display = 'none';
     resetInstances();
     character = new Character();
     keyboard = new Keyboard();
@@ -176,11 +156,26 @@ function applyGameEventListeners() {
 
 
 window.onload = () => initMenu();
-window.addEventListener('click', (e) => handleClick(e));
+
 
 document.getElementById('menuCloseBtn').addEventListener('click', () => {
     instructionsMenu.style.display = 'none';
-})
+});
+
+
+document.getElementById('startBtn').addEventListener('click', () => startGame());
+
+
+document.getElementById('instBtn').addEventListener('click', () => instructionsMenu.style.display = 'flex');
+
+
+document.getElementById('againBtn').addEventListener('click', () => reStartGame());
+
+
+document.getElementById('backToMenuBtn').addEventListener('click', () => {   
+    resetInstances();
+    initMenu();
+});
 
 
 

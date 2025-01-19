@@ -23,6 +23,51 @@ canvas {
     background-color: black;
 }
 
+.btn-div {
+    position: absolute;
+    top: 20%;
+    left: calc(50% - 200px);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 200px;
+}
+
+.gameOver-layout {
+    position: absolute;
+    top: 50%;
+    left: calc(50% - 200px);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    justify-content: end;
+    width: 400px;
+    height: 200px;
+}
+
+.gameOver-layout p {
+    color: yellow;
+    font-size: 2rem;
+    cursor: pointer;
+    border: solid 2px yellow;
+    border-radius: 12px;
+    padding: 0.2em;
+}
+
+.gameOver-layout p:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.menu-btns {
+    height: 80px;
+    width: 280px;
+    cursor: pointer;
+}
+
 .instructions {
     position: absolute;
     border-radius: 32px;
