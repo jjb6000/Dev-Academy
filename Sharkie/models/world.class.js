@@ -66,6 +66,7 @@ class World {
 
 
     startMenu() {
+        setTempCoinScore(0);
         if (this.menuBgObjects) {
             this.menuBgObjects.forEach(objectArray => {
                 this.addMultiObjectsToMap(objectArray);
@@ -80,6 +81,7 @@ class World {
 
 
     gameOver() {
+        setTempCoinScore(0);
         clearInterval(this.collisionCheckInterval);
         this.stopAllMovingAnimations();
         this.level = {};
@@ -97,8 +99,8 @@ class World {
         cancelAnimationFrame(this.animationFrame);
         clearInterval(this.collisionCheckInterval);
         this.stopAllMovingAnimations();
-        console.log('call next level in game.js', Date.now());
-        
+        console.log(this.character.coinStorage);
+        setTempCoinScore(this.character.coinStorage);        
         nextLevel();
     }
 
@@ -117,7 +119,8 @@ class World {
         cancelAnimationFrame(this.animationFrame);
         this.addToMap(this.defaultBg);
         this.writeOnCanvas('You won!!', 240, 160);
-        endScreen(this.character.coinStorage)
+        endScreen(this.character.coinStorage);
+        setTempCoinScore(0);
     }
 
 

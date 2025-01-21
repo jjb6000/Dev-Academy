@@ -25,7 +25,7 @@ canvas {
 
 .btn-div {
     position: absolute;
-    top: 20%;
+    top: 33%;
     left: calc(50% - 200px);
     display: flex;
     flex-direction: column;
@@ -36,20 +36,41 @@ canvas {
     height: 200px;
 }
 
+.menu-btns {
+    padding: 0.5em 0;
+    width: 280px;
+    cursor: pointer;
+    border: solid 4px white;
+    border-radius: 1rem;
+    color: white;
+    font-size: 2rem;
+    font-family: 'Luckiest Guy', Arial, Helvetica, sans-serif;;
+}
+
+.pink-btn {
+    background-color: #BF067F;
+}
+
+
+.pink-btn:hover {
+    background-color: #c81087;
+}
+
+
 .gameOver-layout {
     position: absolute;
     top: 50%;
     left: calc(50% - 200px);
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 0.5rem;
     align-items: center;
     justify-content: end;
     width: 400px;
     height: 200px;
 }
 
-.gameOver-layout p {
+.sub-btn {
     color: yellow;
     font-size: 2rem;
     cursor: pointer;
@@ -58,14 +79,8 @@ canvas {
     padding: 0.2em;
 }
 
-.gameOver-layout p:hover {
+.sub-btn:hover {
     background-color: rgba(0, 0, 0, 0.5);
-}
-
-.menu-btns {
-    height: 80px;
-    width: 280px;
-    cursor: pointer;
 }
 
 .instructions {
@@ -130,24 +145,36 @@ canvas {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 1rem;
 }
 
 .game-end-container h1 {
     font-size: 4rem;
     color: yellow;
+    margin: 0;
 }
 
 .game-end-container h2 {
     font-size: 3rem;
     color: palegreen;
+    margin: 0;
+}
+
+#hsList {
+    margin-bottom: 2rem;
+    min-width: 40vw;
+    list-style-type: decimal;
+    
 }
 
 
 /* luckiest-guy-regular - latin */
 @font-face {
-    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-display: swap;
+    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
     font-family: 'Luckiest Guy';
     font-style: normal;
     font-weight: 400;
-    src: url('fonts/luckiest-guy-v22-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-  }
+    src: url('fonts/luckiest-guy-v22-latin-regular.woff2') format('woff2');
+    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}

@@ -2,6 +2,7 @@ const canvas = document.getElementById('canvas');
 const instructionsMenu = document.getElementById('instructions');
 const gameOverBtns = document.getElementById('gameOverBtnDiv');
 const startBtns = document.getElementById('btnDiv');
+const endContainer = document.getElementById('endContainer');
 const gameState = {
     game: 'game', 
     gameOver: 'gameOver', 
@@ -15,12 +16,11 @@ let menu;
 let level;
 let character;
 let keyboard;
+let coinScore = 0;
 
 window.addEventListener('load', () => {
     console.log(navigator.userAgent);
-})
-
-
+});
 
 
 
@@ -32,12 +32,16 @@ function loading() {
     ctx.fillText('Loading', 300, 240);
     resetInstances();
     initGame();
+}
 
+
+function setTempCoinScore(number) {
+    coinScore = number
 }
 
 
 function initMenu() {
-    gameOverBtns.style.display = 'none';
+    hideAllOverlays()
     menu = MENU();
     character = new Character();
     keyboard = new Keyboard();
@@ -51,7 +55,6 @@ function handleClick(e) {
     if (e.target.id !== 'canvas' || !world || !world.status && world.status === 'game') {
         return
     }
-    console.log(e.offsetX, e.offsetY);
     if (world.status === gameState.startMenu) {
         menuActions(e);
     }
@@ -62,13 +65,8 @@ function handleClick(e) {
 }
 
 
-
-
-
-
 function startGame() {
-    startBtns.style.display = 'none';
-    gameOverBtns.style.display = 'none';
+    hideAllOverlays();
     menu.forEach(menuArray => {
         menuArray.forEach(o => {
             if (o instanceof MovableObject) o.stop();
@@ -80,7 +78,7 @@ function startGame() {
 
 
 function reStartGame() {
-    gameOverBtns.style.display = 'none';
+    hideAllOverlays();
     resetInstances();
     character = new Character();
     keyboard = new Keyboard();
@@ -117,11 +115,12 @@ function getNextLevel(levelCounter) {
 
 function endScreen(coins) {
     resetInstances();
-    instructionsMenu.style.display = 'flex';
-    instructionsMenu.innerHTML = getSuccessScreen();
     setNewHighscore(coins);
     const highscore = getHighscores();
-    displayHighscore(highscore)
+    endContainer.style.display = 'flex';
+    endContainer.innerHTML = getSuccessScreen();
+    displayHighscore(highscore);
+    document.getElementById('canvasContainer').style.display = 'none';
 }
 
 
@@ -134,11 +133,28 @@ function displayHighscore(highscore) {
 }
 
 
+function backToMenu() {
+    hideAllOverlays();
+    resetInstances();
+    initMenu();
+}
+
+
+function hideAllOverlays() {
+    gameOverBtns.style.display = 'none';
+    endContainer.style.display = 'none';
+    startBtns.style.display = 'none';
+    document.getElementById('canvasContainer').style.display = 'block';
+}
+
+
 function resetInstances() {
-    world.keyboard = null;
-    world.level = null;
-    world.character = null;
-    world = null;
+    if (world) {
+        world.keyboard = null;
+        world.level = null;
+        world.character = null;
+        world = null;
+    }
 }
 
 
@@ -172,10 +188,7 @@ document.getElementById('instBtn').addEventListener('click', () => instructionsM
 document.getElementById('againBtn').addEventListener('click', () => reStartGame());
 
 
-document.getElementById('backToMenuBtn').addEventListener('click', () => {   
-    resetInstances();
-    initMenu();
-});
+document.getElementById('backToMenuBtn').addEventListener('click', () => backToMenu());
 
 
 

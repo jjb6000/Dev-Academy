@@ -11,7 +11,7 @@ class Character extends MovableObject {
     attackedBy;
     timeStampLastBubbleAttack = 0;
     bubbleStorage = 0;
-    coinStorage = 0;
+    coinStorage;
     poisonStorage = 0;
     otherDirection = false;
     imageIndex = 0;

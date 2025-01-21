@@ -46,13 +46,13 @@
         <canvas id="canvas" width="720px" height="480px"></canvas>
 
         <div style="display: none;" id="btnDiv" class="btn-div">
-            <img id="instBtn" class="menu-btns" src="./img/menu/Key/instructions-btn.svg" alt="">
-            <img id="startBtn" class="menu-btns" src="./img/menu/Start/4.png" alt="">
+            <button id="startBtn" class="pink-btn menu-btns">Start</button>
+            <p id="instBtn" class="sub-btn">Instructions</p>
         </div>
 
         <div style="display: none;" id="gameOverBtnDiv" class="gameOver-layout">
-            <img id="againBtn" class="menu-btns" src="./img/menu/Try again/try-again.png" alt="">
-            <p id="backToMenuBtn">Back to Menu</p>
+            <button id="againBtn" class="pink-btn menu-btns">Try Again</button>
+            <p class="sub-btn" id="backToMenuBtn">Back to Menu</p>
         </div>
 
         <div style="display: none;" id="instructions" class="instructions">
@@ -69,10 +69,7 @@
         </div>
     </div>
 
-    <div style="display: none;" id="endContainer" class="game-end-container">
-        <h1>Congrats, you won!</h1>
-        <h2>Your Score:</h2>
-        <p>2000 Coins</p>
+    <div style="display: flex;" id="endContainer">
         
     </div>
     
