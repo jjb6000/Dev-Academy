@@ -1,10 +1,9 @@
 class World {
     character;
     keyboard;
-    gameOverImg = new GameOver();
-    defaultBg = new Background('../Sharkie/img/bg/Dark/1.png', 0);
-    status;
+    gameController;
     level;
+    levelIndex = 1
     camera_x = 0;
     canvas;
     ctx;
@@ -16,8 +15,8 @@ class World {
     newBubblesInterval;
     gOBtnSwitch = false;
     startBtnSwitch = false;
-    constructor(canvas, status, level, charcater, menu, keyboard) {
-        this.status = status
+    constructor(canvas, gameController, level, charcater, keyboard) {
+        this.gameController = gameController;
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
         this.ctx.font = '24px Luckiest Guy';
@@ -27,33 +26,38 @@ class World {
         this.menuBgObjects = menu
         this.keyboard = keyboard;
         this.character.world = this;
-        this.drawWorld();
         this.collisionDetection();
         this.newBubbles();
+
     }
 
 
+    startDraw() {
+        
+        this.drawWorld();  
+    }
 
 
     drawWorld() {        
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.statusGameController();
+        this.gameControllerCheck();
         // this.bg_sound.play();
         this.animationFrame = requestAnimationFrame(() => {
-            if (this.status !== gameState.ready4NextLvl && this.status !== gameState.end) {
+            if (this.gameController.isInGameStatus()) {
                 this.drawWorld()
             }
         });
+
     }
 
 
-    statusGameController() {
-        if (this.status === gameState.game) this.game();
-        if (this.status === gameState.gameOver) this.gameOver();
-        if (this.status === gameState.startMenu) this.startMenu();
-        if (this.status === gameState.ready4NextLvl) this.prepareNextLevel();
-        if (this.status === gameState.initNextLevel) this.startNextLevel();
-        if (this.status === gameState.end) this.end();
+    gameControllerCheck() {
+        if (this.gameController.isInGameStatus()) this.game();
+        if (this.gameController.isGameOver()) this.gameOver();
+        if (this.gameController.isInStartMenu()) this.startMenu();
+        if (this.gameController.initNextLvl()) this.prepareNextLevel();
+        if (this.gameController.startNextLvl()) this.startNextLevel();
+        if (this.gameController.endGame()) this.end();
     }
 
 
@@ -65,51 +69,45 @@ class World {
     }
 
 
-    startMenu() {
-        setTempCoinScore(0);
-        if (this.menuBgObjects) {
-            this.menuBgObjects.forEach(objectArray => {
-                this.addMultiObjectsToMap(objectArray);
-            });
-        }
-        if (!this.startBtnSwitch) {
-            startBtns.style.display = 'flex';
-            this.startBtnSwitch = true;
-        }
-        if (this.devMode) this.drawMiddle();
-    }
+    // startMenu() {
+    //     setTempCoinScore(0);
+    //     if (this.menuBgObjects) {
+    //         this.menuBgObjects.forEach(objectArray => {
+    //             this.addMultiObjectsToMap(objectArray);
+    //         });
+    //     }
+    //     if (!this.startBtnSwitch) {
+    //         startBtns.style.display = 'flex';
+    //         this.startBtnSwitch = true;
+    //     }
+    // }
 
 
     gameOver() {
         setTempCoinScore(0);
         clearInterval(this.collisionCheckInterval);
-        this.stopAllMovingAnimations();
-        this.level = {};
-        this.addToMap(this.defaultBg);
-        this.addToMap(this.gameOverImg);
-        if (!this.gOBtnSwitch) {
-            gameOverBtns.style.display = 'flex';
-            this.gOBtnSwitch = true;
-        }
-        
+        this.stopAllMovingAnimations();       
     }
 
 
     prepareNextLevel() {
-        cancelAnimationFrame(this.animationFrame);
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         clearInterval(this.collisionCheckInterval);
         this.stopAllMovingAnimations();
-        console.log(this.character.coinStorage);
-        setTempCoinScore(this.character.coinStorage);        
-        nextLevel();
+        setTempCoinScore(this.character.coinStorage);
+        cancelAnimationFrame(this.animationFrame)        
+        // nextLevel();
+        this.level = getNextLevel(this.gameController.nextLevel);
+        gameController.setGameStatus('startNextLvl');
     }
 
 
     startNextLevel() {
-        this.addToMap(this.defaultBg);
-        this.ctx.font = '80px Luckiest Guy';
-        this.ctx.fillStyle = 'yellow';
-        this.writeOnCanvas('Level ' + this.level.currentLevel, 240, 160);
+        setTimeout(() => {
+            gameController.setGameStatus('game')
+            world.ctx.font = '24px Luckiest Guy';
+            world.ctx.fillStyle = 'darkblue';
+        }, 2000);
     }
 
 
@@ -190,14 +188,14 @@ class World {
 
 
     statusTriggerCheck(mO) {
-        if (mO instanceof Whale && mO.whaleGone && this.level.currentLevel < 3) {
-            this.status = gameState.ready4NextLvl;          
+        if (mO instanceof Whale && mO.whaleGone && this.gameController.currentLevel < 3) {
+            this.gameController.setGameStatus('initNextLvl');          
         }
         if (mO instanceof Character && mO.gameOver) {
-            this.status = gameState.gameOver;
+            this.gameController.setGameStatus('gameOver');
         } 
-        if (mO instanceof Whale && mO.whaleGone && this.level.currentLevel === 3) {
-            this.status = gameState.end;            
+        if (mO instanceof Whale && mO.whaleGone && this.gameController.currentLevel === 3) {
+            this.gameController.setGameStatus('end');            
         }
     }
 
@@ -206,7 +204,7 @@ class World {
         if (movableObject.readyForGarbageCollection) {
             this.removeItem(movableObject);
         }
-        if (this.status === gameState.gameOver && movableObject instanceof MovableObject && !movableObject instanceof Background) {
+        if (this.gameController.isGameOver() && movableObject instanceof MovableObject && !movableObject instanceof Background) {
             movableObject.stop();
             this.removeItem(movableObject);
         }
@@ -215,7 +213,7 @@ class World {
 
     collisionDetection() {
         this.collisionCheckInterval = setInterval(() => {
-            if (this.status !== gameState.game) {
+            if (!this.gameController.isInGameStatus()) {
                 return
             }            
             this.isCharacterColidingWithEnemy();
@@ -231,7 +229,7 @@ class World {
 
     isCharacterColidingWithEnemy() {
         this.level.enemies.forEach(enemy => {
-            if (this.character.isColliding(enemy) && !enemy.isDead() && !this.character.isDead() && this.status !== gameState.gameOver) {
+            if (this.character.isColliding(enemy) && !enemy.isDead() && !this.character.isDead() && !this.gameController.isGameOver()) {
                 this.checkIfCharacterCollidsWhileAttack(enemy);
                 this.devModeCollisionLog(enemy, this.character);
             }
@@ -374,11 +372,11 @@ class World {
 
     newBubbles() {
         this.newBubblesInterval = setInterval(() => {
-            if (this.status === 'gameOver') {
+            if (this.gameController.isGameOver()) {
                 clearInterval(this.newBubblesInterval);
                 return
             }
-            if (this.status === 'startMenu') {
+            if (this.gameController.isInStartMenu()) {
                 return
             }
             for (let i = 0; i < 10; i++) {

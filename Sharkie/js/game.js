@@ -3,14 +3,7 @@ const instructionsMenu = document.getElementById('instructions');
 const gameOverBtns = document.getElementById('gameOverBtnDiv');
 const startBtns = document.getElementById('btnDiv');
 const endContainer = document.getElementById('endContainer');
-const gameState = {
-    game: 'game', 
-    gameOver: 'gameOver', 
-    startMenu: 'startMenu', 
-    ready4NextLvl: 'readyForNextLevel', 
-    initNextLevel: 'initNextLevel',
-    end: 'end'
-}
+const gameController = new GameController()
 let world;
 let menu;
 let level;
@@ -40,40 +33,19 @@ function setTempCoinScore(number) {
 }
 
 
-function initMenu() {
-    hideAllOverlays()
-    menu = MENU();
+function initGame() {
     character = new Character();
     keyboard = new Keyboard();
     level = level1();
-    world = new World(canvas, gameState.startMenu, level, character, menu, keyboard);
-    applyGameEventListeners();
-}
-
-
-function handleClick(e) {
-    if (e.target.id !== 'canvas' || !world || !world.status && world.status === 'game') {
-        return
-    }
-    if (world.status === gameState.startMenu) {
-        menuActions(e);
-    }
-    if (world.status === 'gameOver') {
-        gameOverScreenActions(e);
-    }
-
+    world = new World(canvas, gameController, level, character, keyboard);
 }
 
 
 function startGame() {
     hideAllOverlays();
-    menu.forEach(menuArray => {
-        menuArray.forEach(o => {
-            if (o instanceof MovableObject) o.stop();
-        })
-    });
-    world.status = gameState.game;
-    world.menu = null;
+    gameController.setGameStatus('game');
+    applyGameEventListeners();
+    world.startDraw();
 }
 
 
@@ -83,8 +55,8 @@ function reStartGame() {
     character = new Character();
     keyboard = new Keyboard();
     level = level1();
-    menu = null;
-    world = new World(canvas, gameState.game, level, character, menu, keyboard);
+    gameController.setGameStatus('game');
+    world = new World(canvas, gameController, level, character, keyboard);
 }
 
 
@@ -94,9 +66,10 @@ function nextLevel() {
     level = getNextLevel(currentLevel + 1);
     character = new Character();
     keyboard = new Keyboard();
-    world = new World(canvas, gameState.initNextLevel, level, character, menu, keyboard);
+    gameController.setGameStatus('initNextLevel');
+    world = new World(canvas, gameController, level, character,  keyboard);
     setTimeout(() => {
-        world.status = gameState.game
+        gameController.setGameStatus('game')
         world.ctx.font = '24px Luckiest Guy';
         world.ctx.fillStyle = 'darkblue';
     }, 2000);
@@ -125,18 +98,16 @@ function endScreen(coins) {
 
 
 function displayHighscore(highscore) {
-    highscore.forEach(hs => {
-        const li = document.createElement("li");
-        li.appendChild(document.createTextNode(hs));
-        document.getElementById('hsList').appendChild(li);
+    highscore.forEach((hs, index) => {
+        const li = getListItem(index + 1, hs)
+        document.getElementById('hsList').innerHTML += li;
     });
 }
 
 
 function backToMenu() {
-    hideAllOverlays();
     resetInstances();
-    initMenu();
+    initGame();
 }
 
 
@@ -165,13 +136,12 @@ function applyGameEventListeners() {
         world.keyboard.processKeyInput(e, true);
         world.keyboard.checkDevMode(e);
     }
-
     window.onkeyup = (e) => world.keyboard.processKeyInput(e, false);
 }
 
 
 
-window.onload = () => initMenu();
+window.onload = () => initGame();
 
 
 document.getElementById('menuCloseBtn').addEventListener('click', () => {

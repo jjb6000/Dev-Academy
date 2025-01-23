@@ -20,7 +20,7 @@ class Keyboard {
 
     processKeyInput(e, boolean) {
         let action = this.keyFunctionObject[e.key]
-        if (action && !world.character.isDead() && world.status === 'game') {
+        if (action && !world.character.isDead() && world.gameController.isInGameStatus()) {
             action(boolean);
             this.callCharacterActions();
             world.character.moving = true;   

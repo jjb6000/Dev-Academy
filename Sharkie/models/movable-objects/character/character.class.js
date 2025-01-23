@@ -11,7 +11,7 @@ class Character extends MovableObject {
     attackedBy;
     timeStampLastBubbleAttack = 0;
     bubbleStorage = 0;
-    coinStorage;
+    coinStorage
     poisonStorage = 0;
     otherDirection = false;
     imageIndex = 0;
@@ -104,12 +104,13 @@ class Character extends MovableObject {
         this.OFFSET_X_LEFT = 66;
         this.OFFSET_Y_TOP = 138;
         this.OFFSET_Y_BOTTOM = 74;
+        coinScore ? this.coinStorage = coinScore : this.coinStorage = 0;
     }
 
     animate() {
         const sharkieDoingSomething = setInterval(() => {
             if (!this.moving && !this.finAttack && !this.isBubbleAttacking && !this.stillHurts() && !this.isDead()) this.loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
-            if (this.moving || this.finAttack && this.world.status === 'game') {
+            if (this.moving || this.finAttack && this.world.gameController.isInGameStatus()) {
                 this.swim_sound.play();
             }
 

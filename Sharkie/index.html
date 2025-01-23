@@ -6,6 +6,7 @@
     <title>Sharkie</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="../Sharkie/img/sharkie/1.IDLE/1.png">
+    <script defer src="game-controller.class.js"></script>
     <script defer src="models/draw-objects.class.js"></script>
     <script defer src="models/movable-objects/movable-object.class.js"></script>
     <script defer src="models/status-bar.class.js"></script>
@@ -45,9 +46,12 @@
         
         <canvas id="canvas" width="720px" height="480px"></canvas>
 
-        <div style="display: none;" id="btnDiv" class="btn-div">
+        <div id="btnDiv" class="btn-div">
             <button id="startBtn" class="pink-btn menu-btns">Start</button>
-            <p id="instBtn" class="sub-btn">Instructions</p>
+            <div class="sub-btn-container">
+                <p id="instBtn" class="sub-btn">Instructions</p>
+                <p id="settingsBtn" class="sub-btn"><img src="img/menu/settings_icon.svg" alt="settings"> Settings <img src="img/menu/settings_icon.svg" alt="settings"></p>
+            </div>
         </div>
 
         <div style="display: none;" id="gameOverBtnDiv" class="gameOver-layout">
