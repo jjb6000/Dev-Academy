@@ -3,7 +3,7 @@ const instructionsMenu = document.getElementById('instructions');
 const gameOverBtns = document.getElementById('gameOverBtnDiv');
 const startBtns = document.getElementById('btnDiv');
 const endContainer = document.getElementById('endContainer');
-const gameController = new GameController()
+const gameController = new GameController(gameOverBtns, startBtns, endContainer)
 let world;
 let menu;
 let level;
@@ -38,6 +38,7 @@ function initGame() {
     keyboard = new Keyboard();
     level = level1();
     world = new World(canvas, gameController, level, character, keyboard);
+    world.startDraw();
 }
 
 
@@ -60,41 +61,41 @@ function reStartGame() {
 }
 
 
-function nextLevel() {
-    const currentLevel = level.currentLevel;
-    resetInstances();
-    level = getNextLevel(currentLevel + 1);
-    character = new Character();
-    keyboard = new Keyboard();
-    gameController.setGameStatus('initNextLevel');
-    world = new World(canvas, gameController, level, character,  keyboard);
-    setTimeout(() => {
-        gameController.setGameStatus('game')
-        world.ctx.font = '24px Luckiest Guy';
-        world.ctx.fillStyle = 'darkblue';
-    }, 2000);
-}
+// function nextLevel() {
+//     const currentLevel = level.currentLevel;
+//     resetInstances();
+//     level = getNextLevel(currentLevel + 1);
+//     character = new Character();
+//     keyboard = new Keyboard();
+//     gameController.setGameStatus('initNextLevel');
+//     world = new World(canvas, gameController, level, character,  keyboard);
+//     setTimeout(() => {
+//         gameController.setGameStatus('game')
+//         world.ctx.font = '24px Luckiest Guy';
+//         world.ctx.fillStyle = 'darkblue';
+//     }, 2000);
+// }
 
 
-function getNextLevel(levelCounter) {
-    if (levelCounter === 2) {
-        return level2();
-    }
-    if (levelCounter === 3) {
-        return level3();
-    }
-}
+// function getNextLevel(levelCounter) {
+//     if (levelCounter === 2) {
+//         return level2();
+//     }
+//     if (levelCounter === 3) {
+//         return level3();
+//     }
+// }
 
 
-function endScreen(coins) {
-    resetInstances();
-    setNewHighscore(coins);
-    const highscore = getHighscores();
-    endContainer.style.display = 'flex';
-    endContainer.innerHTML = getSuccessScreen();
-    displayHighscore(highscore);
-    document.getElementById('canvasContainer').style.display = 'none';
-}
+// function endScreen(coins) {
+//     resetInstances();
+//     setNewHighscore(coins);
+//     const highscore = getHighscores();
+//     endContainer.style.display = 'flex';
+//     endContainer.innerHTML = getSuccessScreen();
+//     displayHighscore(highscore);
+//     document.getElementById('canvasContainer').style.display = 'none';
+// }
 
 
 function displayHighscore(highscore) {

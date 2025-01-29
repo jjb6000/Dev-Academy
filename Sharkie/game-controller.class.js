@@ -1,109 +1,61 @@
 class GameController {
     fullScreen;
     sounds;
-    gameStates = ['game', 'gameOver', 'startMenu', 'initNextLvl', 'startNextLvl','end'];
+    gameStates = ['game', 'gameOver', 'startMenu', 'initNextLvl', 'end'];
     gameStatus;
     currentLevel;
     nextLevel;
-    canvas = document.getElementById('canvas');
-    ctx = canvas.getContext('2d')
-    gameOverImg = new GameOver();
-    defaultBg = new Background('../Sharkie/img/bg/Dark/1.png', 0);
-    menu
-    menuAnimation
-    
+    btnHtmlElements;    
 
 
-    constructor(status = 'startMenu', fullScreen = false, sounds = true, currentLevel = 1) {
-        this.gameStatus = status;
-        this.fullScreen = fullScreen;
-        this.sounds = sounds;
-        this.currentLevel = currentLevel;
-        this.nextLevel = +currentLevel + +1;
-        this.canvas = document.getElementById('canvas');
-        this.menu = MENU();
-        this.checkForStatusAction();
+    constructor(gameOverBtns, startBtns, endContainer) {
+        this.gameStatus = 'startMenu';
+        this.fullScreen = false;
+        this.sounds = true;
+        this.currentLevel = 1;
+        this.btnHtmlElements = {
+            'gameOver': gameOverBtns,
+            'startMenu': startBtns,
+            'end': endContainer,
+        };
     }
 
 
     setGameStatus(newStatus) {
         if (this.gameStates.indexOf(newStatus) > -1) {
             this.gameStatus = newStatus;
-            this.checkForStatusAction();
+            this.checkHtmlDisplays()
         } else {
             console.error('invalid game status')
         }
     }
 
 
-    checkForStatusAction() {
-        if (!this.isInGameStatus()) {
-            console.log(this.gameStatus)
-            if (this.isInStartMenu()) {
-                startBtns.style.display = 'flex';
-                this.drawStartMenu();
-            } else {
-                startBtns.style.display = 'none';
-            }
-            if (this.isGameOver()) this.getGameOverScreen();
-            if (this.initNextLvl()) this.getBetweenLevelsScreen();
+    checkHtmlDisplays() {
+        this.resetAllElements();
+        if (this.btnHtmlElements[this.gameStatus] !== undefined) {
+            this.btnHtmlElements[this.gameStatus].style.display = 'flex';
+        }        
+    }
+
+
+    getNextLevel() {
+        const nextLvl = +this.currentLevel +1
+        if (nextLvl === 2) {
+            return level2();
         }
-
-    }
-
-
-    drawStartMenu() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.menu.forEach(array => array.forEach(mO => this.addToMap(mO))); 
-        if (!this.isInStartMenu()) {
-            cancelAnimationFrame(this.menuAnimation)
-        }
-        this.menuAnimation = requestAnimationFrame(() => {
-            if (this.isInStartMenu()) {
-                this.drawStartMenu();
-            }
-        });
-    }
-
-
-    endMenu() {
-        cancelAnimationFrame(this.menuAnimation)
-        menu.forEach(menuArray => {
-            menuArray.forEach(o => {
-                if (o instanceof MovableObject) o.stop();
-            })
-        });
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    }
-
-
-    getGameOverScreen() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.addToMap(this.defaultBg);
-        this.addToMap(this.gameOverImg);
-        if (!this.gOBtnSwitch) {
-            gameOverBtns.style.display = 'flex';
-            this.gOBtnSwitch = true;
+        if (nextLvl === 3) {
+            return level3();
         }
     }
 
 
-    getBetweenLevelsScreen() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.addToMap(this.defaultBg);
-        this.ctx.font = '80px Luckiest Guy';
-        this.ctx.fillStyle = 'yellow';
-        this.writeOnCanvas('Level ' + this.nextLevel, 240, 160);
+    resetAllElements() {
+        gameOverBtns.style.display = 'none';
+        endContainer.style.display = 'none';
+        startBtns.style.display = 'none';
     }
 
-    writeOnCanvas(text, x, y) {
-        this.ctx.fillText(text, x, y)
-    }
-
-
-    addToMap(movableObject) {
-        movableObject.draw(this.ctx);
-    }
 
 
     setFullScreen(truOrFalse) {
@@ -131,11 +83,6 @@ class GameController {
 
     initNextLvl() {
         return this.gameStatus === 'initNextLvl';
-    }
-
-
-    startNextLvl() {
-        return this.gameStatus === 'startNextLvl';
     }
 
 
