@@ -97,14 +97,6 @@ class World {
     }
 
 
-    getBetweenLevelsScreen() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.addToMap(this.defaultBg);
-        this.ctx.font = '80px Luckiest Guy';
-        this.ctx.fillStyle = 'yellow';
-        this.writeOnCanvas('Level ' + (+this.gameController.currentLevel + +1), 240, 160);
-    }
-
     writeOnCanvas(text, x, y) {
         this.ctx.fillText(text, x, y)
     }
@@ -124,11 +116,25 @@ class World {
         setTempCoinScore(this.character.coinStorage);
         cancelAnimationFrame(this.animationFrame);
         this.getBetweenLevelsScreen();
-        this.gameController.currentLevel < 3 ? this.startNextLevel() : this.end;
+        if (this.gameController.currentLevel < 3) {
+            this.startNextLevel()
+        } else {
+            this.end;
+        }
+    }
+
+
+    getBetweenLevelsScreen() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.addToMap(this.defaultBg);
+        this.ctx.font = '80px Luckiest Guy';
+        this.ctx.fillStyle = 'yellow';
+        this.writeOnCanvas('Level ' + (+this.gameController.currentLevel + +1), 240, 160);
     }
 
 
     startNextLevel() {
+        this.camera_x = 0;
         this.level = this.gameController.getNextLevel();
         setTimeout(() => {
             gameController.setGameStatus('game')
