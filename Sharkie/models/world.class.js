@@ -102,7 +102,7 @@ class World {
         this.addToMap(this.defaultBg);
         this.ctx.font = '80px Luckiest Guy';
         this.ctx.fillStyle = 'yellow';
-        this.writeOnCanvas('Level ' + this.nextLevel, 240, 160);
+        this.writeOnCanvas('Level ' + (+this.gameController.currentLevel + +1), 240, 160);
     }
 
     writeOnCanvas(text, x, y) {
@@ -122,7 +122,8 @@ class World {
         clearInterval(this.collisionCheckInterval);
         this.stopAllMovingAnimations();
         setTempCoinScore(this.character.coinStorage);
-        cancelAnimationFrame(this.animationFrame)
+        cancelAnimationFrame(this.animationFrame);
+        this.getBetweenLevelsScreen();
         this.gameController.currentLevel < 3 ? this.startNextLevel() : this.end;
     }
 
