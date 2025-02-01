@@ -5,7 +5,8 @@ class GameController {
     gameStatus;
     currentLevel;
     nextLevel;
-    btnHtmlElements;    
+    btnHtmlElements;
+    world;
 
 
     constructor(gameOverBtns, startBtns, endContainer) {
@@ -21,30 +22,52 @@ class GameController {
     }
 
 
-    setGameStatus(newStatus) {
-        if (this.gameStates.indexOf(newStatus) > -1) {
-            this.gameStatus = newStatus;
-            this.checkHtmlDisplays()
-        } else {
-            console.error('invalid game status')
-        }
+    setGameStatus() {
+        this.gameStatus = 'game';
+        this.statusActions();
     }
 
 
-    checkHtmlDisplays() {
+    setInitNxtLvl() {
+        this.gameStatus = 'initNextLvl';
+        this.statusActions();
+    }
+
+
+    setGameOver() {
+        this.gameStatus = 'gameOver';
+        this.statusActions();
+    }
+
+
+    setEnd() {
+        this.gameStatus = 'end';
+        this.statusActions();
+    }
+    
+
+    setStartMenu() {
+        this.gameStatus = 'startMenu';
+        this.statusActions();
+    }
+
+
+    statusActions() {
         this.resetAllElements();
         if (this.btnHtmlElements[this.gameStatus] !== undefined) {
             this.btnHtmlElements[this.gameStatus].style.display = 'flex';
-        }        
+        }
     }
 
 
     getNextLevel() {
-        const nextLvl = +this.currentLevel +1
+        const nextLvl = +this.currentLevel + 1
         if (nextLvl === 2) {
+            this.currentLevel = 2;
             return level2();
         }
         if (nextLvl === 3) {
+            this.currentLevel = 3;
             return level3();
         }
     }

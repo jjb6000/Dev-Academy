@@ -70,6 +70,11 @@ canvas {
     height: 200px;
 }
 
+.gO-img {
+    width: 400px;
+    margin-bottom: 100px;
+}
+
 /* .sub-btn-container {
     display: flex;
     flex-direction: column;

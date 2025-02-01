@@ -7,14 +7,13 @@ class World {
     camera_x = 0;
     canvas;
     ctx;
-    gameOverImg = new GameOver();
     defaultBg = new Background('../Sharkie/img/bg/Dark/1.png', 0);
     bg_sound = new Audio('../Sharkie/audio/shark-bg-sound.mp3');
     devMode = false;
-    collisionCheckInterval;
     menuBgObjects = MENU();
     animationFrame = 0;
-    newBubblesInterval;
+    bubbleTimeStamp;
+    collisionTimeStamp;
     constructor(canvas, gameController, level, charcater, keyboard) {
         this.gameController = gameController;
         this.canvas = canvas;
@@ -30,19 +29,21 @@ class World {
 
     startDraw() {
         this.drawWorld();
-        this.collisionDetection();
-        this.newBubbles();
     }
 
 
     drawWorld() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);       
         this.gameControllerCheck();
         // this.bg_sound.play();
         this.animationFrame = requestAnimationFrame(() => {
-            this.drawWorld()
+            if (this.gameController.isInGameStatus() || this.gameController.isInStartMenu()) {
+                this.drawWorld();
+                this.collisionDetection();
+                this.newBubbles();
+            }
+            
         });
-
     }
 
 
@@ -73,8 +74,6 @@ class World {
     }
 
 
-
-
     endMenu() {
         cancelAnimationFrame(this.menuAnimation)
         menu.forEach(menuArray => {
@@ -86,17 +85,6 @@ class World {
     }
 
 
-    getGameOverScreen() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.addToMap(this.defaultBg);
-        this.addToMap(this.gameOverImg);
-        if (!this.gOBtnSwitch) {
-            gameOverBtns.style.display = 'flex';
-            this.gOBtnSwitch = true;
-        }
-    }
-
-
     writeOnCanvas(text, x, y) {
         this.ctx.fillText(text, x, y)
     }
@@ -104,24 +92,24 @@ class World {
 
     gameOver() {
         setTempCoinScore(0);
-        clearInterval(this.collisionCheckInterval);
-        this.stopAllMovingAnimations();
+        this.stopWorld();
     }
 
 
     endCurrentLevel() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        clearInterval(this.collisionCheckInterval);
-        this.stopAllMovingAnimations();
         setTempCoinScore(this.character.coinStorage);
-        cancelAnimationFrame(this.animationFrame);
+        this.camera_x = 0;
+        this.character.x = 0;
+        this.stopWorld();
         this.getBetweenLevelsScreen();
         if (this.gameController.currentLevel < 3) {
             this.startNextLevel()
         } else {
-            this.end;
+            this.end();
         }
     }
+
 
 
     getBetweenLevelsScreen() {
@@ -134,20 +122,18 @@ class World {
 
 
     startNextLevel() {
-        this.camera_x = 0;
         this.level = this.gameController.getNextLevel();
         setTimeout(() => {
-            gameController.setGameStatus('game')
+            gameController.setGameStatus();
             world.ctx.font = '24px Luckiest Guy';
             world.ctx.fillStyle = 'darkblue';
+            world.startDraw();
         }, 2000);
     }
 
 
     end() {
-        clearInterval(this.collisionCheckInterval);
-        this.stopAllMovingAnimations();
-        cancelAnimationFrame(this.animationFrame);
+        this.stopWorld();
         this.addToMap(this.defaultBg);
         this.writeOnCanvas('You won!!', 240, 160);
         endScreen(this.character.coinStorage);
@@ -222,13 +208,13 @@ class World {
 
     statusTriggerCheck(mO) {
         if (mO instanceof Whale && mO.whaleGone && this.gameController.currentLevel < 3) {
-            this.gameController.setGameStatus('initNextLvl');
+            this.gameController.setInitNxtLvl();
         }
         if (mO instanceof Character && mO.gameOver) {
-            this.gameController.setGameStatus('gameOver');
+            this.gameController.setGameOver();
         }
         if (mO instanceof Whale && mO.whaleGone && this.gameController.currentLevel === 3) {
-            this.gameController.setGameStatus('end');
+            this.gameController.setEnd();
         }
     }
 
@@ -245,18 +231,18 @@ class World {
 
 
     collisionDetection() {
-        this.collisionCheckInterval = setInterval(() => {
-            if (!this.gameController.isInGameStatus()) {
-                return
-            }
-            this.isCharacterColidingWithEnemy();
+        if (Date.now() - this.collisionTimeStamp < 200) {
+            return
+        }
+        this.isCharacterColidingWithEnemy();
 
-            this.isCharacterColidingWithCollectable();
+        this.isCharacterColidingWithCollectable();
 
-            this.isCharacterCollectingHisFiredBubble();
+        this.isCharacterCollectingHisFiredBubble();
 
-            this.areFiredBubblesColidingWithEnemies();
-        }, 200);
+        this.areFiredBubblesColidingWithEnemies();
+
+        this.collisionTimeStamp = Date.now();
     }
 
 
@@ -404,18 +390,19 @@ class World {
 
 
     newBubbles() {
-        this.newBubblesInterval = setInterval(() => {
-            if (this.gameController.isGameOver()) {
-                clearInterval(this.newBubblesInterval);
-                return
-            }
-            if (this.gameController.isInStartMenu()) {
-                return
-            }
-            for (let i = 0; i < 10; i++) {
-                this.level.collectables.push(new Bubble(this.level.levelEnd));
-            }
-        }, 10000);
+        if (Date.now() - this.bubbleTimeStamp < 10000 || !this.gameController.isInGameStatus()) {
+            return
+        }
+        for (let i = 0; i < 10; i++) {
+            this.level.collectables.push(new Bubble(this.level.levelEnd));
+        }
+        this.bubbleTimeStamp = Date.now();
+    }
+
+
+    stopWorld() {
+        this.stopAllMovingAnimations();
+        cancelAnimationFrame(this.animationFrame);
     }
 
 

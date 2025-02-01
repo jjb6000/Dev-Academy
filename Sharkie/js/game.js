@@ -34,16 +34,16 @@ function setTempCoinScore(number) {
 
 
 function initGame() {
+    gameController.setStartMenu();
     character = new Character();
     keyboard = new Keyboard();
-    level = level1();
+    level = level1();   
     world = new World(canvas, gameController, level, character, keyboard);
     world.startDraw();
 }
 
 
 function startGame() {
-    hideAllOverlays();
     gameController.setGameStatus('game');
     applyGameEventListeners();
     world.startDraw();
@@ -51,7 +51,7 @@ function startGame() {
 
 
 function reStartGame() {
-    hideAllOverlays();
+    // hideAllOverlays();
     resetInstances();
     character = new Character();
     keyboard = new Keyboard();
@@ -107,17 +107,18 @@ function displayHighscore(highscore) {
 
 
 function backToMenu() {
+    world.stopWorld()
     resetInstances();
     initGame();
 }
 
 
-function hideAllOverlays() {
-    gameOverBtns.style.display = 'none';
-    endContainer.style.display = 'none';
-    startBtns.style.display = 'none';
-    document.getElementById('canvasContainer').style.display = 'block';
-}
+// function hideAllOverlays() {
+//     gameOverBtns.style.display = 'none';
+//     endContainer.style.display = 'none';
+//     startBtns.style.display = 'none';
+//     document.getElementById('canvasContainer').style.display = 'block';
+// }
 
 
 function resetInstances() {
