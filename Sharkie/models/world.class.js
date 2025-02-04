@@ -52,7 +52,6 @@ class World {
         if (this.gameController.isGameOver()) this.gameOver();
         if (this.gameController.isInStartMenu()) this.startMenu();
         if (this.gameController.initNextLvl()) this.endCurrentLevel();
-        if (this.gameController.endGame()) this.end();
     }
 
 
@@ -65,7 +64,7 @@ class World {
 
 
     startMenu() {
-        setTempCoinScore(0);
+        this.gameController.setTempCoinScore(0);
         if (this.menuBgObjects) {
             this.menuBgObjects.forEach(objectArray => {
                 this.addMultiObjectsToMap(objectArray);
@@ -91,22 +90,22 @@ class World {
 
 
     gameOver() {
-        setTempCoinScore(0);
+        this.gameController.setTempCoinScore(0);
         this.stopWorld();
     }
 
 
     endCurrentLevel() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        setTempCoinScore(this.character.coinStorage);
+        this.gameController.setTempCoinScore(this.character.coinStorage);
         this.camera_x = 0;
         this.character.x = 0;
         this.stopWorld();
-        this.getBetweenLevelsScreen();
         if (this.gameController.currentLevel < 3) {
+            this.getBetweenLevelsScreen();
             this.startNextLevel()
         } else {
-            this.end();
+            this.gameController.setEnd();
         }
     }
 
@@ -131,14 +130,6 @@ class World {
         }, 2000);
     }
 
-
-    end() {
-        this.stopWorld();
-        this.addToMap(this.defaultBg);
-        this.writeOnCanvas('You won!!', 240, 160);
-        endScreen(this.character.coinStorage);
-        setTempCoinScore(0);
-    }
 
 
     stopAllMovingAnimations() {

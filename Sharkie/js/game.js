@@ -28,11 +28,6 @@ function loading() {
 }
 
 
-function setTempCoinScore(number) {
-    coinScore = number
-}
-
-
 function initGame() {
     gameController.setStartMenu();
     character = new Character();
@@ -51,13 +46,15 @@ function startGame() {
 
 
 function reStartGame() {
-    // hideAllOverlays();
+    console.log('restart');
+    
     resetInstances();
     character = new Character();
     keyboard = new Keyboard();
     level = level1();
     gameController.setGameStatus('game');
     world = new World(canvas, gameController, level, character, keyboard);
+    world.startDraw()
 }
 
 

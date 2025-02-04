@@ -7,6 +7,7 @@ class GameController {
     nextLevel;
     btnHtmlElements;
     world;
+    tempCoinScore;
 
 
     constructor(gameOverBtns, startBtns, endContainer) {
@@ -44,7 +45,7 @@ class GameController {
         this.gameStatus = 'end';
         this.statusActions();
     }
-    
+
 
     setStartMenu() {
         this.gameStatus = 'startMenu';
@@ -57,6 +58,18 @@ class GameController {
         if (this.btnHtmlElements[this.gameStatus] !== undefined) {
             this.btnHtmlElements[this.gameStatus].style.display = 'flex';
         }
+        if (this.endGame()) {
+            this.displaySuccessScreen()
+        }
+    }
+
+
+    displaySuccessScreen() {
+        setNewHighscore(this.tempCoinScore);
+        const highscore = getHighscores();
+        this.btnHtmlElements['end'].innerHTML = getSuccessScreen();
+        displayHighscore(highscore);
+        document.getElementById('canvasContainer').style.display = 'none';
     }
 
 
@@ -79,6 +92,10 @@ class GameController {
         startBtns.style.display = 'none';
     }
 
+
+    setTempCoinScore(number) {
+        this.tempCoinScore = number
+    }
 
 
     setFullScreen(truOrFalse) {
