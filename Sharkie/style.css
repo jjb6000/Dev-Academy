@@ -8,6 +8,7 @@ body {
     height: 100vh;
     background-color: darkblue;
     color: white;
+    position: relative; 
 }
 
 h1 {
@@ -21,6 +22,8 @@ h1 {
 
 canvas {
     background-color: black;
+    max-width: 80vw;
+    max-height: 100vh;
 }
 
 .btn-div {
@@ -190,6 +193,100 @@ canvas {
     color: yellow;
 }
 
+.landscape-container {
+    position: absolute;
+    z-index: 999;
+    color: rgb(15, 15, 225);
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.portrait-warning {
+    background-color: white;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 2rem;
+    text-align: center;
+}
+
+
+.mobile-btn-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4rem;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background-color: rgba(0, 0, 0, 0.381);
+}
+
+
+.mob-btn-dir {
+    width: 3rem;
+}
+
+
+.mob-btn-fin-attack {
+    border: solid 4px red;
+    color: red;
+    padding: 0.5rem 1rem;
+    border-radius: 16px;
+
+}
+
+.mob-btn-bub-attack {
+    border: solid 4px yellow;
+    color: yellow;
+    padding: 0.5rem;
+    border-radius: 16px;
+}
+
+
+.mob-btn-poi-attack {
+    border: solid 4px rgb(18, 247, 18);
+    color: rgb(18, 247, 18);
+    padding: 0.5rem;
+    border-radius: 16px;
+}
+
+
+
+
+
+
+@media screen and (orientation: portrait) and (max-width: 719px) {
+    .flex-on-portrait {
+        display: flex;
+    }
+}
+
+
+
+@media screen and (orientation: landscape) {
+    .hide-on-mobile {
+        display: none;
+    }
+
+    .flex-on-landscape {
+        display: flex;
+    }
+
+    .btn-div {
+        top: 16%
+    }
+
+
+}
 
 
 

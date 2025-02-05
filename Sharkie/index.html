@@ -39,7 +39,11 @@
 
 <body>
 
-    <h1>Sharkie the Shark</h1>
+    <div class="landscape-container flex-on-portrait">
+        <h2 class="portrait-warning">Please rotate your device to landscape mode.</h2>
+    </div>
+
+    <h1 class="hide-on-mobile">Sharkie the Shark</h1>
 
     <div id="canvasContainer" class="canvas-container">
         
@@ -69,6 +73,32 @@
             </div>
             <div class="special-attack-instructions">
                 <img src="./img/menu/Key/v.svg" alt=""><span>Poison Bubble Attack (you need to collect Poison)</span>
+            </div>
+        </div>
+
+        <div class="mobile-btn-overlay flex-on-landscape">
+            <div class="mob-btn-bg">
+                <img class="mob-btn-dir" src="img/menu/mobile-buttons/left-w.svg" alt="">
+            </div>
+            <div class="mob-btn-bg">
+                <img class="mob-btn-dir" src="img/menu/mobile-buttons/right-w.svg" alt="">
+            </div>
+
+            <div class="mob-btn-bg">
+                <div class="mob-btn-fin-attack">SLAP!</div>
+            </div>
+            <div class="mob-btn-bg">
+                <div class="mob-btn-bub-attack">BUbble!</div>
+            </div>
+            <div class="mob-btn-bg">
+                <div class="mob-btn-poi-attack">Poison!</div>
+            </div>
+
+            <div class="mob-btn-bg">
+                <img class="mob-btn-dir" src="img/menu/mobile-buttons/up-w.svg" alt="">
+            </div>
+            <div class="mob-btn-bg">
+                <img class="mob-btn-dir" src="img/menu/mobile-buttons/down-w.svg" alt="">
             </div>
         </div>
     </div>
