@@ -132,10 +132,10 @@ function resetInstances() {
 // ANCHOR Eventlisteners
 function applyGameEventListeners() {
     window.onkeydown = (e) => {
-        world.keyboard.processKeyInput(e, true);
-        world.keyboard.checkDevMode(e);
+        world.keyboard.processKeyInput(e.key, true);
+        world.keyboard.checkDevMode(e.key);
     }
-    window.onkeyup = (e) => world.keyboard.processKeyInput(e, false);
+    window.onkeyup = (e) => world.keyboard.processKeyInput(e.key, false);
 }
 
 

@@ -7,25 +7,27 @@ class Keyboard {
     SPACE = false;
     V_BTN = false;
 
-    keyFunctionObject = {
-        'ArrowUp': (boolean) => this.UP = boolean,
-        'ArrowDown': (boolean) => this.DOWN = boolean,
-        'ArrowRight': (boolean) => this.RIGHT = boolean,
-        'ArrowLeft': (boolean) => this.LEFT = boolean,
-        ' ': (boolean) => this.SPACE = boolean,
-        'x': (boolean) => this.X_BTN = boolean,
-        'v': (boolean) => this.V_BTN = boolean
+    keyObject = {
+        'ArrowUp': this.UP,
+        'ArrowDown':  this.DOWN,
+        'ArrowRight': this.RIGHT,
+        'ArrowLeft': this.LEFT,
+        ' ': this.SPACE ,
+        'x': this.X_BTN ,
+        'v': this.V_BTNn,
     }
 
 
-    processKeyInput(e, boolean) {
-        let action = this.keyFunctionObject[e.key]
-        if (action && !world.character.isDead() && world.gameController.isInGameStatus()) {
-            action(boolean);
+    processKeyInput(key, pressedBoolean) {
+        console.log(this.keyObject[key], pressedBoolean)
+        if (!world.character.isDead() && world.gameController.isInGameStatus()) {
+            this.keyObject[key] = pressedBoolean;
             this.callCharacterActions();
             world.character.moving = true;   
         }
         this.stopDoing();
+
+        
     }
 
     callCharacterActions() {
@@ -67,8 +69,8 @@ class Keyboard {
         return !this.UP && !this.DOWN && !this.RIGHT && !this.LEFT && !this.X_BTN && !this.SPACE && !this.V_BTN
     }
 
-    checkDevMode(e) {
-        if (e.key === 'D') {
+    checkDevMode(key) {
+        if (key === 'D') {
             world.devMode ? world.devMode = false : world.devMode = true
         }
     }

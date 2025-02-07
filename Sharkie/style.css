@@ -235,24 +235,24 @@ canvas {
     width: 3rem;
 }
 
-
-.mob-btn-fin-attack {
-    border: solid 4px red;
-    color: red;
+.mob-btn {
     padding: 0.5rem 1rem;
     border-radius: 16px;
-
 }
 
-.mob-btn-bub-attack {
+
+.btn-fin-attack {
+    border: solid 4px red;
+    color: red;
+}
+
+.btn-bub-attack {
     border: solid 4px yellow;
     color: yellow;
-    padding: 0.5rem;
-    border-radius: 16px;
 }
 
 
-.mob-btn-poi-attack {
+.btn-poi-attack {
     border: solid 4px rgb(18, 247, 18);
     color: rgb(18, 247, 18);
     padding: 0.5rem;
@@ -265,19 +265,20 @@ canvas {
 
 
 @media screen and (orientation: portrait) and (max-width: 719px) {
-    .flex-on-portrait {
+
+    .landscape-container {
         display: flex;
     }
 }
 
 
 
-@media screen and (orientation: landscape) {
+@media screen and (max-width: 992px){
     .hide-on-mobile {
         display: none;
     }
 
-    .flex-on-landscape {
+    .mobile-btn-overlay {
         display: flex;
     }
 
