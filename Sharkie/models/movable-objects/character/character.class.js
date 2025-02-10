@@ -172,7 +172,8 @@ class Character extends MovableObject {
 
     
     setLastAction() {
-        this.lastAction = Date.now()
+        this.lastAction = Date.now();
+        this.idleMode = this.IDLE_IMGs;
     }
 
     
@@ -184,6 +185,7 @@ class Character extends MovableObject {
             return this.POISON_OUCH_IMGs;
         }
     }
+
 
     bubbleAttack(attackType) {
         const bubbleCoo = this.calcBubbleCoordinates();
@@ -198,36 +200,40 @@ class Character extends MovableObject {
     }
 
 
-    deadSharkie(sharkieDoingSomething) {
-        if (this.attackedBy === 'electric') {
-            this.sharkieInTunaCanAnimation(this.DEAD_BY_SHOCK_IMGs);
-        }
-        if (this.attackedBy === 'poison') {
-            this.sharkieInTunaCanAnimation(this.DEAD_BY_POISON_IMGs);
-        }
-        clearInterval(sharkieDoingSomething);
-    }
-
-
-    sharkieInTunaCanAnimation(imgArray) {
-        const dieAnimationIntervall = setInterval(() => {
-            if (this.dieAnimationCounter < imgArray.length) {
-                this.img = imgArray[this.dieAnimationCounter];
-            }
-            if (this.dieAnimationCounter >= imgArray.length) {
-                this.img = imgArray[imgArray.length - 1]
-                this.gameOver = true;
-                clearInterval(dieAnimationIntervall);
-            }
-            this.dieAnimationCounter++
-        }, 150);
-    }
-
-
+    
     calcBubbleCoordinates() {
         return {
             'x': this.world.character.x + this.width + 20 - this.OFFSET_X_LEFT,
             'y': this.world.character.y + this.OFFSET_Y_TOP
+        }
+    }
+
+
+
+    initFinAttack() {
+
+        if (!this.stillHurts() && Date.now() - this.lastFinAttack > 300) {
+            this.finAttack = true;
+            this.changeOffsetDuringFinAttack();
+            this.lastFinAttack = Date.now();
+        } else {
+            this.stopFinAttack()
+        }
+    }
+
+    stopFinAttack() {
+        this.finAttack = false;
+        this.changeOffsetDuringFinAttack();
+    }
+
+
+    changeOffsetDuringFinAttack() {
+        if (this.finAttack) {
+            this.OFFSET_X_LEFT =  10;
+            this.OFFSET_X_RIGHT = 10;
+        } else {
+            this.OFFSET_X_LEFT = 56;
+            this.OFFSET_X_RIGHT = 56;
         }
     }
 
@@ -277,43 +283,17 @@ class Character extends MovableObject {
     }
 
 
-    initFinAttack() {
-        if (!this.stillHurts() && Date.now() - this.lastFinAttack > 300) {
-            this.changeOffsetDuringFinAttack();
-            this.finAttack = true;
-            this.lastFinAttack = Date.now();
-        } else {
-            this.stopFinAttack()
-        }
-    }
-
-    stopFinAttack() {
-        this.finAttack = false;
-        this.changeOffsetDuringFinAttack();
-    }
-
-
-    changeOffsetDuringFinAttack() {
-        if (this.finAttack) {
-            this.OFFSET_X_LEFT = 30;
-            this.OFFSET_X_RIGHT = 30;
-        } else {
-            this.OFFSET_X_LEFT = 56;
-            this.OFFSET_X_RIGHT = 56;
-        }
-    }
-
 
     isColliding(enemy) {
         const characterBox = this.getCollisionBox(this);
-        const enemyBox = this.getCollisionBox(enemy)
+        const enemyBox = this.getCollisionBox(enemy);        
         return (characterBox.x + characterBox.width) >= enemyBox.x && characterBox.x <= (enemyBox.x + enemyBox.width) &&
             (characterBox.y + characterBox.height) >= enemyBox.y &&
             (characterBox.y) <= (enemyBox.y + enemyBox.height);
     }
 
 
-    getCollisionBox(mo) {
+    getCollisionBox(mo) {       
         return {
             'x': mo.x + mo.OFFSET_X_LEFT,
             'y': mo.y + mo.OFFSET_Y_TOP,
@@ -336,6 +316,32 @@ class Character extends MovableObject {
         if (item instanceof Poison) {
             this.poisonStorage += 1;
         }
+    }
+
+
+    deadSharkie(sharkieDoingSomething) {
+        if (this.attackedBy === 'electric') {
+            this.sharkieInTunaCanAnimation(this.DEAD_BY_SHOCK_IMGs);
+        }
+        if (this.attackedBy === 'poison') {
+            this.sharkieInTunaCanAnimation(this.DEAD_BY_POISON_IMGs);
+        }
+        clearInterval(sharkieDoingSomething);
+    }
+
+
+    sharkieInTunaCanAnimation(imgArray) {
+        const dieAnimationIntervall = setInterval(() => {
+            if (this.dieAnimationCounter < imgArray.length) {
+                this.img = imgArray[this.dieAnimationCounter];
+            }
+            if (this.dieAnimationCounter >= imgArray.length) {
+                this.img = imgArray[imgArray.length - 1]
+                this.gameOver = true;
+                clearInterval(dieAnimationIntervall);
+            }
+            this.dieAnimationCounter++
+        }, 150);
     }
 
 }

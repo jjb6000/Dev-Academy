@@ -3,7 +3,8 @@ const instructionsMenu = document.getElementById('instructions');
 const gameOverBtns = document.getElementById('gameOverBtnDiv');
 const startBtns = document.getElementById('btnDiv');
 const endContainer = document.getElementById('endContainer');
-const gameController = new GameController(gameOverBtns, startBtns, endContainer)
+const gameController = new GameController(gameOverBtns, startBtns, endContainer);
+const canvasContainer = document.getElementById('canvasContainer');
 let world;
 let menu;
 let level;
@@ -136,6 +137,15 @@ function applyGameEventListeners() {
         world.keyboard.checkDevMode(e.key);
     }
     window.onkeyup = (e) => world.keyboard.processKeyInput(e.key, false);
+
+    const touchBtnIds = ['tLeft', 'tRight', 'tSlap', 'tBubble','tPoison', 'tUp', 'tDown']
+
+    touchBtnIds.forEach(id => {
+        const btn = document.getElementById(id);
+        console.log(btn.dataset.key)
+        btn.addEventListener('touchstart', () => world.keyboard.processKeyInput(btn.dataset.key, true));
+        btn.addEventListener('touchend', () => world.keyboard.processKeyInput(btn.dataset.key, false));
+    }) 
 }
 
 
@@ -158,6 +168,14 @@ document.getElementById('againBtn').addEventListener('click', () => reStartGame(
 
 
 document.getElementById('backToMenuBtn').addEventListener('click', () => backToMenu());
+
+
+canvas.addEventListener('click', () => document.getElementById('canvasContainer').requestFullscreen())
+
+
+
+
+
 
 
 
