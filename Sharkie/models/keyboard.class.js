@@ -7,30 +7,43 @@ class Keyboard {
     SPACE = false;
     V_BTN = false;
 
-    keyObject = {
-        'ArrowUp': this.UP,
-        'ArrowDown':  this.DOWN,
-        'ArrowRight': this.RIGHT,
-        'ArrowLeft': this.LEFT,
-        ' ': this.SPACE ,
-        'x': this.X_BTN ,
-        'v': this.V_BTNn,
+
+    processKeyInput(key, press) {
+        this.actionSwitch(key, press);
+        this.noAction() ? this.stopDoing() : this.callCharacterKeyDownActions();
     }
 
 
-    processKeyInput(key, pressedBoolean) {
-        console.log(this.keyObject[key], pressedBoolean)
-        if (!world.character.isDead() && world.gameController.isInGameStatus()) {
-            this.keyObject[key] = pressedBoolean;
-            this.callCharacterActions();
-            world.character.moving = true;   
+    actionSwitch(key, press) {
+        switch (key) {
+            case 'ArrowUp':
+                this.UP = press;
+                break;
+            case 'ArrowDown':
+                this.DOWN = press;
+                break;
+            case 'ArrowRight':
+                this.RIGHT = press;
+                break;
+            case 'ArrowLeft':
+                this.LEFT = press;
+                break;
+            case ' ':
+                this.SPACE = press;
+                break;
+            case 'x':
+                this.X_BTN = press;
+                break;
+            case 'v':
+                this.V_BTN = press;
+                break;
+            default:
+                this.stopDoing();
         }
-        this.stopDoing();
-
-        
     }
 
-    callCharacterActions() {
+
+    callCharacterKeyDownActions() {
         if (this.UP) world.character.moveUp();
         if (this.DOWN) world.character.moveDown();
         if (this.RIGHT) this.initRightMove();
@@ -38,8 +51,9 @@ class Keyboard {
         if (this.X_BTN && world.character.bubbleStorage > 0) world.character.initBubbleAttack();
         if (this.V_BTN && world.character.poisonStorage > 0) world.character.initPoisonAttack();
         if (this.SPACE) world.character.initFinAttack();
+        world.character.setLastAction();
     }
-
+    
 
     initRightMove() {
         world.character.otherDirection = false;
@@ -58,15 +72,14 @@ class Keyboard {
     stopDoing() {
         if (!this.X_BTN && !this.V_BTN) world.character.isBubbleAttacking = false;
         if (!this.SPACE) world.character.stopFinAttack()
-        if (this.noBtnPressed()) {
-            world.character.moving = false;
+        if (this.noAction()) {
             world.character.swim_sound.pause();
             world.character.isDead() ? world.character.loadImage('../Sharkie/img/sharkie/6.dead/1.Poisoned/12.png') : world.character.loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
         }
     }
 
-    noBtnPressed() {
-        return !this.UP && !this.DOWN && !this.RIGHT && !this.LEFT && !this.X_BTN && !this.SPACE && !this.V_BTN
+    noAction() {
+        return !this.UP && !this.DOWN && !this.RIGHT && !this.LEFT && !this.X_BTN && !this.V_BTN && !this.SPACE
     }
 
     checkDevMode(key) {
@@ -75,6 +88,6 @@ class Keyboard {
         }
     }
 
-    
+
 
 }
