@@ -1,5 +1,6 @@
 const canvas = document.getElementById('canvas');
 const instructionsMenu = document.getElementById('instructions');
+const settingsMenu = document.getElementById('settings');
 const gameOverBtns = document.getElementById('gameOverBtnDiv');
 const startBtns = document.getElementById('btnDiv');
 const endContainer = document.getElementById('endContainer');
@@ -152,16 +153,17 @@ function applyGameEventListeners() {
 
 window.onload = () => initGame();
 
+document.getElementById('instBtn').addEventListener('click', () => instructionsMenu.style.display = 'flex');
 
-document.getElementById('menuCloseBtn').addEventListener('click', () => {
-    instructionsMenu.style.display = 'none';
-});
+document.getElementById('menuCloseBtn').addEventListener('click', () => instructionsMenu.style.display = 'none');
+
+document.getElementById('settingsBtn').addEventListener('click', () => settingsMenu.style.display = 'flex');
+
+document.getElementById('settingsCloseBtn').addEventListener('click', () => settingsMenu.style.display = 'none');
 
 
 document.getElementById('startBtn').addEventListener('click', () => startGame());
 
-
-document.getElementById('instBtn').addEventListener('click', () => instructionsMenu.style.display = 'flex');
 
 
 document.getElementById('againBtn').addEventListener('click', () => reStartGame());
