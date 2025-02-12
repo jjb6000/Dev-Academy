@@ -147,10 +147,12 @@ function fullscreenSetting() {
     if (gameController.fullScreen) {
         gameController.setWindowScreen();
         fullscreenCheckbox.src = './img/menu/Key/check_box_y.svg';
+        canvas.classList.remove('canvas-fs');
         document.exitFullscreen();
     } else {
         gameController.setFullScreen();
         fullscreenCheckbox.src = './img/menu/Key/select_check_box_y.svg';
+        canvas.classList.add('canvas-fs');
         canvasContainer.requestFullscreen();
     }
 }

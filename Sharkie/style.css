@@ -25,6 +25,11 @@ canvas {
     width: 60vw;
 }
 
+.canvas-fs {
+    height: 100vh;
+    width: 100vw;
+}
+
 .btn-div {
     position: absolute;
     top: 33%;
