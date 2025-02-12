@@ -6,6 +6,8 @@ const startBtns = document.getElementById('btnDiv');
 const endContainer = document.getElementById('endContainer');
 const gameController = new GameController(gameOverBtns, startBtns, endContainer);
 const canvasContainer = document.getElementById('canvasContainer');
+const soundsCheckbox = document.getElementById('soundsCB');
+const fullscreenCheckbox = document.getElementById('fullscreenCB');
 let world;
 let menu;
 let level;
@@ -130,6 +132,41 @@ function resetInstances() {
 }
 
 
+function soundSettings() {
+    if (gameController.sounds) {
+        gameController.setGameMute();
+        soundsCheckbox.src = './img/menu/Key/check_box_y.svg';
+    } else {
+        gameController.setGameSounds();
+        soundsCheckbox.src = './img/menu/Key/select_check_box_y.svg';
+    }
+}
+
+
+function fullscreenSetting() {
+    if (gameController.fullScreen) {
+        gameController.setWindowScreen();
+        fullscreenCheckbox.src = './img/menu/Key/check_box_y.svg';
+        document.exitFullscreen();
+    } else {
+        gameController.setFullScreen();
+        fullscreenCheckbox.src = './img/menu/Key/select_check_box_y.svg';
+        canvasContainer.requestFullscreen();
+    }
+}
+
+
+function openSettingsMenu() {
+    const checkbox = './img/menu/Key/check_box_y.svg';
+    const checkboxChecked = './img/menu/Key/select_check_box_y.svg';
+    settingsMenu.style.display = 'flex';
+    gameController.fullScreen ? fullscreenCheckbox.src = checkboxChecked : fullscreenCheckbox.src = checkbox;
+    gameController.sounds ? soundsCheckbox.src = checkboxChecked : soundsCheckbox.src = checkbox;
+}
+
+
+
+
 
 // ANCHOR Eventlisteners
 function applyGameEventListeners() {
@@ -153,17 +190,26 @@ function applyGameEventListeners() {
 
 window.onload = () => initGame();
 
+
 document.getElementById('instBtn').addEventListener('click', () => instructionsMenu.style.display = 'flex');
+
 
 document.getElementById('menuCloseBtn').addEventListener('click', () => instructionsMenu.style.display = 'none');
 
-document.getElementById('settingsBtn').addEventListener('click', () => settingsMenu.style.display = 'flex');
+
+document.getElementById('settingsBtn').addEventListener('click', () => openSettingsMenu());
+
 
 document.getElementById('settingsCloseBtn').addEventListener('click', () => settingsMenu.style.display = 'none');
 
 
 document.getElementById('startBtn').addEventListener('click', () => startGame());
 
+
+document.getElementById('soundsCB').addEventListener('click', () => soundSettings());
+
+
+document.getElementById('fullscreenCB').addEventListener('click', () => fullscreenSetting());
 
 
 document.getElementById('againBtn').addEventListener('click', () => reStartGame());

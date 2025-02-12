@@ -15,6 +15,7 @@ class Keyboard {
 
 
     actionSwitch(key, press) {
+        
         switch (key) {
             case 'ArrowUp':
                 this.UP = press;

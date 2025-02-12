@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,14 +47,15 @@
     <!-- <h1 class="hide-on-mobile">Sharkie the Shark</h1> -->
 
     <div id="canvasContainer" class="canvas-container">
-        
+
         <canvas id="canvas" width="720px" height="480px"></canvas>
 
         <div id="btnDiv" class="btn-div">
             <button id="startBtn" class="pink-btn menu-btns">Start</button>
             <div class="sub-btn-container">
                 <p id="instBtn" class="sub-btn">Instructions</p>
-                <p id="settingsBtn" class="sub-btn"><img src="img/menu/settings_icon.svg" alt="settings"> Settings <img src="img/menu/settings_icon.svg" alt="settings"></p>
+                <p id="settingsBtn" class="sub-btn"><img src="img/menu/settings_icon.svg" alt="settings"> Settings <img
+                        src="img/menu/settings_icon.svg" alt="settings"></p>
             </div>
         </div>
 
@@ -78,9 +80,18 @@
 
         <div id="settings" class="instructions">
             <div class="instructions-header">
-                <h3>Settings</h3>
+                <h3 class="set-title">Settings</h3>
                 <div id="settingsCloseBtn" class="close-button">X</div>
             </div>
+
+            <div class="sett-btn-div">
+                <div>Fullscreen:</div><img id="fullscreenCB" class="checkbox" src="img/menu/Key/check_box_y.svg" alt="fullscreen checkbox">
+            </div>
+
+            <div class="sett-btn-div">
+                <div>Sound:</div><img id="soundsCB" class="checkbox" src="img/menu/Key/check_box_y.svg" alt="fullscreen checkbox">
+            </div>
+
         </div>
 
         <div class="mobile-btn-overlay">
@@ -91,7 +102,7 @@
                 <img class="mob-btn-dir" src="img/menu/mobile-buttons/right-w.svg" alt="">
             </div>
 
-            <div data-key=" " id="tSlap" class="mob-btn-bg">
+            <div data-key="slap" id="tSlap" class="mob-btn-bg">
                 <div class="mob-btn btn-fin-attack">SLAP!</div>
             </div>
             <div data-key="x" id="tBubble" class="mob-btn-bg">
@@ -111,9 +122,10 @@
     </div>
 
     <div style="display: flex;" id="endContainer">
-        
+
     </div>
-    
-    
+
+
 </body>
+
 </html>

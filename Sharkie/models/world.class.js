@@ -243,7 +243,7 @@ class World {
                 this.checkIfCharacterCollidsWhileAttack(enemy);
                 this.devModeCollisionLog(enemy, this.character);
             }
-        })
+        });
     }
 
 
@@ -284,7 +284,7 @@ class World {
         if (this.level.firedBubbles.length > 0) {
             this.level.firedBubbles.forEach(bubble => {
                 this.isFiredBubbleColidingWithEnemy(bubble)
-            })
+            });
         }
     }
 
@@ -403,7 +403,7 @@ class World {
                 item.ownDamage = 2000;
                 item.x = this.character.x + 200
             }
-        })
+        });
     }
 
 }

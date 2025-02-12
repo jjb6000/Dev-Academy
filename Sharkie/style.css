@@ -21,10 +21,8 @@ h1 {
 
 canvas {
     background-color: black;
-    max-height: 100vh;
-    height: 70vh;
+    height: 76vh;
     width: 60vw;
-    min-width: 720px;
 }
 
 .btn-div {
@@ -51,6 +49,7 @@ canvas {
     font-family: 'Luckiest Guy', Arial, Helvetica, sans-serif;;
 }
 
+
 .pink-btn {
     background-color: #BF067F;
 }
@@ -76,7 +75,7 @@ canvas {
 
 .gO-img {
     width: 400px;
-    margin-bottom: 100px;
+    margin-bottom: 10vh;
 }
 
 /* .sub-btn-container {
@@ -107,6 +106,7 @@ canvas {
     left: 40px;
     right: 40px;
     bottom: 32px;
+    padding: 1rem;
     background-color: rgb(0, 217, 255);
     border: solid white 6px;
     z-index: 99;
@@ -126,7 +126,7 @@ canvas {
 .close-button {
     cursor: pointer;
     font-size: 48px;
-    padding: 4px 20px;
+    padding: 4px 12px;
     position: absolute;
     top: 0;
     right: 0;
@@ -155,6 +155,29 @@ canvas {
     width: 500px;
     height: 200px;
 }
+
+
+.set-title {
+    font-size: 3rem;
+    margin-top: 2rem;
+}
+
+
+.sett-btn-div {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+
+.checkbox {
+    width: 2rem;
+    cursor: pointer;
+}
+
+
 
 .game-end-container {
     width: 100%;
@@ -263,6 +286,20 @@ canvas {
 
 
 
+@media screen and (max-width: 1366px) {
+    canvas {
+        width: 100vw;
+        height: 100vh;
+    }
+}
+
+
+@media screen and (orientation: portrait) and (max-width: 576px) {
+
+    .canvas-container {
+        display: none;
+    }
+}
 
 
 
@@ -270,6 +307,27 @@ canvas {
 
     .landscape-container {
         display: flex;
+    }
+}
+
+
+@media screen and (max-height: 580px) {
+    .gameOver-layout {
+        top: 20%;
+    }
+
+    .menu-btns {
+        font-size: 1.5rem;
+        width: 240px;
+    }
+
+    .sub-btn {
+        font-size: 1.5rem; 
+    }
+
+    .gO-img {
+        width: 360px;
+        margin-bottom: 20px;
     }
 }
 

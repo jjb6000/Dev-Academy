@@ -94,18 +94,29 @@ class GameController {
 
 
     setTempCoinScore(number) {
-        this.tempCoinScore = number
+        this.tempCoinScore = number;
     }
 
 
-    setFullScreen(truOrFalse) {
-        this.fullScreen = truOrFalse
+    setFullScreen() {
+        this.fullScreen = true;
     }
 
 
-    setSounds(truOrFalse) {
-        this.fullScreen = truOrFalse
+    setWindowScreen() {
+        this.fullScreen = false;
     }
+
+
+    setGameSounds() {
+        this.sounds = true;
+    }
+
+
+    setGameMute() {
+        this.sounds = false;
+    }
+
 
     isInGameStatus() {
         return this.gameStatus === 'game';
