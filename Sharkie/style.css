@@ -290,6 +290,11 @@ canvas {
 }
 
 
+.flex-devider {
+    flex: 1;
+}
+
+
 
 @media screen and (max-width: 1366px) {
     canvas {
