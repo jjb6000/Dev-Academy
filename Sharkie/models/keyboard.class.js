@@ -57,12 +57,14 @@ class Keyboard {
     
 
     initRightMove() {
+        world.character.moving = true;
         world.character.otherDirection = false;
         world.character.moveRight(world.level.levelEnd, 24);
         world.camera_x = -world.character.x * 0.9;
     }
 
     initLeftMove() {
+        world.character.moving = true;
         world.character.otherDirection = true;
         world.character.moveLeft(-400, 24);
         world.camera_x = -world.character.x * 0.9;
@@ -71,6 +73,7 @@ class Keyboard {
 
 
     stopDoing() {
+        world.character.moving = false;
         if (!this.X_BTN && !this.V_BTN) world.character.isBubbleAttacking = false;
         if (!this.SPACE) world.character.stopFinAttack()
         if (this.noAction()) {

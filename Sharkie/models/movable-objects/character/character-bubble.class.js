@@ -22,7 +22,7 @@ class AttackBubble extends Character {
         let upForce = 0;
         const upForceInterval = setInterval(() => {
         this.speed > 0? this.speed = this.speed - 0.001 : this.speed = 0;
-           this.otherDirection ? this.moveLeft(-2000, this.speed) : this.moveRight(2000, this.speed);
+           this.otherDirection ? this.moveLeft(-3000, this.speed) : this.moveRight(3000, this.speed);
             upForce = upForce + 0.002;
             this.moveUp(-100, upForce);
             if (this.y <= -180) {

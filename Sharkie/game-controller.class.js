@@ -4,7 +4,6 @@ class GameController {
     gameStates = ['game', 'gameOver', 'startMenu', 'initNextLvl', 'end'];
     gameStatus;
     currentLevel;
-    nextLevel;
     btnHtmlElements;
     world;
     tempCoinScore;
@@ -36,6 +35,7 @@ class GameController {
 
 
     setGameOver() {
+        this.currentLevel = 1;
         this.gameStatus = 'gameOver';
         this.statusActions();
     }
@@ -70,6 +70,7 @@ class GameController {
         this.btnHtmlElements['end'].innerHTML = getSuccessScreen();
         displayHighscore(highscore);
         document.getElementById('canvasContainer').style.display = 'none';
+        this.currentLevel = 1;
     }
 
 

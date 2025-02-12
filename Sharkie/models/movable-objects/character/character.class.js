@@ -7,6 +7,7 @@ class Character extends MovableObject {
     y = 80;
     finAttack = false;
     isBubbleAttacking = false;
+    moving = false;
     attackedBy;
     timeStampLastBubbleAttack = Date.now();
     lastFinAttack = Date.now();
@@ -151,23 +152,14 @@ class Character extends MovableObject {
 
     animate() {
         const sharkieDoingSomething = setInterval(() => {
-            if (!this.moving && !this.finAttack && !this.isBubbleAttacking && !this.stillHurts() && !this.isDead()) {
-                this.movingAnimation(this.idleMode);
-            };
-            if (this.moving || this.finAttack && this.world.gameController.isInGameStatus()) {
-                this.swim_sound.play();
-            }
-
+            if (!this.moving && !this.finAttack && !this.isBubbleAttacking && !this.stillHurts() && !this.isDead())  this.movingAnimation(this.idleMode);
+            if (this.moving || this.finAttack && this.world.gameController.isInGameStatus() && this.world.gameController.sounds) this.swim_sound.play();
             if (this.moving && !this.isBubbleAttacking && !this.stillHurts() && !this.isDead()) this.movingAnimation(this.ANIMATION_IMGs);
-
             if (this.finAttack && !this.isDead()) this.movingAnimation(this.FIN_ATTACK_IMGs);
-
             if (this.stillHurts() && !this.isDead()) this.movingAnimation(this.returnHurtAnimationBasedOnAttack(this.attackedBy));
-
             if (this.isDead()) this.deadSharkie(sharkieDoingSomething);
-
             if (Date.now() - this.lastAction > 8000) this.idleMode = this.LONG_IDLE_IMGs;
-        }, 150);        
+        }, 250);        
     }
 
     
