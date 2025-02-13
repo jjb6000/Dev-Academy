@@ -1,0 +1,82 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    background-color: darkblue;
+    color: white;
+    width: 98vw;
+    height: 98vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+a {
+    color: white;
+}
+
+h1, h2 {
+    color: yellow;
+}
+
+h2 {
+    margin-top: 4rem;
+}
+
+
+header {
+    display: flex;
+    width: 100%;
+    padding: 1rem;
+}
+
+.inner-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 60px;
+}
+
+.content-section {
+    flex: 1;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.flex-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+}
+
+
+.menu-btns {
+    padding: 0.5em 0;
+    width: 280px;
+    cursor: pointer;
+    border: solid 4px white;
+    border-radius: 1rem;
+    color: white;
+    font-size: 2rem;
+    font-family: 'Luckiest Guy', Arial, Helvetica, sans-serif;
+}
+
+
+.pink-btn {
+    background-color: #BF067F;
+}
+
+/* luckiest-guy-regular - latin */
+@font-face {
+    font-display: swap;
+    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Luckiest Guy';
+    font-style: normal;
+    font-weight: 400;
+    src: url('fonts/luckiest-guy-v22-latin-regular.woff2') format('woff2');
+    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}

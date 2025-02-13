@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharkie</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="../Sharkie/img/sharkie/1.IDLE/1.png">
+    <script defer src="game-controller.class.js"></script>
+    <script defer src="models/draw-objects.class.js"></script>
+    <script defer src="models/movable-objects/movable-object.class.js"></script>
+    <script defer src="models/status-bar.class.js"></script>
+    <script defer src="models/health-bar.class.js"></script>
+    <script defer src="models/movable-objects/character/character.class.js"></script>
+    <script defer src="models/movable-objects/pufferfish.class.js"></script>
+    <script defer src="models/movable-objects/jellyfish.class.js"></script>
+    <script defer src="models/movable-objects/jellyfish1.class.js"></script>
+    <script defer src="models/movable-objects/jellyfish2.class.js"></script>
+    <script defer src="models/movable-objects/jellyfish3.class.js"></script>
+    <script defer src="models/movable-objects/jellyfish4.class.js"></script>
+    <script defer src="models/movable-objects/whale.class.js"></script>
+    <script defer src="models/movable-objects/bubble.class.js"></script>
+    <script defer src="models/movable-objects/poison.class.js"></script>
+    <script defer src="models/movable-objects/coin.class.js"></script>
+    <script defer src="models/movable-objects/character/character-bubble.class.js"></script>
+    <script defer src="models/movable-objects/character/poison-bubble.class.js"></script>
+    <script defer src="models/movable-objects/bg.class.js"></script>
+    <script defer src="models/keyboard.class.js"></script>
+    <script defer src="models/world.class.js"></script>
+    <script defer src="models/level.class.js"></script>
+    <script defer src="levels/level1.js"></script>
+    <script defer src="levels/level2.js"></script>
+    <script defer src="levels/level3.js"></script>
+    <script defer src="menu/menuObjects.js"></script>
+    <script defer src="templates/html-templates.js"></script>
+    <script defer src="js/highscore.js"></script>
+    <script defer src="js/game.js"></script>
+</head>
+
+<body>
+
+    <div class="landscape-container">
+        <h2 class="portrait-warning">Please rotate your device to landscape mode.</h2>
+    </div>
+
+    <!-- <h1 class="hide-on-mobile">Sharkie the Shark</h1> -->
+
+    <div id="canvasContainer" class="canvas-container">
+
+        <canvas id="canvas" width="720px" height="480px"></canvas>
+
+        <div id="btnDiv" class="btn-div">
+            <button id="startBtn" class="pink-btn menu-btns">Start</button>
+            <div class="sub-btn-container">
+                <p id="instBtn" class="sub-btn hide-on-mobile">Instructions</p>
+                <p id="settingsBtn" class="sub-btn"><img src="img/menu/settings_icon.svg" alt="settings"> Settings <img
+                        src="img/menu/settings_icon.svg" alt="settings"></p>
+            </div>
+        </div>
+
+        <div id="gameOverBtnDiv" class="gameOver-layout">
+            <img class="gO-img" src="./img/menu/Tittles/Game Over/Recurso 9.png" alt="Game Over">
+            <button id="againBtn" class="pink-btn menu-btns">Try Again</button>
+            <p class="sub-btn" id="backToMenuBtn">Back to Menu</p>
+        </div>
+
+        <div id="instructions" class="instructions">
+            <div class="instructions-header">
+                <img class="basic-controls-img" src="./img/menu/Instructions 2.png" alt="">
+                <div id="menuCloseBtn" class="close-button">X</div>
+            </div>
+            <div class="special-attack-instructions">
+                <img src="./img/menu/Key/x.svg" alt=""><span>Bubble Attack (you need to collect Bubbles)</span>
+            </div>
+            <div class="special-attack-instructions">
+                <img src="./img/menu/Key/v.svg" alt=""><span>Poison Bubble Attack (you need to collect Poison)</span>
+            </div>
+        </div>
+
+        <div id="settings" class="instructions">
+            <div class="instructions-header">
+                <h3 class="set-title">Settings</h3>
+                <div id="settingsCloseBtn" class="close-button">X</div>
+            </div>
+
+            <div class="sett-btn-div">
+                <div>Fullscreen:</div><img id="fullscreenCB" class="checkbox" src="img/menu/Key/check_box_y.svg" alt="fullscreen checkbox">
+            </div>
+
+            <div class="sett-btn-div">
+                <div>Sound:</div><img id="soundsCB" class="checkbox" src="img/menu/Key/check_box_y.svg" alt="fullscreen checkbox">
+            </div>
+
+        </div>
+
+        <div class="mobile-btn-overlay">
+            <div data-key="ArrowLeft" id="tLeft" class="mob-btn-bg">
+                <img class="mob-btn-dir" src="img/menu/mobile-buttons/left-w.svg" alt="">
+            </div>
+            <div data-key="ArrowRight" id="tRight" class="mob-btn-bg">
+                <img class="mob-btn-dir" src="img/menu/mobile-buttons/right-w.svg" alt="">
+            </div>
+
+            <div class="flex-divider"></div>
+
+            <div data-key="slap" id="tSlap" class="mob-btn-bg">
+                <div class="mob-btn btn-fin-attack">SLAP!</div>
+            </div>
+            <div data-key="x" id="tBubble" class="mob-btn-bg">
+                <div class="mob-btn btn-bub-attack">BUbble!</div>
+            </div>
+            <div data-key="v" id="tPoison" class="mob-btn-bg">
+                <div class="mob-btn btn-poi-attack">Poison!</div>
+            </div>
+
+            <div class="flex-divider"></div>
+
+            <div data-key="ArrowUp" id="tUp" class="mob-btn-bg">
+                <img class="mob-btn-dir" src="img/menu/mobile-buttons/up-w.svg" alt="">
+            </div>
+            <div data-key="ArrowDown" id="tDown" class="mob-btn-bg">
+                <img class="mob-btn-dir" src="img/menu/mobile-buttons/down-w.svg" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div style="display: flex;" id="endContainer">
+
+    </div>
+
+
+</body>
+
+</html>
