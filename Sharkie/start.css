@@ -1,13 +1,13 @@
 body {
     font-family: sans-serif;
+    padding: 0.5rem;
     margin: 0;
     background-color: darkblue;
     color: white;
-    width: 98vw;
-    height: 98vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 96vh;
 }
 
 a {
@@ -18,6 +18,11 @@ h1, h2 {
     color: yellow;
 }
 
+h1 {
+    margin-bottom: 0;
+    text-align: center;
+}
+
 h2 {
     margin-top: 4rem;
 }
@@ -25,7 +30,8 @@ h2 {
 
 header {
     display: flex;
-    width: 100%;
+    width: 82vw;
+    min-width: 310px;
     padding: 1rem;
 }
 
@@ -40,6 +46,10 @@ header {
     width: 60px;
 }
 
+.mir {
+    transform: scaleX(-1);
+}
+
 .content-section {
     flex: 1;
     text-align: center;
@@ -51,6 +61,16 @@ header {
     flex-direction: column;
     align-items: center;
     gap: 4rem;
+}
+
+
+input {
+    height: 2rem;
+    width: 300px;
+    background-color: rgba(0, 255, 255, 0.164);
+    color: white;
+    font-family: 'Luckiest Guy';
+    font-size: 1.2rem;
 }
 
 
@@ -68,6 +88,25 @@ header {
 
 .pink-btn {
     background-color: #BF067F;
+}
+
+.pink-btn:hover {
+    background-color: #c81087;
+}
+
+
+@media screen and (max-width: 792px) {
+    h1, h2 {
+        font-size: 1.4rem;
+    }
+
+    .small-screen-hide {
+        display: none;
+    }
+
+    .inner-header {
+        justify-content: center;
+    }
 }
 
 /* luckiest-guy-regular - latin */
