@@ -33,6 +33,7 @@ class World {
     drawWorld() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);       
         this.gameControllerCheck();
+        this.gameController.playBgSound()
         this.animationFrame = requestAnimationFrame(() => {
             if (this.gameController.isInGameStatus() || this.gameController.isInStartMenu()) {
                 this.drawWorld();
@@ -174,7 +175,7 @@ class World {
 
 
     addToMap(movableObject) {
-        this.statusTriggerCheck(movableObject)
+        this.gameController.statusTriggerCheck(movableObject)
         movableObject.currentCameraPosition = this.camera_x;
         this.checkForGarbage(movableObject);
         if (movableObject.otherDirection) {
@@ -183,19 +184,6 @@ class World {
         movableObject.draw(this.ctx);
         if (movableObject.otherDirection) {
             this.reFlip(movableObject);
-        }
-    }
-
-
-    statusTriggerCheck(mO) {
-        if (mO instanceof Whale && mO.whaleGone && this.gameController.currentLevel < 3) {
-            this.gameController.setInitNxtLvl();
-        }
-        if (mO instanceof Character && mO.gameOver) {
-            this.gameController.setGameOver();
-        }
-        if (mO instanceof Whale && mO.whaleGone && this.gameController.currentLevel === 3) {
-            this.gameController.setEnd();
         }
     }
 
@@ -317,9 +305,7 @@ class World {
 
 
     newBubbles() {
-        if (Date.now() - this.bubbleTimeStamp < 10000 || !this.gameController.isInGameStatus()) {
-            return
-        }
+        if (Date.now() - this.bubbleTimeStamp < 10000 || !this.gameController.isInGameStatus()) return
         for (let i = 0; i < 10; i++) {
             this.level.collectables.push(new Bubble(this.level.levelEnd));
         }

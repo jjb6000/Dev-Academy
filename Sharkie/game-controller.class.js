@@ -25,6 +25,23 @@ class GameController {
     }
 
 
+    statusTriggerCheck(mO) {
+        if (mO instanceof Whale && mO.whaleGone && this.currentLevel < 3) {
+            this.setInitNxtLvl();
+        }
+        if (mO instanceof Character && mO.gameOver) {
+            this.setGameOver();
+        }
+        if (mO instanceof Whale && mO.whaleGone && this.currentLevel === 3) {
+            this.setEnd();
+        }
+        if (mO instanceof Whale) {
+            if(mO.objectIsOnScreen(mO.x)) this.playWhaleSound();
+        }
+    }
+
+
+
     setGameStatus() {
         this.gameStatus = 'game';
         this.statusActions();
@@ -157,7 +174,7 @@ class GameController {
     endAllSounds() {
         this.swim_sound.pause();
         this.bg_sound.pause();
-        this.pauseWhaleSound()
+        this.whale_sound.pause()
     }
 
 
