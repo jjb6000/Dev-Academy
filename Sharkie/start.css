@@ -9,6 +9,7 @@ body {
     align-items: center;
     height: 96vh;
     background-image: url("./img/bg/bgbg.webp");
+    background-size: contain;
 }
 
 a {

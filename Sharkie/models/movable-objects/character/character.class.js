@@ -39,7 +39,7 @@ class Character extends MovableObject {
         this.createImageForCache('../Sharkie/img/sharkie/1.IDLE/18.png'),
     ];
     LONG_IDLE_IMGs = [
-        this.createImageForCache('../Sharkie/img/sharkie/2.Long_IDLE/I1.png'),
+        this.createImageForCache('../Sharkie/img/sharkie/2.Long_IDLE/i1.png'),
         this.createImageForCache('../Sharkie/img/sharkie/2.Long_IDLE/I2.png'),
         this.createImageForCache('../Sharkie/img/sharkie/2.Long_IDLE/I3.png'),
         this.createImageForCache('../Sharkie/img/sharkie/2.Long_IDLE/I4.png'),

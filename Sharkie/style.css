@@ -10,6 +10,8 @@ body {
     color: white;
     position: relative;
     background-image: url("./img/bg/bgbg.webp"); 
+    background-size: contain;
+
 }
 
 h1 {
