@@ -8,6 +8,7 @@ body {
     flex-direction: column;
     align-items: center;
     height: 96vh;
+    background-image: url("./img/bg/bgbg.webp");
 }
 
 a {
@@ -15,7 +16,9 @@ a {
 }
 
 h1, h2 {
-    color: yellow;
+    color: white;
+    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+    text-shadow: rgb(21, 105, 164) 1px 2px 10px;
 }
 
 h1 {
@@ -24,7 +27,8 @@ h1 {
 }
 
 h2 {
-    margin-top: 4rem;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 
@@ -60,21 +64,44 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4rem;
+    gap: 2rem;
+}
+
+.intro {
+    font-size: 1.4rem;
+    color: rgb(0, 0, 91);
+    background-color: rgba(239, 254, 255, 0.726);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin: 3rem;
+}
+
+.intro h3 {
+    font-size: 2rem;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 
 input {
-    height: 2rem;
+    height: 3rem;
     width: 300px;
-    background-color: rgba(0, 255, 255, 0.164);
+    background-color: #0ecfd9;
     color: white;
     font-family: 'Luckiest Guy';
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    border-radius: 16px;
+    border-color: darkblue;
+    padding: 8px;
 }
 
 
-.menu-btns {
+.menu-btns {    
     padding: 0.5em 0;
     width: 280px;
     cursor: pointer;
@@ -83,6 +110,7 @@ input {
     color: white;
     font-size: 2rem;
     font-family: 'Luckiest Guy', Arial, Helvetica, sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 
@@ -92,6 +120,27 @@ input {
 
 .pink-btn:hover {
     background-color: #c81087;
+} 
+
+.sub-btn {
+    color: yellow;
+    font-size: 2rem;
+    cursor: pointer;
+    border: solid 2px yellow;
+    border-radius: 12px;
+    padding: 0.2em;
+    text-align: center;
+    background-color: #0ecfd9d1;
+    margin-bottom: 2.5rem;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.sub-btn:hover {
+    background-color: #0a949be0;
+}
+
+footer a {
+    color: rgb(1, 1, 41);
 }
 
 
@@ -106,6 +155,23 @@ input {
 
     .inner-header {
         justify-content: center;
+    }
+
+    .flex-content {
+        gap: 1rem;
+    }
+
+    .intro {
+        margin: 0;
+    }
+
+    h2 {
+        margin-top: 2rem;
+        margin-bottom: 0;
+    }
+
+    .intro h3 {
+        font-size: 1.8rem;
     }
 }
 

@@ -7,8 +7,7 @@ function getSuccessScreen() {
         <div class="hs-ol" id='hsList'></div>
 
         <div>
-            <button class="pink-btn menu-btns" onclick="reStartGame()">Try Again</button>
-            <p class="sub-btn" onclick="backToMenu()">Back to Menu</p>
+        <a style="text-decoration: none;" href="index.html"><button class="pink-btn menu-btns" onclick="reStartGame()">To Start</button></a>
         </div>
     </div>
     `
@@ -18,7 +17,7 @@ function getSuccessScreen() {
 function getListItem(index, highscore) {
     return /*html*/`
         <div class="hs-list-item">
-            <span class="hs-index">${index}.</span> <span class="hs-number">${highscore}</span>
+            <span class="hs-index">${index}.</span> <span class="hs-number">${highscore[0]}</span> <span class="hs-number">${highscore[1]}</span>
         </div>
     `
 }

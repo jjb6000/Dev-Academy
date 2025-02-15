@@ -35,7 +35,6 @@ class World {
     drawWorld() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);       
         this.gameControllerCheck();
-        // this.bg_sound.play();
         this.animationFrame = requestAnimationFrame(() => {
             if (this.gameController.isInGameStatus() || this.gameController.isInStartMenu()) {
                 this.drawWorld();
@@ -48,6 +47,7 @@ class World {
 
 
     gameControllerCheck() {
+        this.gameController.sounds ? this.bg_sound.play() : this.bg_sound.pause()
         if (this.gameController.isInGameStatus()) this.game();
         if (this.gameController.isGameOver()) this.gameOver();
         if (this.gameController.isInStartMenu()) this.startMenu();
@@ -140,9 +140,7 @@ class World {
             this.level.firedBubbles.forEach(fO => fO.stop());
         }
         this.level.collectables.forEach(cO => {
-            if (!cO instanceof Poison) {
-                cO.stop();
-            }
+            if (!cO instanceof Poison) cO.stop();
         });
     }
 
@@ -171,9 +169,7 @@ class World {
 
 
     checkForFiredBubbles(objectArray) {
-        if (objectArray.length > 0) {
-            this.addMultiObjectsToMap(objectArray)
-        }
+        if (objectArray.length > 0) this.addMultiObjectsToMap(objectArray)
     }
 
 
@@ -222,17 +218,11 @@ class World {
 
 
     collisionDetection() {
-        if (Date.now() - this.collisionTimeStamp < 200) {
-            return
-        }
+        if (Date.now() - this.collisionTimeStamp < 200) return        
         this.isCharacterColidingWithEnemy();
-
         this.isCharacterColidingWithCollectable();
-
         this.isCharacterCollectingHisFiredBubble();
-
         this.areFiredBubblesColidingWithEnemies();
-
         this.collisionTimeStamp = Date.now();
     }
 
@@ -332,8 +322,6 @@ class World {
             this.ctx.strokeStyle = 'green';
             this.ctx.rect(mo.x, mo.y, mo.width, mo.height);
             this.ctx.stroke();
-
-            // collisionBox
             let collisionBox = this.character.getCollisionBox(mo);
             this.ctx.beginPath();
             this.ctx.lineWidth = '2';
@@ -351,7 +339,6 @@ class World {
         this.ctx.moveTo(this.canvas.width / 2, 0);
         this.ctx.lineTo(this.canvas.width / 2, this.canvas.height);
         this.ctx.stroke();
-
         this.ctx.beginPath();
         this.ctx.lineWidth = '2';
         this.ctx.strokeStyle = 'yellow';

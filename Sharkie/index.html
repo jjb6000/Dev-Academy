@@ -7,7 +7,7 @@
     <link rel="icon" type="image/x-icon" href="./img/logo.png">
     <title>Sharkie</title>
     <link rel="stylesheet" href="start.css">
-
+    <script defer src="js/highscore.js"></script>
 </head>
 
 <body class="imp-body">
@@ -15,7 +15,7 @@
         <div class="inner-header">
             <img class="logo small-screen-hide" src="./img/logo.png" alt="Sharkie">
 
-            <h1>Sharkie the sharkiest browser game</h1>
+
 
             <img class="logo mir small-screen-hide" src="./img/logo.png" alt="Sharkie">
 
@@ -24,12 +24,27 @@
 
     <section class="content-section flex-content">
 
-        <h2>Your Name for the Highscore:</h2>
-        
-        <input type="text">
+        <div class="intro">
+            <h3>Help Sharkie escape a dangerous part of the ocean!</h3>
+
+            <p> 
+                Fight off enemies with a swift fin slap, but watch out for whales and electric jellyfish—they need to be
+                taken down with air or poison bubbles! The poison was lost by a cargo ship, and the jellyfish have absorbed
+                it—defeat them to collect poison vials. Oh, and don’t forget to grab as many coins as you can… A long-lost
+                pirate treasure is waiting to be claimed! <br><br> <b>Ready to dive in?</b> <br><br> 🦈💨🏴‍☠️💰</p>
+        </div>
 
 
-        <div class="menu-btns pink-btn">Start Game</div>
+
+        <h2>Your Name for the Highscore</h2>
+
+        <form onsubmit="setUser(); return false">
+            <input required id="userName" type="text">
+            <button id="nameSbumitBtn" type="submit" class="sub-btn">Submit</button>
+        </form>
+
+
+        <a style="text-decoration: none;" href="game.html"><div style="display: none;" id="startBtn" class="menu-btns pink-btn">Start Game</div></a>
 
     </section>
 

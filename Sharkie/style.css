@@ -8,7 +8,8 @@ body {
     height: 100vh;
     background-color: darkblue;
     color: white;
-    position: relative; 
+    position: relative;
+    background-image: url("./img/bg/bgbg.webp"); 
 }
 
 h1 {
@@ -52,6 +53,7 @@ canvas {
     color: white;
     font-size: 2rem;
     font-family: 'Luckiest Guy', Arial, Helvetica, sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 
@@ -98,6 +100,7 @@ canvas {
     padding: 0.2em;
     text-align: center;
     margin: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .sub-btn:hover {
