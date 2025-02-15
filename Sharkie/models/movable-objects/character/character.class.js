@@ -17,7 +17,6 @@ class Character extends MovableObject {
     poisonStorage = 0;
     otherDirection = false;
     imageIndex = 0;
-    swim_sound = new Audio('../Sharkie/audio/move.mp3');
     idleMode
     IDLE_IMGs = [
         this.createImageForCache('../Sharkie/img/sharkie/1.IDLE/1.png'),
@@ -153,7 +152,6 @@ class Character extends MovableObject {
     animate() {
         const sharkieDoingSomething = setInterval(() => {
             if (!this.moving && !this.finAttack && !this.isBubbleAttacking && !this.stillHurts() && !this.isDead())  this.movingAnimation(this.idleMode);
-            if (this.moving || this.finAttack && this.world.gameController.isInGameStatus() && this.world.gameController.sounds) this.swim_sound.play();
             if (this.moving && !this.isBubbleAttacking && !this.stillHurts() && !this.isDead()) this.movingAnimation(this.ANIMATION_IMGs);
             if (this.finAttack && !this.isDead()) this.movingAnimation(this.FIN_ATTACK_IMGs);
             if (this.stillHurts() && !this.isDead()) this.movingAnimation(this.returnHurtAnimationBasedOnAttack(this.attackedBy));

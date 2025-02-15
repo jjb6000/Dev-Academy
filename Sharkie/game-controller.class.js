@@ -7,12 +7,15 @@ class GameController {
     btnHtmlElements;
     world;
     tempCoinScore;
+    swim_sound = new Audio('../Sharkie/audio/move.mp3');
+    bg_sound = new Audio('../Sharkie/audio/shark-bg-sound.mp3');
+    whale_sound = new Audio('../Sharkie/audio/whale.mp3')
 
 
     constructor(gameOverBtns, startBtns, endContainer) {
         this.gameStatus = 'startMenu';
         this.fullScreen = false;
-        this.sounds = true;
+        this.sounds = false;
         this.currentLevel = 1;
         this.btnHtmlElements = {
             'gameOver': gameOverBtns,
@@ -94,6 +97,36 @@ class GameController {
     }
 
 
+    playSwimSound() {
+        if(this.sounds) this.swim_sound.play()
+    }
+
+
+    pauseSwimSound() {
+        if(this.sounds) this.swim_sound.pause()
+    }
+
+
+    playBgSound() {
+        if(this.sounds) this.bg_sound.play()
+    }
+
+
+    pauseBgSound() {
+        if(this.sounds) this.bg_sound.pause()
+    }
+
+
+    playWhaleSound() {
+        if(this.sounds) this.whale_sound.play()
+    }
+
+
+    pauseWhaleSound() {
+        if(this.sounds) this.whale_sound.pause()
+    }
+
+
     setTempCoinScore(number) {
         this.tempCoinScore = number;
     }
@@ -111,11 +144,20 @@ class GameController {
 
     setGameSounds() {
         this.sounds = true;
+        this.playBgSound();
     }
 
 
     setGameMute() {
         this.sounds = false;
+        this.endAllSounds();
+    }
+
+
+    endAllSounds() {
+        this.swim_sound.pause();
+        this.bg_sound.pause();
+        this.pauseWhaleSound()
     }
 
 

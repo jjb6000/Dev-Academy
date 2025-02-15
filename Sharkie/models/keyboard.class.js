@@ -53,6 +53,7 @@ class Keyboard {
         if (this.V_BTN && world.character.poisonStorage > 0) world.character.initPoisonAttack();
         if (this.SPACE) world.character.initFinAttack();
         world.character.setLastAction();
+        this.swimSoundTrigger()
     }
     
 
@@ -77,7 +78,6 @@ class Keyboard {
         if (!this.X_BTN && !this.V_BTN) world.character.isBubbleAttacking = false;
         if (!this.SPACE) world.character.stopFinAttack()
         if (this.noAction()) {
-            world.character.swim_sound.pause();
             world.character.isDead() ? world.character.loadImage('../Sharkie/img/sharkie/6.dead/1.Poisoned/12.png') : world.character.loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
         }
     }
@@ -89,6 +89,15 @@ class Keyboard {
     checkDevMode(key) {
         if (key === 'D') {
             world.devMode ? world.devMode = false : world.devMode = true
+        }
+    }
+
+
+    swimSoundTrigger() {
+        if (world.character.moving) {
+            world.gameController.playSwimSound();
+        } else {
+            world.gameController.pauseSwimSound()
         }
     }
 

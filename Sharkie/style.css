@@ -185,8 +185,6 @@ canvas {
     cursor: pointer;
 }
 
-
-
 .game-end-container {
     width: 100%;
     display: flex;
@@ -224,6 +222,22 @@ canvas {
 .hs-index {
     color: yellow;
 }
+
+
+.ingame-settings {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    display: flex;
+    gap: 2rem;
+}
+
+
+.ingame-settings img {
+    width: 2rem;
+    cursor: pointer;
+}
+
 
 .landscape-container {
     position: absolute;

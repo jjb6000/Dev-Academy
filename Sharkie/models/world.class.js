@@ -8,8 +8,6 @@ class World {
     canvas;
     ctx;
     defaultBg = new Background('../Sharkie/img/bg/Dark/1.png', 0);
-    bg_sound = new Audio('../Sharkie/audio/shark-bg-sound.mp3');
-    devMode = false;
     menuBgObjects = MENU();
     animationFrame = 0;
     bubbleTimeStamp;
@@ -41,13 +39,11 @@ class World {
                 this.collisionDetection();
                 this.newBubbles();
             }
-            
         });
     }
 
 
     gameControllerCheck() {
-        this.gameController.sounds ? this.bg_sound.play() : this.bg_sound.pause()
         if (this.gameController.isInGameStatus()) this.game();
         if (this.gameController.isGameOver()) this.gameOver();
         if (this.gameController.isInStartMenu()) this.startMenu();
@@ -159,7 +155,6 @@ class World {
         this.writeOnCanvas('Bubbles: ' + String(this.character.bubbleStorage), 20, 70);
         this.writeOnCanvas('Poison: ' + String(this.character.poisonStorage), 20, 100);
         this.writeOnCanvas('Coins: ' + String(this.character.coinStorage), 20, 130);
-        if (this.devMode) this.drawMiddle();
     }
 
 
@@ -189,7 +184,6 @@ class World {
         if (movableObject.otherDirection) {
             this.reFlip(movableObject);
         }
-        this.devModeForAllObjects(movableObject);
     }
 
 
@@ -231,7 +225,6 @@ class World {
         this.level.enemies.forEach(enemy => {
             if (this.character.isColliding(enemy) && !enemy.isDead() && !this.character.isDead() && !this.gameController.isGameOver()) {
                 this.checkIfCharacterCollidsWhileAttack(enemy);
-                this.devModeCollisionLog(enemy, this.character);
             }
         });
     }
@@ -242,7 +235,6 @@ class World {
             enemy.gotHurt(this.character.attackDamage);
         } else {
             this.character.gotHurt(enemy.attackDamage)
-            if (this.devMode) console.log('Sharkie Gesundheit:', (this.character.health - this.character.ownDamage));
             this.character.attackedBy = enemy.attack;
         }
     }
@@ -253,7 +245,6 @@ class World {
             if (this.character.isColliding(item)) {
                 this.character.collects(item);
                 this.removeItem(item);
-                this.devModeCollisionLog(this.character, item);
             }
         });
     }
@@ -264,7 +255,6 @@ class World {
             if (this.character.isColliding(item)) {
                 this.removeItem(item);
                 this.character.collects(item);
-                this.devModeCollisionLog(this.character, item);
             }
         });
     }
@@ -283,8 +273,7 @@ class World {
         this.level.enemies.forEach(enemy => {
             if (bubble.isColliding(enemy)) {
                 enemy.gotHurt(bubble.attackDamage);
-                this.popBubble(bubble)
-                this.devModeCollisionLog(bubble, enemy)
+                this.popBubble(bubble);
             }
         })
     }
@@ -305,46 +294,6 @@ class World {
         if (item instanceof Jellyfish || item instanceof Pufferfish || item instanceof Whale) {
             this.level.enemies.splice(this.level.enemies.indexOf(item), 1);
         }
-    }
-
-
-    devModeCollisionLog(object1, object2) {
-        if (this.devMode) {
-            console.log(object1, 'hits', object2);
-        }
-    }
-
-
-    devModeForAllObjects(mo) {
-        if (this.devMode && !this.isBackground(mo)) {
-            this.ctx.beginPath();
-            this.ctx.lineWidth = '2';
-            this.ctx.strokeStyle = 'green';
-            this.ctx.rect(mo.x, mo.y, mo.width, mo.height);
-            this.ctx.stroke();
-            let collisionBox = this.character.getCollisionBox(mo);
-            this.ctx.beginPath();
-            this.ctx.lineWidth = '2';
-            this.ctx.strokeStyle = 'red';
-            this.ctx.rect(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
-            this.ctx.stroke();
-        }
-    }
-
-
-    drawMiddle() {
-        this.ctx.beginPath();
-        this.ctx.lineWidth = '2';
-        this.ctx.strokeStyle = 'yellow';
-        this.ctx.moveTo(this.canvas.width / 2, 0);
-        this.ctx.lineTo(this.canvas.width / 2, this.canvas.height);
-        this.ctx.stroke();
-        this.ctx.beginPath();
-        this.ctx.lineWidth = '2';
-        this.ctx.strokeStyle = 'yellow';
-        this.ctx.moveTo(0, this.canvas.height / 2);
-        this.ctx.lineTo(this.canvas.width, this.canvas.height / 2);
-        this.ctx.stroke();
     }
 
 

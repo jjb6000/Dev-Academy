@@ -15,9 +15,6 @@ let character;
 let keyboard;
 let coinScore = 0;
 
-window.addEventListener('load', () => {
-    console.log(navigator.userAgent);
-});
 
 
 
@@ -36,7 +33,7 @@ function initGame() {
     gameController.setStartMenu();
     character = new Character();
     keyboard = new Keyboard();
-    level = level1();   
+    level = level1();
     world = new World(canvas, gameController, level, character, keyboard);
     world.startDraw();
 }
@@ -51,7 +48,7 @@ function startGame() {
 
 function reStartGame() {
     console.log('restart');
-    
+
     resetInstances();
     character = new Character();
     keyboard = new Keyboard();
@@ -60,43 +57,6 @@ function reStartGame() {
     world = new World(canvas, gameController, level, character, keyboard);
     world.startDraw()
 }
-
-
-// function nextLevel() {
-//     const currentLevel = level.currentLevel;
-//     resetInstances();
-//     level = getNextLevel(currentLevel + 1);
-//     character = new Character();
-//     keyboard = new Keyboard();
-//     gameController.setGameStatus('initNextLevel');
-//     world = new World(canvas, gameController, level, character,  keyboard);
-//     setTimeout(() => {
-//         gameController.setGameStatus('game')
-//         world.ctx.font = '24px Luckiest Guy';
-//         world.ctx.fillStyle = 'darkblue';
-//     }, 2000);
-// }
-
-
-// function getNextLevel(levelCounter) {
-//     if (levelCounter === 2) {
-//         return level2();
-//     }
-//     if (levelCounter === 3) {
-//         return level3();
-//     }
-// }
-
-
-// function endScreen(coins) {
-//     resetInstances();
-//     setNewHighscore(coins);
-//     const highscore = getHighscores();
-//     endContainer.style.display = 'flex';
-//     endContainer.innerHTML = getSuccessScreen();
-//     displayHighscore(highscore);
-//     document.getElementById('canvasContainer').style.display = 'none';
-// }
 
 
 function displayHighscore(highscore) {
@@ -114,13 +74,6 @@ function backToMenu() {
 }
 
 
-// function hideAllOverlays() {
-//     gameOverBtns.style.display = 'none';
-//     endContainer.style.display = 'none';
-//     startBtns.style.display = 'none';
-//     document.getElementById('canvasContainer').style.display = 'block';
-// }
-
 
 function resetInstances() {
     if (world) {
@@ -133,29 +86,47 @@ function resetInstances() {
 
 
 function soundSettings() {
-    if (gameController.sounds) {
-        gameController.setGameMute();
-        soundsCheckbox.src = './img/menu/Key/check_box_y.svg';
-    } else {
-        gameController.setGameSounds();
-        soundsCheckbox.src = './img/menu/Key/select_check_box_y.svg';
-    }
+    gameController.sounds ? soundOff() : soundOn();
+}
+
+
+function soundOff() {
+    gameController.setGameMute();
+    soundsCheckbox.src = './img/menu/Key/check_box_y.svg';
+    document.getElementById('gameSoundBtn').src = 'img/menu/Key/volume_on.svg';
+}
+
+
+function soundOn() {
+    gameController.setGameSounds();
+    soundsCheckbox.src = './img/menu/Key/select_check_box_y.svg';
+    document.getElementById('gameSoundBtn').src = 'img/menu/Key/volume_off.svg';
 }
 
 
 function fullscreenSetting() {
-    if (gameController.fullScreen) {
-        gameController.setWindowScreen();
-        fullscreenCheckbox.src = './img/menu/Key/check_box_y.svg';
-        canvas.classList.remove('canvas-fs');
-        document.exitFullscreen();
-    } else {
-        gameController.setFullScreen();
-        fullscreenCheckbox.src = './img/menu/Key/select_check_box_y.svg';
-        canvas.classList.add('canvas-fs');
-        canvasContainer.requestFullscreen();
-    }
+    gameController.fullScreen ? fullScreenOff() : fullScreenOn();
 }
+
+
+function fullScreenOff() {
+    gameController.setWindowScreen();
+    fullscreenCheckbox.src = './img/menu/Key/check_box_y.svg';
+    document.getElementById('gameFullscreenBtn').src = 'img/menu/Key/fullscreen_y.svg';
+    canvas.classList.remove('canvas-fs');
+    document.exitFullscreen();
+}
+
+
+function fullScreenOn() {
+    gameController.setFullScreen();
+    fullscreenCheckbox.src = './img/menu/Key/select_check_box_y.svg';
+    document.getElementById('gameFullscreenBtn').src = 'img/menu/Key/exit_fullscreen_y.svg';
+    canvas.classList.add('canvas-fs');
+    canvasContainer.requestFullscreen();
+}
+
+
 
 
 function openSettingsMenu() {
@@ -172,20 +143,19 @@ function openSettingsMenu() {
 
 // ANCHOR Eventlisteners
 function applyGameEventListeners() {
-    window.onkeydown = (e) => {        
+    window.onkeydown = (e) => {
         world.keyboard.processKeyInput(e.key, true);
         world.keyboard.checkDevMode(e.key);
     }
     window.onkeyup = (e) => world.keyboard.processKeyInput(e.key, false);
 
-    const touchBtnIds = ['tLeft', 'tRight', 'tSlap', 'tBubble','tPoison', 'tUp', 'tDown']
+    const touchBtnIds = ['tLeft', 'tRight', 'tSlap', 'tBubble', 'tPoison', 'tUp', 'tDown']
 
     touchBtnIds.forEach(id => {
         const btn = document.getElementById(id);
-        console.log(btn.dataset.key)
         btn.addEventListener('touchstart', () => world.keyboard.processKeyInput(btn.dataset.key, true));
         btn.addEventListener('touchend', () => world.keyboard.processKeyInput(btn.dataset.key, false));
-    }) 
+    })
 }
 
 
@@ -220,7 +190,6 @@ document.getElementById('againBtn').addEventListener('click', () => reStartGame(
 document.getElementById('backToMenuBtn').addEventListener('click', () => backToMenu());
 
 
-canvas.addEventListener('click', () => document.getElementById('canvasContainer').requestFullscreen())
 
 
 
