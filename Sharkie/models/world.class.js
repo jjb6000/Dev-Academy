@@ -76,12 +76,10 @@ class World {
      * Initialisiert das Startmenü.
      */
     startMenu() {
-        document.getElementById('loaderBg').style.display = 'flex';
         this.gameController.setTempCoinScore(0);
         if (this.menuBgObjects) {
             this.menuBgObjects.forEach(objectArray => {this.addMultiObjectsToMap(objectArray)});
         }
-        document.getElementById('loaderBg').style.display = 'none'
     }
 
 

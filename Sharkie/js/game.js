@@ -14,6 +14,7 @@ let level;
 let character;
 let keyboard;
 let coinScore = 0;
+let globalImageCounter = 0;
 
 
 
@@ -29,6 +30,14 @@ function loading() {
     ctx.fillText('Loading', 300, 240);
     resetInstances();
     initGame();
+}
+
+
+/**
+* Ruft den Gamecontroller auf um die Anzhal der Bilder zu speichern und den Lade-Screen zu beenden.
+*/
+function endLoadScreenCheck() {
+    gameController.loadScreenManager();
 }
 
 

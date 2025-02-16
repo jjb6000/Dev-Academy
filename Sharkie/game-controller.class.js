@@ -7,9 +7,10 @@ class GameController {
     currentLevel;
     btnHtmlElements;
     tempCoinScore;
+    globalImageCounter = 0;
     swim_sound = new Audio('../Sharkie/audio/move.mp3');
     bg_sound = new Audio('../Sharkie/audio/shark-bg-sound.mp3');
-    whale_sound = new Audio('../Sharkie/audio/whale.mp3')
+    whale_sound = new Audio('../Sharkie/audio/whale.mp3');
 
 
     constructor(gameOverBtns, startBtns, endContainer) {
@@ -129,18 +130,31 @@ class GameController {
 
 
     /**
-     * Setzt die aktuelle Welt des Spiels.
-     * @param {Object} world - Das Welt-Objekt, das für das Spiel verwendet wird.
-     */
+    * Setzt die aktuelle Welt des Spiels.
+    * @param {Object} world - Das Welt-Objekt, das für das Spiel verwendet wird.
+    */
     setWorld(world) {
         this.world = world;
     }
 
+    /**
+    * Speichert bei jedem Aufruf die Anzahl der geladenen Bilder und beendet den Lade-Screen bei einem definierten Höchstwert.
+    */
+    loadScreenManager() {
+        this.globalImageCounter++; 
+        if (this.globalImageCounter < 390 && this.isInStartMenu()) {   
+            document.getElementById('loaderBg').style.display = 'flex';
+        }
+        if (this.globalImageCounter > 390 && this.isInStartMenu()) {
+            document.getElementById('loaderBg').style.display = 'none';
+        }
+    }
+
 
     /**
-     * Aktualisiert die Spielstatus-abhängigen UI-Elemente.
-     * Blendet relevante Buttons ein und überprüft, ob das Spiel beendet ist.
-     */
+    * Aktualisiert die Spielstatus-abhängigen UI-Elemente.
+    * Blendet relevante Buttons ein und überprüft, ob das Spiel beendet ist.
+    */
     statusActions() {
         this.resetAllElements();
         if (this.btnHtmlElements[this.gameStatus] !== undefined) {

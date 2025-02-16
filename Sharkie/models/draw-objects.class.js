@@ -19,7 +19,7 @@ class DrawObject {
     }
 
     /**
-     * Erstellt ein Bild für den Cache und gibt das Image-Objekt zurück.
+     * Erstellt ein Bild für den Cache, meldet das erstellte Bild an die Loadscreen Funktion und gibt das Image-Objekt zurück. 
      * 
      * @param {string} path - Der Pfad zum Bild, das für den Cache erstellt werden soll.
      * @returns {HTMLImageElement} Das erstellte Image-Objekt.
@@ -27,6 +27,7 @@ class DrawObject {
     createImageForCache(path) {
         let img = new Image();
         img.src = path;
+        endLoadScreenCheck();
         return img;
     }
 
