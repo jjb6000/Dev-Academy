@@ -20,6 +20,7 @@ h1 {
 
 .canvas-container {
     position: relative;
+
 }
 
 canvas {
@@ -354,9 +355,31 @@ canvas {
 
 
 @media screen and (max-width: 1366px) {
-    canvas {
-        width: 100vw;
+
+    .canvas-container{
         height: 100vh;
+        width: 100vw;
+    }
+
+    body {
+        background-image: none;
+    }
+
+    .hide-on-mobile {
+        display: none;
+    }
+
+    .mobile-btn-overlay {
+        display: flex;
+    }
+
+    canvas {
+        width: 100%;
+        height: calc(100% - 4rem);
+    }
+
+    .btn-div {
+        top: 16%
     }
 }
 
@@ -399,22 +422,6 @@ canvas {
 }
 
 
-
-@media screen and (max-width: 992px){
-    .hide-on-mobile {
-        display: none;
-    }
-
-    .mobile-btn-overlay {
-        display: flex;
-    }
-
-    .btn-div {
-        top: 16%
-    }
-
-
-}
 
 
 
