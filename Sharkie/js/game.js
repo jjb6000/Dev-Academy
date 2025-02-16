@@ -34,14 +34,6 @@ function loading() {
 
 
 /**
-* Ruft den Gamecontroller auf um die Anzhal der Bilder zu speichern und den Lade-Screen zu beenden.
-*/
-function endLoadScreenCheck() {
-    gameController.loadScreenManager();
-}
-
-
-/**
  * Initialisiert das Spiel, indem das Startmenü gesetzt wird,
  * ein neues Charakter- und Keyboard-Objekt erstellt und die Welt gestartet wird.
  */

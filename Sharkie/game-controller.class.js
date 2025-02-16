@@ -7,7 +7,6 @@ class GameController {
     currentLevel;
     btnHtmlElements;
     tempCoinScore;
-    globalImageCounter = 0;
     swim_sound = new Audio('../Sharkie/audio/move.mp3');
     bg_sound = new Audio('../Sharkie/audio/shark-bg-sound.mp3');
     whale_sound = new Audio('../Sharkie/audio/whale.mp3');
@@ -138,16 +137,13 @@ class GameController {
     }
 
     /**
-    * Speichert bei jedem Aufruf die Anzahl der geladenen Bilder und beendet den Lade-Screen bei einem definierten Höchstwert.
+    * Startet und beendet den Lade-Screen.
     */
-    loadScreenManager() {
-        this.globalImageCounter++; 
-        if (this.globalImageCounter < 390 && this.isInStartMenu()) {   
-            document.getElementById('loaderBg').style.display = 'flex';
-        }
-        if (this.globalImageCounter > 390 && this.isInStartMenu()) {
+    loadScreenManager() { 
+        document.getElementById('loaderBg').style.display = 'flex';
+        setTimeout(() => {
             document.getElementById('loaderBg').style.display = 'none';
-        }
+        }, 4000);
     }
 
 
@@ -159,6 +155,9 @@ class GameController {
         this.resetAllElements();
         if (this.btnHtmlElements[this.gameStatus] !== undefined) {
             this.btnHtmlElements[this.gameStatus].style.display = 'flex';
+        }
+        if (this.isInStartMenu()) {
+            this.loadScreenManager();
         }
         if (this.endGame()) {
             this.displaySuccessScreen();

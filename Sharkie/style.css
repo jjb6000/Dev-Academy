@@ -40,7 +40,7 @@ canvas {
     left: 0;
     bottom: 0;
     right: 0; 
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     background-color: rgb(7, 197, 255);
@@ -317,12 +317,14 @@ canvas {
 
 .mob-btn-dir {
     width: 3rem;
+    user-select: none;
 }
 
 .mob-btn {
     padding: 0.5rem 1rem;
     border-radius: 16px;
     z-index: 999;
+    user-select: none;
 }
 
 
