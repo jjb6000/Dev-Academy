@@ -18,6 +18,9 @@ let coinScore = 0;
 
 
 
+/**
+ * Ruft `resetInstances` und `initGame` auf, um das Spiel zu initialisieren.
+ */
 function loading() {
     ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -29,16 +32,23 @@ function loading() {
 }
 
 
+/**
+ * Initialisiert das Spiel, indem das Startmenü gesetzt wird,
+ * ein neues Charakter- und Keyboard-Objekt erstellt und die Welt gestartet wird.
+ */
 function initGame() {
     gameController.setStartMenu();
     character = new Character();
     keyboard = new Keyboard();
     level = level1();
-    world = new World(canvas, gameController, level, character, keyboard);
+    createNewWorld();
     world.startDraw();
 }
 
 
+/**
+ * Startet das Spiel, indem der Spielstatus gesetzt, Event-Listener angewendet und die Welt gestartet wird.
+ */
 function startGame() {
     gameController.setGameStatus('game');
     applyGameEventListeners();
@@ -46,6 +56,10 @@ function startGame() {
 }
 
 
+/**
+ * Setzt das Spiel zurück, indem Instanzen gelöscht, ein neues Charakter- und Keyboard-Objekt erstellt
+ * und das Spiel neu gestartet wird.
+ */
 function reStartGame() {
     console.log('restart');
 
@@ -54,11 +68,25 @@ function reStartGame() {
     keyboard = new Keyboard();
     level = level1();
     gameController.setGameStatus('game');
-    world = new World(canvas, gameController, level, character, keyboard);
-    world.startDraw()
+    createNewWorld();
+    world.startDraw();
 }
 
 
+/**
+ * Erstellt eine neue Welt, setzt die Welt und übergibt sie an den Spielcontroller.
+ */
+function createNewWorld() {
+    world = new World(canvas, gameController, level, character, keyboard);
+    gameController.setWorld(world);
+}
+
+
+/**
+ * Zeigt die Highscores in einer Liste an.
+ * 
+ * @param {Array} highscore - Liste der Highscores, die angezeigt werden sollen.
+ */
 function displayHighscore(highscore) {
     highscore.forEach((hs, index) => {
         const li = getListItem(index + 1, hs)
@@ -67,14 +95,19 @@ function displayHighscore(highscore) {
 }
 
 
+/**
+ * Setzt das Spiel zurück und kehrt zum Hauptmenü zurück.
+ */
 function backToMenu() {
-    world.stopWorld()
+    world.stopWorld();
     resetInstances();
     initGame();
 }
 
 
-
+/**
+ * Setzt die Spiel-Instanzen zurück, indem die Welt und deren Objekte auf null gesetzt werden.
+ */
 function resetInstances() {
     if (world) {
         world.keyboard = null;
@@ -85,11 +118,19 @@ function resetInstances() {
 }
 
 
+/**
+ * Schaltet die Soundeinstellungen des Spiels um.
+ * Wenn die Sounds an sind, werden sie ausgeschaltet, andernfalls werden sie eingeschaltet.
+ */
 function soundSettings() {
     gameController.sounds ? soundOff() : soundOn();
 }
 
 
+/**
+ * Schaltet die Sounds aus.
+ * Aktualisiert die Anzeige des Sound-Buttons und das Checkbox-Icon.
+ */
 function soundOff() {
     gameController.setGameMute();
     soundsCheckbox.src = './img/menu/Key/check_box_y.svg';
@@ -97,6 +138,10 @@ function soundOff() {
 }
 
 
+/**
+ * Schaltet die Sounds ein.
+ * Aktualisiert die Anzeige des Sound-Buttons und das Checkbox-Icon.
+ */
 function soundOn() {
     gameController.setGameSounds();
     soundsCheckbox.src = './img/menu/Key/select_check_box_y.svg';
@@ -104,11 +149,17 @@ function soundOn() {
 }
 
 
+/**
+ * Schaltet den Vollbildmodus ein oder aus.
+ */
 function fullscreenSetting() {
     gameController.fullScreen ? fullScreenOff() : fullScreenOn();
 }
 
 
+/**
+ * Deaktiviert den Vollbildmodus und setzt die Anzeige zurück.
+ */
 function fullScreenOff() {
     gameController.setWindowScreen();
     fullscreenCheckbox.src = './img/menu/Key/check_box_y.svg';
@@ -118,6 +169,9 @@ function fullScreenOff() {
 }
 
 
+/**
+ * Aktiviert den Vollbildmodus und ändert die Anzeige der Buttons.
+ */
 function fullScreenOn() {
     gameController.setFullScreen();
     fullscreenCheckbox.src = './img/menu/Key/select_check_box_y.svg';
@@ -127,8 +181,9 @@ function fullScreenOn() {
 }
 
 
-
-
+/**
+ * Öffnet das Einstellungsmenü und zeigt die aktuellen Optionen an.
+ */
 function openSettingsMenu() {
     const checkbox = './img/menu/Key/check_box_y.svg';
     const checkboxChecked = './img/menu/Key/select_check_box_y.svg';
@@ -138,24 +193,21 @@ function openSettingsMenu() {
 }
 
 
-
-
-
-// ANCHOR Eventlisteners
+/**
+ * Wendet die Event-Listener für die Tasteneingaben und Touch-Buttons im Spiel an.
+ */
 function applyGameEventListeners() {
     window.onkeydown = (e) => {
         world.keyboard.processKeyInput(e.key, true);
         world.keyboard.checkDevMode(e.key);
-    }
+    };
     window.onkeyup = (e) => world.keyboard.processKeyInput(e.key, false);
-
-    const touchBtnIds = ['tLeft', 'tRight', 'tSlap', 'tBubble', 'tPoison', 'tUp', 'tDown']
-
+    const touchBtnIds = ['tLeft', 'tRight', 'tSlap', 'tBubble', 'tPoison', 'tUp', 'tDown'];
     touchBtnIds.forEach(id => {
         const btn = document.getElementById(id);
         btn.addEventListener('touchstart', () => world.keyboard.processKeyInput(btn.dataset.key, true));
         btn.addEventListener('touchend', () => world.keyboard.processKeyInput(btn.dataset.key, false));
-    })
+    });
 }
 
 

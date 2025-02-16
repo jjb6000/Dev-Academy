@@ -8,7 +8,13 @@ class Bubble extends MovableObject {
         this.y = 400 + Math.random() * 80;
         this.animate();
     }
+    
 
+    /**
+     * Startet eine Animation, die das Objekt in regelmäßigen Abständen nach oben bewegt.
+     * Sobald das Objekt eine bestimmte Y-Position erreicht (unter -90), wird die Bewegung gestoppt.
+     * Diese Methode verwendet ein Intervall, das alle 1/60 Sekunde ausgeführt wird.
+    */
     animate() {
         const interval = setInterval(() => {
             this.moveUp(-100, 0.5);            

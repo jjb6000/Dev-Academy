@@ -1,11 +1,11 @@
 class GameController {
+    world
     fullScreen;
     sounds;
     gameStates = ['game', 'gameOver', 'startMenu', 'initNextLvl', 'end'];
     gameStatus;
     currentLevel;
     btnHtmlElements;
-    world;
     tempCoinScore;
     swim_sound = new Audio('../Sharkie/audio/move.mp3');
     bg_sound = new Audio('../Sharkie/audio/shark-bg-sound.mp3');
@@ -25,6 +25,10 @@ class GameController {
     }
 
 
+    /**
+     * Überprüft den Status eines beweglichen Objekts und aktualisiert das Spiel entsprechend.
+     * @param {Object} mO - Das zu überprüfende bewegliche Objekt.
+     */
     statusTriggerCheck(mO) {
         if (mO instanceof Whale && mO.whaleGone && this.currentLevel < 3) {
             this.setInitNxtLvl();
@@ -36,24 +40,69 @@ class GameController {
             this.setEnd();
         }
         if (mO instanceof Whale) {
-            if(mO.objectIsOnScreen(mO.x)) this.playWhaleSound();
+            if (mO.objectIsOnScreen(mO.x)) this.playWhaleSound();
         }
     }
 
 
+    /**
+     * Prüft, ob ein bewegliches Objekt zur Müllsammlung bereit ist oder ob es im Game-Over-Zustand entfernt werden soll.
+     * Damit wird sichergestellt, dass alle Animationen beendet sind oder beendet werden. Sonst könnten alte Instanzen aufgrund laufender Animationen nicht gelöscht werden.
+     * @param {Object} movableObject - Das zu überprüfende bewegliche Objekt.
+     */
+    checkForGarbage(movableObject) {
+        if (movableObject.readyForGarbageCollection) {
+            this.removeItem(movableObject);
+        }
+        if (this.isGameOver() &&
+            movableObject instanceof MovableObject &&
+            !(movableObject instanceof Background)) {
+            movableObject.stop();
+            this.removeItem(movableObject);
+        }
+    }
 
+
+    /**
+     * Entfernt ein Objekt aus der entsprechenden Level-Sammlung.
+     * @param {Object} item - Das zu entfernende Objekt.
+     */
+    removeItem(item) {
+        if (item instanceof Bubble || item instanceof Coin || item instanceof Poison) {
+            this.world.level.collectables.splice(this.world.level.collectables.indexOf(item), 1);
+        }
+        if (item instanceof AttackBubble) {
+            this.world.level.firedBubbles.splice(this.world.level.firedBubbles.indexOf(item), 1);
+        }
+        if (item instanceof Jellyfish || item instanceof Pufferfish || item instanceof Whale) {
+            this.world.level.enemies.splice(this.world.level.enemies.indexOf(item), 1);
+        }
+    }
+
+
+    /**
+     * Setzt den Spielstatus auf "game" und aktualisiert die UI entsprechend.
+     */
     setGameStatus() {
         this.gameStatus = 'game';
         this.statusActions();
     }
 
 
+    /**
+     * Setzt den Spielstatus auf "initNextLvl" und aktualisiert die UI,
+     * um das nächste Level vorzubereiten.
+     */
     setInitNxtLvl() {
         this.gameStatus = 'initNextLvl';
         this.statusActions();
     }
 
 
+    /**
+     * Setzt den Spielstatus auf "gameOver", setzt das Level zurück
+     * und aktualisiert die UI.
+     */
     setGameOver() {
         this.currentLevel = 1;
         this.gameStatus = 'gameOver';
@@ -61,29 +110,52 @@ class GameController {
     }
 
 
+    /**
+     * Setzt den Spielstatus auf "end" und aktualisiert die UI.
+     */
     setEnd() {
         this.gameStatus = 'end';
         this.statusActions();
     }
 
 
+    /**
+     * Setzt den Spielstatus auf "startMenu" und zeigt das Startmenü an.
+     */
     setStartMenu() {
         this.gameStatus = 'startMenu';
         this.statusActions();
     }
 
 
+    /**
+     * Setzt die aktuelle Welt des Spiels.
+     * @param {Object} world - Das Welt-Objekt, das für das Spiel verwendet wird.
+     */
+    setWorld(world) {
+        this.world = world;
+    }
+
+
+    /**
+     * Aktualisiert die Spielstatus-abhängigen UI-Elemente.
+     * Blendet relevante Buttons ein und überprüft, ob das Spiel beendet ist.
+     */
     statusActions() {
         this.resetAllElements();
         if (this.btnHtmlElements[this.gameStatus] !== undefined) {
             this.btnHtmlElements[this.gameStatus].style.display = 'flex';
         }
         if (this.endGame()) {
-            this.displaySuccessScreen()
+            this.displaySuccessScreen();
         }
     }
 
 
+    /**
+     * Zeigt den Erfolgsbildschirm an, speichert den neuen Highscore
+     * und blendet das Spielfeld aus.
+     */
     displaySuccessScreen() {
         setNewHighscore(this.tempCoinScore);
         const highscore = getHighscores();
@@ -94,8 +166,12 @@ class GameController {
     }
 
 
+    /**
+     * Lädt das nächste Level basierend auf dem aktuellen Fortschritt.
+     * @returns {void | Object} Gibt das nächste Level-Objekt zurück, falls vorhanden.
+     */
     getNextLevel() {
-        const nextLvl = +this.currentLevel + 1
+        const nextLvl = +this.currentLevel + 1;
         if (nextLvl === 2) {
             this.currentLevel = 2;
             return level2();
@@ -107,6 +183,9 @@ class GameController {
     }
 
 
+    /**
+     * Setzt alle UI-Elemente zurück und versteckt die relevanten Buttons.
+     */
     resetAllElements() {
         gameOverBtns.style.display = 'none';
         endContainer.style.display = 'none';
@@ -115,32 +194,32 @@ class GameController {
 
 
     playSwimSound() {
-        if(this.sounds) this.swim_sound.play()
+        if (this.sounds) this.swim_sound.play()
     }
 
 
     pauseSwimSound() {
-        if(this.sounds) this.swim_sound.pause()
+        if (this.sounds) this.swim_sound.pause()
     }
 
 
     playBgSound() {
-        if(this.sounds) this.bg_sound.play()
+        if (this.sounds) this.bg_sound.play()
     }
 
 
     pauseBgSound() {
-        if(this.sounds) this.bg_sound.pause()
+        if (this.sounds) this.bg_sound.pause()
     }
 
 
     playWhaleSound() {
-        if(this.sounds) this.whale_sound.play()
+        if (this.sounds) this.whale_sound.play()
     }
 
 
     pauseWhaleSound() {
-        if(this.sounds) this.whale_sound.pause()
+        if (this.sounds) this.whale_sound.pause()
     }
 
 
@@ -159,22 +238,29 @@ class GameController {
     }
 
 
+    /**
+     * Aktiviert die Spiel-Sounds und startet die Hintergrundmusik.
+     */
     setGameSounds() {
         this.sounds = true;
         this.playBgSound();
     }
 
-
+    /**
+     * Schaltet alle Spiel-Sounds stumm und stoppt alle aktuell abgespielten Sounds.
+     */
     setGameMute() {
         this.sounds = false;
         this.endAllSounds();
     }
 
-
+    /**
+     * Beendet alle aktuell laufenden Sounds im Spiel.
+     */
     endAllSounds() {
         this.swim_sound.pause();
         this.bg_sound.pause();
-        this.whale_sound.pause()
+        this.whale_sound.pause();
     }
 
 
@@ -199,6 +285,19 @@ class GameController {
 
     endGame() {
         return this.gameStatus === 'end';
+    }
+
+
+    /**
+    * Ein cheat der über die Konsole über "gameController.cheat()" aufgerufen werden kann. Der Endgegner wird damit initialisiert und direkt getötet.
+    */
+    cheat() {
+        this.world.level.enemies.forEach(item => {
+            if (item instanceof Whale) {
+                item.ownDamage = 2000;
+                item.x = this.world.character.x + 200
+            }
+        });
     }
 
 }

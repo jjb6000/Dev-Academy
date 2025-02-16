@@ -149,25 +149,51 @@ class Character extends MovableObject {
     }
 
 
+    /**
+     * Führt die Animationen des Charakters basierend auf seinem aktuellen Zustand aus.
+     * Überprüft kontinuierlich, ob der Charakter in einer bestimmten Situation ist 
+     * (z. B. in Bewegung, verletzt, tot) und zeigt die entsprechende Animation an.
+     * - Wenn der Charakter sich nicht bewegt, wird die Idle-Animation angezeigt.
+     * - Wenn der Charakter sich bewegt, wird die Bewegungsanimation angezeigt.
+     * - Wenn der Charakter eine Flossen-Attacke ausführt, wird die Fin-Attack-Animation angezeigt.
+     * - Wenn der Charakter verletzt ist, wird eine spezielle Verletzungs-Animation angezeigt.
+     * - Wenn der Charakter tot ist, wird die Tod-Animation abgespielt und die Intervalle gestoppt.
+     * - Wenn der Charakter länger als 8 Sekunden inaktiv ist, wird die Idle-Animation auf "long idle" gesetzt.
+     */
     animate() {
         const sharkieDoingSomething = setInterval(() => {
-            if (!this.moving && !this.finAttack && !this.isBubbleAttacking && !this.stillHurts() && !this.isDead())  this.movingAnimation(this.idleMode);
-            if (this.moving && !this.isBubbleAttacking && !this.stillHurts() && !this.isDead()) this.movingAnimation(this.ANIMATION_IMGs);
-            if (this.finAttack && !this.isDead()) this.movingAnimation(this.FIN_ATTACK_IMGs);
-            if (this.stillHurts() && !this.isDead()) this.movingAnimation(this.returnHurtAnimationBasedOnAttack(this.attackedBy));
-            if (this.isDead()) this.deadSharkie(sharkieDoingSomething);
-            if (Date.now() - this.lastAction > 8000) this.idleMode = this.LONG_IDLE_IMGs;
-        }, 250);        
+            if (!this.moving && !this.finAttack && !this.isBubbleAttacking && !this.stillHurts() && !this.isDead())
+                this.movingAnimation(this.idleMode);
+            if (this.moving && !this.isBubbleAttacking && !this.stillHurts() && !this.isDead())
+                this.movingAnimation(this.ANIMATION_IMGs);
+            if (this.finAttack && !this.isDead())
+                this.movingAnimation(this.FIN_ATTACK_IMGs);
+            if (this.stillHurts() && !this.isDead())
+                this.movingAnimation(this.returnHurtAnimationBasedOnAttack(this.attackedBy));
+            if (this.isDead())
+                this.deadSharkie(sharkieDoingSomething);
+            if (Date.now() - this.lastAction > 8000)
+                this.idleMode = this.LONG_IDLE_IMGs;
+        }, 250);
     }
 
-    
+
+    /**
+     * Setzt den Zeitpunkt der letzten Aktion des Charakters und setzt den Idle-Modus
+     * auf die Standard-Idle-Animation.
+     */
     setLastAction() {
         this.lastAction = Date.now();
         this.idleMode = this.IDLE_IMGs;
     }
 
-    
 
+    /**
+     * Gibt die entsprechende Animationsreihe zurück, je nachdem, ob der Charakter
+     * von einem elektrischen oder einem Gift-Angriff verletzt wurde.
+     * @param {string} attackedBy - Der Typ des Angriffs (z. B. 'electric' oder 'poison').
+     * @returns {Array} - Die entsprechende Animationsreihe für den Angriffstyp.
+     */
     returnHurtAnimationBasedOnAttack(attackedBy) {
         if (attackedBy === 'electric') {
             return this.ELECTRIC_OUCH_IMGs;
@@ -177,11 +203,16 @@ class Character extends MovableObject {
     }
 
 
+    /**
+     * Führt die Blasen-Attacke des Charakters aus, je nachdem, ob es sich um eine
+     * Giftblase oder eine normale Angriffsblase handelt.
+     * @param {string} attackType - Der Typ der Blase ('poison' oder 'attack').
+     */
     bubbleAttack(attackType) {
         const bubbleCoo = this.calcBubbleCoordinates();
         if (attackType === 'poison') {
             this.world.level.firedBubbles.push(new PoisonBubble(bubbleCoo.x, bubbleCoo.y, this.otherDirection));
-            this.poisonStorage--
+            this.poisonStorage--;
         } else {
             this.world.level.firedBubbles.push(new AttackBubble(bubbleCoo.x, bubbleCoo.y, this.otherDirection));
             this.bubbleStorage--;
@@ -190,7 +221,10 @@ class Character extends MovableObject {
     }
 
 
-    
+    /**
+     * Berechnet die Koordinaten für den Blasenangriff basierend auf der Position des Charakters.
+     * @returns {Object} - Die x- und y-Koordinaten für die Blase.
+     */
     calcBubbleCoordinates() {
         return {
             'x': this.world.character.x + this.width + 20 - this.OFFSET_X_LEFT,
@@ -199,27 +233,36 @@ class Character extends MovableObject {
     }
 
 
-
+    /**
+     * Initialisiert die Flossen-Attacke des Charakters, wenn er nicht verletzt ist
+     * und die letzte Fin-Attacke mehr als 300 ms zurückliegt.
+     */
     initFinAttack() {
-
         if (!this.stillHurts() && Date.now() - this.lastFinAttack > 300) {
             this.finAttack = true;
             this.changeOffsetDuringFinAttack();
             this.lastFinAttack = Date.now();
         } else {
-            this.stopFinAttack()
+            this.stopFinAttack();
         }
     }
 
+
+    /**
+     * Stoppt die Flossen-Attacke des Charakters und setzt den Offset zurück.
+     */
     stopFinAttack() {
         this.finAttack = false;
         this.changeOffsetDuringFinAttack();
     }
 
 
+    /**
+     * Ändert den Offset des Charakters während einer Flossen-Attacke.
+     */
     changeOffsetDuringFinAttack() {
         if (this.finAttack) {
-            this.OFFSET_X_LEFT =  10;
+            this.OFFSET_X_LEFT = 10;
             this.OFFSET_X_RIGHT = 10;
         } else {
             this.OFFSET_X_LEFT = 56;
@@ -227,7 +270,11 @@ class Character extends MovableObject {
         }
     }
 
-    
+
+    /**
+     * Initialisiert die Blasen-Attacke des Charakters, wenn die Zeit seit der letzten Blasen-Attacke
+     * mehr als 600 ms beträgt und Blasen im Vorrat sind.
+     */
     initBubbleAttack() {
         if (Date.now() - this.timeStampLastBubbleAttack > 600 && this.bubbleStorage > 0) {
             this.bubbleAnimation(this.BUBBLE_ATTACK_IMGs, 'bubble');
@@ -236,6 +283,10 @@ class Character extends MovableObject {
     }
 
 
+    /**
+     * Initialisiert die Giftblasen-Attacke des Charakters, wenn die Zeit seit der letzten Blasen-Attacke
+     * mehr als 600 ms beträgt und Giftblasen im Vorrat sind.
+     */
     initPoisonAttack() {
         if (Date.now() - this.timeStampLastBubbleAttack > 600 && this.poisonStorage > 0) {
             this.bubbleAnimation(this.POISON_BUBBLE_ATTACK_IMGs, 'poison');
@@ -244,9 +295,14 @@ class Character extends MovableObject {
     }
 
 
+    /**
+     * Führt die Blasen-Attacke aus und zeigt die Animation für die Blase an.
+     * @param {Array} imgArray - Das Array von Bild-URLs für die Animation.
+     * @param {string} attackType - Der Typ der Blase ('bubble' oder 'poison').
+     */
     bubbleAnimation(imgArray, attackType) {
         this.isBubbleAttacking = true;
-        let i = 0
+        let i = 0;
         const bubbleInterval = setInterval(() => {
             if (i < 9 && this.isBubbleAttacking) {
                 this.movingAnimation(imgArray);
@@ -262,28 +318,40 @@ class Character extends MovableObject {
     }
 
 
+    /**
+     * Stoppt das Blasen-Intervall und setzt den Charakter zurück, wenn die Blasen-Attacke abgeschlossen ist.
+     * @param {number} bubbleInterval - Die ID des Blasen-Intervalls, das gestoppt werden soll.
+     */
     stopBubbleInterval(bubbleInterval) {
         clearInterval(bubbleInterval);
         this.loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
         this.timeStampLastBubbleAttack = 0;
     }
 
+
     bubblesInStorage() {
         return this.bubbleStorage > 0;
     }
 
-
-
+    /**
+     * Überprüft, ob der Charakter mit einem Gegner kollidiert.
+     * @param {Object} enemy - Das Gegnerobjekt, mit dem die Kollision überprüft werden soll.
+     * @returns {boolean} - `true`, wenn eine Kollision vorliegt, andernfalls `false`.
+     */
     isColliding(enemy) {
         const characterBox = this.getCollisionBox(this);
-        const enemyBox = this.getCollisionBox(enemy);        
+        const enemyBox = this.getCollisionBox(enemy);
         return (characterBox.x + characterBox.width) >= enemyBox.x && characterBox.x <= (enemyBox.x + enemyBox.width) &&
             (characterBox.y + characterBox.height) >= enemyBox.y &&
             (characterBox.y) <= (enemyBox.y + enemyBox.height);
     }
 
-
-    getCollisionBox(mo) {       
+    /**
+     * Gibt das Kollisionserkennungsrechteck für das angegebene Objekt zurück.
+     * @param {Object} mo - Das Objekt, dessen Kollisionserkennungsrechteck berechnet werden soll.
+     * @returns {Object} - Ein Objekt mit den Eigenschaften `x`, `y`, `width` und `height`.
+     */
+    getCollisionBox(mo) {
         return {
             'x': mo.x + mo.OFFSET_X_LEFT,
             'y': mo.y + mo.OFFSET_Y_TOP,
@@ -293,22 +361,29 @@ class Character extends MovableObject {
     }
 
 
+    /**
+     * Sammelt verschiedene Items (Bubble, AttackBubble, Coin, Poison) und aktualisiert die entsprechenden Speicherwerte.
+     * @param {Object} item - Das gesammelte Item (kann ein Bubble, AttackBubble, Coin oder Poison sein).
+     */
     collects(item) {
         if (item instanceof Bubble || item instanceof AttackBubble) {
             this.bubbleStorage += 1;
         }
-
         if (item instanceof Coin) {
             this.coinStorage += 1;
-            item.stop()
+            item.stop();
         }
-
         if (item instanceof Poison) {
             this.poisonStorage += 1;
         }
     }
 
 
+    /**
+     * Behandelt den Tod des Haifischs, der ausgelöst wird, wenn der Haifisch angegriffen wird.
+     * Je nach Angriffstyp (elektrisch oder Gift) wird die entsprechende Todesanimation gestartet.
+     * @param {number} sharkieDoingSomething - Die Interval-ID der aktuellen Animation des Haifischs, die verwendet wird, um sie zu löschen, wenn der Haifisch stirbt.
+     */
     deadSharkie(sharkieDoingSomething) {
         if (this.attackedBy === 'electric') {
             this.sharkieInTunaCanAnimation(this.DEAD_BY_SHOCK_IMGs);
@@ -320,17 +395,22 @@ class Character extends MovableObject {
     }
 
 
+    /**
+     * Spielt die Todesanimation des Haifischs ab, die auf einem Array von Bildframes basiert.
+     * Sobald die Animation das letzte Frame erreicht, wird der Spielstatus auf 'Game Over' gesetzt.
+     * @param {Array} imgArray - Das Array von Bildframes, die die Todesanimation des Haifischs darstellen.
+     */
     sharkieInTunaCanAnimation(imgArray) {
         const dieAnimationIntervall = setInterval(() => {
             if (this.dieAnimationCounter < imgArray.length) {
                 this.img = imgArray[this.dieAnimationCounter];
             }
             if (this.dieAnimationCounter >= imgArray.length) {
-                this.img = imgArray[imgArray.length - 1]
+                this.img = imgArray[imgArray.length - 1];
                 this.gameOver = true;
                 clearInterval(dieAnimationIntervall);
             }
-            this.dieAnimationCounter++
+            this.dieAnimationCounter++;
         }, 150);
     }
 

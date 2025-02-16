@@ -10,6 +10,7 @@ class Poison extends MovableObject {
         this.checkIfAboveGround();
     }
 
+    
     setRandomDirectionImg() {
         if (Math.random() > 0.5) {
             return '../Sharkie/img/collect/Posión/Dark - Left.png'

@@ -48,7 +48,7 @@ class Whale extends MovableObject {
         this.height = 280;
         this.width = 280;
         this.y = 0;
-        this.x = levelEnd -200;
+        this.x = levelEnd - 200;
         this.speed = 1;
         this.OFFSET_X_RIGHT = 60;
         this.OFFSET_X_LEFT = 30;
@@ -61,21 +61,30 @@ class Whale extends MovableObject {
     }
 
 
+    /**
+     * Führt die Einführungsanimation für den Wal durch.
+     * Die Animation bewegt das Objekt mit den Intro-Bildern und wird nach 9 Durchläufen gestoppt.
+     */
     introduceWhale() {
-        let i = 0
+        let i = 0;
         const introInterval = setInterval(() => {
             if (this.objectIsOnScreen(this.x) && i < 9) {
                 this.movingAnimation(this.INTRO_IMGs);
                 i++;
-            } 
+            }
 
             if (i === 9) {
                 this.stopIntroAndSetNewIntervals(introInterval);
             }
-        }, 100);    
+        }, 100);
     }
+    
 
-
+    /**
+     * Stoppt die Einführungsanimation und setzt neue Intervalle für die Bewegung und Animation des Wals.
+     * 
+     * @param {number} introInterval - Das Interval für die Einführungsanimation, das gestoppt werden soll.
+     */
     stopIntroAndSetNewIntervals(introInterval) {
         clearInterval(introInterval);
         this.animate();
@@ -83,7 +92,11 @@ class Whale extends MovableObject {
     }
 
 
-    animate() {        
+    /**
+     * Führt eine kontinuierliche Animation durch, bei der das Objekt nach links bewegt wird, solange es auf dem Bildschirm ist und nicht tot ist.
+     * Wenn das Objekt tot ist, wird es nach oben bewegt. Wenn das Objekt den oberen Bildschirmrand verlässt, wird die Bewegung gestoppt.
+     */
+    animate() {
         const interval = setInterval(() => {
             if (this.objectIsOnScreen(this.x) && !this.isDead()) {
                 this.moveLeft(-100, this.speed);
@@ -95,11 +108,19 @@ class Whale extends MovableObject {
                 this.whaleGone = true;
                 this.stop();
             }
-        }, 1000 / 60); 
+        }, 1000 / 60);
         this.intervals.push(interval);
     }
 
 
+    /**
+     * Führt eine Animation mit einer bestimmten Zeitintervalldauer aus.
+     * Wenn das Objekt nicht tot ist und keinen Schaden erleidet, wird die Bewegungsanimation fortgesetzt.
+     * Wenn das Objekt Schaden erleidet, wird eine "Ouch"-Animation angezeigt.
+     * Wenn das Objekt tot ist, wird ein Bild für den toten Wal geladen und die entsprechende Animation gestartet.
+     * 
+     * @param {number} intervalTime - Die Zeit zwischen den einzelnen Animationen in Millisekunden.
+     */
     animationInterval(intervalTime) {
         const aliveInterval = setInterval(() => {
             if (!this.isDead() && !this.stillHurts()) {
@@ -109,22 +130,27 @@ class Whale extends MovableObject {
                 this.movingAnimation(this.OUCH_IMGs);
             }
             if (this.isDead()) {
-                this.loadImage('../Sharkie/img/enemies/3 Final Enemy/Dead/Mesa de trabajo 2.png'); 
+                this.loadImage('../Sharkie/img/enemies/3 Final Enemy/Dead/Mesa de trabajo 2.png');
                 this.deadWhale(aliveInterval);
             }
         }, intervalTime);
     }
 
 
-    deadWhale(aliveInterval) { 
-        this.imageIndex = 0; 
+    /**
+     * Führt die Animation für den toten Wal aus, indem sie das Bild des toten Wals anzeigt und die entsprechende Bewegung simuliert.
+     * 
+     * @param {number} aliveInterval - Das laufende Interval für die Animation des lebenden Wals, das gestoppt wird, wenn der Wal stirbt.
+     */
+    deadWhale(aliveInterval) {
+        this.imageIndex = 0;
         clearInterval(aliveInterval);
         const deadWhaleInterval = setInterval(() => {
             if (this.objectIsOnScreen(this.x) && this.dieAnimationCounter < 5) {
                 this.movingAnimation(this.WHALE_DEAD_IMGs);
                 this.dieAnimationCounter++;
-            } 
-        }, 120); 
+            }
+        }, 120);
         this.intervals.push(deadWhaleInterval);
     }
 }

@@ -15,6 +15,14 @@ class Coin extends MovableObject {
         this.checkIfAboveGround();
     }
 
+
+    /**
+    * Startet ein Intervall, das eine Animationsfunktion in regelmäßigen Abständen ausführt.
+    * Die Animation wird alle `intervalTime` Millisekunden durch die Methode `movingAnimation` mit den angegebenen Bildern (`ANIMATION_IMGs`) ausgelöst.
+    * Das Intervall wird zur Liste `this.intervals` hinzugefügt, sodass es später gestoppt werden kann.
+    *
+    * @param {number} intervalTime - Die Zeit in Millisekunden, die zwischen den einzelnen Animationen vergehen soll.
+    */
     animationInterval(intervalTime) {
         const interval = setInterval(() => {
             this.movingAnimation(this.ANIMATION_IMGs)

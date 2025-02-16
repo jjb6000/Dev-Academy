@@ -18,6 +18,14 @@ class AttackBubble extends Character {
         this.otherDirection = otherDirectionBoolean;
     }
 
+
+    /**
+     * Animiert die Bewegung des Objekts mit einer konstanten Geschwindigkeit und einer
+     * vertikalen Aufwärtskraft. Reduziert die horizontale Geschwindigkeit allmählich und
+     * bewegt das Objekt je nach Richtung nach links oder rechts. Die vertikale Bewegung wird
+     * durch eine stetig zunehmende Aufwärtskraft unterstützt. Stoppt die Animation, wenn
+     * das Objekt eine bestimmte Höhe überschreitet.
+     */
     animate() {
         let upForce = 0;
         const upForceInterval = setInterval(() => {

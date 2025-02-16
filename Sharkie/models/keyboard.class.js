@@ -8,14 +8,25 @@ class Keyboard {
     V_BTN = false;
 
 
+    /**
+    * Verarbeitet die Tasteneingaben für die Steuerung des Charakters und führt entsprechende Aktionen aus.
+    * 
+    * @param {string} key - Der gedrückte Taste.
+    * @param {boolean} press - Ein Wahrheitswert, der angibt, ob die Taste gerade gedrückt wird.
+    */
     processKeyInput(key, press) {
         this.actionSwitch(key, press);
         this.noAction() ? this.stopDoing() : this.callCharacterKeyDownActions();
     }
+    
 
-
+    /**
+     * Setzt die entsprechenden Aktionen für die Tasteneingaben des Charakters.
+     * 
+     * @param {string} key - Der gedrückte Taste.
+     * @param {boolean} press - Ein Wahrheitswert, der angibt, ob die Taste gerade gedrückt wird.
+     */
     actionSwitch(key, press) {
-        
         switch (key) {
             case 'ArrowUp':
                 this.UP = press;
@@ -44,6 +55,9 @@ class Keyboard {
     }
 
 
+    /**
+     * Führt die entsprechenden Aktionen basierend auf den aktuellen Tasteneingaben aus.
+     */
     callCharacterKeyDownActions() {
         if (this.UP) world.character.moveUp();
         if (this.DOWN) world.character.moveDown();
@@ -55,8 +69,10 @@ class Keyboard {
         world.character.setLastAction();
         this.swimSoundTrigger()
     }
-    
 
+    /**
+     * Initialisiert die Bewegung des Charakters nach rechts.
+     */
     initRightMove() {
         world.character.moving = true;
         world.character.otherDirection = false;
@@ -64,6 +80,9 @@ class Keyboard {
         world.camera_x = -world.character.x * 0.9;
     }
 
+    /**
+     * Initialisiert die Bewegung des Charakters nach links.
+     */
     initLeftMove() {
         world.character.moving = true;
         world.character.otherDirection = true;
@@ -71,36 +90,37 @@ class Keyboard {
         world.camera_x = -world.character.x * 0.9;
     }
 
-
-
+    /**
+     * Stoppt alle Aktionen des Charakters, wenn keine Tasten gedrückt werden.
+     */
     stopDoing() {
         world.character.moving = false;
         if (!this.X_BTN && !this.V_BTN) world.character.isBubbleAttacking = false;
-        if (!this.SPACE) world.character.stopFinAttack()
+        if (!this.SPACE) world.character.stopFinAttack();
         if (this.noAction()) {
             world.character.isDead() ? world.character.loadImage('../Sharkie/img/sharkie/6.dead/1.Poisoned/12.png') : world.character.loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
         }
     }
 
+    /**
+     * Überprüft, ob keine Aktion ausgeführt wird (keine Taste gedrückt).
+     * 
+     * @returns {boolean} Gibt true zurück, wenn keine Taste gedrückt wird, sonst false.
+     */
     noAction() {
-        return !this.UP && !this.DOWN && !this.RIGHT && !this.LEFT && !this.X_BTN && !this.V_BTN && !this.SPACE
-    }
-
-    checkDevMode(key) {
-        if (key === 'D') {
-            world.devMode ? world.devMode = false : world.devMode = true
-        }
+        return !this.UP && !this.DOWN && !this.RIGHT && !this.LEFT && !this.X_BTN && !this.V_BTN && !this.SPACE;
     }
 
 
+    /**
+     * Steuert den Ton für das Schwimmen des Charakters, je nachdem, ob der Charakter sich bewegt oder nicht.
+     */
     swimSoundTrigger() {
         if (world.character.moving) {
             world.gameController.playSwimSound();
         } else {
-            world.gameController.pauseSwimSound()
+            world.gameController.pauseSwimSound();
         }
     }
-
-
 
 }

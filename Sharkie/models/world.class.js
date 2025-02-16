@@ -25,15 +25,21 @@ class World {
     }
 
 
+    /**
+     * Startet das Zeichnen der Welt.
+     */
     startDraw() {
         this.drawWorld();
     }
 
 
+    /**
+     * Zeichnet die Welt auf die Leinwand und führt das Animations-Frame aus.
+     */
     drawWorld() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);       
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.gameControllerCheck();
-        this.gameController.playBgSound()
+        this.gameController.playBgSound();
         this.animationFrame = requestAnimationFrame(() => {
             if (this.gameController.isInGameStatus() || this.gameController.isInStartMenu()) {
                 this.drawWorld();
@@ -44,6 +50,9 @@ class World {
     }
 
 
+    /**
+     * Überprüft den Status des Spiels und ruft die entsprechende Methode auf.
+     */
     gameControllerCheck() {
         if (this.gameController.isInGameStatus()) this.game();
         if (this.gameController.isGameOver()) this.gameOver();
@@ -52,6 +61,9 @@ class World {
     }
 
 
+    /**
+     * Zeichnet die Spielfiguren und beweglichen Objekte.
+     */
     game() {
         this.ctx.translate(this.camera_x, 0);
         this.setMovableObjects();
@@ -60,38 +72,52 @@ class World {
     }
 
 
+    /**
+     * Initialisiert das Startmenü.
+     */
     startMenu() {
         this.gameController.setTempCoinScore(0);
         if (this.menuBgObjects) {
-            this.menuBgObjects.forEach(objectArray => {
-                this.addMultiObjectsToMap(objectArray);
-            });
+            this.menuBgObjects.forEach(objectArray => {this.addMultiObjectsToMap(objectArray)});
         }
     }
 
 
+    /**
+     * Beendet das Menü und stoppt die Animationen.
+     */
     endMenu() {
-        cancelAnimationFrame(this.menuAnimation)
+        cancelAnimationFrame(this.menuAnimation);
         menu.forEach(menuArray => {
-            menuArray.forEach(o => {
-                if (o instanceof MovableObject) o.stop();
-            })
+            menuArray.forEach(o => {if (o instanceof MovableObject) o.stop()});
         });
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
 
+    /**
+     * Schreibt einen Text auf die Leinwand.
+     * @param {string} text - Der anzuzeigende Text.
+     * @param {number} x - X-Koordinate.
+     * @param {number} y - Y-Koordinate.
+     */
     writeOnCanvas(text, x, y) {
-        this.ctx.fillText(text, x, y)
+        this.ctx.fillText(text, x, y);
     }
 
 
+    /**
+     * Beendet das Spiel und stoppt alle Animationen.
+     */
     gameOver() {
         this.gameController.setTempCoinScore(0);
         this.stopWorld();
     }
 
 
+    /**
+     * Beendet das aktuelle Level und setzt das Spiel für das nächste Level zurück.
+     */
     endCurrentLevel() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.gameController.setTempCoinScore(this.character.coinStorage);
@@ -100,14 +126,16 @@ class World {
         this.stopWorld();
         if (this.gameController.currentLevel < 3) {
             this.getBetweenLevelsScreen();
-            this.startNextLevel()
+            this.startNextLevel();
         } else {
             this.gameController.setEnd();
         }
     }
 
 
-
+    /**
+     * Zeigt einen Bildschirm zwischen den Leveln an.
+     */
     getBetweenLevelsScreen() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.addToMap(this.defaultBg);
@@ -117,6 +145,9 @@ class World {
     }
 
 
+    /**
+     * Startet das nächste Level nach einer kurzen Verzögerung.
+     */
     startNextLevel() {
         this.level = this.gameController.getNextLevel();
         setTimeout(() => {
@@ -127,8 +158,10 @@ class World {
         }, 2000);
     }
 
-
-
+    
+    /**
+     * Stoppt alle beweglichen Objekte und deren Animationen.
+     */
     stopAllMovingAnimations() {
         if (!this.level || !this.level.hasOwnProperty('enemies')) return;
         clearInterval(this.newBubblesInterval);
@@ -136,12 +169,13 @@ class World {
         if (this.level.firedBubbles.length > 0) {
             this.level.firedBubbles.forEach(fO => fO.stop());
         }
-        this.level.collectables.forEach(cO => {
-            if (!cO instanceof Poison) cO.stop();
-        });
+        this.level.collectables.forEach(cO => {if (!(cO instanceof Poison)) cO.stop()});
     }
 
 
+    /**
+     * Fügt bewegliche Objekte zur Welt hinzu.
+     */
     setMovableObjects() {
         this.addMultiObjectsToMap(this.level.backgroundObjects);
         this.addToMap(this.character);
@@ -151,6 +185,9 @@ class World {
     }
 
 
+    /**
+    * Fügt statische Objekte zur Welt hinzu.
+    */
     setStaticObjects() {
         this.addMultiObjectsToMap(this.level.statusBars);
         this.writeOnCanvas('Bubbles: ' + String(this.character.bubbleStorage), 20, 70);
@@ -159,25 +196,43 @@ class World {
     }
 
 
+    /**
+     * Schreibt einen Text auf das Canvas.
+     * @param {string} text - Der zu schreibende Text.
+     * @param {number} x - Die x-Koordinate des Textes.
+     * @param {number} y - Die y-Koordinate des Textes.
+     */
     writeOnCanvas(text, x, y) {
-        this.ctx.fillText(text, x, y)
+        this.ctx.fillText(text, x, y);
     }
 
 
+    /**
+     * Überprüft, ob abgefeuerte Blasen existieren, und fügt sie zur Karte hinzu.
+     * @param {Array} objectArray - Array mit Objekten der Blasen.
+     */
     checkForFiredBubbles(objectArray) {
-        if (objectArray.length > 0) this.addMultiObjectsToMap(objectArray)
+        if (objectArray.length > 0) this.addMultiObjectsToMap(objectArray);
     }
 
 
+    /**
+     * Fügt mehrere Objekte zur Karte hinzu.
+     * @param {Array} objects - Die Objekte, die zur Karte hinzugefügt werden sollen.
+     */
     addMultiObjectsToMap(objects) {
-        objects.forEach(o => this.addToMap(o))
+        objects.forEach(o => this.addToMap(o));
     }
 
 
+    /**
+    * Fügt ein einzelnes bewegliches Objekt zur Karte hinzu.
+    * @param {Object} movableObject - Das bewegliche Objekt, das hinzugefügt wird.
+    */
     addToMap(movableObject) {
         this.gameController.statusTriggerCheck(movableObject)
         movableObject.currentCameraPosition = this.camera_x;
-        this.checkForGarbage(movableObject);
+        this.gameController.checkForGarbage(movableObject);
         if (movableObject.otherDirection) {
             this.flip(movableObject);
         }
@@ -188,19 +243,11 @@ class World {
     }
 
 
-    checkForGarbage(movableObject) {
-        if (movableObject.readyForGarbageCollection) {
-            this.removeItem(movableObject);
-        }
-        if (this.gameController.isGameOver() && movableObject instanceof MovableObject && !movableObject instanceof Background) {
-            movableObject.stop();
-            this.removeItem(movableObject);
-        }
-    }
-
-
+    /**
+     * Führt Kollisionserkennung durch.
+     */
     collisionDetection() {
-        if (Date.now() - this.collisionTimeStamp < 200) return        
+        if (Date.now() - this.collisionTimeStamp < 200) return;
         this.isCharacterColidingWithEnemy();
         this.isCharacterColidingWithCollectable();
         this.isCharacterCollectingHisFiredBubble();
@@ -209,6 +256,9 @@ class World {
     }
 
 
+    /**
+     * Überprüft, ob der Charakter mit einem Feind kollidiert.
+     */
     isCharacterColidingWithEnemy() {
         this.level.enemies.forEach(enemy => {
             if (this.character.isColliding(enemy) && !enemy.isDead() && !this.character.isDead() && !this.gameController.isGameOver()) {
@@ -218,78 +268,95 @@ class World {
     }
 
 
+    /**
+     * Prüft, ob der Charakter während eines Angriffs mit einem Feind kollidiert.
+     * @param {Object} enemy - Der kollidierende Feind.
+     */
     checkIfCharacterCollidsWhileAttack(enemy) {
         if (this.character.finAttack && !(enemy instanceof Jellyfish3) && !(enemy instanceof Jellyfish4)) {
             enemy.gotHurt(this.character.attackDamage);
         } else {
-            this.character.gotHurt(enemy.attackDamage)
+            this.character.gotHurt(enemy.attackDamage);
             this.character.attackedBy = enemy.attack;
         }
     }
 
 
+    /**
+     * Überprüft, ob der Charakter mit einem sammelbaren Objekt kollidiert.
+     */
     isCharacterColidingWithCollectable() {
         this.level.collectables.forEach(item => {
             if (this.character.isColliding(item)) {
                 this.character.collects(item);
-                this.removeItem(item);
+                this.gameController.removeItem(item);
             }
         });
     }
 
 
+    /**
+     * Überprüft, ob der Charakter seine eigene abgefeuerte Blase einsammelt.
+     */
     isCharacterCollectingHisFiredBubble() {
         this.level.firedBubbles.forEach(item => {
             if (this.character.isColliding(item)) {
-                this.removeItem(item);
+                this.gameController.removeItem(item);
                 this.character.collects(item);
             }
         });
     }
 
 
+    /**
+     * Überprüft, ob abgefeuerte Blasen mit Feinden kollidieren.
+     */
     areFiredBubblesColidingWithEnemies() {
         if (this.level.firedBubbles.length > 0) {
             this.level.firedBubbles.forEach(bubble => {
-                this.isFiredBubbleColidingWithEnemy(bubble)
+                this.isFiredBubbleColidingWithEnemy(bubble);
             });
         }
     }
 
 
+    /**
+     * Prüft, ob eine abgefeuerte Blase mit einem Feind kollidiert.
+     * @param {Object} bubble - Die kollidierende Blase.
+     */
     isFiredBubbleColidingWithEnemy(bubble) {
         this.level.enemies.forEach(enemy => {
             if (bubble.isColliding(enemy)) {
                 enemy.gotHurt(bubble.attackDamage);
                 this.popBubble(bubble);
             }
-        })
+        });
     }
 
 
+    /**
+     * Entfernt eine abgefeuerte Blase aus dem Spiel.
+     * @param {Object} bubble - Die Blase, die entfernt wird.
+     */
     popBubble(bubble) {
         this.level.firedBubbles.splice(this.level.firedBubbles.indexOf(bubble), 1);
     }
 
 
-    removeItem(item) {
-        if (item instanceof Bubble || item instanceof Coin || item instanceof Poison) {
-            this.level.collectables.splice(this.level.collectables.indexOf(item), 1);
-        }
-        if (item instanceof AttackBubble) {
-            this.level.firedBubbles.splice(this.level.firedBubbles.indexOf(item), 1);
-        }
-        if (item instanceof Jellyfish || item instanceof Pufferfish || item instanceof Whale) {
-            this.level.enemies.splice(this.level.enemies.indexOf(item), 1);
-        }
-    }
-
-
+    /**
+     * Überprüft, ob ein Objekt ein Hintergrundobjekt ist.
+     * @param {Object} mo - Das zu prüfende Objekt.
+     * @returns {boolean} True, wenn das Objekt ein Hintergrundobjekt ist.
+     */
     isBackground(mo) {
         return mo instanceof Background;
     }
 
 
+    /**
+     * Spiegelt ein bewegliches Objekt horizontal.
+     * @param {Object} movableObject - Das zu spiegelnde Objekt.
+     */
     flip(movableObject) {
         this.ctx.save();
         this.ctx.translate(movableObject.width, 0);
@@ -298,12 +365,19 @@ class World {
     }
 
 
+    /**
+     * Setzt die Spiegelung eines Objekts zurück.
+     * @param {Object} movableObject - Das zurückzusetzende Objekt.
+     */
     reFlip(movableObject) {
         movableObject.x = movableObject.x * -1;
         this.ctx.restore();
     }
 
 
+    /**
+    * Erzeugt regelmäßig neue Blasen im Spiel.
+     */
     newBubbles() {
         if (Date.now() - this.bubbleTimeStamp < 10000 || !this.gameController.isInGameStatus()) return
         for (let i = 0; i < 10; i++) {
@@ -313,19 +387,12 @@ class World {
     }
 
 
+    /**
+    * Stoppt das Spiel und alle Animationen.
+    */
     stopWorld() {
         this.stopAllMovingAnimations();
         cancelAnimationFrame(this.animationFrame);
-    }
-
-
-    cheat() {
-        this.level.enemies.forEach(item => {
-            if (item instanceof Whale) {
-                item.ownDamage = 2000;
-                item.x = this.character.x + 200
-            }
-        });
     }
 
 }
