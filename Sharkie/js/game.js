@@ -197,10 +197,7 @@ function openSettingsMenu() {
  * Wendet die Event-Listener für die Tasteneingaben und Touch-Buttons im Spiel an.
  */
 function applyGameEventListeners() {
-    window.onkeydown = (e) => {
-        world.keyboard.processKeyInput(e.key, true);
-        world.keyboard.checkDevMode(e.key);
-    };
+    window.onkeydown = (e) => world.keyboard.processKeyInput(e.key, true);
     window.onkeyup = (e) => world.keyboard.processKeyInput(e.key, false);
     const touchBtnIds = ['tLeft', 'tRight', 'tSlap', 'tBubble', 'tPoison', 'tUp', 'tDown'];
     touchBtnIds.forEach(id => {
