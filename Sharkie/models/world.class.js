@@ -96,17 +96,6 @@ class World {
 
 
     /**
-     * Schreibt einen Text auf die Leinwand.
-     * @param {string} text - Der anzuzeigende Text.
-     * @param {number} x - X-Koordinate.
-     * @param {number} y - Y-Koordinate.
-     */
-    writeOnCanvas(text, x, y) {
-        this.ctx.fillText(text, x, y);
-    }
-
-
-    /**
      * Beendet das Spiel und stoppt alle Animationen.
      */
     gameOver() {

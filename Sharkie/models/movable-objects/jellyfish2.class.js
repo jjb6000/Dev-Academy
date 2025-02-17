@@ -21,7 +21,7 @@ class Jellyfish2 extends Jellyfish {
         this.imageIndex = 3;
         this.speed = 0.1 + Math.random() * 0.8;
         this.y = 100 + Math.random() * 280;
-        this.x = 200 + Math.random() * levelEnd;
+        this.x = 350 + Math.random() * levelEnd;
         this.OFFSET_X_RIGHT = 12;
         this.OFFSET_X_LEFT = 12;
         this.OFFSET_Y_TOP = 12;
