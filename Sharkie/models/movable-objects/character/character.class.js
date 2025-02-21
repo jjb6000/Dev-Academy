@@ -1,5 +1,4 @@
 class Character extends MovableObject {
-    world;
     gameOver = false;
     height = 280;
     width = 280;
