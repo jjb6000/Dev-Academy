@@ -135,7 +135,7 @@ function soundSettings() {
 function soundOff() {
     gameController.setGameMute();
     soundsCheckbox.src = './img/menu/Key/check_box_y.svg';
-    document.getElementById('gameSoundBtn').src = 'img/menu/Key/volume_on.svg';
+    document.getElementById('gameSoundBtn').src = 'img/menu/Key/volume_off.svg';
 }
 
 
@@ -146,7 +146,7 @@ function soundOff() {
 function soundOn() {
     gameController.setGameSounds();
     soundsCheckbox.src = './img/menu/Key/select_check_box_y.svg';
-    document.getElementById('gameSoundBtn').src = 'img/menu/Key/volume_off.svg';
+    document.getElementById('gameSoundBtn').src = 'img/menu/Key/volume_on.svg';
 }
 
 

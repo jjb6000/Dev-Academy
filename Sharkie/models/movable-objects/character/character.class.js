@@ -5,7 +5,12 @@ class Character extends MovableObject {
     width = 280;
     x = 0;
     y = 80;
+    up = false;
+    down = false;
+    right = false;
+    left = false;
     finAttack = false;
+    finAttackInterval;
     isBubbleAttacking = false;
     moving = false;
     attackedBy;
@@ -138,13 +143,14 @@ class Character extends MovableObject {
     constructor() {
         super().loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
         this.animate();
-        this.health = 100;
+        this.health = 200;
         this.attackDamage = 50;
         this.OFFSET_X_RIGHT = 66;
         this.OFFSET_X_LEFT = 66;
         this.OFFSET_Y_TOP = 138;
         this.OFFSET_Y_BOTTOM = 74;
         this.idleMode = this.IDLE_IMGs;
+        this.moveInterval();
         coinScore ? this.coinStorage = coinScore : this.coinStorage = 0;
     }
 
@@ -166,8 +172,8 @@ class Character extends MovableObject {
                 this.movingAnimation(this.idleMode);
             if (this.moving && !this.isBubbleAttacking && !this.stillHurts() && !this.isDead())
                 this.movingAnimation(this.ANIMATION_IMGs);
-            if (this.finAttack && !this.isDead())
-                this.movingAnimation(this.FIN_ATTACK_IMGs);
+            // if (this.finAttack && !this.isDead())
+            //     this.movingAnimation(this.FIN_ATTACK_IMGs);
             if (this.stillHurts() && !this.isDead())
                 this.movingAnimation(this.returnHurtAnimationBasedOnAttack(this.attackedBy));
             if (this.isDead())
@@ -175,6 +181,92 @@ class Character extends MovableObject {
             if (Date.now() - this.lastAction > 8000)
                 this.idleMode = this.LONG_IDLE_IMGs;
         }, 250);
+        this.intervals.push(sharkieDoingSomething);
+    }
+
+
+    /**
+    * Ruft die Bewegung der entsprechenden Richtungsvariable im Interval auf.
+    * Bei Richtung links und rechts wird die Kamera mit leichter Verzögerung (Faktor 0,9) mitgeführt. 
+    */
+    moveInterval() {
+        const sharkiMovingInt = setInterval(() => {
+            if (this.up) {
+                this.moveUp();
+            }
+            if (this.down) {
+                this.moveDown();
+            }
+            if (this.right) {
+                this.moveRight(world.level.levelEnd);
+                world.camera_x = -this.x * 0.9;
+            }
+            if (this.left) {
+                this.moveLeft();
+                world.camera_x = -this.x * 0.9;
+            }
+
+        }, 60);
+        this.intervals.push(sharkiMovingInt);
+    }
+
+
+    /**
+    * Setzt die Richtungs-Variable auf den übergenbenen Wert, sodass im moveInterval die passende Aktion ausgeführt wird.
+    * Bewegungs-Variable wird gesetzt.
+    * @returns {boolean} - `true`, wenn Richtung unten, andernfalls `false`.
+    */
+    setUpMove(value) {
+        this.moving = value;
+        this.up = value
+    }
+
+
+    /**
+    * Setzt die Richtungs-Variable auf den übergenbenen Wert, sodass im moveInterval die passende Aktion ausgeführt wird.
+    * Bewegungs-Variable wird gesetzt.
+    * @returns {boolean} - `true`, wenn Richtung unten, andernfalls `false`.
+    */
+    setDownMove(value) {
+        this.moving = value;
+        this.down = value
+    }
+
+
+    /**
+    * Setzt die Richtungs-Variable auf den übergenbenen Wert, sodass im moveInterval die passende Aktion ausgeführt wird.
+    * Bewegungs- und Umkehr-Variable werden gesetzt (Umkehr-Var ist hier false wenn right true ist).
+    * @returns {boolean} - `true`, wenn Richtung rechts, andernfalls `false`.
+    */
+    setRightMove(value) {
+        this.moving = value;
+        this.otherDirection = !value;
+        this.right = value;
+        
+    }
+
+
+    /**
+    * Setzt die Richtungs-Variable auf den übergenbenen Wert, sodass im moveInterval die passende Aktion ausgeführt wird.
+    * Bewegungs- und Umkehr-Variable werden gesetzt.
+    * @returns {boolean} - `true`, wenn Richtung links, andernfalls `false`.
+    */
+    setLeftMove(value) {
+        this.moving = value;
+        this.otherDirection = value;
+        this.left = value;
+    }
+
+
+    /**
+     * Setzt alle Richtungsvariablen auf false, sodass nicht im movingIntervall ausgeführt wird.
+     */
+    setMoveFalse() {
+        this.up = false;
+        this.down = false;
+        this.left = false;
+        this.right = false;
+        this.moving = false
     }
 
 
@@ -242,6 +334,12 @@ class Character extends MovableObject {
             this.finAttack = true;
             this.changeOffsetDuringFinAttack();
             this.lastFinAttack = Date.now();
+            this.width = 340;
+            this.finAttackInterval = setInterval(() => {
+                if (this.finAttack) {
+                    this.movingAnimation(this.FIN_ATTACK_IMGs)
+                }
+            }, 300)
         } else {
             this.stopFinAttack();
         }
@@ -252,8 +350,10 @@ class Character extends MovableObject {
      * Stoppt die Flossen-Attacke des Charakters und setzt den Offset zurück.
      */
     stopFinAttack() {
+        this.width = 280;
         this.finAttack = false;
         this.changeOffsetDuringFinAttack();
+        clearInterval(this.finAttackInterval)
     }
 
 
@@ -293,6 +393,11 @@ class Character extends MovableObject {
         }
         this.timeStampLastBubbleAttack = Date.now();
     }
+
+
+    // finAttack() {
+
+    // }
 
 
     /**

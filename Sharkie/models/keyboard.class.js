@@ -15,42 +15,29 @@ class Keyboard {
     * @param {boolean} press - Ein Wahrheitswert, der angibt, ob die Taste gerade gedrückt wird.
     */
     processKeyInput(key, press) {
-        this.actionSwitch(key, press);
+        this.actionSwitchO(key, press);
         this.noAction() ? this.stopDoing() : this.callCharacterKeyDownActions();
     }
-    
+
 
     /**
-     * Setzt die entsprechenden Aktionen für die Tasteneingaben des Charakters.
-     * 
-     * @param {string} key - Der gedrückte Taste.
-     * @param {boolean} press - Ein Wahrheitswert, der angibt, ob die Taste gerade gedrückt wird.
-     */
-    actionSwitch(key, press) {
-        switch (key) {
-            case 'ArrowUp':
-                this.UP = press;
-                break;
-            case 'ArrowDown':
-                this.DOWN = press;
-                break;
-            case 'ArrowRight':
-                this.RIGHT = press;
-                break;
-            case 'ArrowLeft':
-                this.LEFT = press;
-                break;
-            case ' ':
-                this.SPACE = press;
-                break;
-            case 'x':
-                this.X_BTN = press;
-                break;
-            case 'v':
-                this.V_BTN = press;
-                break;
-            default:
-                this.stopDoing();
+    * Setzt die entsprechenden Aktionen für die Tasteneingaben des Charakters.
+    * 
+    * @param {string} key - Der gedrückte Taste.
+    * @param {boolean} press - Ein Wahrheitswert, der angibt, ob die Taste gerade gedrückt wird.
+    */
+    actionSwitchO(key, press) {
+        const keyObject = {
+            'ArrowUp': () => this.UP = press,
+            'ArrowDown': () => this.DOWN = press,
+            'ArrowRight': () => this.RIGHT = press,
+            'ArrowLeft': () => this.LEFT = press,
+            ' ': () => this.SPACE = press,
+            'x': () => this.X_BTN = press,
+            'v': () => this.V_BTN = press,
+        }
+        if (keyObject[key]) {
+            keyObject[key]();
         }
     }
 
@@ -59,10 +46,10 @@ class Keyboard {
      * Führt die entsprechenden Aktionen basierend auf den aktuellen Tasteneingaben aus.
      */
     callCharacterKeyDownActions() {
-        if (this.UP) world.character.moveUp();
-        if (this.DOWN) world.character.moveDown();
-        if (this.RIGHT) this.initRightMove();
-        if (this.LEFT) this.initLeftMove();
+        if (this.UP) world.character.setUpMove(true);
+        if (this.DOWN) world.character.setDownMove(true);
+        if (this.RIGHT) world.character.setRightMove(true);
+        if (this.LEFT) world.character.setLeftMove(true);
         if (this.X_BTN && world.character.bubbleStorage > 0) world.character.initBubbleAttack();
         if (this.V_BTN && world.character.poisonStorage > 0) world.character.initPoisonAttack();
         if (this.SPACE) world.character.initFinAttack();
@@ -70,32 +57,12 @@ class Keyboard {
         this.swimSoundTrigger()
     }
 
-    /**
-     * Initialisiert die Bewegung des Charakters nach rechts.
-     */
-    initRightMove() {
-        world.character.moving = true;
-        world.character.otherDirection = false;
-        world.character.moveRight(world.level.levelEnd, 24);
-        world.camera_x = -world.character.x * 0.9;
-    }
-
-    /**
-     * Initialisiert die Bewegung des Charakters nach links.
-     */
-    initLeftMove() {
-        world.character.moving = true;
-        world.character.otherDirection = true;
-        world.character.moveLeft(-400, 24);
-        world.camera_x = -world.character.x * 0.9;
-    }
 
     /**
      * Stoppt alle Aktionen des Charakters, wenn keine Tasten gedrückt werden.
      */
     stopDoing() {
-        world.character.moving = false;
-        if (!this.X_BTN && !this.V_BTN) world.character.isBubbleAttacking = false;
+        world.character.setMoveFalse();  
         if (!this.SPACE) world.character.stopFinAttack();
         if (this.noAction()) {
             world.character.isDead() ? world.character.loadImage('../Sharkie/img/sharkie/6.dead/1.Poisoned/12.png') : world.character.loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
