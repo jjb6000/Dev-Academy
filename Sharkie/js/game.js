@@ -166,7 +166,9 @@ function fullScreenOff() {
     fullscreenCheckbox.src = './img/menu/Key/check_box_y.svg';
     document.getElementById('gameFullscreenBtn').src = 'img/menu/Key/fullscreen_y.svg';
     canvas.classList.remove('canvas-fs');
-    document.exitFullscreen();
+    if (document.fullscreenElement) {
+        document.exitFullscreen();
+    }
 }
 
 
@@ -238,6 +240,17 @@ document.getElementById('againBtn').addEventListener('click', () => reStartGame(
 
 
 document.getElementById('backToMenuBtn').addEventListener('click', () => backToMenu());
+
+
+/**
+* EventListener falls Fullscreen mit Escape-Taste beendet wurde.
+* Aktualisiert UI entsprechend
+*/
+document.addEventListener('fullscreenchange', () => {
+    if (world.gameController.fullScreen && document.fullscreenElement === null) {
+        fullScreenOff();
+    }
+})
 
 
 
