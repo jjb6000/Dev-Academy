@@ -52,7 +52,7 @@ class Keyboard {
         if (this.LEFT) world.character.setLeftMove(true);
         if (this.X_BTN && world.character.bubbleStorage > 0) world.character.initBubbleAttack();
         if (this.V_BTN && world.character.poisonStorage > 0) world.character.initPoisonAttack();
-        if (this.SPACE) world.character.initFinAttack();
+        if (this.SPACE) world.character.setFinAttack(true);
         world.character.setLastAction();
         this.swimSoundTrigger()
     }
@@ -63,7 +63,7 @@ class Keyboard {
      */
     stopDoing() {
         world.character.setMoveFalse();  
-        if (!this.SPACE) world.character.stopFinAttack();
+        if (!this.SPACE) world.character.setFinAttack(false);
         if (this.noAction()) {
             world.character.isDead() ? world.character.loadImage('../Sharkie/img/sharkie/6.dead/1.Poisoned/12.png') : world.character.loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
         }
@@ -83,7 +83,7 @@ class Keyboard {
      * Steuert den Ton für das Schwimmen des Charakters, je nachdem, ob der Charakter sich bewegt oder nicht.
      */
     swimSoundTrigger() {
-        if (world.character.moving) {
+        if (world.character.moving || world.character.finAttack) {
             world.gameController.playSwimSound();
         } else {
             world.gameController.pauseSwimSound();

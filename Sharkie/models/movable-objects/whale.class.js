@@ -49,7 +49,7 @@ class Whale extends MovableObject {
         this.width = 280;
         this.y = 0;
         this.x = levelEnd - 200;
-        this.speed = 1;
+        this.speed = 1.2;
         this.OFFSET_X_RIGHT = 60;
         this.OFFSET_X_LEFT = 30;
         this.OFFSET_Y_TOP = 140;

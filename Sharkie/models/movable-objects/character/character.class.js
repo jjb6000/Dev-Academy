@@ -10,6 +10,7 @@ class Character extends MovableObject {
     left = false;
     finAttack = false;
     finAttackInterval;
+    finAttackIntervals = [];
     isBubbleAttacking = false;
     moving = false;
     attackedBy;
@@ -229,7 +230,7 @@ class Character extends MovableObject {
         this.moving = value;
         this.otherDirection = !value;
         this.right = value;
-        
+
     }
 
 
@@ -244,6 +245,15 @@ class Character extends MovableObject {
         this.left = value;
     }
 
+    /**
+    * Setzt die Flossen-Attacke-Variable auf den übergenbenen Wert, und ruft die Attacken-Initialisierung auf.
+    * @returns {boolean} - `true`, wenn Richtung links, andernfalls `false`.
+    */
+    setFinAttack(value) {
+        this.finAttack = value;
+        this.initFinAttack();
+    }
+
 
     /**
      * Setzt alle Richtungsvariablen auf false, sodass nicht im movingIntervall ausgeführt wird.
@@ -253,7 +263,8 @@ class Character extends MovableObject {
         this.down = false;
         this.left = false;
         this.right = false;
-        this.moving = false
+        this.finAttack = false;
+        this.moving = false;
     }
 
 
@@ -317,19 +328,17 @@ class Character extends MovableObject {
      * und die letzte Fin-Attacke mehr als 300 ms zurückliegt.
      */
     initFinAttack() {
-        if (!this.stillHurts() && Date.now() - this.lastFinAttack > 300) {
-            this.finAttack = true;
-            this.changeOffsetDuringFinAttack();
-            this.lastFinAttack = Date.now();
-            this.width = 340;
-            this.finAttackInterval = setInterval(() => {
-                if (this.finAttack) {
-                    this.movingAnimation(this.FIN_ATTACK_IMGs)
-                }
-            }, 300)
-        } else {
-            this.stopFinAttack();
-        }
+        this.finAttackInterval = setInterval(() => {
+            if (this.finAttack && !this.stillHurts() && Date.now() - this.lastFinAttack > 500) {
+                this.changeOffsetDuringFinAttack();
+                this.width = 340;
+                this.movingAnimation(this.FIN_ATTACK_IMGs)
+                this.lastFinAttack = Date.now();
+            } else {
+                this.stopFinAttack();
+            }
+        }, 320);
+        this.finAttackIntervals.push(this.finAttackInterval);
     }
 
 
@@ -340,7 +349,7 @@ class Character extends MovableObject {
         this.width = 280;
         this.finAttack = false;
         this.changeOffsetDuringFinAttack();
-        clearInterval(this.finAttackInterval)
+        this.finAttackIntervals.forEach(int => clearInterval(int));
     }
 
 
