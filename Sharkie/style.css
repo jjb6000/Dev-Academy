@@ -326,8 +326,16 @@ canvas {
     border-radius: 16px;
     z-index: 999;
     user-select: none;
+    background-color: rgba(255, 255, 255, 0);
+    font-family: 'Luckiest Guy', Arial, Helvetica, sans-serif;
 }
 
+
+.btn-empty {
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    box-shadow: none;
+}
 
 .btn-fin-attack {
     border: solid 4px red;
