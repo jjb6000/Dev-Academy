@@ -344,6 +344,10 @@ canvas {
     font-family: 'Luckiest Guy', Arial, Helvetica, sans-serif;
 }
 
+.mob-btn-bg {
+    user-select: none;
+}
+
 
 .btn-empty {
     background-color: rgba(255, 255, 255, 0);
