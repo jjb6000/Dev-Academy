@@ -43,16 +43,6 @@ class Character extends MovableObject {
         this.createImageForCache('../Sharkie/img/sharkie/1.IDLE/18.png'),
     ];
     LONG_IDLE_IMGs = [
-        this.createImageForCache('../Sharkie/img/sharkie/2.Long_IDLE/i1.png'),
-        this.createImageForCache('../Sharkie/img/sharkie/2.Long_IDLE/I2.png'),
-        this.createImageForCache('../Sharkie/img/sharkie/2.Long_IDLE/I3.png'),
-        this.createImageForCache('../Sharkie/img/sharkie/2.Long_IDLE/I4.png'),
-        this.createImageForCache('../Sharkie/img/sharkie/2.Long_IDLE/I5.png'),
-        this.createImageForCache('../Sharkie/img/sharkie/2.Long_IDLE/I6.png'),
-        this.createImageForCache('../Sharkie/img/sharkie/2.Long_IDLE/I7.png'),
-        this.createImageForCache('../Sharkie/img/sharkie/2.Long_IDLE/I8.png'),
-        this.createImageForCache('../Sharkie/img/sharkie/2.Long_IDLE/I9.png'),
-        this.createImageForCache('../Sharkie/img/sharkie/2.Long_IDLE/I10.png'),
         this.createImageForCache('../Sharkie/img/sharkie/2.Long_IDLE/I11.png'),
         this.createImageForCache('../Sharkie/img/sharkie/2.Long_IDLE/I12.png'),
         this.createImageForCache('../Sharkie/img/sharkie/2.Long_IDLE/I13.png'),
@@ -171,8 +161,6 @@ class Character extends MovableObject {
                 this.movingAnimation(this.idleMode);
             if (this.moving && !this.isBubbleAttacking && !this.stillHurts() && !this.isDead())
                 this.movingAnimation(this.ANIMATION_IMGs);
-            // if (this.finAttack && !this.isDead())
-            //     this.movingAnimation(this.FIN_ATTACK_IMGs);
             if (this.stillHurts() && !this.isDead())
                 this.movingAnimation(this.returnHurtAnimationBasedOnAttack(this.attackedBy));
             if (this.isDead())
@@ -412,7 +400,7 @@ class Character extends MovableObject {
                 this.movingAnimation(imgArray);
                 i++;
             }
-            if (i === 8) {
+            if (i === 6) {
                 this.bubbleAttack(attackType);
             }
             if (i === 9 || !this.isBubbleAttacking) {
@@ -427,6 +415,7 @@ class Character extends MovableObject {
      * @param {number} bubbleInterval - Die ID des Blasen-Intervalls, das gestoppt werden soll.
      */
     stopBubbleInterval(bubbleInterval) {
+        this.isBubbleAttacking = false
         clearInterval(bubbleInterval);
         this.loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
         this.timeStampLastBubbleAttack = 0;

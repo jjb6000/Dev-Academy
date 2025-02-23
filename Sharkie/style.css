@@ -20,7 +20,6 @@ h1 {
 
 .canvas-container {
     position: relative;
-
 }
 
 canvas {
@@ -146,37 +145,52 @@ canvas {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.instructions {
+.menu-overlay {
+    display: none;
     position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+}
+
+.instructions {
     border-radius: 32px;
-    top: 32px;
-    left: 40px;
-    right: 40px;
-    bottom: 32px;
     padding: 1rem;
     background-color: rgb(0, 217, 255);
     border: solid white 6px;
-    z-index: 99;
-    display: none;
     flex-direction: column;
     justify-content: start;
     align-items: center;
+    min-width: 320px;
+    min-height: 360px;
 }
 
+
 .instructions-header {
-    position: relative;
     width: 100%;
     text-align: center;
+}
 
+.instructions-header h3 {
+    margin-top: 0;
+}
+
+.x-div {
+    display: flex;
+    justify-content: end;
 }
 
 .close-button {
     cursor: pointer;
-    font-size: 48px;
-    padding: 4px 12px;
-    position: absolute;
-    top: 0;
-    right: 0;
+    font-size: 36px;
+    padding: 6px 12px;
+    width: 36px;
+    text-align: center;
 }
 
 .close-button:hover {
@@ -200,7 +214,7 @@ canvas {
 
 .basic-controls-img {
     width: 500px;
-    height: 200px;
+    height: 250px;
 }
 
 
