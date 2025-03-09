@@ -78,9 +78,12 @@ class MovableObject extends DrawObject {
      * 
      * @param {Array} imgArray - Ein Array von Bildquellen, das die Animation darstellt.
      */
-    movingAnimation(imgArray) {
+    movingAnimation(imgArray, bubble = false, ii = 0) {
         let i = this.imageIndex % imgArray.length;
         this.img = imgArray[i];
+        if (this instanceof Character && bubble) {
+            console.log(i, ii)
+        }
         this.imageIndex++;
     }
 

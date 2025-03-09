@@ -250,8 +250,10 @@ class Character extends MovableObject {
     * @returns {boolean} - `true`, wenn Richtung links, andernfalls `false`.
     */
     setFinAttack(value) {
-        this.finAttack = value;
-        this.initFinAttack();
+        if (!this.stillHurts() && Date.now() - this.lastFinAttack > 800) {
+            this.finAttack = value;
+            this.initFinAttack();
+        }
     }
 
 
@@ -328,16 +330,17 @@ class Character extends MovableObject {
      * und die letzte Fin-Attacke mehr als 300 ms zurückliegt.
      */
     initFinAttack() {
+        this.lastFinAttack = Date.now();
+        let i = 0;
         this.finAttackInterval = setInterval(() => {
-            if (this.finAttack && !this.stillHurts() && Date.now() - this.lastFinAttack > 500) {
-                this.changeOffsetDuringFinAttack();
-                this.width = 340;
-                this.movingAnimation(this.FIN_ATTACK_IMGs)
-                this.lastFinAttack = Date.now();
-            } else {
+            this.changeOffsetDuringFinAttack();
+            this.width = 340;
+            this.img = this.FIN_ATTACK_IMGs[i]
+            i++
+            if (i === 8) {
                 this.stopFinAttack();
             }
-        }, 320);
+        }, 100);
         this.finAttackIntervals.push(this.finAttackInterval);
     }
 
@@ -391,11 +394,6 @@ class Character extends MovableObject {
     }
 
 
-    // finAttack() {
-
-    // }
-
-
     /**
      * Führt die Blasen-Attacke aus und zeigt die Animation für die Blase an.
      * @param {Array} imgArray - Das Array von Bild-URLs für die Animation.
@@ -403,13 +401,14 @@ class Character extends MovableObject {
      */
     bubbleAnimation(imgArray, attackType) {
         this.isBubbleAttacking = true;
-        let i = 0;
+        // let i = 0;
         const bubbleInterval = setInterval(() => {
+            let i = this.imageIndex % imgArray.length;
             if (i < 9 && this.isBubbleAttacking) {
-                this.movingAnimation(imgArray);
+                this.movingAnimation(imgArray, true, i);
                 i++;
             }
-            if (i === 6) {
+            if (i === 4) {
                 this.bubbleAttack(attackType);
             }
             if (i === 9 || !this.isBubbleAttacking) {

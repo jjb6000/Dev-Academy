@@ -7,6 +7,7 @@ class Keyboard {
     SPACE = false;
     V_BTN = false;
 
+    // TODO Unterscheidung "switch type movements" die durch Animationsende aufhören (Attacken) und keypressed Bewegungen
 
     /**
     * Verarbeitet die Tasteneingaben für die Steuerung des Charakters und führt entsprechende Aktionen aus.
@@ -15,6 +16,7 @@ class Keyboard {
     * @param {boolean} press - Ein Wahrheitswert, der angibt, ob die Taste gerade gedrückt wird.
     */
     processKeyInput(key, press) {
+        if(key === ' ' && press) world.character.setFinAttack(true);
         this.actionSwitchO(key, press);
         this.noAction() ? this.stopDoing() : this.callCharacterKeyDownActions();
     }
@@ -32,7 +34,6 @@ class Keyboard {
             'ArrowDown': () => this.DOWN = press,
             'ArrowRight': () => this.RIGHT = press,
             'ArrowLeft': () => this.LEFT = press,
-            ' ': () => this.SPACE = press,
             'x': () => this.X_BTN = press,
             'v': () => this.V_BTN = press,
         }
@@ -52,10 +53,12 @@ class Keyboard {
         if (this.LEFT) world.character.setLeftMove(true);
         if (this.X_BTN && world.character.bubbleStorage > 0) world.character.initBubbleAttack();
         if (this.V_BTN && world.character.poisonStorage > 0) world.character.initPoisonAttack();
-        if (this.SPACE) world.character.setFinAttack(true);
         world.character.setLastAction();
         this.swimSoundTrigger()
     }
+
+
+
 
 
     /**
@@ -63,7 +66,6 @@ class Keyboard {
      */
     stopDoing() {
         world.character.setMoveFalse();  
-        if (!this.SPACE) world.character.setFinAttack(false);
         if (this.noAction()) {
             world.character.isDead() ? world.character.loadImage('../Sharkie/img/sharkie/6.dead/1.Poisoned/12.png') : world.character.loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
         }
@@ -75,7 +77,7 @@ class Keyboard {
      * @returns {boolean} Gibt true zurück, wenn keine Taste gedrückt wird, sonst false.
      */
     noAction() {
-        return !this.UP && !this.DOWN && !this.RIGHT && !this.LEFT && !this.X_BTN && !this.V_BTN && !this.SPACE;
+        return !this.UP && !this.DOWN && !this.RIGHT && !this.LEFT && !this.X_BTN && !this.V_BTN && !world.character.finAttack;
     }
 
 
