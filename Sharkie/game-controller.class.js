@@ -21,17 +21,32 @@ class GameController {
             'startMenu': startBtns,
             'end': endContainer,
         };
-        this.checkForPrevSoundSetting()
+        this.checkForPrevSoundSetting();
     }
 
 
     /**
-    * Überprüft den den localStorage, ob eine Soundeinstellung vorhanden ist.
+    * Überprüft, ob game.html direkt aufegrufen wurde. In dem Fall muss eine Nutzerinteraktion fürs autoplay erfolgen.
+    * Überprüft den localStorage, ob eine Soundeinstellung vorhanden ist.
     * Falls ja, wird diese verwendet andernfalls ist die default-Einstellung mute.
     */
-    checkForPrevSoundSetting() {
-        const soundLocal = JSON.parse(localStorage.getItem('sharkie-sound'));
-        soundLocal ? this.setGameSounds() : this.setGameMute();
+    checkForPrevSoundSetting(interaction = false) {
+        if(document.referrer.endsWith('Sharkie/index.html') || interaction) {
+            const soundLocal = JSON.parse(localStorage.getItem('sharkie-sound'));
+            soundLocal ? this.setGameSounds() : this.setGameMute();
+        } else {
+            document.addEventListener('click', () => this.secondSoundCheck())
+        }
+    }
+  
+    
+    /**
+    * Überprüft den localStorage (nach Nutzer-Interaktion), ob eine Soundeinstellung vorhanden ist.
+    * Entfernt den eventlistener
+    */
+    secondSoundCheck() {
+        this.checkForPrevSoundSetting(true);
+        document.removeEventListener('click', () => this.secondSoundCheck());
     }
 
 
