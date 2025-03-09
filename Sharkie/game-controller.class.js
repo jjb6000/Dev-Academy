@@ -15,13 +15,23 @@ class GameController {
     constructor(gameOverBtns, startBtns, endContainer) {
         this.gameStatus = 'startMenu';
         this.fullScreen = false;
-        this.sounds = false;
         this.currentLevel = 1;
         this.btnHtmlElements = {
             'gameOver': gameOverBtns,
             'startMenu': startBtns,
             'end': endContainer,
         };
+        this.checkForPrevSoundSetting()
+    }
+
+
+    /**
+    * Überprüft den den localStorage, ob eine Soundeinstellung vorhanden ist.
+    * Falls ja, wird diese verwendet andernfalls ist die default-Einstellung mute.
+    */
+    checkForPrevSoundSetting() {
+        const soundLocal = JSON.parse(localStorage.getItem('sharkie-sound'));
+        soundLocal ? this.setGameSounds() : this.setGameMute();
     }
 
 
@@ -256,6 +266,9 @@ class GameController {
      */
     setGameSounds() {
         this.sounds = true;
+        localStorage.setItem('sharkie-sound', JSON.stringify(true));
+        soundsCheckbox.src = './img/menu/Key/select_check_box_y.svg';
+        document.getElementById('gameSoundBtn').src = 'img/menu/Key/volume_on.svg';
         this.playBgSound();
     }
 
@@ -264,6 +277,9 @@ class GameController {
      */
     setGameMute() {
         this.sounds = false;
+        localStorage.setItem('sharkie-sound', JSON.stringify(false));
+        soundsCheckbox.src = './img/menu/Key/check_box_y.svg';
+        document.getElementById('gameSoundBtn').src = 'img/menu/Key/volume_off.svg';
         this.endAllSounds();
     }
 

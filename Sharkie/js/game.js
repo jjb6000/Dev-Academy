@@ -4,10 +4,10 @@ const settingsMenu = document.getElementById('settings');
 const gameOverBtns = document.getElementById('gameOverBtnDiv');
 const startBtns = document.getElementById('btnDiv');
 const endContainer = document.getElementById('endContainer');
-const gameController = new GameController(gameOverBtns, startBtns, endContainer);
 const canvasContainer = document.getElementById('canvasContainer');
 const soundsCheckbox = document.getElementById('soundsCB');
 const fullscreenCheckbox = document.getElementById('fullscreenCB');
+const gameController = new GameController(gameOverBtns, startBtns, endContainer);
 let world;
 let menu;
 let level;
@@ -62,8 +62,6 @@ function startGame() {
  * und das Spiel neu gestartet wird.
  */
 function reStartGame() {
-    console.log('restart');
-
     resetInstances();
     character = new Character();
     keyboard = new Keyboard();
@@ -124,29 +122,7 @@ function resetInstances() {
  * Wenn die Sounds an sind, werden sie ausgeschaltet, andernfalls werden sie eingeschaltet.
  */
 function soundSettings() {
-    gameController.sounds ? soundOff() : soundOn();
-}
-
-
-/**
- * Schaltet die Sounds aus.
- * Aktualisiert die Anzeige des Sound-Buttons und das Checkbox-Icon.
- */
-function soundOff() {
-    gameController.setGameMute();
-    soundsCheckbox.src = './img/menu/Key/check_box_y.svg';
-    document.getElementById('gameSoundBtn').src = 'img/menu/Key/volume_off.svg';
-}
-
-
-/**
- * Schaltet die Sounds ein.
- * Aktualisiert die Anzeige des Sound-Buttons und das Checkbox-Icon.
- */
-function soundOn() {
-    gameController.setGameSounds();
-    soundsCheckbox.src = './img/menu/Key/select_check_box_y.svg';
-    document.getElementById('gameSoundBtn').src = 'img/menu/Key/volume_on.svg';
+    gameController.sounds ? gameController.setGameMute() : gameController.setGameSounds();
 }
 
 
