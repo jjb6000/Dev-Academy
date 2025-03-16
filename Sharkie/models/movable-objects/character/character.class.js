@@ -252,6 +252,7 @@ class Character extends MovableObject {
     setFinAttack(value) {
         if (!this.stillHurts() && Date.now() - this.lastFinAttack > 800) {
             this.finAttack = value;
+            this.changeOffsetDuringFinAttack();
             this.initFinAttack();
         }
     }
@@ -333,7 +334,6 @@ class Character extends MovableObject {
         this.lastFinAttack = Date.now();
         let i = 0;
         this.finAttackInterval = setInterval(() => {
-            this.changeOffsetDuringFinAttack();
             this.width = 340;
             this.img = this.FIN_ATTACK_IMGs[i]
             i++
@@ -350,8 +350,7 @@ class Character extends MovableObject {
      */
     stopFinAttack() {
         this.width = 280;
-        this.finAttack = false;
-        this.changeOffsetDuringFinAttack();
+        this.setFinAttack(false)
         this.finAttackIntervals.forEach(int => clearInterval(int));
     }
 
@@ -401,17 +400,16 @@ class Character extends MovableObject {
      */
     bubbleAnimation(imgArray, attackType) {
         this.isBubbleAttacking = true;
-        // let i = 0;
+        let i = 0;
         const bubbleInterval = setInterval(() => {
-            let i = this.imageIndex % imgArray.length;
             if (i < 9 && this.isBubbleAttacking) {
-                this.movingAnimation(imgArray, true, i);
+                this.img = imgArray[i];
                 i++;
             }
-            if (i === 4) {
+            if (i === 8) {
                 this.bubbleAttack(attackType);
             }
-            if (i === 9 || !this.isBubbleAttacking) {
+            if (i === 9) {
                 this.stopBubbleInterval(bubbleInterval);
             }
         }, 100);

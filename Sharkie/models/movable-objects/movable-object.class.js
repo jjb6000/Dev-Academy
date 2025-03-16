@@ -81,9 +81,6 @@ class MovableObject extends DrawObject {
     movingAnimation(imgArray, bubble = false, ii = 0) {
         let i = this.imageIndex % imgArray.length;
         this.img = imgArray[i];
-        if (this instanceof Character && bubble) {
-            console.log(i, ii)
-        }
         this.imageIndex++;
     }
 

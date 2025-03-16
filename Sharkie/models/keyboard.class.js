@@ -7,8 +7,10 @@ class Keyboard {
     SPACE = false;
     V_BTN = false;
 
-    // TODO Unterscheidung "switch type movements" die durch Animationsende aufhören (Attacken) und keypressed Bewegungen
 
+    // ################################
+    // TODO Unterscheidung "switch type movements" die durch Animationsende aufhören (Attacken) und keypressed Bewegungen
+    // #############################
     /**
     * Verarbeitet die Tasteneingaben für die Steuerung des Charakters und führt entsprechende Aktionen aus.
     * 
