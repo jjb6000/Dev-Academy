@@ -166,7 +166,7 @@ class Character extends MovableObject {
                 this.movingAnimation(this.returnHurtAnimationBasedOnAttack(this.attackedBy));
             if (this.isDead())
                 this.deadSharkie(sharkieDoingSomething);
-            if (Date.now() - this.lastAction > 8000)
+            if (Date.now() - this.lastAction > 10000)
                 this.idleMode = this.LONG_IDLE_IMGs;
         }, 250);
         this.intervals.push(sharkieDoingSomething);
@@ -193,7 +193,6 @@ class Character extends MovableObject {
                 this.moveLeft();
                 world.camera_x = -this.x * 0.9;
             }
-
         }, 60);
         this.intervals.push(sharkiMovingInt);
     }
@@ -350,7 +349,8 @@ class Character extends MovableObject {
      */
     stopFinAttack() {
         this.width = 280;
-        this.setFinAttack(false)
+        this.setFinAttack(false);
+        this.moving = false
         this.finAttackIntervals.forEach(int => clearInterval(int));
     }
 
@@ -421,7 +421,8 @@ class Character extends MovableObject {
      * @param {number} bubbleInterval - Die ID des Blasen-Intervalls, das gestoppt werden soll.
      */
     stopBubbleInterval(bubbleInterval) {
-        this.isBubbleAttacking = false
+        this.isBubbleAttacking = false;
+        this.moving = false;
         clearInterval(bubbleInterval);
         this.loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
         this.timeStampLastBubbleAttack = 0;

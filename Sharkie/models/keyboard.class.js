@@ -8,36 +8,48 @@ class Keyboard {
     V_BTN = false;
 
 
-    // ################################
-    // TODO Unterscheidung "switch type movements" die durch Animationsende aufhören (Attacken) und keypressed Bewegungen
-    // #############################
     /**
-    * Verarbeitet die Tasteneingaben für die Steuerung des Charakters und führt entsprechende Aktionen aus.
+    * Verarbeitet die Tasteneingaben für die Steuerung des Charakters und ruft die entsprechende Aktionstypfunktion auf.
     * 
     * @param {string} key - Der gedrückte Taste.
     * @param {boolean} press - Ein Wahrheitswert, der angibt, ob die Taste gerade gedrückt wird.
     */
     processKeyInput(key, press) {
-        if(key === ' ' && press) world.character.setFinAttack(true);
-        this.actionSwitchO(key, press);
-        this.noAction() ? this.stopDoing() : this.callCharacterKeyDownActions();
+        if((key === ' ' || key === 'v' || key === 'x') && press) this.attackKeyActions(key);
+        this.MovementSwitch(key, press);
+        this.noAction() ? this.stopDoing() : this.callCharacterMovements();
     }
 
 
     /**
-    * Setzt die entsprechenden Aktionen für die Tasteneingaben des Charakters.
+    * Startet die entsprechenden Charakter-Attacken für die Tasteneingaben. Attacken enden automatische nach der Animation.
+    * 
+    * @param {string} key - Der gedrückte Taste.
+    */
+    attackKeyActions(key) {
+        if (world.character.finAttack || world.character.isBubbleAttacking) return;
+        const keyObject = {
+            ' ': () => world.character.setFinAttack(true),
+            'x': () => world.character.initBubbleAttack(),
+            'v': () => world.character.initPoisonAttack(),
+        };
+        keyObject[key]();
+        
+    }
+
+
+    /**
+    * Setzt die entsprechenden key-Variablen für die Tasteneingaben.
     * 
     * @param {string} key - Der gedrückte Taste.
     * @param {boolean} press - Ein Wahrheitswert, der angibt, ob die Taste gerade gedrückt wird.
     */
-    actionSwitchO(key, press) {
+    MovementSwitch(key, press) {
         const keyObject = {
             'ArrowUp': () => this.UP = press,
             'ArrowDown': () => this.DOWN = press,
             'ArrowRight': () => this.RIGHT = press,
             'ArrowLeft': () => this.LEFT = press,
-            'x': () => this.X_BTN = press,
-            'v': () => this.V_BTN = press,
         }
         if (keyObject[key]) {
             keyObject[key]();
@@ -46,21 +58,16 @@ class Keyboard {
 
 
     /**
-     * Führt die entsprechenden Aktionen basierend auf den aktuellen Tasteneingaben aus.
+     * Führt die entsprechenden Bewegungen basierend auf den aktuellen key-Variablen aus. Bewegungen werden durch key-Variablen beendet.
      */
-    callCharacterKeyDownActions() {
-        if (this.UP) world.character.setUpMove(true);
-        if (this.DOWN) world.character.setDownMove(true);
-        if (this.RIGHT) world.character.setRightMove(true);
-        if (this.LEFT) world.character.setLeftMove(true);
-        if (this.X_BTN && world.character.bubbleStorage > 0) world.character.initBubbleAttack();
-        if (this.V_BTN && world.character.poisonStorage > 0) world.character.initPoisonAttack();
+    callCharacterMovements() {
+        this.UP ? world.character.setUpMove(true) : world.character.setUpMove(false);
+        this.DOWN ? world.character.setDownMove(true) : world.character.setDownMove(false);
+        this.RIGHT ? world.character.setRightMove(true) : world.character.setRightMove(false);
+        this.LEFT ? world.character.setLeftMove(true) : world.character.setLeftMove(false);
         world.character.setLastAction();
         this.swimSoundTrigger()
     }
-
-
-
 
 
     /**
@@ -68,18 +75,16 @@ class Keyboard {
      */
     stopDoing() {
         world.character.setMoveFalse();  
-        if (this.noAction()) {
-            world.character.isDead() ? world.character.loadImage('../Sharkie/img/sharkie/6.dead/1.Poisoned/12.png') : world.character.loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
-        }
     }
 
+    
     /**
-     * Überprüft, ob keine Aktion ausgeführt wird (keine Taste gedrückt).
+     * Überprüft, ob keine Aktion ausgeführt wird (keine Taste gedrückt und keine laufende Attacke).
      * 
      * @returns {boolean} Gibt true zurück, wenn keine Taste gedrückt wird, sonst false.
      */
     noAction() {
-        return !this.UP && !this.DOWN && !this.RIGHT && !this.LEFT && !this.X_BTN && !this.V_BTN && !world.character.finAttack;
+        return !this.UP && !this.DOWN && !this.RIGHT && !this.LEFT && !world.character.finAttack && !world.character.isBubbleAttackingor;
     }
 
 
