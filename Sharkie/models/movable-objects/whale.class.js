@@ -99,8 +99,8 @@ class Whale extends MovableObject {
     animate() {
         const interval = setInterval(() => {
             if (this.objectIsOnScreen(this.x) && !this.isDead()) {
-                this.moveUp(world.character.y, this.speed);
-                this.moveDown(world.character.y, this.speed);
+                this.moveUp(world.character.y, this.speed *6);
+                this.moveDown(world.character.y, this.speed *6);
                 this.moveLeft(world.character.x + 130, this.speed);
             }
             if (this.isDead()) {
