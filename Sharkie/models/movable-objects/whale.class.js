@@ -78,7 +78,7 @@ class Whale extends MovableObject {
             }
         }, 100);
     }
-    
+
 
     /**
      * Stoppt die Einführungsanimation und setzt neue Intervalle für die Bewegung und Animation des Wals.
@@ -99,9 +99,10 @@ class Whale extends MovableObject {
     animate() {
         const interval = setInterval(() => {
             if (this.objectIsOnScreen(this.x) && !this.isDead()) {
-                this.moveUp(world.character.y, this.speed *6);
-                this.moveDown(world.character.y, this.speed *6);
+                this.moveUp(world.character.y, this.speed * 4);
+                this.moveDown(world.character.y, this.speed * 4);
                 this.moveLeft(world.character.x + 130, this.speed);
+                this.checkFlip();
             }
             if (this.isDead()) {
                 this.moveUp(-9999, 1);
@@ -112,6 +113,16 @@ class Whale extends MovableObject {
             }
         }, 1000 / 60);
         this.intervals.push(interval);
+    }
+
+
+    checkFlip() {
+        if (world.character.x > this.x) {
+            this.otherDirection = true;
+            this.moveRight(world.character.x, this.speed);
+        } else {
+            this.otherDirection = false;
+        }
     }
 
 

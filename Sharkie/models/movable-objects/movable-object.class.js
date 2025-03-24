@@ -14,6 +14,7 @@ class MovableObject extends DrawObject {
     attack;
     hasItems = 1;
     intervals = [];
+    otherDirection = false;
 
 
     /**

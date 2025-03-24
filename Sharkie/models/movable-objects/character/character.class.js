@@ -20,7 +20,6 @@ class Character extends MovableObject {
     bubbleStorage = 0;
     coinStorage
     poisonStorage = 0;
-    otherDirection = false;
     imageIndex = 0;
     idleMode
     IDLE_IMGs = [
@@ -162,8 +161,10 @@ class Character extends MovableObject {
                 this.movingAnimation(this.idleMode);
             if (this.moving && !this.isBubbleAttacking && !this.stillHurts() && !this.isDead())
                 this.movingAnimation(this.ANIMATION_IMGs);
-            if (this.stillHurts() && !this.isDead())
+            if (this.stillHurts() && !this.isDead()) {
+                this.setFinAttack(false);
                 this.movingAnimation(this.returnHurtAnimationBasedOnAttack(this.attackedBy));
+            }
             if (this.isDead())
                 this.deadSharkie(sharkieDoingSomething);
             if (Date.now() - this.lastAction > 10000)
@@ -227,11 +228,11 @@ class Character extends MovableObject {
 
     /**
     * Setzt die Richtungs-Variable auf den übergenbenen Wert, sodass im moveInterval die passende Aktion ausgeführt wird.
-    * Umkehr-Variable wird gesetzt (Umkehr-Var ist hier false wenn right true ist).
+    * Umkehr-Variable wird gesetzt.
     * @returns {boolean} - `true`, wenn Richtung rechts, andernfalls `false`.
     */
     setRightMove(value) {
-        this.otherDirection = !value;
+        if (value) this.otherDirection = !value
         this.right = value;
 
     }
@@ -243,20 +244,17 @@ class Character extends MovableObject {
     * @returns {boolean} - `true`, wenn Richtung links, andernfalls `false`.
     */
     setLeftMove(value) {
-        this.otherDirection = value;
+        if (value) this.otherDirection = value
         this.left = value;
     }
 
     /**
     * Setzt die Flossen-Attacke-Variable auf den übergenbenen Wert, und ruft die Attacken-Initialisierung auf.
-    * @returns {boolean} - `true`, wenn Richtung links, andernfalls `false`.
     */
     setFinAttack(value) {
-        if (!this.stillHurts() && Date.now() - this.lastFinAttack > 800) {
-            this.finAttack = value;
-            this.changeOffsetDuringFinAttack();
-            this.initFinAttack();
-        }
+        this.finAttack = value;
+        this.changeOffsetDuringFinAttack();
+        this.initFinAttack();
     }
 
 
