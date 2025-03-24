@@ -7,6 +7,7 @@ class GameController {
     currentLevel;
     btnHtmlElements;
     tempCoinScore;
+    initialBGLoadCounter = 0;
     swim_sound = new Audio('../Sharkie/audio/move.mp3');
     bg_sound = new Audio('../Sharkie/audio/shark-bg-sound.mp3');
     whale_sound = new Audio('../Sharkie/audio/whale.mp3');
@@ -66,6 +67,21 @@ class GameController {
         }
         if (mO instanceof Whale) {
             if (mO.objectIsOnScreen(mO.x)) this.playWhaleSound();
+        }
+        if (this.initialBGLoadCounter < 17) this.loadScreenCheck(mO)
+    }
+
+
+    /**
+    * Überprüft, ob Hintergrund-Elemente geladen wurden und shaltet den LoadScreen ab.
+    * @param {Object} mO - Das zu überprüfende bewegliche Objekt.
+    */
+    loadScreenCheck(mo) {
+        if (mo instanceof Background && this.initialBGLoadCounter < 18) {
+            this.initialBGLoadCounter++
+        }
+        if (mo instanceof Background && this.initialBGLoadCounter === 17) {
+            this.setLoadScreen(false);
         }
     }
 
@@ -164,11 +180,12 @@ class GameController {
     /**
     * Startet und beendet den Lade-Screen.
     */
-    loadScreenManager() { 
-        document.getElementById('loaderBg').style.display = 'flex';
-        setTimeout(() => {
-            document.getElementById('loaderBg').style.display = 'none';
-        }, 4000);
+    setLoadScreen(trigger) { 
+        if (trigger) {
+            document.getElementById('loaderBg').style.display = 'flex';
+        } else {
+            document.getElementById('loaderBg').style.display = 'none';   
+        }
     }
 
 
@@ -182,7 +199,7 @@ class GameController {
             this.btnHtmlElements[this.gameStatus].style.display = 'flex';
         }
         if (this.isInStartMenu()) {
-            this.loadScreenManager();
+            this.setLoadScreen(true);
         }
         if (this.endGame()) {
             this.displaySuccessScreen();
