@@ -199,34 +199,38 @@ class Character extends MovableObject {
 
 
     /**
+    * Setzt die Bewegungs-Variable auf den übergenbenen Wert.
+    * @returns {boolean} - `true`, wenn sharkie in Bewegung ist, sonst `false`.
+    */
+    setMove(value) {
+        this.moving = value;
+    }
+
+
+    /**
     * Setzt die Richtungs-Variable auf den übergenbenen Wert, sodass im moveInterval die passende Aktion ausgeführt wird.
-    * Bewegungs-Variable wird gesetzt.
     * @returns {boolean} - `true`, wenn Richtung unten, andernfalls `false`.
     */
     setUpMove(value) {
-        this.moving = value;
         this.up = value
     }
 
 
     /**
     * Setzt die Richtungs-Variable auf den übergenbenen Wert, sodass im moveInterval die passende Aktion ausgeführt wird.
-    * Bewegungs-Variable wird gesetzt.
     * @returns {boolean} - `true`, wenn Richtung unten, andernfalls `false`.
     */
     setDownMove(value) {
-        this.moving = value;
         this.down = value
     }
 
 
     /**
     * Setzt die Richtungs-Variable auf den übergenbenen Wert, sodass im moveInterval die passende Aktion ausgeführt wird.
-    * Bewegungs- und Umkehr-Variable werden gesetzt (Umkehr-Var ist hier false wenn right true ist).
+    * Umkehr-Variable wird gesetzt (Umkehr-Var ist hier false wenn right true ist).
     * @returns {boolean} - `true`, wenn Richtung rechts, andernfalls `false`.
     */
     setRightMove(value) {
-        this.moving = value;
         this.otherDirection = !value;
         this.right = value;
 
@@ -235,11 +239,10 @@ class Character extends MovableObject {
 
     /**
     * Setzt die Richtungs-Variable auf den übergenbenen Wert, sodass im moveInterval die passende Aktion ausgeführt wird.
-    * Bewegungs- und Umkehr-Variable werden gesetzt.
+    * Umkehr-Variable wird gesetzt.
     * @returns {boolean} - `true`, wenn Richtung links, andernfalls `false`.
     */
     setLeftMove(value) {
-        this.moving = value;
         this.otherDirection = value;
         this.left = value;
     }
@@ -254,19 +257,6 @@ class Character extends MovableObject {
             this.changeOffsetDuringFinAttack();
             this.initFinAttack();
         }
-    }
-
-
-    /**
-     * Setzt alle Richtungsvariablen auf false, sodass nicht im movingIntervall ausgeführt wird.
-     */
-    setMoveFalse() {
-        this.up = false;
-        this.down = false;
-        this.left = false;
-        this.right = false;
-        this.finAttack = false;
-        this.moving = false;
     }
 
 

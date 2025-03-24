@@ -6,7 +6,7 @@ class Keyboard {
     X_BTN = false;
     SPACE = false;
     V_BTN = false;
-
+    
 
     /**
     * Verarbeitet die Tasteneingaben für die Steuerung des Charakters und ruft die entsprechende Aktionstypfunktion auf.
@@ -17,7 +17,7 @@ class Keyboard {
     processKeyInput(key, press) {
         if((key === ' ' || key === 'v' || key === 'x') && press) this.attackKeyActions(key);
         this.MovementSwitch(key, press);
-        this.noAction() ? this.stopDoing() : this.callCharacterMovements();
+        this.callCharacterMovements();
     }
 
 
@@ -27,7 +27,7 @@ class Keyboard {
     * @param {string} key - Der gedrückte Taste.
     */
     attackKeyActions(key) {
-        if (world.character.finAttack || world.character.isBubbleAttacking) return;
+        if (world.character.finAttack || world.character.isBubbleAttacking || world.character.stillHurts()) return;
         const keyObject = {
             ' ': () => world.character.setFinAttack(true),
             'x': () => world.character.initBubbleAttack(),
@@ -53,6 +53,7 @@ class Keyboard {
         }
         if (keyObject[key]) {
             keyObject[key]();
+            world.character.setMove(press);
         }
     }
 
@@ -61,31 +62,15 @@ class Keyboard {
      * Führt die entsprechenden Bewegungen basierend auf den aktuellen key-Variablen aus. Bewegungen werden durch key-Variablen beendet.
      */
     callCharacterMovements() {
-        this.UP ? world.character.setUpMove(true) : world.character.setUpMove(false);
-        this.DOWN ? world.character.setDownMove(true) : world.character.setDownMove(false);
-        this.RIGHT ? world.character.setRightMove(true) : world.character.setRightMove(false);
-        this.LEFT ? world.character.setLeftMove(true) : world.character.setLeftMove(false);
+        world.character.setUpMove(this.UP) 
+        world.character.setDownMove(this.DOWN) 
+        world.character.setRightMove(this.RIGHT) 
+        world.character.setLeftMove(this.LEFT) 
+
         world.character.setLastAction();
         this.swimSoundTrigger()
     }
 
-
-    /**
-     * Stoppt alle Aktionen des Charakters, wenn keine Tasten gedrückt werden.
-     */
-    stopDoing() {
-        world.character.setMoveFalse();  
-    }
-
-    
-    /**
-     * Überprüft, ob keine Aktion ausgeführt wird (keine Taste gedrückt und keine laufende Attacke).
-     * 
-     * @returns {boolean} Gibt true zurück, wenn keine Taste gedrückt wird, sonst false.
-     */
-    noAction() {
-        return !this.UP && !this.DOWN && !this.RIGHT && !this.LEFT && !world.character.finAttack && !world.character.isBubbleAttackingor;
-    }
 
 
     /**
