@@ -80,7 +80,7 @@ class GameController {
         if (mo instanceof Background && this.initialBGLoadCounter < 18) {
             this.initialBGLoadCounter++
         }
-        if (mo instanceof Background && this.initialBGLoadCounter === 17) {
+        if (mo instanceof Background && this.initialBGLoadCounter <= 17) {
             this.setLoadScreen(false);
         }
     }

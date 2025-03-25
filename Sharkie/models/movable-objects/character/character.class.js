@@ -162,7 +162,7 @@ class Character extends MovableObject {
             if (this.moving && !this.isBubbleAttacking && !this.stillHurts() && !this.isDead())
                 this.movingAnimation(this.ANIMATION_IMGs);
             if (this.stillHurts() && !this.isDead()) {
-                this.setFinAttack(false);
+                this.stopFinAttack();
                 this.movingAnimation(this.returnHurtAnimationBasedOnAttack(this.attackedBy));
             }
             if (this.isDead())
@@ -253,8 +253,10 @@ class Character extends MovableObject {
     */
     setFinAttack(value) {
         this.finAttack = value;
-        this.changeOffsetDuringFinAttack();
-        this.initFinAttack();
+        if (this.finAttack) {
+            this.changeOffsetDuringFinAttack();
+            this.initFinAttack();
+        }
     }
 
 

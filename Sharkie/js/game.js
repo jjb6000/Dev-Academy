@@ -69,6 +69,7 @@ function reStartGame() {
     gameController.setGameStatus('game');
     createNewWorld();
     world.startDraw();
+    gameController.setLoadScreen(false);
 }
 
 
