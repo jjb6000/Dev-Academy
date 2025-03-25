@@ -229,6 +229,14 @@ class World {
         if (movableObject.otherDirection) {
             this.reFlip(movableObject);
         }
+        this.gameController.loadScreenCheck(movableObject);
+        this.setWorldToMo(movableObject);
+    }
+
+
+    setWorldToMo(mO) {
+        if(mO.world) return;
+        mO.world = this
     }
 
 

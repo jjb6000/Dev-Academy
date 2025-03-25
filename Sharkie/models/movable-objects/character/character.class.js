@@ -162,7 +162,6 @@ class Character extends MovableObject {
             if (this.moving && !this.isBubbleAttacking && !this.stillHurts() && !this.isDead())
                 this.movingAnimation(this.ANIMATION_IMGs);
             if (this.stillHurts() && !this.isDead()) {
-                this.stopFinAttack();
                 this.movingAnimation(this.returnHurtAnimationBasedOnAttack(this.attackedBy));
             }
             if (this.isDead())
@@ -251,12 +250,10 @@ class Character extends MovableObject {
     /**
     * Setzt die Flossen-Attacke-Variable auf den übergenbenen Wert, und ruft die Attacken-Initialisierung auf.
     */
-    setFinAttack(value) {
-        this.finAttack = value;
-        if (this.finAttack) {
-            this.changeOffsetDuringFinAttack();
-            this.initFinAttack();
-        }
+    setFinAttack() {
+        this.finAttack = true;
+        this.changeOffsetDuringFinAttack();
+        this.initFinAttack();
     }
 
 
@@ -278,6 +275,7 @@ class Character extends MovableObject {
      */
     returnHurtAnimationBasedOnAttack(attackedBy) {
         if (attackedBy === 'electric') {
+            this.stopFinAttack();
             return this.ELECTRIC_OUCH_IMGs;
         } else {
             return this.POISON_OUCH_IMGs;
@@ -309,7 +307,7 @@ class Character extends MovableObject {
      */
     calcBubbleCoordinates() {
         return {
-            'x': this.world.character.x + this.width + 20 - this.OFFSET_X_LEFT,
+            'x': this.world.character.x + this.width - this.OFFSET_X_LEFT,
             'y': this.world.character.y + this.OFFSET_Y_TOP
         }
     }
@@ -339,8 +337,7 @@ class Character extends MovableObject {
      */
     stopFinAttack() {
         this.width = 280;
-        this.setFinAttack(false);
-        this.moving = false
+        this.finAttack = false;
         this.finAttackIntervals.forEach(int => clearInterval(int));
     }
 

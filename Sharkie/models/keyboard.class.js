@@ -29,7 +29,7 @@ class Keyboard {
     attackKeyActions(key) {
         if (world.character.finAttack || world.character.isBubbleAttacking || world.character.stillHurts()) return;
         const keyObject = {
-            ' ': () => world.character.setFinAttack(true),
+            ' ': () => world.character.setFinAttack(),
             'x': () => world.character.initBubbleAttack(),
             'v': () => world.character.initPoisonAttack(),
         };

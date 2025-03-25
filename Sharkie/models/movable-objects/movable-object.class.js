@@ -1,5 +1,5 @@
 class MovableObject extends DrawObject {
-    // world;
+    world;
     lastHit = 0;
     currentCameraPosition;
     speed = 1;
