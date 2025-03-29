@@ -64,7 +64,7 @@ class Pufferfish extends MovableObject {
             if (this.world) {
                 console.log('is it?');
                 
-                if (this.x < this.world.camera_x) {
+                if (this.x + this.width + this.OFFSET_X_RIGHT < this.world.camera_x) {
                     console.log('stop')
                     this.stop();
                 }

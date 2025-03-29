@@ -68,7 +68,6 @@ class GameController {
         if (mO instanceof Whale) {
             if (mO.objectIsOnScreen(mO.x)) this.playWhaleSound();
         }
-        if (this.initialBGLoadCounter < 17) this.loadScreenCheck(mO)
     }
 
 
@@ -77,6 +76,7 @@ class GameController {
     * @param {Object} mO - Das zu überprüfende bewegliche Objekt.
     */
     loadScreenCheck(mo) {
+        if (this.initialBGLoadCounter > 17) return;
         if (mo instanceof Background && this.initialBGLoadCounter < 18) {
             this.initialBGLoadCounter++
         }

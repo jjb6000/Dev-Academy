@@ -338,6 +338,7 @@ class Character extends MovableObject {
     stopFinAttack() {
         this.width = 280;
         this.finAttack = false;
+        this.changeOffsetDuringFinAttack();
         this.finAttackIntervals.forEach(int => clearInterval(int));
     }
 
