@@ -192,6 +192,8 @@ function applyGameEventListeners() {
 
 window.onload = () => initGame();
 
+document.addEventListener("DOMContentLoaded", () => { gameController.DOMLoaded = true });
+
 
 document.getElementById('instBtn').addEventListener('click', () => instructionsMenu.style.display = 'flex');
 
@@ -218,6 +220,9 @@ document.getElementById('againBtn').addEventListener('click', () => reStartGame(
 
 
 document.getElementById('backToMenuBtn').addEventListener('click', () => backToMenu());
+
+
+
 
 
 /**

@@ -8,6 +8,7 @@ class GameController {
     btnHtmlElements;
     tempCoinScore;
     initialBGLoadCounter = 0;
+    DOMLoaded = false;
     swim_sound = new Audio('../Sharkie/audio/move.mp3');
     bg_sound = new Audio('../Sharkie/audio/shark-bg-sound.mp3');
     whale_sound = new Audio('../Sharkie/audio/whale.mp3');
@@ -77,10 +78,10 @@ class GameController {
     */
     loadScreenCheck(mo) {
         if (this.initialBGLoadCounter > 199) return;
-        if (mo instanceof MovableObject && this.initialBGLoadCounter < 200) {
+        if (mo instanceof MovableObject && mo.img && this.initialBGLoadCounter < 200 && this.DOMLoaded) {
             this.initialBGLoadCounter++
         }
-        if (mo instanceof MovableObject && this.initialBGLoadCounter <= 199) {
+        if (this.initialBGLoadCounter <= 199) {
             this.setLoadScreen(false);
         }        
     }
