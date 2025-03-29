@@ -102,6 +102,7 @@ function backToMenu() {
     world.stopWorld();
     resetInstances();
     initGame();
+    gameController.initialBGLoadCounter = 0;
 }
 
 
