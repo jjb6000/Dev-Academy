@@ -76,13 +76,13 @@ class GameController {
     * @param {Object} mO - Das zu überprüfende bewegliche Objekt.
     */
     loadScreenCheck(mo) {
-        if (this.initialBGLoadCounter > 17) return;
-        if (mo instanceof Background && this.initialBGLoadCounter < 18) {
+        if (this.initialBGLoadCounter > 199) return;
+        if (mo instanceof MovableObject && this.initialBGLoadCounter < 200) {
             this.initialBGLoadCounter++
         }
-        if (mo instanceof Background && this.initialBGLoadCounter <= 17) {
+        if (mo instanceof MovableObject && this.initialBGLoadCounter <= 199) {
             this.setLoadScreen(false);
-        }
+        }        
     }
 
 
