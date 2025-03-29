@@ -27,6 +27,7 @@ class DrawObject {
     createImageForCache(path) {
         let img = new Image();
         img.src = path;
+        img.loading = "lazy"
         return img;
     }
 
