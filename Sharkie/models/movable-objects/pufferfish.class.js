@@ -61,13 +61,8 @@ class Pufferfish extends MovableObject {
             if (!this.isDead()) {
                 this.movingAnimation(this.ANIMATION_IMGs)
             }
-            if (this.world) {
-                console.log('is it?');
-                
-                if (this.x + this.width + this.OFFSET_X_RIGHT < this.world.camera_x) {
-                    console.log('stop')
-                    this.stop();
-                }
+            if (this.world) {                
+                if (this.x + this.width + this.OFFSET_X_RIGHT < this.world.camera_x) this.stop();
             }
             if (this.isDead()) {
                 this.loadImage('../Sharkie/img/enemies/1.Puffer fish (3 color options)/4.DIE/1.Dead 2 (can animate by going down to the floor after the Fin Slap attack).png');

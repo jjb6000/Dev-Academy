@@ -4,6 +4,7 @@ class AttackBubble extends Character {
     speed = 0.9;
     x;
     y;
+    collectable = false;
 
 
     constructor(x, y, otherDirectionBoolean) {
@@ -16,6 +17,11 @@ class AttackBubble extends Character {
         this.OFFSET_Y_TOP = 0;
         this.OFFSET_Y_BOTTOM = 0;
         this.otherDirection = otherDirectionBoolean;
+        setTimeout(() => {
+            this.collectable = true;
+            console.log(this.collectable);
+            
+        }, 500);
     }
 
 

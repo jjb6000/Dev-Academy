@@ -297,7 +297,7 @@ class World {
      */
     isCharacterCollectingHisFiredBubble() {
         this.level.firedBubbles.forEach(item => {
-            if (this.character.isColliding(item)) {
+            if (this.character.isColliding(item) && item.collectable) {
                 this.gameController.removeItem(item);
                 this.character.collects(item);
             }
