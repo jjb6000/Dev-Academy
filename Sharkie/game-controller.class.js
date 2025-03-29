@@ -92,7 +92,7 @@ class GameController {
      * @param {Object} movableObject - Das zu überprüfende bewegliche Objekt.
      */
     checkForGarbage(movableObject) {
-        if (movableObject.readyForGarbageCollection) {
+        if (movableObject.readyForGarbageCollection && this.gameStatus !== 'startMenu') {
             this.removeItem(movableObject);
         }
         if (this.isGameOver() &&
