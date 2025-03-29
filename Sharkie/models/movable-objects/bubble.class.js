@@ -17,8 +17,8 @@ class Bubble extends MovableObject {
     */
     animate() {
         const interval = setInterval(() => {
-            this.moveUp(-100, 0.5);            
-            if (this.y <= -90) {             
+            this.moveUp(-100, 0.65);            
+            if (this.y <= -55) {                             
                 this.stop();
             }
         }, 1000 / 60);

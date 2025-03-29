@@ -41,9 +41,7 @@ class Pufferfish extends MovableObject {
                 this.moveRight(9999, 1);
                 this.moveDown(9999, 1);
             }
-            if (this.y > 500) {
-                this.stop();
-            }
+            if (this.y > 460) this.stop();
         }, 1000 / 60);
         this.intervals.push(interval_1);
     }

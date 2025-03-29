@@ -20,7 +20,7 @@ class Jellyfish extends MovableObject {
             if (this.objectIsOnScreen(this.x) && !this.isDead()) {
                 this.moveUp(-300, this.speed);
             }
-            if (this.y < -200) this.stop();
+            if (this.y < -80) this.stop();
             if (this.isDead()) {
                 this.deadBodyMovement()
             }

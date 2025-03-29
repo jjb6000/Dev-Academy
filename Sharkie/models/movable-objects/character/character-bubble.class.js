@@ -18,9 +18,7 @@ class AttackBubble extends Character {
         this.OFFSET_Y_BOTTOM = 0;
         this.otherDirection = otherDirectionBoolean;
         setTimeout(() => {
-            this.collectable = true;
-            console.log(this.collectable);
-            
+            this.collectable = true;            
         }, 500);
     }
 
