@@ -8,7 +8,7 @@ class World {
     canvas;
     ctx;
     defaultBg = new Background('../Sharkie/img/bg/Dark/1.png', 0);
-    menuBgObjects = MENU();
+    menuBgObjects;
     animationFrame = 0;
     bubbleTimeStamp;
     collisionTimeStamp;
@@ -76,6 +76,7 @@ class World {
      * Initialisiert das Startmenü.
      */
     startMenu() {
+        if(!this.menuBgObjects || this.menuBgObjects.length === 0) this.menuBgObjects = MENU();
         this.gameController.setTempCoinScore(0);
         if (this.menuBgObjects) {
             this.menuBgObjects.forEach(objectArray => {this.addMultiObjectsToMap(objectArray)});

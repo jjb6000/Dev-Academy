@@ -81,7 +81,7 @@ class GameController {
         if (mo instanceof MovableObject && mo.img.complete && this.initialBGLoadCounter < 300 && this.DOMLoaded) {
             this.initialBGLoadCounter++
         }
-        if (this.initialBGLoadCounter <= 299) {
+        if (this.initialBGLoadCounter >= 299) {
             this.setLoadScreen(false);
         }        
     }
