@@ -77,7 +77,7 @@ class Keyboard {
      * Steuert den Ton für das Schwimmen des Charakters, je nachdem, ob der Charakter sich bewegt oder nicht.
      */
     swimSoundTrigger() {
-        if (world.character.moving || world.character.finAttack) {
+        if (world.character.moving) {
             world.gameController.playSwimSound();
         } else {
             world.gameController.pauseSwimSound();

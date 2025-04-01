@@ -320,6 +320,7 @@ class Character extends MovableObject {
     initFinAttack() {
         this.lastFinAttack = Date.now();
         let i = 0;
+        world.gameController.playSlapSound();
         this.finAttackInterval = setInterval(() => {
             this.width = 340;
             this.img = this.FIN_ATTACK_IMGs[i]
@@ -337,6 +338,7 @@ class Character extends MovableObject {
      */
     stopFinAttack() {
         this.width = 280;
+        world.gameController.pauseSlapSound();
         this.finAttack = false;
         this.changeOffsetDuringFinAttack();
         this.finAttackIntervals.forEach(int => clearInterval(int));
@@ -364,6 +366,7 @@ class Character extends MovableObject {
     initBubbleAttack() {
         if (Date.now() - this.timeStampLastBubbleAttack > 600 && this.bubbleStorage > 0) {
             this.bubbleAnimation(this.BUBBLE_ATTACK_IMGs, 'bubble');
+            world.gameController.playBlubbSound();
         }
         this.timeStampLastBubbleAttack = Date.now();
     }
@@ -376,6 +379,7 @@ class Character extends MovableObject {
     initPoisonAttack() {
         if (Date.now() - this.timeStampLastBubbleAttack > 600 && this.poisonStorage > 0) {
             this.bubbleAnimation(this.POISON_BUBBLE_ATTACK_IMGs, 'poison');
+            world.gameController.playBlubbSound();
         }
         this.timeStampLastBubbleAttack = Date.now();
     }
@@ -410,6 +414,7 @@ class Character extends MovableObject {
      */
     stopBubbleInterval(bubbleInterval) {
         this.isBubbleAttacking = false;
+        world.gameController.pauseBlubbSound();
         this.moving = false;
         clearInterval(bubbleInterval);
         this.loadImage('../Sharkie/img/sharkie/1.IDLE/1.png');
@@ -455,13 +460,16 @@ class Character extends MovableObject {
      */
     collects(item) {
         if (item instanceof Bubble || item instanceof AttackBubble) {
+            if(world.gameController.isInGameStatus()) world.gameController.playPloppSound();
             this.bubbleStorage += 1;
         }
         if (item instanceof Coin) {
+            world.gameController.playCoinSound();
             this.coinStorage += 1;
             item.stop();
         }
         if (item instanceof Poison) {
+            world.gameController.playBottleSound();
             this.poisonStorage += 1;
         }
     }

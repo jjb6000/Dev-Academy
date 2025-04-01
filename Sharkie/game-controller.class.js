@@ -12,6 +12,11 @@ class GameController {
     swim_sound = new Audio('../Sharkie/audio/move.mp3');
     bg_sound = new Audio('../Sharkie/audio/shark-bg-sound.mp3');
     whale_sound = new Audio('../Sharkie/audio/whale.mp3');
+    blubb_sound = new Audio('../Sharkie/audio/blubb.mp3');
+    coin_sound = new Audio('../Sharkie/audio/coin.mp3');
+    slap_sound = new Audio('../Sharkie/audio/slap-short.mp3');
+    plopp_sound = new Audio('../Sharkie/audio/plopp.mp3');
+    bottle_sound = new Audio('../Sharkie/audio/bottle.mp3');
 
 
     constructor(gameOverBtns, startBtns, endContainer) {
@@ -33,15 +38,15 @@ class GameController {
     * Falls ja, wird diese verwendet andernfalls ist die default-Einstellung mute.
     */
     checkForPrevSoundSetting(interaction = false) {
-        if(document.referrer.endsWith('Sharkie/index.html') || interaction) {
+        if (document.referrer.endsWith('Sharkie/index.html') || interaction) {
             const soundLocal = JSON.parse(localStorage.getItem('sharkie-sound'));
             soundLocal ? this.setGameSounds() : this.setGameMute();
         } else {
             document.addEventListener('click', () => this.secondSoundCheck())
         }
     }
-  
-    
+
+
     /**
     * Überprüft den localStorage (nach Nutzer-Interaktion), ob eine Soundeinstellung vorhanden ist.
     * Entfernt den eventlistener
@@ -83,7 +88,7 @@ class GameController {
         }
         if (this.initialBGLoadCounter >= 299) {
             this.setLoadScreen(false);
-        }        
+        }
     }
 
 
@@ -181,11 +186,11 @@ class GameController {
     /**
     * Startet und beendet den Lade-Screen.
     */
-    setLoadScreen(trigger) { 
+    setLoadScreen(trigger) {
         if (trigger) {
             document.getElementById('loaderBg').style.display = 'flex';
         } else {
-            document.getElementById('loaderBg').style.display = 'none';   
+            document.getElementById('loaderBg').style.display = 'none';
         }
     }
 
@@ -249,33 +254,132 @@ class GameController {
     }
 
 
+    playBottleSound() {
+        if (this.sounds) {
+            const sound = this.bottle_sound.play()
+            this.checkSoundPromise(sound)
+
+        }
+    }
+
+
+    playPloppSound() {
+        if (this.sounds) {
+            const sound = this.plopp_sound.play()
+            this.checkSoundPromise(sound)
+
+        }
+    }
+
+
     playSwimSound() {
-        if (this.sounds) this.swim_sound.play()
+        if (this.sounds) {
+            const sound = this.swim_sound.play()
+            this.checkSoundPromise(sound)
+
+        }
     }
 
 
     pauseSwimSound() {
-        if (this.sounds) this.swim_sound.pause()
+        if (this.sounds) {
+            const sound = this.swim_sound.pause()
+            this.checkSoundPromise(sound)
+
+        }
+    }
+
+
+    playBlubbSound() {
+        if (this.sounds) {
+            const sound = this.blubb_sound.play();
+            this.checkSoundPromise(sound)
+
+        }
+    }
+
+    pauseBlubbSound() {
+        if (this.sounds) {
+            const sound = this.blubb_sound.pause();
+            this.checkSoundPromise(sound)
+
+        }
+    }
+
+    playCoinSound() {
+        if (this.sounds) {
+            const sound = this.coin_sound.play();
+            this.checkSoundPromise(sound)
+
+        }
+    }
+
+    pauseCoinSound() {
+        if (this.sounds) {
+            const sound = this.coin_sound.pause();
+            this.checkSoundPromise(sound)
+
+        }
+    }
+
+    playSlapSound() {
+        if (this.sounds) {
+            const sound = this.slap_sound.play();
+            this.checkSoundPromise(sound)
+
+        }
+    }
+
+    pauseSlapSound() {
+        if (this.sounds) {
+            const sound = this.slap_sound.pause();
+            this.checkSoundPromise(sound);
+
+        }
     }
 
 
     playBgSound() {
-        if (this.sounds) this.bg_sound.play()
+        if (this.sounds) {
+            const sound = this.bg_sound.play();
+            this.checkSoundPromise(sound);
+        }
     }
 
 
     pauseBgSound() {
-        if (this.sounds) this.bg_sound.pause()
+        if (this.sounds) {
+            const sound = this.bg_sound.pause()
+            this.checkSoundPromise(sound);
+        }
     }
 
 
     playWhaleSound() {
-        if (this.sounds) this.whale_sound.play()
+        if (this.sounds) {
+            const sound = this.whale_sound.play()
+            this.checkSoundPromise(sound);
+        }
     }
 
 
     pauseWhaleSound() {
-        if (this.sounds) this.whale_sound.pause()
+        if (this.sounds) {
+            const sound = this.whale_sound.pause()
+            this.checkSoundPromise(sound);
+        }
+    }
+
+
+    checkSoundPromise(soundPromise) {
+        if (soundPromise !== undefined) {
+            soundPromise.then(() => {
+                soundPromise.pause();
+            })
+                .catch(error => {
+
+                });
+        }
     }
 
 
