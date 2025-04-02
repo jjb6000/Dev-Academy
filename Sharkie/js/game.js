@@ -184,8 +184,8 @@ function applyGameEventListeners() {
     touchBtnIds.forEach(id => {
         const btn = document.getElementById(id);
         btn.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            world.keyboard.processKeyInput(btn.dataset.key, true)
+            if (e.cancelable) e.preventDefault();
+            world.keyboard.processKeyInput(btn.dataset.key, true);
         });
         btn.addEventListener('touchend', () => world.keyboard.processKeyInput(btn.dataset.key, false));
     });
