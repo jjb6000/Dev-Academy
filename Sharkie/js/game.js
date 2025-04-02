@@ -183,7 +183,10 @@ function applyGameEventListeners() {
     const touchBtnIds = ['tLeft', 'tRight', 'tSlap', 'tBubble', 'tPoison', 'tUp', 'tDown'];
     touchBtnIds.forEach(id => {
         const btn = document.getElementById(id);
-        btn.addEventListener('touchstart', () => world.keyboard.processKeyInput(btn.dataset.key, true));
+        btn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            world.keyboard.processKeyInput(btn.dataset.key, true)
+        });
         btn.addEventListener('touchend', () => world.keyboard.processKeyInput(btn.dataset.key, false));
     });
 }
