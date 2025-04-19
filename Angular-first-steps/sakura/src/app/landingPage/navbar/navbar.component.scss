@@ -1,0 +1,44 @@
+.header {
+    margin-top: 24px;
+    width: 80vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 104px;
+}
+
+.logo {
+    height: 64px;
+    width: 64px;
+}
+
+
+.navbar {
+    width: 600px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.tel-btn {
+    background-color: var(--h2-text);
+    border: solid 1px white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 200px;
+    padding: 8px;
+    &:hover {
+        background-color: red;
+    }
+}
+
+
+#ger {
+    width: 20px;
+}
+
+#en {
+    width: 20px;
+}
