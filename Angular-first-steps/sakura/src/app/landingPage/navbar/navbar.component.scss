@@ -18,6 +18,9 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    >img {
+        width: 20px;
+    }
 }
 
 .tel-btn {
@@ -35,10 +38,39 @@
 }
 
 
-#ger {
-    width: 20px;
+.logo {
+    height: 64px;
+    width: 64px;
 }
 
-#en {
-    width: 20px;
+
+
+@media (max-width: 450px) {
+    .navbar {
+        flex-direction: column;
+        align-items: end;
+        justify-content: center;
+        gap: 24px;
+        >img {
+            width: 40px;
+        }
+    }
+
+
+    body {
+        font-size: 16px;
+    }
+    
+    .tel-btn {
+        width: 160px;
+    }
+
+    .tel-btn img {
+        width: 16px;
+    }
+
+    .logo {
+        height: 56px;
+        width: 56px;
+    }
 }
