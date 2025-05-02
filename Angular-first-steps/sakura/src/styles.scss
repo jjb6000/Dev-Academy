@@ -5,11 +5,16 @@
   --footer: #0A141E;
 }
 
+* {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: "raleway", sans-serif;
   font-size: 24px;
   color: var(--default-text);
+  scroll-behavior: smooth;
 }
 
 .font-raleway {

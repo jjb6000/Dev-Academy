@@ -1,0 +1,23 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 0px;
+}
+
+#location {
+    margin-bottom: 8px;
+}
+
+.location-span {
+    display: flex;
+    align-items: center;
+    margin-bottom: 64px;
+    text-align: center;
+    > img {
+        margin-right: 8px;
+    }
+    
+}
+
+
