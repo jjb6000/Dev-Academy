@@ -7,13 +7,7 @@ import { NavbarComponent } from "../../shared/components/navbar/navbar.component
     selector: 'app-landingPage',
     standalone: true,
     imports: [CommonModule, NavbarComponent],
-    template: `
-    <section class="hero-container">
-    <app-navbar />
-    <h1 class="font-raleway">SAKURA RAMEN</h1>
-    <span class="font-raleway" id="subtitle">THE BEST RAMEN IN TOWN</span>
-    </section>
-    `,
+    templateUrl: './landingPage.component.html',
     styleUrls: ['./landingPage.component.scss']
 })
 

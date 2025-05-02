@@ -9,6 +9,7 @@ body {
   margin: 0;
   font-family: "raleway", sans-serif;
   font-size: 24px;
+  color: var(--default-text);
 }
 
 .font-raleway {
@@ -25,13 +26,21 @@ a {
 }
 
 h1 {
+  font-family: "raleway", sans-serif;
   font-weight: bold;
   font-size: 96px;
   text-align: center;
 }
 
 h2 {
+  font-family: "raleway", sans-serif;
+  font-weight: bold;
+  font-size: 80px;
   color: var(--h2-text);
+  margin-bottom: 64px;
+  margin-top: 0;
+  padding-top: 120px;
+  text-align: center;
 }
 
 

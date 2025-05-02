@@ -1,0 +1,45 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 120px;
+}
+
+
+.order {
+    display: flex;
+    justify-content: space-between;
+    width: 80vw;
+}
+
+
+.order-step {
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    > img {
+        width: 128px;
+        margin-bottom: 16px;
+    }
+    > span {
+        font-family: 'Economica', sans-serif;
+        font-weight: bold;
+        font-size: 56px;
+        text-align: center;
+    }
+}
+
+
+@media (max-width: 940px) {
+
+
+    .order {
+        flex-direction: column;
+        align-items: center;
+        gap: 96px;
+    }
+
+
+
+}

@@ -17,10 +17,18 @@ footer {
     height: 44px;
 }
 
-.social-media img {
-    height: 40px;
-    width: 40px;
+.social-media {
+    display: flex;
+    gap: 8px;
+    >img {
+        height: 40px;
+        width: 40px;
+        cursor: pointer;
+    
+    }
 }
+
+
 
 @media (max-width: 940px) {
     .footer-content {
@@ -38,7 +46,6 @@ footer {
 
 @media (max-width: 450px) {
     .social-media {
-        display: flex;
         flex-direction: column;
         gap: 32px;
     }
