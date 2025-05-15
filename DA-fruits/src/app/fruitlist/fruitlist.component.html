@@ -10,12 +10,20 @@
                 <p><b>Bewertung:</b></p>
                 <div>
                     @for(count of [1,2,3,4,5]; track 'star' + $index ){
-                        @if(item.stars >= count) {
-                            <img src="./assets/img/stars/star.svg" alt="" srcset="">
-                        } @else if (item.stars >= count - 0.5) {
-                            <img src="./assets/img/stars/star-half.svg" alt="" srcset="">
-                        } @else {
-                            <img src="./assets/img/stars/star-empty.svg" alt="" srcset="">
+                        @switch (item.stars >= count ) {
+                            @case (true) {
+                                <img src="./assets/img/stars/star.svg" alt="" srcset="">
+                            }
+                            @case (false) {
+                                @switch (item.stars >= count - 0.5) {
+                                    @case(true) {
+                                        <img src="./assets/img/stars/star-half.svg" alt="" srcset="">
+                                    }
+                                    @case (false) {
+                                        <img src="./assets/img/stars/star-empty.svg" alt="" srcset="">
+                                    }
+                                }
+                            }
                         }
                     }
                     <p>({{item.stars}})</p>
