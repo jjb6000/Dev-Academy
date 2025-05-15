@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { iFruits } from '../interfaces';
+
 
 @Component({
   selector: 'app-fruitlist',
@@ -10,7 +12,7 @@ import { Component } from '@angular/core';
 export class FruitlistComponent {
 
 
-    fruitlist = [
+    fruitlist: iFruits[] = [
     {
       name: "Apfel",
       img:"apple.png",
