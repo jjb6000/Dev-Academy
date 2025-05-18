@@ -26,7 +26,7 @@
                             }
                         }
                     }
-                    <p>({{item.stars}})</p>
+                    <p [ngClass]="{'fontColorGood': item.stars >= 2.5, 'fontColorBad': item.stars < 2.5 }">({{item.stars}})</p>
                 </div>
             </div>
             <div><b>Art:</b><br>{{item.genus}}</div>

@@ -9,6 +9,18 @@
 }
 
 
+.fontColorGood {
+    color: green;
+}
+
+.fontColorBad {
+    color: red;
+}
+
+.bgWhite {
+    background-color: white;
+}
+
 
 .singleFruitBox {
     padding-left: 200px;
@@ -26,6 +38,7 @@
             transform: translate(-200px, 50px);
             width: 400px;
             filter: drop-shadow(0 0 20px rgb(0, 0, 0));
+            cursor: pointer;
         }
 
         box-shadow: 5.7px 5.7px 2.2px rgba(0, 0, 0, 0.032),
