@@ -1,0 +1,43 @@
+    <section class="singleFruitBox">
+        <div>
+            <img src="./assets/img/fruits/{{fruit.img}}" alt="" srcset="">
+        </div>
+        <div>
+            <h2> {{fruit.name}}</h2>
+            <div>
+                <p><b>Bewertung:</b></p>
+                <div>
+                    @for(count of [1,2,3,4,5]; track 'star' + $index ){
+                        @switch (fruit.stars >= count ) {
+                            @case (true) {
+                                <img src="./assets/img/stars/star.svg" alt="" srcset="">
+                            }
+                            @case (false) {
+                                @switch (fruit.stars >= count - 0.5) {
+                                    @case(true) {
+                                        <img src="./assets/img/stars/star-half.svg" alt="" srcset="">
+                                    }
+                                    @case (false) {
+                                        <img src="./assets/img/stars/star-empty.svg" alt="" srcset="">
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    <p [ngClass]="{'fontColorGood': fruit.stars >= 2.5, 'fontColorBad': fruit.stars < 2.5 }">({{fruit.stars}})</p>
+                </div>
+            </div>
+            <div><b>Art:</b><br>{{fruit.genus}}</div>
+            <div><b>Beschreibung:</b><br>{{fruit.description}}</div>
+            <div>
+                <div>
+                    @for(review of fruit.reviews; track review){
+                    <div><b>{{review.name}}:</b><br>{{review.text}}</div>} @empty {
+                        <p>no review yet</p>
+                    }
+                </div>
+                <div><input type="text"><button (click)="emitName()"><img src="./assets/img/arrow-35-32.png" alt="" srcset=""></button>
+                </div>
+            </div>
+        </div>
+    </section>

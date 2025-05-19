@@ -1,48 +1,6 @@
 <div class="fruitlist_content">
     @for(item of fruitlist; track item.name; let index = $index){
-    <section class="singleFruitBox">
-        <div>
-            <img src="./assets/img/fruits/{{item.img}}" alt="" srcset="">
-        </div>
-        <div>
-            <h2> {{item.name}}</h2>
-            <div>
-                <p><b>Bewertung:</b></p>
-                <div>
-                    @for(count of [1,2,3,4,5]; track 'star' + $index ){
-                        @switch (item.stars >= count ) {
-                            @case (true) {
-                                <img src="./assets/img/stars/star.svg" alt="" srcset="">
-                            }
-                            @case (false) {
-                                @switch (item.stars >= count - 0.5) {
-                                    @case(true) {
-                                        <img src="./assets/img/stars/star-half.svg" alt="" srcset="">
-                                    }
-                                    @case (false) {
-                                        <img src="./assets/img/stars/star-empty.svg" alt="" srcset="">
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    <p [ngClass]="{'fontColorGood': item.stars >= 2.5, 'fontColorBad': item.stars < 2.5 }">({{item.stars}})</p>
-                </div>
-            </div>
-            <div><b>Art:</b><br>{{item.genus}}</div>
-            <div><b>Beschreibung:</b><br>{{item.description}}</div>
-            <div>
-                <div>
-                    @for(review of item.reviews; track review){
-                    <div><b>{{review.name}}:</b><br>{{review.text}}</div>} @empty {
-                        <p>no review yet</p>
-                    }
-                </div>
-                <div><input type="text"><button><img src="./assets/img/arrow-35-32.png" alt="" srcset=""></button>
-                </div>
-            </div>
-        </div>
-    </section>
+        <app-fruit-card (fruitName)="nameLog($event)" [fruit]="item"/>
     } @empty {
     <li>There are no items.</li>
     }
