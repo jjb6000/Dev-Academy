@@ -17,14 +17,6 @@ export class FruitlistComponent {
   // fruitlist: iFruits[] = fruitData;
   fruits = inject(FruitDataService)
 
-  addComment(comment: iReviewEmit) {
-    console.log(comment);
-    this.fruits.fruitList.forEach(fruit => {
-      if (fruit.name === comment.fruit) {
-        fruit.reviews.push(comment.review)
-      }
-    })
-  }
 
   nameLog(name: string) {
     console.log(name)

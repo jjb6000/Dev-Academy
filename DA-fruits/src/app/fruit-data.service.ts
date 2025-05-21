@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { iFruits } from './interfaces';
+import { iFruits, iReviewEmit } from './interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +7,16 @@ import { iFruits } from './interfaces';
 export class FruitDataService {
 
   constructor() { }
+
+  addComment(comment: iReviewEmit) {
+    console.log(comment);
+    this.fruitList.forEach(fruit => {
+      if (fruit.name === comment.fruit) {
+        fruit.reviews.push(comment.review)
+      }
+    })
+  }
+
 
   fruitList: iFruits[] = [
     {
