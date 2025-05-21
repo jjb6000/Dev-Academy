@@ -1,6 +1,14 @@
-import { iFruits } from "../interfaces";
+import { Injectable } from '@angular/core';
+import { iFruits } from './interfaces';
 
-export const fruitData: iFruits[] = [
+@Injectable({
+  providedIn: 'root'
+})
+export class FruitDataService {
+
+  constructor() { }
+
+  fruitList: iFruits[] = [
     {
       name: "Apfel",
       img: "apple.png",
@@ -50,3 +58,4 @@ export const fruitData: iFruits[] = [
       reviews: [{ name: "Kevin W.", text: "Ganz gut in der Regel!" }, { name: "Oliver J.", text: "Absoluter Favorit beim Frühstück" }],
     },
   ]
+}

@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { iFruits, iReview, iReviewEmit } from '../interfaces';
 import { FruitCardComponent } from '../fruit-card/fruit-card.component';
-import { fruitData } from './fruitlistData';
+import { FruitDataService } from '../fruit-data.service';
+// import { fruitData } from './fruitlistData';
 
 
 @Component({
@@ -13,11 +14,12 @@ import { fruitData } from './fruitlistData';
 })
 export class FruitlistComponent {
 
-  fruitlist: iFruits[] = fruitData;
+  // fruitlist: iFruits[] = fruitData;
+  fruits = inject(FruitDataService)
 
   addComment(comment: iReviewEmit) {
     console.log(comment);
-    this.fruitlist.forEach(fruit => {
+    this.fruits.fruitList.forEach(fruit => {
       if (fruit.name === comment.fruit) {
         fruit.reviews.push(comment.review)
       }
