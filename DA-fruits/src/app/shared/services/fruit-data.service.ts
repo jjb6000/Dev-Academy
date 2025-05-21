@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { iFruits, iReviewEmit } from './interfaces';
+import { iFruits, iReviewEmit } from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'

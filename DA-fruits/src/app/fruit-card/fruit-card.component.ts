@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { iFruits, iReviewEmit } from '../interfaces';
+import { iFruits, iReviewEmit } from '../shared/interfaces/interfaces';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 

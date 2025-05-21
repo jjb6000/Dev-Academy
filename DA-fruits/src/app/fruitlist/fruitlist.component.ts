@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { iFruits, iReview, iReviewEmit } from '../interfaces';
+import { iFruits, iReview, iReviewEmit } from '../shared/interfaces/interfaces';
 import { FruitCardComponent } from '../fruit-card/fruit-card.component';
-import { FruitDataService } from '../fruit-data.service';
+import { FruitDataService } from '../shared/services/fruit-data.service';
 // import { fruitData } from './fruitlistData';
 
 
