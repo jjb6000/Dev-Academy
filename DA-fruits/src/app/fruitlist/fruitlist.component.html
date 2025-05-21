@@ -1,6 +1,6 @@
 <div class="fruitlist_content">
     @for(item of fruitlist; track item.name; let index = $index){
-        <app-fruit-card (fruitName)="nameLog($event)" [fruit]="item"/>
+        <app-fruit-card (fruitReview)="addComment($event)" [fruit]="item"/>
     } @empty {
     <li>There are no items.</li>
     }

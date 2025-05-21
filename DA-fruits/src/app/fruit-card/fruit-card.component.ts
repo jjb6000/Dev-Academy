@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { iFruits } from '../interfaces';
+import { iFruits, iReviewEmit } from '../interfaces';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-fruit-card',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './fruit-card.component.html',
   styleUrl: './fruit-card.component.scss'
 })
@@ -18,10 +19,19 @@ export class FruitCardComponent {
     reviews: [{ name: "Kevin W.", text: "ist lecker" }, { name: "Arne P.", text: "nicht so meins" }],
   }
 
-  @Output()fruitName = new EventEmitter<string>();
+  inputData = ''
 
-  emitName() {
-    this.fruitName.emit(this.fruit.name)
+  @Output()fruitReview = new EventEmitter<iReviewEmit>();
+
+  sendInputData() {
+    if (this.inputData.length === 0) {
+      alert('Screib was!');
+      return
+    }
+    const fruit = this.fruit.name;
+    const review = {name: 'Atomfried', text: this.inputData}
+    this.fruitReview.emit({fruit, review});
+    this.inputData = ''
   }
 
   fontColorGood = 'green';

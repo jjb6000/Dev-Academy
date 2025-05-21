@@ -12,3 +12,9 @@ export interface iReview {
     name: string, 
     text: string,
 }
+
+
+export interface iReviewEmit {
+    fruit: string,
+    review: iReview,
+}

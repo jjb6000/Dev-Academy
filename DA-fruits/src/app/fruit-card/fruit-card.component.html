@@ -36,7 +36,11 @@
                         <p>no review yet</p>
                     }
                 </div>
-                <div><input type="text"><button (click)="emitName()"><img src="./assets/img/arrow-35-32.png" alt="" srcset=""></button>
+                <div>
+                    <input [(ngModel)]="inputData" type="text">
+                    <button (click)="sendInputData()">
+                        <img src="./assets/img/arrow-35-32.png" alt="" srcset="">
+                    </button>
                 </div>
             </div>
         </div>
